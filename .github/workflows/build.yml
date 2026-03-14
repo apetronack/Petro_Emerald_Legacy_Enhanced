@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4.2.2
+        with:
+          submodules: recursive
 
       - name: Install dependencies
         run: |
@@ -37,6 +39,11 @@ jobs:
         run: |
           cd agbcc
           ./install.sh ${{ github.workspace }}
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
 
       - name: Build ROM
         run: make -j$(nproc)
