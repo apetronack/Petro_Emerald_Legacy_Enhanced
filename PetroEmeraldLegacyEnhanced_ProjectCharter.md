@@ -154,6 +154,7 @@
 	4. After completing rival quests in the postgame, make the rival re-battleable
 		1. Create region-specific teams for Kanto, Hoenn, and Johto, each with 3 starters from that region and the other 3 as rare encounters
 		2. Randomize which team the rival uses
+    5. Implement Enhanced Starters changes described by ReadMe. Reference branch: https://github.com/Exclsior/Pokemon_Emerald_Legacy_Enhanced/tree/enhanced-starters
 4. Summarization Report
     1. Create a report to display differences from the base Emerald version
     2. Automate:
