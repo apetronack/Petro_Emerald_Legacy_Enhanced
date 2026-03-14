@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: petro-emerald-${{ github.sha }}
-          path: pokeemerald.gba
+          path: Petro_Pokemon_Emerald_Legacy_Enhanced.gba
