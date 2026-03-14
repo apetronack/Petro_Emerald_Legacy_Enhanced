@@ -63,12 +63,12 @@ else
   CPP := $(PREFIX)cpp
 endif
 
-ROM_NAME := Base_-_Pokemon_Emerald_Legacy_Enhanced.gba
+ROM_NAME := Petro_Pokemon_Emerald_Legacy_Enhanced.gba
 ELF_NAME := $(ROM_NAME:.gba=.elf)
 MAP_NAME := $(ROM_NAME:.gba=.map)
 OBJ_DIR_NAME := build/emerald
 
-MODERN_ROM_NAME := Modern_Base_-_Pokemon_Emerald_Legacy_Enhanced.gba
+MODERN_ROM_NAME := Modern_Petro_Pokemon_Emerald_Legacy_Enhanced.gba
 MODERN_ELF_NAME := $(MODERN_ROM_NAME:.gba=.elf)
 MODERN_MAP_NAME := $(MODERN_ROM_NAME:.gba=.map)
 MODERN_OBJ_DIR_NAME := build/modern
@@ -129,6 +129,7 @@ RAMSCRGEN := tools/ramscrgen/ramscrgen$(EXE)
 FIX := tools/gbafix/gbafix$(EXE)
 MAPJSON := tools/mapjson/mapjson$(EXE)
 JSONPROC := tools/jsonproc/jsonproc$(EXE)
+SCRIPT    := tools/poryscript/poryscript$(EXE)
 
 PERL := perl
 
@@ -210,6 +211,7 @@ $(shell mkdir -p $(SUBDIRS))
 endif
 
 AUTO_GEN_TARGETS :=
+AUTO_GEN_TARGETS += $(patsubst %.pory,%.inc,$(shell find data/ -type f -name '*.pory'))
 
 all: rom
 
@@ -267,6 +269,7 @@ include songs.mk
 %.png: ;
 %.pal: ;
 %.aif: ;
+%.pory: ;
 
 %.1bpp: %.png  ; $(GFX) $< $@
 %.4bpp: %.png  ; $(GFX) $< $@
@@ -275,6 +278,7 @@ include songs.mk
 %.gbapal: %.png ; $(GFX) $< $@
 %.lz: % ; $(GFX) $< $@
 %.rl: % ; $(GFX) $< $@
+data/%.inc: data/%.pory; $(SCRIPT) -i $< -o $@ -fc tools/poryscript/font_config.json -cc tools/poryscript/command_config.json
 $(CRY_SUBDIR)/%.bin: $(CRY_SUBDIR)/%.aif ; $(AIF) $< $@ --compress
 sound/%.bin: sound/%.aif ; $(AIF) $< $@
 
