@@ -5,6 +5,7 @@ raw `
 .set LOCALID_GRUNT, 10
 .set LOCALID_RIVAL, 14
 .set LOCALID_SCIENTIST, 15
+.set LOCALID_ROXANNE, 17
 
 RustboroCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_OnTransition
@@ -17,7 +18,18 @@ RustboroCity_OnTransition:
 	call_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_HideMapNamePopup
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
 	goto_if_eq VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_PositionScientistForExit
+	call RustboroCity_EventScript_UpdateRoxanneVisibility
 	end
+
+RustboroCity_EventScript_UpdateRoxanneVisibility::
+	goto_if_set FLAG_ROXANNE_QUEST_REWARD_GIVEN, RustboroCity_EventScript_RoxanneVisibilityHide
+	goto_if_unset FLAG_BADGE03_GET, RustboroCity_EventScript_RoxanneVisibilityHide
+	clearflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
+	return
+
+RustboroCity_EventScript_RoxanneVisibilityHide::
+	setflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
+	return
 
 RustboroCity_EventScript_PositionScientistForExit::
 	goto_if_eq VAR_TEMP_0, 11, RustboroCity_EventScript_PositionScientistLeftExit
@@ -1320,4 +1332,144 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "they'll both challenge you.\p"
 	.string "Don't you think it'd be cool if you\n"
 	.string "could beat two TRAINERS by yourself?$"
+
+@ ============================================================
+@ ROXANNE OUTSIDE GYM - Quest NPC
+@ Appears after FLAG_BADGE03_GET is set (Wattson's badge).
+@ Blocks gym entry and sends the player to clear Team Magma
+@ from the Rusturf Tunnel.
+@ ============================================================
+
+RustboroCity_EventScript_RoxanneOutsideGym::
+	lock
+	faceplayer
+	goto_if_set FLAG_ROXANNE_QUEST_REWARD_GIVEN, RustboroCity_EventScript_RoxanneAlreadyRewarded
+	goto_if_set FLAG_ROXANNE_QUEST_COMPLETE, RustboroCity_EventScript_RoxanneGiveReward
+	goto_if_set FLAG_ROXANNE_QUEST_ACTIVE, RustboroCity_EventScript_RoxanneQuestReminder
+	goto RustboroCity_EventScript_RoxanneStartQuest
+
+RustboroCity_EventScript_RoxanneStartQuest::
+	msgbox RustboroCity_Text_Roxanne_QuestIntro, MSGBOX_DEFAULT
+	setflag FLAG_ROXANNE_QUEST_ACTIVE
+	setvar VAR_ROXANNE_QUEST_STATE, 1
+	release
+	end
+
+RustboroCity_EventScript_RoxanneQuestReminder::
+	msgbox RustboroCity_Text_Roxanne_QuestReminder, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_EventScript_RoxanneGiveReward::
+	msgbox RustboroCity_Text_Roxanne_QuestComplete, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, GiveGiftRelicanth
+	compare VAR_RESULT, 2
+	goto_if_eq RustboroCity_EventScript_RoxanneStorageFull
+	playfanfare MUS_LEVEL_UP
+	goto_if_eq VAR_RESULT, 1, RustboroCity_EventScript_RoxanneRelicanthToPC
+	msgbox RustboroCity_Text_Roxanne_ReceivedRelicanth, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	goto RustboroCity_EventScript_RoxanneRewardGiven
+
+RustboroCity_EventScript_RoxanneRelicanthToPC::
+	msgbox RustboroCity_Text_Roxanne_RelicanthToPC, MSGBOX_DEFAULT
+	waitfanfare
+	closemessage
+	goto RustboroCity_EventScript_RoxanneRewardGiven
+
+RustboroCity_EventScript_RoxanneStorageFull::
+	msgbox RustboroCity_Text_Roxanne_StorageFull, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_EventScript_RoxanneRewardGiven::
+	msgbox RustboroCity_Text_Roxanne_Farewell, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_ROXANNE_QUEST_REWARD_GIVEN
+	setvar VAR_ROXANNE_QUEST_STATE, 5
+	setflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
+	playse SE_EXIT
+	applymovement LOCALID_ROXANNE, RustboroCity_Movement_RoxanneEnterGym
+	waitmovement 0
+	removeobject LOCALID_ROXANNE
+	release
+	end
+
+RustboroCity_EventScript_RoxanneAlreadyRewarded::
+	msgbox RustboroCity_Text_Roxanne_AlreadyRewarded, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Movement_RoxanneEnterGym:
+	walk_up
+	step_end
+
+RustboroCity_Text_Roxanne_QuestIntro:
+	.string "{PLAYER}! You've come back to\n"
+	.string "RUSTBORO, and with WATTSON's\l"
+	.string "DYNAMO BADGE no less.\p"
+	.string "I'm genuinely impressed.\pHowever… I'm afraid I can't let\n"
+	.string "you inside the GYM just yet.\p"
+	.string "There is trouble in the RUSTURF\n"
+	.string "TUNNEL.\p"
+	.string "TEAM MAGMA has driven off the\n"
+	.string "entire construction crew and\l"
+	.string "sealed off the tunnel entirely.\p"
+	.string "They're excavating something deep\n"
+	.string "inside - I can only imagine what\l"
+	.string "they hope to find.\p"
+	.string "I need to stay and guard my GYM,\n"
+	.string "but someone must stop them.\p"
+	.string "You've earned three badges.\n"
+	.string "You're exactly who I've been\l"
+	.string "waiting for, {PLAYER}.\p"
+	.string "Please - head into the RUSTURF\n"
+	.string "TUNNEL and drive TEAM MAGMA out!$"
+
+RustboroCity_Text_Roxanne_QuestReminder:
+	.string "Are you heading to the RUSTURF\n"
+	.string "TUNNEL, {PLAYER}?\p"
+	.string "TEAM MAGMA is still in there.\n"
+	.string "Please hurry - I've heard people\l"
+	.string "are still trying to get through.\p"
+	.string "Drive them out and the tunnel\n"
+	.string "will be safe again.$"
+
+RustboroCity_Text_Roxanne_QuestComplete:
+	.string "...You did it, {PLAYER}!\p"
+	.string "TEAM MAGMA has been driven out\n"
+	.string "of the RUSTURF TUNNEL.\p"
+	.string "I wasn't sure at first, but I had\n"
+	.string "a good feeling about you.\p"
+	.string "Thank you. Please accept this as\n"
+	.string "a token of my gratitude.\p"
+	.string "RELICANTH are extraordinary\n"
+	.string "ancient POKéMON. I chose this one\l"
+	.string "especially - it is in exceptional\l"
+	.string "condition for its age!\p"
+	.string "Please take good care of it.$"
+
+RustboroCity_Text_Roxanne_ReceivedRelicanth:
+	.string "{PLAYER} received RELICANTH!$"
+
+RustboroCity_Text_Roxanne_RelicanthToPC:
+	.string "RELICANTH was sent to BILL's PC.$"
+
+RustboroCity_Text_Roxanne_StorageFull:
+	.string "Oh dear - it seems you have no\n"
+	.string "room for RELICANTH right now.\p"
+	.string "Please come back once you have\n"
+	.string "a free space in your party or\l"
+	.string "BILL's PC.$"
+
+RustboroCity_Text_Roxanne_Farewell:
+	.string "I can finally return to my work.\p"
+	.string "The GYM is open again, {PLAYER}.\n"
+	.string "Come challenge me whenever\l"
+	.string "you're ready!$"
+
+RustboroCity_Text_Roxanne_AlreadyRewarded:
+	.string "The GYM is open, {PLAYER}.\n"
+	.string "Come inside whenever you're ready!$"
 `

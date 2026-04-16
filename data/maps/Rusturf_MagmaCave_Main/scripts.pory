@@ -1,0 +1,130 @@
+// Local IDs match the 1-indexed position of each object in map.json's object_events array
+const LOCALID_GRUNT2      = 10
+const LOCALID_GRUNT3      = 11
+const LOCALID_SCIENTIST1  = 15
+const LOCALID_SCIENTIST2  = 16
+const LOCALID_TECHNICIAN1 = 17
+
+mapscripts Rusturf_MagmaCave_Main_MapScripts {}
+
+// =============================================================================
+// Grunt 2 - OBJ_EVENT_GFX_MAGMA_MEMBER_F, x=3 y=18, sight=2
+// =============================================================================
+script Rusturf_MagmaCave_Main_EventScript_Grunt2 {
+    lock
+    faceplayer
+    if (defeated(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2)) {
+        msgbox(Rusturf_MagmaCave_Main_Text_Grunt2Defeat)
+        closemessage()
+        release
+        end
+    }
+    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2, Rusturf_MagmaCave_Main_Text_Grunt2Intro, Rusturf_MagmaCave_Main_Text_Grunt2Defeat)
+    release
+    end
+}
+
+text Rusturf_MagmaCave_Main_Text_Grunt2Intro {
+    format("No need to bother the admins with this trash. I can handle you myself!")
+}
+
+text Rusturf_MagmaCave_Main_Text_Grunt2Defeat {
+    format("My POKéMON were weak! I can't believe I lost to some kid!")
+}
+
+// =============================================================================
+// Grunt 3 - OBJ_EVENT_GFX_MAGMA_MEMBER_M, x=13 y=6, sight=3
+// =============================================================================
+script Rusturf_MagmaCave_Main_EventScript_Grunt3 {
+    lock
+    faceplayer
+    if (defeated(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3)) {
+        msgbox(Rusturf_MagmaCave_Main_Text_Grunt3Defeat)
+        closemessage()
+        release
+        end
+    }
+    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3, Rusturf_MagmaCave_Main_Text_Grunt3Intro, Rusturf_MagmaCave_Main_Text_Grunt3Defeat)
+    release
+    end
+}
+
+text Rusturf_MagmaCave_Main_Text_Grunt3Intro {
+    format("Hey! What do you think you're doing here?!")
+}
+
+text Rusturf_MagmaCave_Main_Text_Grunt3Defeat {
+    format("Ugh… beaten by some kid on top of being posted to such an uncomfortable place…")
+}
+
+// =============================================================================
+// Scientist 1 - OBJ_EVENT_GFX_SCIENTIST_1, x=15 y=17, MOVEMENT_TYPE_LOOK_AROUND
+// =============================================================================
+script Rusturf_MagmaCave_EventScript_Scientist1 {
+    lock
+    faceplayer
+    msgbox(Rusturf_MagmaCave_Main_Text_Scientist1)
+    closemessage()
+    applymovement(LOCALID_SCIENTIST1, moves(face_down))
+    waitmovement(0)
+    release
+    end
+}
+
+text Rusturf_MagmaCave_Main_Text_Scientist1 {
+    format("Go away! I'm busy with important repairs!")
+}
+
+// =============================================================================
+// Scientist 2 - OBJ_EVENT_GFX_SCIENTIST_2, x=37 y=5, MOVEMENT_TYPE_FACE_RIGHT
+// =============================================================================
+script Rusturf_MagmaCave_EventScript_Scientist2 {
+    lock
+    faceplayer
+    msgbox(Rusturf_MagmaCave_Main_Text_Scientist2)
+    closemessage()
+    applymovement(LOCALID_SCIENTIST2, moves(face_right))
+    waitmovement(0)
+    release
+    end
+}
+
+text Rusturf_MagmaCave_Main_Text_Scientist2 {
+    format("I have six screws left but only four holes… How did we ever put these together?")
+}
+
+// =============================================================================
+// Magma Technician 1 - OBJ_EVENT_GFX_MAGMA_MEMBER_M, x=31 y=4, MOVEMENT_TYPE_FACE_UP
+// =============================================================================
+script Rusturf_MagmaCave_Main_EventScript_MagmaTechnician1 {
+    lock
+    faceplayer
+    msgbox(Rusturf_MagmaCave_Main_Text_MagmaTechnician1)
+    closemessage()
+    applymovement(LOCALID_TECHNICIAN1, moves(face_up))
+    waitmovement(0)
+    release
+    end
+}
+
+text Rusturf_MagmaCave_Main_Text_MagmaTechnician1 {
+    format("I don't have much skill in battling. I just like to play with the cool machines!")
+}
+
+// =============================================================================
+// Item Balls
+// =============================================================================
+script Rusturf_MagmaCave_Main_EventScript_ItemEscapeRope {
+    finditem(ITEM_ESCAPE_ROPE)
+    end
+}
+
+script Rusturf_MagmaCave_Main_EventScript_ItemNugget {
+    finditem(ITEM_NUGGET)
+    end
+}
+
+script Rusturf_MagmaCave_Main_EventScript_ItemFireStone {
+    finditem(ITEM_FIRE_STONE)
+    end
+}

@@ -4420,6 +4420,46 @@
       "secondary_tileset": "gTileset_EliteFour_Steven",
       "border_filepath": "data/layouts/EverGrandeCity_ChampionsRoom/border.bin",
       "blockdata_filepath": "data/layouts/EverGrandeCity_ChampionsRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTURF_MAGMA_CAVE_ENTRY",
+      "name": "Rusturf_MagmaCave_Entry_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RusturfTunnel",
+      "border_filepath": "data/layouts/Rusturf_MagmaCave_Entry/border.bin",
+      "blockdata_filepath": "data/layouts/Rusturf_MagmaCave_Entry/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTURF_MAGMA_CAVE_MAIN",
+      "name": "Rusturf_MagmaCave_Main_Layout",
+      "width": 50,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/Rusturf_MagmaCave_Main/border.bin",
+      "blockdata_filepath": "data/layouts/Rusturf_MagmaCave_Main/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTURF_MAGMA_CAVE_SHINY_LAIRON",
+      "name": "Rusturf_MagmaCave_ShinyLairon_Layout",
+      "width": 11,
+      "height": 11,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RusturfTunnel",
+      "border_filepath": "data/layouts/Rusturf_MagmaCave_ShinyLairon/border.bin",
+      "blockdata_filepath": "data/layouts/Rusturf_MagmaCave_ShinyLairon/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUSTURF_MAGMA_CAVE_FINAL",
+      "name": "Rusturf_MagmaCave_Final_Layout",
+      "width": 15,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Lavaridge",
+      "border_filepath": "data/layouts/Rusturf_MagmaCave_Final/border.bin",
+      "blockdata_filepath": "data/layouts/Rusturf_MagmaCave_Final/map.bin"
     }
   ]
 }

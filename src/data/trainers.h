@@ -6853,6 +6853,54 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_MON(sParty_GruntJaggedPass),
     },
 
+    [TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_1] =
+    {
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .party = TRAINER_MON(sParty_GruntRusturfMagmaCave1),
+    },
+
+    [TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2] =
+    {
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_F,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .party = TRAINER_MON(sParty_GruntRusturfMagmaCave2),
+    },
+
+    [TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3] =
+    {
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .party = TRAINER_MON(sParty_GruntRusturfMagmaCave3),
+    },
+
+    [TRAINER_TABITHA_AND_COURTNEY_RUSTURF] =
+    {
+        .trainerClass = TRAINER_CLASS_MAGMA_ADMIN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_ADMIN,
+        .trainerName = _("TABITHA"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_TabithaAndCourtney_Rusturf),
+    },
+
     [TRAINER_MARC] =
     {
         .trainerClass = TRAINER_CLASS_HIKER,

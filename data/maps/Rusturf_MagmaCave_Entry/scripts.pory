@@ -1,0 +1,60 @@
+raw `
+.set LOCALID_GRUNT1, 1
+`
+
+mapscripts Rusturf_MagmaCave_Entry_MapScripts {
+}
+
+script Rusturf_MagmaCave_EventScript_Grunt1 {
+    lock
+    faceplayer
+    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_1, Rusturf_MagmaCave_Text_Grunt1Intro, Rusturf_MagmaCave_Text_Grunt1Defeat)
+    setflag(FLAG_MAGMA_GRUNT_RUSTURF_1_DEFEATED)
+    msgbox(Rusturf_MagmaCave_Text_Grunt1Flee, MSGBOX_DEFAULT)
+    closemessage()
+    applymovement(LOCALID_GRUNT1, moves(
+        walk_fast_right
+        walk_fast_up * 3
+        walk_fast_left
+        walk_fast_up * 4
+    ))
+    waitmovement(0)
+    removeobject(LOCALID_GRUNT1)
+    release
+    end
+}
+
+text Rusturf_MagmaCave_Text_Grunt1Intro {
+    format("What?! A KID?! How did you find this place? I don't know how you got in here, but you're not getting any further!")
+}
+
+text Rusturf_MagmaCave_Text_Grunt1Defeat {
+    format("Unbelievable! You're\nstronger than I thought...")
+}
+
+text Rusturf_MagmaCave_Text_Grunt1Flee {
+    format("!!!\nI need to warn the admins!")
+}
+
+script Rusturf_MagmaCave_Entry_EventScript_ScaredWorker {
+    lock
+    faceplayer
+    if (flag(FLAG_ROXANNE_QUEST_COMPLETE)) {
+        msgbox(Rusturf_MagmaCave_Entry_Text_ScaredWorker_Thanks, MSGBOX_DEFAULT)
+        closemessage()
+        release
+        end
+    }
+    msgbox(Rusturf_MagmaCave_Entry_Text_ScaredWorker, MSGBOX_DEFAULT)
+    closemessage()
+    release
+    end
+}
+
+text Rusturf_MagmaCave_Entry_Text_ScaredWorker {
+    format("These MAGMA goons are freaking me out! Don't give away my hiding spot, okay?")
+}
+
+text Rusturf_MagmaCave_Entry_Text_ScaredWorker_Thanks {
+    format("You actually drove those MAGMA people off!\pI can finally get back to work. Thank you, kid!")
+}

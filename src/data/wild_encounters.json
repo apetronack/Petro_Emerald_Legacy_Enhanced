@@ -12073,7 +12073,7 @@
               {
                 "min_level": 25,
                 "max_level": 35,
-                "species": "SPECIES_KABUTO"
+                "species": "SPECIES_SOLROCK"
               },
               {
                 "min_level": 15,
@@ -12381,7 +12381,7 @@
               {
                 "min_level": 25,
                 "max_level": 35,
-                "species": "SPECIES_OMANYTE"
+                "species": "SPECIES_LUNATONE"
               },
               {
                 "min_level": 15,

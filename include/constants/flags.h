@@ -698,21 +698,21 @@
 #define FLAG_DEFEATED_EXCLSIOR                                     0x293 // Flag for Exclsior Dev Battle
 #define FLAG_DEFEATED_SHINY_LATIAS_OR_LATIOS                       0x294 // Flag for Shiny Lati Defeated
 #define FLAG_CAUGHT_SHINY_LATIAS_OR_LATIOS                         0x295 // Flag for Shiny Lati Caught
-#define FLAG_UNUSED_0x296                                          0x296 // Unused Flag
-#define FLAG_UNUSED_0x297                                          0x297 // Unused Flag
-#define FLAG_UNUSED_0x298                                          0x298 // Unused Flag
-#define FLAG_UNUSED_0x299                                          0x299 // Unused Flag
-#define FLAG_UNUSED_0x29A                                          0x29A // Unused Flag
-#define FLAG_UNUSED_0x29B                                          0x29B // Unused Flag
-#define FLAG_UNUSED_0x29C                                          0x29C // Unused Flag
-#define FLAG_UNUSED_0x29D                                          0x29D // Unused Flag
-#define FLAG_UNUSED_0x29E                                          0x29E // Unused Flag
-#define FLAG_UNUSED_0x29F                                          0x29F // Unused Flag
-#define FLAG_UNUSED_0x2A0                                          0x2A0 // Unused Flag
-#define FLAG_UNUSED_0x2A1                                          0x2A1 // Unused Flag
-#define FLAG_UNUSED_0x2A2                                          0x2A2 // Unused Flag
-#define FLAG_UNUSED_0x2A3                                          0x2A3 // Unused Flag
-#define FLAG_UNUSED_0x2A4                                          0x2A4 // Unused Flag
+// Roxanne Quest Flags
+#define FLAG_ROXANNE_QUEST_ACTIVE                                  0x296 // Flag for Roxanne Quest Active
+#define FLAG_ROXANNE_QUEST_COMPLETE                                0x297 // Flag for Roxanne Quest Complete
+#define FLAG_HIDE_ROXANNE_OUTSIDE_GYM                              0x298 // Flag for hiding Roxanne outside the gym
+#define FLAG_HIDE_ROXANNE_INSIDE_GYM                               0x299 // Flag for hiding Roxanne inside the gym
+#define FLAG_ROXANNE_QUEST_REWARD_GIVEN                            0x29A // Flag for Roxanne Quest Reward Given
+#define FLAG_MAGMA_GRUNT_RUSTURF_1_DEFEATED                        0x29B // Flag for Magma Grunt Rusturf 1 Defeated
+#define FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED                         0x29D // Flag for Magma Admins Rusturf Defeated
+#define FLAG_FOSSIL_STOLEN_BY_GRUNT                                0x29E // Flag for Fossil Stolen by Grunt
+#define FLAG_CHOSE_HELIX_FOSSIL                                    0x29F // Flag for choosing Helix Fossil
+#define FLAG_CHOSE_DOME_FOSSIL                                     0x2A0 // Flag for choosing Dome Fossil
+#define FLAG_TUNNEL_LAIRON_GIVEN                                   0x2A1 // Flag for giving Lairon in tunnel
+#define FLAG_RUSTURF_MAGMA_GRUNT_VISIBLE                           0x2A2 // Set when the Magma Grunt Guard should be visible in the tunnel
+#define FLAG_HIDE_RUSTURF_TUNNEL_MAGMA_GRUNT_GUARD                 0x2A3 // Hide flag for the Magma Grunt Guard object event (set = hidden)
+#define FLAG_RUSTURF_MAGMA_GRUNT_PAID                              0x2A4 // Set when player has paid the Magma Grunt Guard for passage
 #define FLAG_UNUSED_0x2A5                                          0x2A5 // Unused Flag
 #define FLAG_UNUSED_0x2A6                                          0x2A6 // Unused Flag
 #define FLAG_UNUSED_0x2A7                                          0x2A7 // Unused Flag
@@ -1288,9 +1288,9 @@
 #define FLAG_DISABLE_SURFMUSIC                                      0x4DC // Flag for disabling Surf music when surfing
 #define FLAG_DISABLE_BIKEMUSIC                                      0x4DD // Flag for disabling Bike music when biking
 #define FLAG_ENABLE_NICKNAME                                        0x4DE // Flag for enabling use of Nickname changer within Party Menu
-#define FLAG_UNUSED_0x4DF                                           0x4DF // Unused Flag
-#define FLAG_UNUSED_0x4E0                                           0x4E0 // Unused Flag
-#define FLAG_UNUSED_0x4E1                                           0x4E1 // Unused Flag
+#define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_ESCAPE_ROPE                0x4DF // Flag for obtaining Escape Rope in Rusturf Magma Cave Main
+#define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_FIRE_STONE                 0x4E0 // Flag for obtaining Fire Stone in Rusturf Magma Cave Main
+#define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_NUGGET                     0x4E1 // Flag for obtaining Nugget in Rusturf Magma Cave Main
 #define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
 #define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
 #define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag

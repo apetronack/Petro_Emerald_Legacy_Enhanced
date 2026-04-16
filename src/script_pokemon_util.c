@@ -25,6 +25,7 @@
 #include "constants/battle_frontier.h"
 #include "constants/abilities.h"
 #include "wild_encounter.h"
+#include "script_pokemon_util.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleFrontierParty(void);
@@ -172,6 +173,45 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
         heldItem[1] = item >> 8;
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
     }
+}
+
+void CreateShinyLaironEnemy(void)
+{
+    u8 abilityNum = 1; // ABILITY_ROCK_HEAD (slot 1)
+
+    ZeroEnemyPartyMons();
+    FlagSet(FLAG_SHINY_CREATION);
+    CreateMonWithNature(&gEnemyParty[0], SPECIES_LAIRON, 32, MAX_PER_STAT_IVS, NATURE_JOLLY);
+    SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_IRON_TAIL, 0);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_ROCK_BLAST, 1);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_TAKE_DOWN, 2);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_IRON_DEFENSE, 3);
+}
+
+// Gift Relicanth for completing the Roxanne quest.
+// Above-average IVs (25 each), random nature, holds Hard Stone, default moves.
+// gSpecialVar_Result: MON_GIVEN_TO_PARTY=0, MON_GIVEN_TO_PC=1, MON_CANT_GIVE=2
+void GiveGiftRelicanth(void)
+{
+    u8 evs[NUM_STATS]       = {0, 0, 0, 0, 0, 0};
+    u8 ivs[NUM_STATS]       = {25, 25, 25, 25, 25, 25};
+    u16 moves[MAX_MON_MOVES] = {MOVE_NONE, MOVE_NONE, MOVE_NONE, MOVE_NONE};
+    gSpecialVar_Result = (u16)BirchCase_GiveMonParameterized(
+        SPECIES_RELICANTH,
+        20,
+        ITEM_HARD_STONE,
+        0,               // BALL_POKE
+        NUM_NATURES,     // random nature
+        NUM_ABILITY_PERSONALITY,
+        255,             // random gender
+        evs,
+        ivs,
+        moves,
+        FALSE,
+        0,
+        FALSE
+    );
 }
 
 void ScriptSetMonMoveSlot(u8 monIndex, u16 move, u8 slot)

@@ -4,8 +4,10 @@ raw `
 .set LOCALID_GRUNT, 6
 .set LOCALID_PEEKO, 7
 .equ LOCALID_WANDA, 10
+.equ LOCALID_MAGMA_GRUNT_GUARD, 11
 
 RusturfTunnel_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, RusturfTunnel_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, RusturfTunnel_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RusturfTunnel_OnFrame
 	.byte 0
@@ -17,6 +19,8 @@ RusturfTunnel_OnFrame:
 
 RusturfTunnel_OnTransition:
 	call_if_eq VAR_RUSTURF_TUNNEL_STATE, 2, RusturfTunnel_EventScript_SetAquaGruntAndPeekoPos
+	call RusturfTunnel_EventScript_SetMagmaGruntGuardVisibility
+	call_if_set FLAG_RUSTURF_MAGMA_GRUNT_PAID, RusturfTunnel_EventScript_SetMagmaGruntPaidPos
 	end
 
 RusturfTunnel_EventScript_SetAquaGruntAndPeekoPos::
@@ -28,26 +32,6 @@ RusturfTunnel_EventScript_Wanda::
 	lock
 	faceplayer
 	msgbox RusturfTunnel_Text_BoyfriendOnOtherSideOfRock, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-
-RusturfTunnel_EventScript_WandasBoyfriend::
-	lock
-	faceplayer
-	goto_if_set FLAG_TEMP_1, RusturfTunnel_EventScript_AlreadySpokenTo
-	setflag FLAG_TEMP_1
-	msgbox RusturfTunnel_Text_WhyCantTheyKeepDigging, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-
-RusturfTunnel_EventScript_AlreadySpokenTo::
-	msgbox RusturfTunnel_Text_ToGetToVerdanturf, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -486,6 +470,12 @@ RusturfTunnel_Text_WhyCantTheyKeepDigging:
 	.string "But this…\n"
 	.string "What am I to do?$"
 
+RusturfTunnel_Text_INeedToGetThrough:
+	.string "I am still desperate to get to\n"
+	.string "VERDANTURF TOWN to see my beloved.\p"
+	.string "It doesn't help that now this MAGMA\n"
+	.string "dweeb insists on standing behind me.$"
+
 RusturfTunnel_Text_ToGetToVerdanturf:
 	.string "To get from RUSTBORO to VERDANTURF,\n"
 	.string "you need to go to DEWFORD, then pass\l"
@@ -534,4 +524,151 @@ RusturfTunnel_Text_MikePostBattle:
 	.string "protect POKéMON, right?\l"
 	.string "There's a feel-good story!$"
 
+RusturfTunnel_Text_ThanksForClearingTheMagmas:
+	.string "Those MAGMA goons finally left!\p"
+	.string "I don't know what you did, but\n"
+	.string "thanks for that!\p"
+	.string "Now, if only I could get to\n"
+	.string "VERDANTURF TOWN…$"
+
+RusturfTunnel_EventScript_SetMagmaGruntPaidPos::
+	setobjectxyperm LOCALID_MAGMA_GRUNT_GUARD, 22, 4
+	return
+
+RusturfTunnel_Movement_MagmaGruntStepAside:
+	walk_right
+	step_end
+
+RusturfTunnel_EventScript_MagmaGruntGuard::
+	lock
+	faceplayer
+	goto_if_set FLAG_RUSTURF_MAGMA_GRUNT_PAID, RusturfTunnel_EventScript_MagmaGruntGuardPaid
+	msgbox RusturfTunnel_Text_MagmaGruntGetLost, MSGBOX_DEFAULT
+	msgbox RusturfTunnel_Text_MagmaGruntForAPrice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RusturfTunnel_EventScript_MagmaGruntGuardRefused
+	showmoneybox 0, 0
+	checkmoney 5000
+	goto_if_eq VAR_RESULT, FALSE, RusturfTunnel_EventScript_MagmaGruntGuardNoMoney
+	playse SE_SHOP
+	removemoney 5000
+	updatemoneybox
+	hidemoneybox
+	msgbox RusturfTunnel_Text_MagmaGruntDeal, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_MAGMA_GRUNT_GUARD, RusturfTunnel_Movement_MagmaGruntStepAside
+	waitmovement 0
+	setobjectxyperm LOCALID_MAGMA_GRUNT_GUARD, 22, 4
+	setflag FLAG_RUSTURF_MAGMA_GRUNT_PAID
+	release
+	end
+
+RusturfTunnel_EventScript_MagmaGruntGuardPaid::
+	msgbox RusturfTunnel_Text_MagmaGruntPaid, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+RusturfTunnel_EventScript_MagmaGruntGuardRefused::
+	msgbox RusturfTunnel_Text_MagmaGruntRefused, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+RusturfTunnel_EventScript_MagmaGruntGuardNoMoney::
+	msgbox RusturfTunnel_Text_MagmaGruntNoMoney, MSGBOX_DEFAULT
+	hidemoneybox
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+RusturfTunnel_Text_MagmaGruntGetLost:
+	.string "Team MAGMA is busy here.\nGet lost, kid!$"
+
+RusturfTunnel_Text_MagmaGruntForAPrice:
+	.string "…\p"
+	.string "…Well, I could let you pass…\n"
+	.string "For a price.\p"
+	.string "How about ¥5,000?\n"
+	.string "Do we have a deal?$"
+
+RusturfTunnel_Text_MagmaGruntNoMoney:
+	.string "Ha!\n"
+	.string "You don't even have ¥5,000.\p"
+	.string "Come back when you're loaded.$"
+
+RusturfTunnel_Text_MagmaGruntDeal:
+	.string "Heh. Smart kid.\p"
+	.string "You didn't hear it from me.\n"
+	.string "Right this way…$"
+
+RusturfTunnel_Text_MagmaGruntPaid:
+	.string "You already paid.\n"
+	.string "Move it.$"
+
+RusturfTunnel_Text_MagmaGruntRefused:
+	.string "Hmph.\n"
+	.string "Then get out of my sight.$"
 `
+
+script RusturfTunnel_EventScript_WandasBoyfriend {
+	lock
+	faceplayer
+	if (flag(FLAG_ROXANNE_QUEST_COMPLETE)) {
+		goto(RusturfTunnel_EventScript_WandasBoyfriendPostQuest)
+	}
+	if (flag(FLAG_BADGE03_GET)) {
+		msgbox(RusturfTunnel_Text_INeedToGetThrough, MSGBOX_DEFAULT)
+		closemessage
+		applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+		waitmovement(0)
+		release
+		end
+	}
+	if (flag(FLAG_TEMP_1)) {
+		msgbox(RusturfTunnel_Text_ToGetToVerdanturf, MSGBOX_DEFAULT)
+		closemessage
+		applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+		waitmovement(0)
+		release
+		end
+	}
+	setflag(FLAG_TEMP_1)
+	msgbox(RusturfTunnel_Text_WhyCantTheyKeepDigging, MSGBOX_DEFAULT)
+	closemessage
+	applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+	waitmovement(0)
+	release
+}
+
+script RusturfTunnel_EventScript_WandasBoyfriendPostQuest {
+	msgbox(RusturfTunnel_Text_ThanksForClearingTheMagmas, MSGBOX_DEFAULT)
+	closemessage
+	applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+	waitmovement(0)
+	release
+	end
+}
+
+script(local) RusturfTunnel_EventScript_SetMagmaGruntGuardVisibility {
+	if (flag(FLAG_RUSTURF_MAGMA_GRUNT_VISIBLE)) {
+		clearflag(FLAG_HIDE_RUSTURF_TUNNEL_MAGMA_GRUNT_GUARD)
+	} else {
+		setflag(FLAG_HIDE_RUSTURF_TUNNEL_MAGMA_GRUNT_GUARD)
+	}
+}
+
+script(local) RusturfTunnel_OnLoad {
+	if (flag(FLAG_BADGE03_GET)) {
+		setmetatile(21, 2, 0x20C, TRUE)
+		setmetatile(21, 3, 0x214, TRUE)
+	} else {
+		setmetatile(21, 2, 0x219, TRUE)
+		setmetatile(21, 3, 0x219, TRUE)
+	}
+}

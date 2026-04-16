@@ -8756,6 +8756,57 @@ static const struct TrainerMon sParty_GruntJaggedPass[] = {
     .species = SPECIES_NUMEL,
     }
 };
+
+static const struct TrainerMon sParty_GruntRusturfMagmaCave1[] = {
+    {
+    .iv = 50,
+    .lvl = 26,
+    .species = SPECIES_ARON,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_TAKE_DOWN, MOVE_IRON_DEFENSE, MOVE_METAL_CLAW, MOVE_MUD_SLAP}
+    },
+    {
+    .iv = 50,
+    .lvl = 26,
+    .species = SPECIES_CACNEA,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_ABSORB, MOVE_LEECH_SEED, MOVE_PIN_MISSILE, MOVE_SAND_ATTACK}
+    }
+};
+// Rusturf Magma Cave Grunt 2 (Female)
+static const struct TrainerMon sParty_GruntRusturfMagmaCave2[] = {
+    {
+    .iv = 60,
+    .lvl = 28,
+    .species = SPECIES_NUMEL,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_EMBER, MOVE_MAGNITUDE, MOVE_GROWL, MOVE_FOCUS_ENERGY}
+    },
+    {
+    .iv = 60,
+    .lvl = 28,
+    .species = SPECIES_ARON,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_METAL_CLAW, MOVE_IRON_DEFENSE, MOVE_HEADBUTT, MOVE_MUD_SLAP}
+    }
+};
+// Rusturf Magma Cave Grunt 3 (Male)
+static const struct TrainerMon sParty_GruntRusturfMagmaCave3[] = {
+    {
+    .iv = 60,
+    .lvl = 30,
+    .species = SPECIES_NUMEL,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_EMBER, MOVE_MAGNITUDE, MOVE_TACKLE, MOVE_AMNESIA}
+    },
+    {
+    .iv = 60,
+    .lvl = 30,
+    .species = SPECIES_CACNEA,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_PIN_MISSILE, MOVE_LEECH_SEED, MOVE_SAND_ATTACK, MOVE_GROWTH}
+    }
+};
 //Rustboro Gym Hiker 1 (Potential Double Battle with Tommy)
 static const struct TrainerMon sParty_Marc[] = {
     {
@@ -14450,6 +14501,51 @@ static const struct TrainerMon sParty_Courtney1[] = {
     .heldItem = ITEM_NONE,
     .moves = {MOVE_FLAMETHROWER, MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_SHADOW_BALL}
     }
+};
+
+// Tabitha & Courtney double battle (Rusturf MagmaCave Final)
+// Tabitha side: Golbat/Cacturne/Zangoose from Magma Hideout party
+// Courtney side: Claydol/Roselia/Ninetales from Courtney2 party
+static const struct TrainerMon sParty_TabithaAndCourtney_Rusturf[] = {
+    {
+    .iv = 50,
+    .lvl = 30,
+    .species = SPECIES_GOLBAT,
+    .moves = {MOVE_WING_ATTACK, MOVE_GIGA_DRAIN, MOVE_BITE, MOVE_CONFUSE_RAY}
+    },
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_ZANGOOSE,
+    .moves = {MOVE_SLASH, MOVE_FURY_CUTTER, MOVE_SWORDS_DANCE, MOVE_QUICK_ATTACK}
+    },
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_CACTURNE,
+    .moves = {MOVE_BULLET_SEED, MOVE_FAINT_ATTACK, MOVE_LEECH_SEED, MOVE_FOCUS_PUNCH}
+    },
+    {
+    .iv = 50,
+    .lvl = 30,
+    .species = SPECIES_CAMERUPT,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_MAGNITUDE, MOVE_TAKE_DOWN, MOVE_AMNESIA, MOVE_EMBER}
+    },
+    {
+    .iv = 50,
+    .lvl = 31,
+    .species = SPECIES_MIGHTYENA,
+    .heldItem = ITEM_NONE,
+    .moves = {MOVE_BITE, MOVE_HOWL, MOVE_SAND_ATTACK, MOVE_TAKE_DOWN}
+    },
+    {
+    .iv = 50,
+    .lvl = 33,
+    .species = SPECIES_NINETALES,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .moves = {MOVE_HEAT_WAVE, MOVE_DIG, MOVE_WILL_O_WISP, MOVE_IRON_TAIL}
+    },
 };
 
 // Magma Admin (Space Center)

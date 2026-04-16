@@ -1,0 +1,460 @@
+mapscripts Rusturf_MagmaCave_Final_MapScripts {}
+
+// LocalIDs match the order of object_events in map.json (1-indexed)
+const LOCALID_HELIX_FOSSIL = 1
+const LOCALID_DOME_FOSSIL  = 2
+const LOCALID_TABITHA      = 3
+const LOCALID_COURTNEY     = 4
+const LOCALID_GRUNT        = 5
+
+// ============================================================
+// HELIX FOSSIL (x10, y17)
+// Player can interact from x10,y16 (facing down) or x11,y17 (facing left)
+// ============================================================
+
+script Rusturf_MagmaCave_Final_EventScript_HelixFossil {
+    goto_if_set(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED, Rusturf_MagmaCave_Final_EventScript_FossilGone)
+    goto_if_set(FLAG_CHOSE_DOME_FOSSIL, Rusturf_MagmaCave_Final_EventScript_FossilGone)
+    lock
+    copyvar(VAR_TEMP_0, VAR_FACING)
+    msgbox(Rusturf_MagmaCave_Final_Text_HelixFossilDesc, MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, Rusturf_MagmaCave_Final_EventScript_FossilDecline)
+    setvar(VAR_TEMP_1, 1)
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+    goto_if_eq(VAR_RESULT, 0, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
+    goto_if_eq(VAR_RESULT, 1, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
+    goto_if_eq(VAR_TEMP_0, DIR_SOUTH, Rusturf_MagmaCave_Final_EventScript_HelixApproach_Down)
+    goto(Rusturf_MagmaCave_Final_EventScript_HelixApproach_Side)
+    end
+}
+
+// ============================================================
+// DOME FOSSIL (x12, y17)
+// Player can interact from x12,y16 (facing down) or x11,y17 (facing right)
+// ============================================================
+
+script Rusturf_MagmaCave_Final_EventScript_DomeFossil {
+    goto_if_set(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED, Rusturf_MagmaCave_Final_EventScript_FossilGone)
+    goto_if_set(FLAG_CHOSE_HELIX_FOSSIL, Rusturf_MagmaCave_Final_EventScript_FossilGone)
+    lock
+    copyvar(VAR_TEMP_0, VAR_FACING)
+    msgbox(Rusturf_MagmaCave_Final_Text_DomeFossilDesc, MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, Rusturf_MagmaCave_Final_EventScript_FossilDecline)
+    setvar(VAR_TEMP_1, 2)
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+    goto_if_eq(VAR_RESULT, 0, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
+    goto_if_eq(VAR_RESULT, 1, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
+    goto_if_eq(VAR_TEMP_0, DIR_SOUTH, Rusturf_MagmaCave_Final_EventScript_DomeApproach_Down)
+    goto(Rusturf_MagmaCave_Final_EventScript_DomeApproach_Side)
+    end
+}
+
+// ============================================================
+// SHARED UTILITY SCRIPTS
+// ============================================================
+
+script Rusturf_MagmaCave_Final_EventScript_FossilDecline {
+    msgbox(Rusturf_MagmaCave_Final_Text_FossilDecline, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+script Rusturf_MagmaCave_Final_EventScript_FossilGone {
+    end
+}
+
+script Rusturf_MagmaCave_Final_EventScript_NotEnoughMons {
+    msgbox(Rusturf_MagmaCave_Final_Text_NotEnoughMons, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+// ============================================================
+// ADMIN APPROACH - HELIX FOSSIL CHOSEN
+// ============================================================
+
+// Player was at x10,y16 facing down
+// Tabitha: x10,y8 → x10,y15 (7 down, face down)
+// Courtney: x11,y8 → x11,y16 (8 down, face left)
+script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Down {
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixDown)
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixDown)
+    waitmovement(0)
+    goto(Rusturf_MagmaCave_Final_EventScript_DoAdminBattle)
+    end
+}
+
+// Player was at x11,y17 facing left
+// Tabitha first: x10,y8 → x10,y16 (8 down) → x11,y16 (1 right, face down)
+// Then Courtney: x11,y8 → x10,y8 (1 left) → x10,y17 (9 down, face right)
+script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Side {
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixSide)
+    waitmovement(0)
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixSide)
+    waitmovement(0)
+    goto(Rusturf_MagmaCave_Final_EventScript_DoAdminBattle)
+    end
+}
+
+// ============================================================
+// ADMIN APPROACH - DOME FOSSIL CHOSEN
+// ============================================================
+
+// Player was at x12,y16 facing down
+// Courtney first: x11,y8 → x11,y16 (8 down, face right)
+// Then Tabitha: x10,y8 → x10,y15 (7 down) → x12,y15 (2 right, face down)
+script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Down {
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeDown)
+    waitmovement(0)
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeDown)
+    waitmovement(0)
+    goto(Rusturf_MagmaCave_Final_EventScript_DoAdminBattle)
+    end
+}
+
+// Player was at x11,y17 facing right
+// Courtney first: x11,y8 → x12,y8 (1 right) → x12,y17 (9 down, face left)
+// Then Tabitha: x10,y8 → x11,y8 (1 right) → x11,y16 (8 down, face down)
+script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Side {
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeSide)
+    waitmovement(0)
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeSide)
+    waitmovement(0)
+    goto(Rusturf_MagmaCave_Final_EventScript_DoAdminBattle)
+    end
+}
+
+// ============================================================
+// DOUBLE BATTLE
+// ============================================================
+
+script Rusturf_MagmaCave_Final_EventScript_DoAdminBattle {
+    msgbox(Rusturf_MagmaCave_Final_Text_AdminsApproach, MSGBOX_DEFAULT)
+    trainerbattle_double(TRAINER_TABITHA_AND_COURTNEY_RUSTURF,
+        Rusturf_MagmaCave_Final_Text_TabithaIntro,
+        Rusturf_MagmaCave_Final_Text_TabithaDefeat,
+        Rusturf_MagmaCave_Final_Text_TabithaNotEnoughMons,
+        Rusturf_MagmaCave_Final_EventScript_PostBattle)
+    release
+    end
+}
+
+// ============================================================
+// POST-BATTLE: GRUNT STEALS REMAINING FOSSIL
+// ============================================================
+
+script Rusturf_MagmaCave_Final_EventScript_PostBattle {
+    goto_if_eq(VAR_TEMP_1, 1, Rusturf_MagmaCave_Final_EventScript_GiveHelixFossil)
+    goto(Rusturf_MagmaCave_Final_EventScript_GiveDomeFossil)
+    end
+}
+
+// Give chosen fossil to player on victory, then trigger grunt sequence
+script Rusturf_MagmaCave_Final_EventScript_GiveHelixFossil {
+    giveitem(ITEM_HELIX_FOSSIL)
+    goto_if_eq(VAR_RESULT, FALSE, Rusturf_MagmaCave_Final_EventScript_PostBattleBagFull)
+    setflag(FLAG_CHOSE_HELIX_FOSSIL)
+    removeobject(LOCALID_HELIX_FOSSIL)
+    goto(Rusturf_MagmaCave_Final_EventScript_GruntStealDome)
+    end
+}
+
+script Rusturf_MagmaCave_Final_EventScript_GiveDomeFossil {
+    giveitem(ITEM_DOME_FOSSIL)
+    goto_if_eq(VAR_RESULT, FALSE, Rusturf_MagmaCave_Final_EventScript_PostBattleBagFull)
+    setflag(FLAG_CHOSE_DOME_FOSSIL)
+    removeobject(LOCALID_DOME_FOSSIL)
+    goto(Rusturf_MagmaCave_Final_EventScript_GruntStealHelix)
+    end
+}
+
+// Bag+PC both full after winning: set all flags, remove all objects, end cleanly
+script Rusturf_MagmaCave_Final_EventScript_PostBattleBagFull {
+    setflag(FLAG_CHOSE_HELIX_FOSSIL)
+    setflag(FLAG_CHOSE_DOME_FOSSIL)
+    setflag(FLAG_FOSSIL_STOLEN_BY_GRUNT)
+    setflag(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED)
+    setvar(VAR_ROXANNE_QUEST_STATE, 4)
+    removeobject(LOCALID_HELIX_FOSSIL)
+    removeobject(LOCALID_DOME_FOSSIL)
+    removeobject(LOCALID_TABITHA)
+    removeobject(LOCALID_COURTNEY)
+    removeobject(LOCALID_GRUNT)
+    msgbox(Rusturf_MagmaCave_Final_Text_PostBattleBagFull, MSGBOX_DEFAULT)
+    release
+    end
+}
+
+// Player picked Helix (via victory) - grunt steals Dome (x12,y17)
+// Grunt: x11,y7 → walk down 10 → walk right 1
+script Rusturf_MagmaCave_Final_EventScript_GruntStealDome {
+    applymovement(LOCALID_GRUNT, Rusturf_MagmaCave_Final_Movement_Grunt_ToDome)
+    waitmovement(0)
+    msgbox(Rusturf_MagmaCave_Final_Text_GruntStealDome, MSGBOX_DEFAULT)
+    closemessage()
+    delay(30)
+    removeobject(LOCALID_DOME_FOSSIL)
+    setflag(FLAG_CHOSE_DOME_FOSSIL)
+    setflag(FLAG_FOSSIL_STOLEN_BY_GRUNT)
+    goto(Rusturf_MagmaCave_Final_EventScript_AllExit)
+    end
+}
+
+// Player picked Dome - grunt steals Helix (x10,y17)
+// Grunt: x11,y7 → walk down 10 → walk left 1
+script Rusturf_MagmaCave_Final_EventScript_GruntStealHelix {
+    applymovement(LOCALID_GRUNT, Rusturf_MagmaCave_Final_Movement_Grunt_ToHelix)
+    waitmovement(0)
+    msgbox(Rusturf_MagmaCave_Final_Text_GruntStealHelix, MSGBOX_DEFAULT)
+    closemessage()
+    delay(30)
+    removeobject(LOCALID_HELIX_FOSSIL)
+    setflag(FLAG_CHOSE_HELIX_FOSSIL)
+    setflag(FLAG_FOSSIL_STOLEN_BY_GRUNT)
+    goto(Rusturf_MagmaCave_Final_EventScript_AllExit)
+    end
+}
+
+// All three NPCs deliver a farewell, walk up off-screen, then are removed and the event flag is set
+script Rusturf_MagmaCave_Final_EventScript_AllExit {
+    msgbox(Rusturf_MagmaCave_Final_Text_TabithaFarewell, MSGBOX_DEFAULT)
+    closemessage()
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_ExitUp)
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_ExitUp)
+    applymovement(LOCALID_GRUNT, Rusturf_MagmaCave_Final_Movement_ExitUp)
+    waitmovement(0)
+    removeobject(LOCALID_TABITHA)
+    removeobject(LOCALID_COURTNEY)
+    removeobject(LOCALID_GRUNT)
+    setflag(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED)
+    setvar(VAR_ROXANNE_QUEST_STATE, 4)
+    release
+    end
+}
+
+// ============================================================
+// MOVEMENT SCRIPTS
+// ============================================================
+
+// Helix fossil chosen, player at x10,y16 facing down
+movement Rusturf_MagmaCave_Final_Movement_Tabitha_HelixDown {
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    face_down
+    step_end
+}
+
+movement Rusturf_MagmaCave_Final_Movement_Courtney_HelixDown {
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    face_left
+    step_end
+}
+
+// Helix fossil chosen, player at x11,y17 facing left
+movement Rusturf_MagmaCave_Final_Movement_Tabitha_HelixSide {
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_right
+    face_down
+    step_end
+}
+
+movement Rusturf_MagmaCave_Final_Movement_Courtney_HelixSide {
+    walk_fast_left
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    face_right
+    step_end
+}
+
+// Dome fossil chosen, player at x12,y16 facing down
+movement Rusturf_MagmaCave_Final_Movement_Courtney_DomeDown {
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    face_right
+    step_end
+}
+
+movement Rusturf_MagmaCave_Final_Movement_Tabitha_DomeDown {
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_right
+    walk_fast_right
+    face_down
+    step_end
+}
+
+// Dome fossil chosen, player at x11,y17 facing right
+movement Rusturf_MagmaCave_Final_Movement_Courtney_DomeSide {
+    walk_fast_right
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    face_left
+    step_end
+}
+
+movement Rusturf_MagmaCave_Final_Movement_Tabitha_DomeSide {
+    walk_fast_right
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    face_down
+    step_end
+}
+
+// Grunt movements (starts at x11,y7)
+movement Rusturf_MagmaCave_Final_Movement_Grunt_ToDome {
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_right
+    step_end
+}
+
+movement Rusturf_MagmaCave_Final_Movement_Grunt_ToHelix {
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_left
+    step_end
+}
+
+// Shared exit - walk up off-screen (adjust step count if map height differs)
+movement Rusturf_MagmaCave_Final_Movement_ExitUp {
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    walk_fast_up
+    step_end
+}
+
+// ============================================================
+// TEXT
+// ============================================================
+
+text Rusturf_MagmaCave_Final_Text_HelixFossilDesc {
+    format("It's the Helix Fossil!\nWould you like to take it?")
+}
+
+text Rusturf_MagmaCave_Final_Text_DomeFossilDesc {
+    format("It's the Dome Fossil!\nWould you like to take it?")
+}
+
+text Rusturf_MagmaCave_Final_Text_FossilDecline {
+    format("You decide to leave the fossil where it is for now.")
+}
+
+text Rusturf_MagmaCave_Final_Text_NotEnoughMons {
+    format("TABITHA: Hmph. You don't even have enough POKeMON\nto face us both.\pCome back when you're a real trainer.")
+}
+
+text Rusturf_MagmaCave_Final_Text_AdminsApproach {
+    format("TABITHA: I'm impressed you made it this far. We may not have found the LEGENDARY Pokémon we were looking for in this cave, but these fossils are a priceless consolation prize. They belong to Team MAGMA, and we're not just going to let you walk away with one!\pCOURTNEY: Yeah! You want it? You'll have to go through us!")
+}
+
+text Rusturf_MagmaCave_Final_Text_TabithaIntro {
+    format("TABITHA: You want to keep it that badly?\pWe'll show you that crossing Team MAGMA is a huge mistake!")
+}
+
+text Rusturf_MagmaCave_Final_Text_TabithaDefeat {
+    format("TABITHA: Tch...\nYou're stronger than you look. But we kept you busy enough to steal the other fossil, so it's not like you win!")
+}
+
+text Rusturf_MagmaCave_Final_Text_TabithaNotEnoughMons {
+    format("TABITHA: You don't even\nhave enough Pokémon\lto face us both!")
+}
+
+text Rusturf_MagmaCave_Final_Text_GruntStealDome {
+    format("GRUNT: Heh! I'll be taking that Dome Fossil!")
+}
+
+text Rusturf_MagmaCave_Final_Text_GruntStealHelix {
+    format("GRUNT: Heh! I'll be taking that Helix Fossil!")
+}
+
+text Rusturf_MagmaCave_Final_Text_TabithaFarewell {
+    format("TABITHA: Don't look so smug.\pTeam MAGMA will put that fossil\nto good use. Let's move out!")
+}
+
+text Rusturf_MagmaCave_Final_Text_PostBattleBagFull {
+    format("Your BAG and PC are both full!\pTeam MAGMA grabbed the fossil and\nfled while you scrambled.\pMake room and try again next time...")
+}
+

@@ -1075,3 +1075,11 @@ Common_EventScript_LegendaryRanAway::
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/Rusturf_MagmaCave_Entry/scripts.inc"
+
+	.include "data/maps/Rusturf_MagmaCave_Main/scripts.inc"
+
+	.include "data/maps/Rusturf_MagmaCave_ShinyLairon/scripts.inc"
+
+	.include "data/maps/Rusturf_MagmaCave_Final/scripts.inc"

@@ -8,18 +8,50 @@ Route116_TunnelersRestHouse_OnTransition:
 	end
 
 Route116_TunnelersRestHouse_EventScript_Tunneler1::
+	goto_if_set FLAG_ROXANNE_QUEST_COMPLETE, Route116_TunnelersRestHouse_EventScript_Tunneler1_QuestComplete
+	goto_if_set FLAG_ROXANNE_QUEST_ACTIVE, Route116_TunnelersRestHouse_EventScript_Tunneler1_QuestActive
 	msgbox Route116_TunnelersRestHouse_Text_WeHadToStopBoring, MSGBOX_NPC
 	end
 
+Route116_TunnelersRestHouse_EventScript_Tunneler1_QuestActive::
+	msgbox Route116_TunnelersRestHouse_Text_Tunneler1_Intimidated, MSGBOX_NPC
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler1_QuestComplete::
+	msgbox Route116_TunnelersRestHouse_Text_Tunneler1_Thanks, MSGBOX_NPC
+	end
+
 Route116_TunnelersRestHouse_EventScript_Tunneler2::
+	goto_if_set FLAG_ROXANNE_QUEST_COMPLETE, Route116_TunnelersRestHouse_EventScript_Tunneler2_QuestComplete
+	goto_if_set FLAG_ROXANNE_QUEST_ACTIVE, Route116_TunnelersRestHouse_EventScript_Tunneler2_QuestActive
 	msgbox Route116_TunnelersRestHouse_Text_ManDiggingHisWayToVerdanturf, MSGBOX_NPC
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler2_QuestActive::
+	msgbox Route116_TunnelersRestHouse_Text_Tunneler2_Intimidated, MSGBOX_NPC
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler2_QuestComplete::
+	msgbox Route116_TunnelersRestHouse_Text_Tunneler2_Thanks, MSGBOX_NPC
 	end
 
 Route116_TunnelersRestHouse_EventScript_Tunneler3::
 	lock
 	faceplayer
+	goto_if_set FLAG_ROXANNE_QUEST_COMPLETE, Route116_TunnelersRestHouse_EventScript_Tunneler3_QuestComplete
+	goto_if_set FLAG_ROXANNE_QUEST_ACTIVE, Route116_TunnelersRestHouse_EventScript_Tunneler3_QuestActive
 	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, Route116_TunnelersRestHouse_EventScript_TunnelOpened
 	msgbox Route116_TunnelersRestHouse_Text_GetToVerdanturfWithoutTunnel, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler3_QuestActive::
+	msgbox Route116_TunnelersRestHouse_Text_Tunneler3_Intimidated, MSGBOX_DEFAULT
+	release
+	end
+
+Route116_TunnelersRestHouse_EventScript_Tunneler3_QuestComplete::
+	msgbox Route116_TunnelersRestHouse_Text_Tunneler3_Thanks, MSGBOX_DEFAULT
 	release
 	end
 
@@ -60,5 +92,58 @@ Route116_TunnelersRestHouse_Text_TunnelHasGoneThrough:
 	.string "has gone through!\p"
 	.string "Sometimes, if you hope strongly enough,\n"
 	.string "dreams do come true.$"
+
+Route116_TunnelersRestHouse_Text_Tunneler1_Intimidated:
+	.string "That RUSTURF TUNNEL there…\p"
+	.string "Some rough-looking folks in red uniforms\n"
+	.string "showed up out of nowhere.\l"
+	.string "They had POKéMON trained for fighting.\p"
+	.string "They gave us one warning to clear out.\n"
+	.string "We didn't argue.\p"
+	.string "We don't get paid enough to tangle\n"
+	.string "with people like that.$"
+
+Route116_TunnelersRestHouse_Text_Tunneler1_Thanks:
+	.string "You chased those MAGMA troublemakers\n"
+	.string "out of our tunnel?!\p"
+	.string "Bless you! We've been cooped up\n"
+	.string "here with nothing to do.\l"
+	.string "Now we can finally get back to\l"
+	.string "earning an honest living again.$"
+
+Route116_TunnelersRestHouse_Text_Tunneler2_Intimidated:
+	.string "The man digging alone in that\n"
+	.string "tunnel… I hope he's all right.\p"
+	.string "Those people in red uniforms barged\n"
+	.string "right past him. He managed to hide,\l"
+	.string "but it was close.\p"
+	.string "I don't know what they want in\n"
+	.string "there, but it can't be good.$"
+
+Route116_TunnelersRestHouse_Text_Tunneler2_Thanks:
+	.string "The man digging alone came to tell\n"
+	.string "us what happened.\p"
+	.string "He said a young TRAINER stood up\n"
+	.string "to TEAM MAGMA and drove them out!\l"
+	.string "That must have been you!\p"
+	.string "Thank you so much!$"
+
+Route116_TunnelersRestHouse_Text_Tunneler3_Intimidated:
+	.string "Don't go into that tunnel!\p"
+	.string "A group called TEAM MAGMA moved in\n"
+	.string "and took over the whole place.\l"
+	.string "They had POKéMON ready to battle.\l"
+	.string "Made it very clear we weren't welcome.\p"
+	.string "I feel terrible about it…\n"
+	.string "That tunnel is our livelihood.$"
+
+Route116_TunnelersRestHouse_Text_Tunneler3_Thanks:
+	.string "You drove TEAM MAGMA out?\n"
+	.string "Thank you so much!\p"
+	.string "We were afraid we'd have to look for\n"
+	.string "work elsewhere.\l"
+	.string "This tunnel means everything to us.\p"
+	.string "If there's ever anything we can\n"
+	.string "do for you, just say the word!$"
 
 `
