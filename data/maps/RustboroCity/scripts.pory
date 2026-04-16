@@ -1389,6 +1389,7 @@ RustboroCity_EventScript_RoxanneRewardGiven::
 	setflag FLAG_ROXANNE_QUEST_REWARD_GIVEN
 	setvar VAR_ROXANNE_QUEST_STATE, 5
 	setflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
+	clearflag FLAG_RUSTURF_MAGMA_GRUNT_VISIBLE
 	playse SE_EXIT
 	applymovement LOCALID_ROXANNE, RustboroCity_Movement_RoxanneEnterGym
 	waitmovement 0
