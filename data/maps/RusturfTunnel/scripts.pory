@@ -532,12 +532,23 @@ RusturfTunnel_Text_ThanksForClearingTheMagmas:
 	.string "VERDANTURF TOWN…$"
 
 RusturfTunnel_EventScript_SetMagmaGruntPaidPos::
-	setobjectxyperm LOCALID_MAGMA_GRUNT_GUARD, 22, 4
+	setobjectxyperm LOCALID_MAGMA_GRUNT_GUARD, 20, 4
 	return
 
 RusturfTunnel_Movement_MagmaGruntStepAside:
-	walk_right
+	walk_left
+	face_right
 	step_end
+
+RusturfTunnel_Movement_MagmaGruntNudgePlayer:
+	walk_down
+	face_up
+	step_end
+
+RusturfTunnel_EventScript_MagmaGruntNudgePlayer::
+	applymovement OBJ_EVENT_ID_PLAYER, RusturfTunnel_Movement_MagmaGruntNudgePlayer
+	waitmovement 0
+	return
 
 RusturfTunnel_EventScript_MagmaGruntGuard::
 	lock
@@ -555,9 +566,11 @@ RusturfTunnel_EventScript_MagmaGruntGuard::
 	hidemoneybox
 	msgbox RusturfTunnel_Text_MagmaGruntDeal, MSGBOX_DEFAULT
 	closemessage
+	getplayerxy VAR_TEMP_2, VAR_TEMP_3
+	call_if_eq VAR_TEMP_2, 20, RusturfTunnel_EventScript_MagmaGruntNudgePlayer
 	applymovement LOCALID_MAGMA_GRUNT_GUARD, RusturfTunnel_Movement_MagmaGruntStepAside
 	waitmovement 0
-	setobjectxyperm LOCALID_MAGMA_GRUNT_GUARD, 22, 4
+	setobjectxyperm LOCALID_MAGMA_GRUNT_GUARD, 20, 4
 	setflag FLAG_RUSTURF_MAGMA_GRUNT_PAID
 	release
 	end
@@ -565,7 +578,7 @@ RusturfTunnel_EventScript_MagmaGruntGuard::
 RusturfTunnel_EventScript_MagmaGruntGuardPaid::
 	msgbox RusturfTunnel_Text_MagmaGruntPaid, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	release
 	end
@@ -666,7 +679,7 @@ script(local) RusturfTunnel_EventScript_SetMagmaGruntGuardVisibility {
 script(local) RusturfTunnel_OnLoad {
 	if (flag(FLAG_BADGE03_GET)) {
 		setmetatile(21, 2, 0x20C, TRUE)
-		setmetatile(21, 3, 0x214, TRUE)
+		setmetatile(21, 3, 0x214, FALSE)
 	} else {
 		setmetatile(21, 2, 0x219, TRUE)
 		setmetatile(21, 3, 0x219, TRUE)

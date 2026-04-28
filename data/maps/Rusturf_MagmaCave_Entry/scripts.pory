@@ -6,17 +6,17 @@ mapscripts Rusturf_MagmaCave_Entry_MapScripts {
 }
 
 script Rusturf_MagmaCave_EventScript_Grunt1 {
-    lock
-    faceplayer
-    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_1, Rusturf_MagmaCave_Text_Grunt1Intro, Rusturf_MagmaCave_Text_Grunt1Defeat)
+    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_1, Rusturf_MagmaCave_Text_Grunt1Intro, Rusturf_MagmaCave_Text_Grunt1Defeat, Rusturf_MagmaCave_EventScript_Grunt1PostBattle)
+    end
+}
+
+script Rusturf_MagmaCave_EventScript_Grunt1PostBattle {
     setflag(FLAG_MAGMA_GRUNT_RUSTURF_1_DEFEATED)
     msgbox(Rusturf_MagmaCave_Text_Grunt1Flee, MSGBOX_DEFAULT)
     closemessage()
     applymovement(LOCALID_GRUNT1, moves(
-        walk_fast_right
-        walk_fast_up * 3
-        walk_fast_left
-        walk_fast_up * 4
+        walk_fast_right *2
+        walk_fast_up * 8
     ))
     waitmovement(0)
     removeobject(LOCALID_GRUNT1)

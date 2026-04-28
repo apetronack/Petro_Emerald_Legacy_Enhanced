@@ -133,6 +133,9 @@ Debug_Script_1::
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
 	clearflag FLAG_DEVON_GOODS_STOLEN
+	@ Wanda and her boyfriend are hidden at new game; reveal them for the side quest
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
 
 	@ --- Give enough money to pay the Magma Grunt guard (¥5,000 required) ---
 	addmoney 5000, 0
@@ -193,6 +196,7 @@ Debug_Script_2::
 	setflag FLAG_RESCUED_BIRCH
 	setflag FLAG_SYS_POKEMON_GET
 	additem ITEM_HM_ROCK_SMASH
+	additem ITEM_HM_STRENGTH
 	setflag FLAG_ROXANNE_QUEST_ACTIVE
 	clearflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
 
@@ -213,6 +217,9 @@ Debug_Script_2::
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
 	clearflag FLAG_DEVON_GOODS_STOLEN
+	@ Wanda and her boyfriend are hidden at new game; reveal them for the side quest
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
 
 	@ --- Give a high-level starter for combat testing ---
 	givemon SPECIES_SCEPTILE, 45, ITEM_NONE
@@ -298,6 +305,9 @@ Debug_Script_3::
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
 	setflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
 	clearflag FLAG_DEVON_GOODS_STOLEN
+	@ Wanda and her boyfriend are hidden at new game; reveal them for the side quest
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
 
 	@ --- Give a high-level starter for combat testing ---
 	givemon SPECIES_SCEPTILE, 45, ITEM_NONE

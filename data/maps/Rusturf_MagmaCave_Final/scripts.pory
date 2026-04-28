@@ -1,11 +1,19 @@
-mapscripts Rusturf_MagmaCave_Final_MapScripts {}
-
 // LocalIDs match the order of object_events in map.json (1-indexed)
 const LOCALID_HELIX_FOSSIL = 1
 const LOCALID_DOME_FOSSIL  = 2
 const LOCALID_TABITHA      = 3
 const LOCALID_COURTNEY     = 4
 const LOCALID_GRUNT        = 5
+
+mapscripts Rusturf_MagmaCave_Final_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (!flag(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED)) {
+            hideobjectat(LOCALID_TABITHA, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+            hideobjectat(LOCALID_COURTNEY, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+            hideobjectat(LOCALID_GRUNT, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+        }
+    }
+}
 
 // ============================================================
 // HELIX FOSSIL (x10, y17)
@@ -64,6 +72,30 @@ script Rusturf_MagmaCave_Final_EventScript_FossilGone {
 }
 
 script Rusturf_MagmaCave_Final_EventScript_NotEnoughMons {
+    showobjectat(LOCALID_TABITHA, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+    showobjectat(LOCALID_COURTNEY, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+    if (var(VAR_TEMP_1) == 1) {
+        if (var(VAR_TEMP_0) == DIR_SOUTH) {
+            applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixDown)
+            applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixDown)
+            waitmovement(0)
+        } else {
+            applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixSide)
+            waitmovement(0)
+            applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixSide)
+            waitmovement(0)
+        }
+    } elif (var(VAR_TEMP_0) == DIR_SOUTH) {
+        applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeDown)
+        waitmovement(0)
+        applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeDown)
+        waitmovement(0)
+    } else {
+        applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeSide)
+        waitmovement(0)
+        applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeSide)
+        waitmovement(0)
+    }
     msgbox(Rusturf_MagmaCave_Final_Text_NotEnoughMons, MSGBOX_DEFAULT)
     release
     end
@@ -77,6 +109,8 @@ script Rusturf_MagmaCave_Final_EventScript_NotEnoughMons {
 // Tabitha: x10,y8 → x10,y15 (7 down, face down)
 // Courtney: x11,y8 → x11,y16 (8 down, face left)
 script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Down {
+    showobjectat(LOCALID_TABITHA, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+    showobjectat(LOCALID_COURTNEY, MAP_RUSTURF_MAGMA_CAVE_FINAL)
     applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixDown)
     applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixDown)
     waitmovement(0)
@@ -88,6 +122,8 @@ script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Down {
 // Tabitha first: x10,y8 → x10,y16 (8 down) → x11,y16 (1 right, face down)
 // Then Courtney: x11,y8 → x10,y8 (1 left) → x10,y17 (9 down, face right)
 script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Side {
+    showobjectat(LOCALID_TABITHA, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+    showobjectat(LOCALID_COURTNEY, MAP_RUSTURF_MAGMA_CAVE_FINAL)
     applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixSide)
     waitmovement(0)
     applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixSide)
@@ -104,6 +140,8 @@ script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Side {
 // Courtney first: x11,y8 → x11,y16 (8 down, face right)
 // Then Tabitha: x10,y8 → x10,y15 (7 down) → x12,y15 (2 right, face down)
 script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Down {
+    showobjectat(LOCALID_TABITHA, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+    showobjectat(LOCALID_COURTNEY, MAP_RUSTURF_MAGMA_CAVE_FINAL)
     applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeDown)
     waitmovement(0)
     applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeDown)
@@ -116,6 +154,8 @@ script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Down {
 // Courtney first: x11,y8 → x12,y8 (1 right) → x12,y17 (9 down, face left)
 // Then Tabitha: x10,y8 → x11,y8 (1 right) → x11,y16 (8 down, face down)
 script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Side {
+    showobjectat(LOCALID_TABITHA, MAP_RUSTURF_MAGMA_CAVE_FINAL)
+    showobjectat(LOCALID_COURTNEY, MAP_RUSTURF_MAGMA_CAVE_FINAL)
     applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeSide)
     waitmovement(0)
     applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeSide)
@@ -188,6 +228,7 @@ script Rusturf_MagmaCave_Final_EventScript_PostBattleBagFull {
 // Player picked Helix (via victory) - grunt steals Dome (x12,y17)
 // Grunt: x11,y7 → walk down 10 → walk right 1
 script Rusturf_MagmaCave_Final_EventScript_GruntStealDome {
+    showobjectat(LOCALID_GRUNT, MAP_RUSTURF_MAGMA_CAVE_FINAL)
     applymovement(LOCALID_GRUNT, Rusturf_MagmaCave_Final_Movement_Grunt_ToDome)
     waitmovement(0)
     msgbox(Rusturf_MagmaCave_Final_Text_GruntStealDome, MSGBOX_DEFAULT)
@@ -203,6 +244,7 @@ script Rusturf_MagmaCave_Final_EventScript_GruntStealDome {
 // Player picked Dome - grunt steals Helix (x10,y17)
 // Grunt: x11,y7 → walk down 10 → walk left 1
 script Rusturf_MagmaCave_Final_EventScript_GruntStealHelix {
+    showobjectat(LOCALID_GRUNT, MAP_RUSTURF_MAGMA_CAVE_FINAL)
     applymovement(LOCALID_GRUNT, Rusturf_MagmaCave_Final_Movement_Grunt_ToHelix)
     waitmovement(0)
     msgbox(Rusturf_MagmaCave_Final_Text_GruntStealHelix, MSGBOX_DEFAULT)

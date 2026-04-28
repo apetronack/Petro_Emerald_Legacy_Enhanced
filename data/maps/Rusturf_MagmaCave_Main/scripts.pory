@@ -1,9 +1,9 @@
 // Local IDs match the 1-indexed position of each object in map.json's object_events array
-const LOCALID_GRUNT2      = 10
-const LOCALID_GRUNT3      = 11
-const LOCALID_SCIENTIST1  = 15
-const LOCALID_SCIENTIST2  = 16
-const LOCALID_TECHNICIAN1 = 17
+const LOCALID_GRUNT2      = 5
+const LOCALID_GRUNT3      = 6
+const LOCALID_SCIENTIST1  = 10
+const LOCALID_SCIENTIST2  = 11
+const LOCALID_TECHNICIAN1 = 12
 
 mapscripts Rusturf_MagmaCave_Main_MapScripts {}
 
@@ -11,15 +11,13 @@ mapscripts Rusturf_MagmaCave_Main_MapScripts {}
 // Grunt 2 - OBJ_EVENT_GFX_MAGMA_MEMBER_F, x=3 y=18, sight=2
 // =============================================================================
 script Rusturf_MagmaCave_Main_EventScript_Grunt2 {
-    lock
-    faceplayer
-    if (defeated(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2)) {
-        msgbox(Rusturf_MagmaCave_Main_Text_Grunt2Defeat)
-        closemessage()
-        release
-        end
-    }
-    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2, Rusturf_MagmaCave_Main_Text_Grunt2Intro, Rusturf_MagmaCave_Main_Text_Grunt2Defeat)
+    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2, Rusturf_MagmaCave_Main_Text_Grunt2Intro, Rusturf_MagmaCave_Main_Text_Grunt2Defeat, Rusturf_MagmaCave_Main_EventScript_Grunt2Defeated)
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt2Defeat, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Rusturf_MagmaCave_Main_EventScript_Grunt2Defeated {
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt2Defeat, MSGBOX_DEFAULT)
     release
     end
 }
@@ -36,15 +34,13 @@ text Rusturf_MagmaCave_Main_Text_Grunt2Defeat {
 // Grunt 3 - OBJ_EVENT_GFX_MAGMA_MEMBER_M, x=13 y=6, sight=3
 // =============================================================================
 script Rusturf_MagmaCave_Main_EventScript_Grunt3 {
-    lock
-    faceplayer
-    if (defeated(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3)) {
-        msgbox(Rusturf_MagmaCave_Main_Text_Grunt3Defeat)
-        closemessage()
-        release
-        end
-    }
-    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3, Rusturf_MagmaCave_Main_Text_Grunt3Intro, Rusturf_MagmaCave_Main_Text_Grunt3Defeat)
+    trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3, Rusturf_MagmaCave_Main_Text_Grunt3Intro, Rusturf_MagmaCave_Main_Text_Grunt3Defeat, Rusturf_MagmaCave_Main_EventScript_Grunt3Defeated)
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt3Defeat, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script Rusturf_MagmaCave_Main_EventScript_Grunt3Defeated {
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt3Defeat, MSGBOX_DEFAULT)
     release
     end
 }
