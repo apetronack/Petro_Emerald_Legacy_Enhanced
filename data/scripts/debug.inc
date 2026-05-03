@@ -142,6 +142,9 @@ Debug_Script_1::
 
 	@ --- Give a high-level starter for combat testing ---
 	givemon SPECIES_SCEPTILE, 45, ITEM_NONE
+	givemon SPECIES_BLAZIKEN, 45, ITEM_NONE
+	givemon SPECIES_SWAMPERT, 45, ITEM_NONE
+	giveitem ITEM_MASTER_BALL
 
 	@ --- Warp directly into Rusturf Tunnel (Route 116 entrance side) ---
 	warp MAP_RUSTURF_TUNNEL, 5, 10
@@ -155,7 +158,7 @@ Debug_Script_1::
 @ ready to enter Rusturf_MagmaCave_Final and face the admin double battle.
 @
 @ Automatically warps to Rusturf_MagmaCave_Main entrance.
-@ Gives a level 45 Sceptile for immediate combat testing.
+@ Gives a level 45 Sceptile, Blaziken, and Swampert for immediate combat testing.
 @ =============================================================================
 Debug_Script_2::
 	lockall
@@ -223,6 +226,11 @@ Debug_Script_2::
 
 	@ --- Give a high-level starter for combat testing ---
 	givemon SPECIES_SCEPTILE, 45, ITEM_NONE
+	givemon SPECIES_BLAZIKEN, 45, ITEM_NONE
+	givemon SPECIES_SWAMPERT, 45, ITEM_NONE
+
+	@ --- Give a master ball to catch the shiny Lairon in the cave ---
+	giveitem ITEM_MASTER_BALL
 
 	@ --- Warp into Rusturf_MagmaCave_Main (past the Entry tunnel) ---
 	warp MAP_RUSTURF_MAGMA_CAVE_MAIN, 5, 25

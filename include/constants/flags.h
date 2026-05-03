@@ -713,9 +713,9 @@
 #define FLAG_RUSTURF_MAGMA_GRUNT_VISIBLE                           0x2A2 // Set when the Magma Grunt Guard should be visible in the tunnel
 #define FLAG_HIDE_RUSTURF_TUNNEL_MAGMA_GRUNT_GUARD                 0x2A3 // Hide flag for the Magma Grunt Guard object event (set = hidden)
 #define FLAG_RUSTURF_MAGMA_GRUNT_PAID                              0x2A4 // Set when player has paid the Magma Grunt Guard for passage
-#define FLAG_UNUSED_0x2A5                                          0x2A5 // Unused Flag
-#define FLAG_UNUSED_0x2A6                                          0x2A6 // Unused Flag
-#define FLAG_UNUSED_0x2A7                                          0x2A7 // Unused Flag
+#define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_TABITHA                 0x2A5 // Hide flag for Tabitha in Rusturf Magma Cave Final (set = hidden)
+#define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_COURTNEY                0x2A6 // Hide flag for Courtney in Rusturf Magma Cave Final (set = hidden)
+#define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_GRUNT                   0x2A7 // Hide flag for the Grunt in Rusturf Magma Cave Final (set = hidden)
 #define FLAG_UNUSED_0x2A8                                          0x2A8 // Unused Flag
 #define FLAG_UNUSED_0x2A9                                          0x2A9 // Unused Flag
 #define FLAG_UNUSED_0x2AA                                          0x2AA // Unused Flag

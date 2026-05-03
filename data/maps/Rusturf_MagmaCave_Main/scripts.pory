@@ -12,12 +12,12 @@ mapscripts Rusturf_MagmaCave_Main_MapScripts {}
 // =============================================================================
 script Rusturf_MagmaCave_Main_EventScript_Grunt2 {
     trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2, Rusturf_MagmaCave_Main_Text_Grunt2Intro, Rusturf_MagmaCave_Main_Text_Grunt2Defeat, Rusturf_MagmaCave_Main_EventScript_Grunt2Defeated)
-    msgbox(Rusturf_MagmaCave_Main_Text_Grunt2Defeat, MSGBOX_AUTOCLOSE)
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt2_PostBattle, MSGBOX_AUTOCLOSE)
     end
 }
 
 script Rusturf_MagmaCave_Main_EventScript_Grunt2Defeated {
-    msgbox(Rusturf_MagmaCave_Main_Text_Grunt2Defeat, MSGBOX_DEFAULT)
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt2_PostBattle, MSGBOX_DEFAULT)
     release
     end
 }
@@ -27,6 +27,10 @@ text Rusturf_MagmaCave_Main_Text_Grunt2Intro {
 }
 
 text Rusturf_MagmaCave_Main_Text_Grunt2Defeat {
+    format("Ok, maybe I should have just called the admins…")
+}
+
+text Rusturf_MagmaCave_Main_Text_Grunt2_PostBattle {
     format("My POKéMON were weak! I can't believe I lost to some kid!")
 }
 
@@ -35,12 +39,12 @@ text Rusturf_MagmaCave_Main_Text_Grunt2Defeat {
 // =============================================================================
 script Rusturf_MagmaCave_Main_EventScript_Grunt3 {
     trainerbattle_single(TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3, Rusturf_MagmaCave_Main_Text_Grunt3Intro, Rusturf_MagmaCave_Main_Text_Grunt3Defeat, Rusturf_MagmaCave_Main_EventScript_Grunt3Defeated)
-    msgbox(Rusturf_MagmaCave_Main_Text_Grunt3Defeat, MSGBOX_AUTOCLOSE)
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt3_PostBattle, MSGBOX_AUTOCLOSE)
     end
 }
 
 script Rusturf_MagmaCave_Main_EventScript_Grunt3Defeated {
-    msgbox(Rusturf_MagmaCave_Main_Text_Grunt3Defeat, MSGBOX_DEFAULT)
+    msgbox(Rusturf_MagmaCave_Main_Text_Grunt3_PostBattle, MSGBOX_DEFAULT)
     release
     end
 }
@@ -51,6 +55,10 @@ text Rusturf_MagmaCave_Main_Text_Grunt3Intro {
 
 text Rusturf_MagmaCave_Main_Text_Grunt3Defeat {
     format("Ugh… beaten by some kid on top of being posted to such an uncomfortable place…")
+}
+
+text Rusturf_MagmaCave_Main_Text_Grunt3_PostBattle {
+    format("... I hate it here.")
 }
 
 // =============================================================================
@@ -120,7 +128,7 @@ script Rusturf_MagmaCave_Main_EventScript_ItemNugget {
     end
 }
 
-script Rusturf_MagmaCave_Main_EventScript_ItemFireStone {
-    finditem(ITEM_FIRE_STONE)
+script Rusturf_MagmaCave_Main_EventScript_ItemFlamethrower {
+    finditem(ITEM_TM_FLAMETHROWER)
     end
 }

@@ -6891,9 +6891,9 @@ const struct Trainer gTrainers[] = {
 
     [TRAINER_TABITHA_AND_COURTNEY_RUSTURF] =
     {
-        .trainerClass = TRAINER_CLASS_MAGMA_ADMIN,
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
-        .trainerPic = TRAINER_PIC_MAGMA_ADMIN,
+        .trainerPic = TRAINER_PIC_MAGMA_ADMIN_TABITHA_AND_COURTNEY,
         .trainerName = _("ADMINS"),
         .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = TRUE,
