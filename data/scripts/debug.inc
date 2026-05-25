@@ -320,8 +320,8 @@ Debug_Script_3::
 	@ --- Give a high-level starter for combat testing ---
 	givemon SPECIES_SCEPTILE, 45, ITEM_NONE
 
-	@ --- Warp to Rustboro City Gym (near Roxanne for reward dialogue) ---
-	warp MAP_RUSTBORO_CITY_GYM, 5, 5
+	@ --- Warp to Rustboro City near Gym (near Roxanne for reward dialogue) ---
+	warp MAP_RUSTBORO_CITY, 27, 22 
 	waitstate
 	end
 

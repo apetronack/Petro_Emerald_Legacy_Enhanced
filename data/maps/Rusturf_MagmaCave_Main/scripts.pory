@@ -65,13 +65,7 @@ text Rusturf_MagmaCave_Main_Text_Grunt3_PostBattle {
 // Scientist 1 - OBJ_EVENT_GFX_SCIENTIST_1, x=15 y=17, MOVEMENT_TYPE_LOOK_AROUND
 // =============================================================================
 script Rusturf_MagmaCave_EventScript_Scientist1 {
-    lock
-    faceplayer
-    msgbox(Rusturf_MagmaCave_Main_Text_Scientist1)
-    closemessage()
-    applymovement(LOCALID_SCIENTIST1, moves(face_down))
-    waitmovement(0)
-    release
+    msgbox(Rusturf_MagmaCave_Main_Text_Scientist1, MSGBOX_NPC)
     end
 }
 
@@ -83,13 +77,7 @@ text Rusturf_MagmaCave_Main_Text_Scientist1 {
 // Scientist 2 - OBJ_EVENT_GFX_SCIENTIST_2, x=37 y=5, MOVEMENT_TYPE_FACE_RIGHT
 // =============================================================================
 script Rusturf_MagmaCave_EventScript_Scientist2 {
-    lock
-    faceplayer
-    msgbox(Rusturf_MagmaCave_Main_Text_Scientist2)
-    closemessage()
-    applymovement(LOCALID_SCIENTIST2, moves(face_right))
-    waitmovement(0)
-    release
+    msgbox(Rusturf_MagmaCave_Main_Text_Scientist2, MSGBOX_NPC)
     end
 }
 
@@ -101,13 +89,7 @@ text Rusturf_MagmaCave_Main_Text_Scientist2 {
 // Magma Technician 1 - OBJ_EVENT_GFX_MAGMA_MEMBER_M, x=31 y=4, MOVEMENT_TYPE_FACE_UP
 // =============================================================================
 script Rusturf_MagmaCave_Main_EventScript_MagmaTechnician1 {
-    lock
-    faceplayer
-    msgbox(Rusturf_MagmaCave_Main_Text_MagmaTechnician1)
-    closemessage()
-    applymovement(LOCALID_TECHNICIAN1, moves(face_up))
-    waitmovement(0)
-    release
+    msgbox(Rusturf_MagmaCave_Main_Text_MagmaTechnician1, MSGBOX_NPC)
     end
 }
 

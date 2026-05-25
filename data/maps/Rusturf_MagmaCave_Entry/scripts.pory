@@ -37,17 +37,11 @@ text Rusturf_MagmaCave_Text_Grunt1Flee {
 }
 
 script Rusturf_MagmaCave_Entry_EventScript_ScaredWorker {
-    lock
-    faceplayer
     if (flag(FLAG_ROXANNE_QUEST_COMPLETE)) {
-        msgbox(Rusturf_MagmaCave_Entry_Text_ScaredWorker_Thanks, MSGBOX_DEFAULT)
-        closemessage()
-        release
+        msgbox(Rusturf_MagmaCave_Entry_Text_ScaredWorker_Thanks, MSGBOX_NPC)
         end
     }
-    msgbox(Rusturf_MagmaCave_Entry_Text_ScaredWorker, MSGBOX_DEFAULT)
-    closemessage()
-    release
+    msgbox(Rusturf_MagmaCave_Entry_Text_ScaredWorker, MSGBOX_NPC)
     end
 }
 

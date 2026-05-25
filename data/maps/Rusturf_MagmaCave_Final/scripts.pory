@@ -28,9 +28,6 @@ script Rusturf_MagmaCave_Final_EventScript_HelixFossil {
     msgbox(Rusturf_MagmaCave_Final_Text_HelixFossilDesc, MSGBOX_YESNO)
     goto_if_eq(VAR_RESULT, NO, Rusturf_MagmaCave_Final_EventScript_FossilDecline)
     setvar(VAR_TEMP_1, 1)
-    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
-    goto_if_eq(VAR_RESULT, 0, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
-    goto_if_eq(VAR_RESULT, 1, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
     goto_if_eq(VAR_TEMP_0, DIR_SOUTH, Rusturf_MagmaCave_Final_EventScript_HelixApproach_Down)
     goto(Rusturf_MagmaCave_Final_EventScript_HelixApproach_Side)
     end
@@ -49,11 +46,99 @@ script Rusturf_MagmaCave_Final_EventScript_DomeFossil {
     msgbox(Rusturf_MagmaCave_Final_Text_DomeFossilDesc, MSGBOX_YESNO)
     goto_if_eq(VAR_RESULT, NO, Rusturf_MagmaCave_Final_EventScript_FossilDecline)
     setvar(VAR_TEMP_1, 2)
-    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
-    goto_if_eq(VAR_RESULT, 0, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
-    goto_if_eq(VAR_RESULT, 1, Rusturf_MagmaCave_Final_EventScript_NotEnoughMons)
     goto_if_eq(VAR_TEMP_0, DIR_SOUTH, Rusturf_MagmaCave_Final_EventScript_DomeApproach_Down)
     goto(Rusturf_MagmaCave_Final_EventScript_DomeApproach_Side)
+    end
+}
+
+// ============================================================
+// TRIGGER TILES - NOT ENOUGH MONS CHECK (y16 row)
+// Three tiles: x10,y16 (TileA), x11,y16 (TileB), x12,y16 (TileC)
+// If player has < 2 alive non-egg mons, admins flank from the
+// two unoccupied tiles, deliver the warning, fade to black,
+// then reposition player 3 tiles north (y13).
+// ============================================================
+
+// Tile A: player at x10,y16 → admins move to x11,y16 and x12,y16
+script Rusturf_MagmaCave_Final_EventScript_TriggerTileA {
+    goto_if_set(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED, Rusturf_MagmaCave_Final_EventScript_TriggerTileEnd)
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+    if (var(VAR_RESULT) >= 2) {
+        release
+        end
+    }
+    lockall
+    addobject(LOCALID_TABITHA)
+    addobject(LOCALID_COURTNEY)
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_NotEnough_TileA)
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_NotEnough_TileAorB)
+    waitmovement(0)
+    msgbox(Rusturf_MagmaCave_Final_Text_TabithaNotEnoughMons, MSGBOX_DEFAULT)
+    closemessage()
+    fadescreen(FADE_TO_BLACK)
+    removeobject(LOCALID_TABITHA)
+    removeobject(LOCALID_COURTNEY)
+    applymovement(OBJ_EVENT_ID_PLAYER, Rusturf_MagmaCave_Final_Movement_Player_NotEnoughPushback)
+    waitmovement(0)
+    fadescreen(FADE_FROM_BLACK)
+    releaseall
+    end
+}
+
+// Tile B: player at x11,y16 → admins move to x10,y16 and x12,y16
+script Rusturf_MagmaCave_Final_EventScript_TriggerTileB {
+    goto_if_set(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED, Rusturf_MagmaCave_Final_EventScript_TriggerTileEnd)
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+    if (var(VAR_RESULT) >= 2) {
+        release
+        end
+    }
+    lockall
+    addobject(LOCALID_TABITHA)
+    addobject(LOCALID_COURTNEY)
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_NotEnough_TileBorC)
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_NotEnough_TileAorB)
+    waitmovement(0)
+    msgbox(Rusturf_MagmaCave_Final_Text_TabithaNotEnoughMons, MSGBOX_DEFAULT)
+    closemessage()
+    fadescreen(FADE_TO_BLACK)
+    removeobject(LOCALID_TABITHA)
+    removeobject(LOCALID_COURTNEY)
+    applymovement(OBJ_EVENT_ID_PLAYER, Rusturf_MagmaCave_Final_Movement_Player_NotEnoughPushback)
+    waitmovement(0)
+    fadescreen(FADE_FROM_BLACK)
+    releaseall
+    end
+}
+
+// Tile C: player at x12,y16 → admins move to x10,y16 and x11,y16
+script Rusturf_MagmaCave_Final_EventScript_TriggerTileC {
+    goto_if_set(FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED, Rusturf_MagmaCave_Final_EventScript_TriggerTileEnd)
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+    if (var(VAR_RESULT) >= 2) {
+        release
+        end
+    }
+    lockall
+    addobject(LOCALID_TABITHA)
+    addobject(LOCALID_COURTNEY)
+    applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_NotEnough_TileBorC)
+    applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_NotEnough_TileC)
+    waitmovement(0)
+    msgbox(Rusturf_MagmaCave_Final_Text_TabithaNotEnoughMons, MSGBOX_DEFAULT)
+    closemessage()
+    fadescreen(FADE_TO_BLACK)
+    removeobject(LOCALID_TABITHA)
+    removeobject(LOCALID_COURTNEY)
+    applymovement(OBJ_EVENT_ID_PLAYER, Rusturf_MagmaCave_Final_Movement_Player_NotEnoughPushback)
+    waitmovement(0)
+    fadescreen(FADE_FROM_BLACK)
+    releaseall
+    end
+}
+
+script Rusturf_MagmaCave_Final_EventScript_TriggerTileEnd {
+    release
     end
 }
 
@@ -68,36 +153,6 @@ script Rusturf_MagmaCave_Final_EventScript_FossilDecline {
 }
 
 script Rusturf_MagmaCave_Final_EventScript_FossilGone {
-    end
-}
-
-script Rusturf_MagmaCave_Final_EventScript_NotEnoughMons {
-    addobject(LOCALID_TABITHA)
-    addobject(LOCALID_COURTNEY)
-    if (var(VAR_TEMP_1) == 1) {
-        if (var(VAR_TEMP_0) == DIR_SOUTH) {
-            applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixDown)
-            applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixDown)
-            waitmovement(0)
-        } else {
-            applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_HelixSide)
-            waitmovement(0)
-            applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_HelixSide)
-            waitmovement(0)
-        }
-    } elif (var(VAR_TEMP_0) == DIR_SOUTH) {
-        applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeDown)
-        waitmovement(0)
-        applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeDown)
-        waitmovement(0)
-    } else {
-        applymovement(LOCALID_COURTNEY, Rusturf_MagmaCave_Final_Movement_Courtney_DomeSide)
-        waitmovement(0)
-        applymovement(LOCALID_TABITHA, Rusturf_MagmaCave_Final_Movement_Tabitha_DomeSide)
-        waitmovement(0)
-    }
-    msgbox(Rusturf_MagmaCave_Final_Text_NotEnoughMons, MSGBOX_DEFAULT)
-    release
     end
 }
 
@@ -120,7 +175,7 @@ script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Down {
 
 // Player was at x11,y17 facing left
 // Tabitha first: x10,y8 → x10,y16 (8 down) → x11,y16 (1 right, face down)
-// Then Courtney: x11,y8 → x10,y8 (1 left) → x10,y17 (9 down, face right)
+// Then Courtney: x11,y8 → x10,y8 (1 left) → x10,y16 (8 down, face down)
 script Rusturf_MagmaCave_Final_EventScript_HelixApproach_Side {
     addobject(LOCALID_TABITHA)
     addobject(LOCALID_COURTNEY)
@@ -151,7 +206,7 @@ script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Down {
 }
 
 // Player was at x11,y17 facing right
-// Courtney first: x11,y8 → x12,y8 (1 right) → x12,y17 (9 down, face left)
+// Courtney first: x11,y8 → x12,y8 (1 right) → x12,y17 (8 down, face down)
 // Then Tabitha: x10,y8 → x11,y8 (1 right) → x11,y16 (8 down, face down)
 script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Side {
     addobject(LOCALID_TABITHA)
@@ -277,6 +332,46 @@ script Rusturf_MagmaCave_Final_EventScript_AllExit {
 }
 
 // ============================================================
+// MOVEMENT SCRIPTS - NOT ENOUGH MONS TRIGGER FLANKING
+// ============================================================
+
+// Tile A (player at x10,y16): Tabitha x10,y8 → x11,y16 (face left toward player)
+movement Rusturf_MagmaCave_Final_Movement_Tabitha_NotEnough_TileA {
+    walk_fast_right
+    walk_fast_down * 8
+    face_left
+    step_end
+}
+
+// Tile B/C (player at x11/x12,y16): Tabitha x10,y8 → x10,y16 (face right toward player)
+movement Rusturf_MagmaCave_Final_Movement_Tabitha_NotEnough_TileBorC {
+    walk_fast_down * 8
+    face_right
+    step_end
+}
+
+// Tile A/B (player at x10/x11,y16): Courtney x11,y8 → x12,y16 (face left toward player)
+movement Rusturf_MagmaCave_Final_Movement_Courtney_NotEnough_TileAorB {
+    walk_fast_right
+    walk_fast_down * 8
+    face_left
+    step_end
+}
+
+// Tile C (player at x12,y16): Courtney x11,y8 → x11,y16 (face right toward player)
+movement Rusturf_MagmaCave_Final_Movement_Courtney_NotEnough_TileC {
+    walk_fast_down * 8
+    face_right
+    step_end
+}
+
+// Player pushed back 3 tiles north (y16 → y13), executed while screen is faded
+movement Rusturf_MagmaCave_Final_Movement_Player_NotEnoughPushback {
+    walk_up * 3
+    step_end
+}
+
+// ============================================================
 // MOVEMENT SCRIPTS
 // ============================================================
 
@@ -303,8 +398,8 @@ movement Rusturf_MagmaCave_Final_Movement_Tabitha_HelixSide {
 
 movement Rusturf_MagmaCave_Final_Movement_Courtney_HelixSide {
     walk_fast_left
-    walk_fast_down * 9
-    face_right
+    walk_fast_down * 8
+    face_down
     step_end
 }
 
@@ -325,8 +420,8 @@ movement Rusturf_MagmaCave_Final_Movement_Tabitha_DomeDown {
 // Dome fossil chosen, player at x11,y17 facing right
 movement Rusturf_MagmaCave_Final_Movement_Courtney_DomeSide {
     walk_fast_right
-    walk_fast_down * 9
-    face_left
+    walk_fast_down * 8
+    face_down
     step_end
 }
 

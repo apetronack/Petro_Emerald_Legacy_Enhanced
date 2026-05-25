@@ -8778,16 +8778,16 @@ static const struct TrainerMon sParty_GruntRusturfMagmaCave2[] = {
     {
     .iv = 60,
     .lvl = 28,
-    .species = SPECIES_NUMEL,
+    .species = SPECIES_KOFFING,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_EMBER, MOVE_MAGNITUDE, MOVE_GROWL, MOVE_FOCUS_ENERGY}
+    .moves = {MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_SELF_DESTRUCT, MOVE_AMNESIA}
     },
     {
     .iv = 60,
     .lvl = 28,
-    .species = SPECIES_ARON,
+    .species = SPECIES_NUMEL,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_METAL_CLAW, MOVE_IRON_DEFENSE, MOVE_HEADBUTT, MOVE_MUD_SLAP}
+    .moves = {MOVE_EMBER, MOVE_MAGNITUDE, MOVE_GROWL, MOVE_FOCUS_ENERGY}
     }
 };
 // Rusturf Magma Cave Grunt 3 (Male)
@@ -8795,16 +8795,16 @@ static const struct TrainerMon sParty_GruntRusturfMagmaCave3[] = {
     {
     .iv = 60,
     .lvl = 30,
-    .species = SPECIES_NUMEL,
+    .species = SPECIES_RHYHORN,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_EMBER, MOVE_MAGNITUDE, MOVE_TACKLE, MOVE_AMNESIA}
+    .moves = {MOVE_ROCK_BLAST, MOVE_MAGNITUDE, MOVE_SCARY_FACE, MOVE_HORN_ATTACK}
     },
     {
     .iv = 60,
     .lvl = 30,
-    .species = SPECIES_CACNEA,
+    .species = SPECIES_GRIMER,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_PIN_MISSILE, MOVE_LEECH_SEED, MOVE_SAND_ATTACK, MOVE_GROWTH}
+    .moves = {MOVE_SLUDGE, MOVE_MUD_SHOT, MOVE_SCREECH, MOVE_MINIMIZE}
     }
 };
 //Rustboro Gym Hiker 1 (Potential Double Battle with Tommy)
@@ -14511,26 +14511,26 @@ static const struct TrainerMon sParty_TabithaAndCourtney_Rusturf[] = {
     .iv = 50,
     .lvl = 30,
     .species = SPECIES_GOLBAT,
-    .moves = {MOVE_WING_ATTACK, MOVE_GIGA_DRAIN, MOVE_BITE, MOVE_CONFUSE_RAY}
+    .moves = {MOVE_WING_ATTACK, MOVE_SLUDGE, MOVE_BITE, MOVE_CONFUSE_RAY}
     },
     {
     .iv = 50,
-    .lvl = 32,
+    .lvl = 31,
     .species = SPECIES_ZANGOOSE,
-    .moves = {MOVE_SLASH, MOVE_FURY_CUTTER, MOVE_SWORDS_DANCE, MOVE_QUICK_ATTACK}
+    .moves = {MOVE_SLASH, MOVE_METAL_CLAW, MOVE_SWORDS_DANCE, MOVE_QUICK_ATTACK}
     },
     {
     .iv = 50,
     .lvl = 32,
     .species = SPECIES_CACTURNE,
-    .moves = {MOVE_BULLET_SEED, MOVE_FAINT_ATTACK, MOVE_LEECH_SEED, MOVE_FOCUS_PUNCH}
+    .moves = {MOVE_PURSUIT, MOVE_PIN_MISSILE, MOVE_LEECH_SEED, MOVE_FOCUS_PUNCH}
     },
     {
     .iv = 50,
     .lvl = 30,
     .species = SPECIES_CAMERUPT,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_MAGNITUDE, MOVE_TAKE_DOWN, MOVE_AMNESIA, MOVE_EMBER}
+    .moves = {MOVE_MAGNITUDE, MOVE_TAKE_DOWN, MOVE_AMNESIA, MOVE_FLAME_WHEEL}
     },
     {
     .iv = 50,
@@ -14541,10 +14541,10 @@ static const struct TrainerMon sParty_TabithaAndCourtney_Rusturf[] = {
     },
     {
     .iv = 50,
-    .lvl = 33,
+    .lvl = 32,
     .species = SPECIES_NINETALES,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_HEAT_WAVE, MOVE_DIG, MOVE_WILL_O_WISP, MOVE_IRON_TAIL}
+    .moves = {MOVE_FLAMETHROWER, MOVE_QUICK_ATTACK, MOVE_WILL_O_WISP, MOVE_IRON_TAIL}
     },
 };
 
