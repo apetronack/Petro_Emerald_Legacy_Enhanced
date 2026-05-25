@@ -206,7 +206,7 @@ script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Down {
 }
 
 // Player was at x11,y17 facing right
-// Courtney first: x11,y8 → x12,y8 (1 right) → x12,y17 (8 down, face down)
+// Courtney first: x11,y8 → x12,y8 (1 right) → x12,y16 (8 down, face down)
 // Then Tabitha: x10,y8 → x11,y8 (1 right) → x11,y16 (8 down, face down)
 script Rusturf_MagmaCave_Final_EventScript_DomeApproach_Side {
     addobject(LOCALID_TABITHA)
@@ -282,7 +282,7 @@ script Rusturf_MagmaCave_Final_EventScript_PostBattleBagFull {
 }
 
 // Player picked Helix (via victory) - grunt steals Dome (x12,y17)
-// Grunt: x11,y7 → walk down 10 → look right 1
+// Grunt: x11,y7 → down 7 → x11,y14 → right 1 → x12,y14 → down 2 → x12,y16
 script Rusturf_MagmaCave_Final_EventScript_GruntStealDome {
     addobject(LOCALID_GRUNT)
     applymovement(LOCALID_GRUNT, Rusturf_MagmaCave_Final_Movement_Grunt_ToDome)
@@ -298,7 +298,7 @@ script Rusturf_MagmaCave_Final_EventScript_GruntStealDome {
 }
 
 // Player picked Dome - grunt steals Helix (x10,y17)
-// Grunt: x11,y7 → walk down 10 → look left 1
+// Grunt: x11,y7 → down 7 → x11,y14 → left 1 → x10,y14 → down 2 → x10,y16
 script Rusturf_MagmaCave_Final_EventScript_GruntStealHelix {
     addobject(LOCALID_GRUNT)
     applymovement(LOCALID_GRUNT, Rusturf_MagmaCave_Final_Movement_Grunt_ToHelix)
@@ -335,10 +335,12 @@ script Rusturf_MagmaCave_Final_EventScript_AllExit {
 // MOVEMENT SCRIPTS - NOT ENOUGH MONS TRIGGER FLANKING
 // ============================================================
 
-// Tile A (player at x10,y16): Tabitha x10,y8 → x11,y16 (face left toward player)
+// Tile A (player at x10,y16): Tabitha x10,y8 → x10,y9 (down 1) → x11,y9 (right 1) → x11,y16 (down 7, face left)
+// Goes down 1 before stepping right so Tabitha never lands on Courtney's spawn at x11,y8
 movement Rusturf_MagmaCave_Final_Movement_Tabitha_NotEnough_TileA {
+    walk_fast_down
     walk_fast_right
-    walk_fast_down * 8
+    walk_fast_down * 7
     face_left
     step_end
 }
