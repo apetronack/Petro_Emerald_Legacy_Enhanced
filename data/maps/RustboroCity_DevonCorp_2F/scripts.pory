@@ -68,6 +68,10 @@ RustboroCity_DevonCorp_2F_EventScript_FossilScientist::
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_NoticeRootFossil
 	checkitem ITEM_CLAW_FOSSIL
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_NoticeClawFossil
+	checkitem ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_NoticeHelixFossil
+	checkitem ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_NoticeDomeFossil
 	release
 	end
 
@@ -109,6 +113,10 @@ RustboroCity_DevonCorp_2F_EventScript_NoticeRootFossil::
 	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
 	checkitem ITEM_CLAW_FOSSIL
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
 	goto RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
 	end
 
@@ -132,6 +140,10 @@ RustboroCity_DevonCorp_2F_EventScript_NoticeClawFossil::
 	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
 	checkitem ITEM_ROOT_FOSSIL
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
 	goto RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
 	end
 
@@ -144,6 +156,24 @@ RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil::
 	release
 	end
 
+RustboroCity_DevonCorp_2F_EventScript_NoticeHelixFossil::
+	closemessage
+	playse SE_PIN
+	applymovement LOCALID_FOSSIL_SCIENTIST, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_FOSSIL_SCIENTIST, Common_Movement_Delay48
+	waitmovement 0
+	msgbox RustboroCity_DevonCorp_2F_Text_WantToBringFossilBackToLife, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
+	checkitem ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_ROOT_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_CLAW_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	goto RustboroCity_DevonCorp_2F_EventScript_GiveHelixFossil
+	end
+
 RustboroCity_DevonCorp_2F_EventScript_GiveHelixFossil::
 	bufferitemname STR_VAR_1, ITEM_HELIX_FOSSIL
 	msgbox RustboroCity_DevonCorp_2F_Text_HandedFossilToResearcher, MSGBOX_DEFAULT
@@ -151,6 +181,24 @@ RustboroCity_DevonCorp_2F_EventScript_GiveHelixFossil::
 	setvar VAR_FOSSIL_RESURRECTION_STATE, 1
 	setvar VAR_WHICH_FOSSIL_REVIVED, 3
 	release
+	end
+
+RustboroCity_DevonCorp_2F_EventScript_NoticeDomeFossil::
+	closemessage
+	playse SE_PIN
+	applymovement LOCALID_FOSSIL_SCIENTIST, Common_Movement_ExclamationMark
+	waitmovement 0
+	applymovement LOCALID_FOSSIL_SCIENTIST, Common_Movement_Delay48
+	waitmovement 0
+	msgbox RustboroCity_DevonCorp_2F_Text_WantToBringFossilBackToLife, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_DeclineGiveFossil
+	checkitem ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_ROOT_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	checkitem ITEM_CLAW_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_ChooseFossil
+	goto RustboroCity_DevonCorp_2F_EventScript_GiveDomeFossil
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_GiveDomeFossil::
@@ -451,7 +499,9 @@ RustboroCity_DevonCorp_2F_EventScript_ChooseFossil::
 	switch VAR_RESULT
 	case 0, RustboroCity_DevonCorp_2F_EventScript_ChooseClawFossil
 	case 1, RustboroCity_DevonCorp_2F_EventScript_ChooseRootFossil
-	case 2, RustboroCity_DevonCorp_2F_EventScript_CancelFossilSelect
+	case 2, RustboroCity_DevonCorp_2F_EventScript_ChooseHelixFossil
+	case 3, RustboroCity_DevonCorp_2F_EventScript_ChooseDomeFossil
+	case 4, RustboroCity_DevonCorp_2F_EventScript_CancelFossilSelect
 	case MULTI_B_PRESSED, RustboroCity_DevonCorp_2F_EventScript_CancelFossilSelect
 	end
 
@@ -469,11 +519,25 @@ RustboroCity_DevonCorp_2F_EventScript_ChooseFossilPostGame::
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_ChooseClawFossil::
-	goto RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
+	checkitem ITEM_CLAW_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_GiveClawFossil
+	goto RustboroCity_DevonCorp_2F_EventScript_DontHaveFossil
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_ChooseRootFossil::
-	goto RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
+	checkitem ITEM_ROOT_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_GiveRootFossil
+	goto RustboroCity_DevonCorp_2F_EventScript_DontHaveFossil
+	end
+RustboroCity_DevonCorp_2F_EventScript_ChooseHelixFossil::
+	checkitem ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_GiveHelixFossil
+	goto RustboroCity_DevonCorp_2F_EventScript_DontHaveFossil
+	end
+RustboroCity_DevonCorp_2F_EventScript_ChooseDomeFossil::
+	checkitem ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_GiveDomeFossil
+	goto RustboroCity_DevonCorp_2F_EventScript_DontHaveFossil
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_ChooseClawFossilPostGame::
@@ -582,7 +646,7 @@ RustboroCity_DevonCorp_2F_Text_OhIsThatSo:
 
 RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne:
 	.string "Oh, now that's a surprise!\n"
-	.string "You have not one, but two, fossils?\p"
+	.string "You have more than one fossil?\p"
 	.string "Unfortunately, my machine can only\n"
 	.string "regenerate one POKéMON at a time.\p"
 	.string "Would you like to pick one of your\n"

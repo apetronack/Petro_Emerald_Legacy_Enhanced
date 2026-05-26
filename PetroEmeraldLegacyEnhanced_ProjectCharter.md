@@ -107,7 +107,7 @@
         5. Worldbuilding: Have grunts/admins talk about how Maxie gave up on his land expansion goals and how he is being misled
         6. Order routing: Wallace in the Cave of Origin suggests the player look at Mt. Pyre first; he will go look at Sky Pillar
             * The player can choose to ignore him and go to Sky Pillar, leaving Winona at Mt. Pyre for later
-            * Make sure there is no event collision on Mt. Pyre — if other events occur in the postgame, have Winona appear outside her gym instead
+            * Make sure there is no event collision on Mt. Pyre - if other events occur in the postgame, have Winona appear outside her gym instead
     7. Tate and Liza
         1. Find them in the postgame at Altering Cave
         2. Worldbuilding: They talk about meditating and ask to see specific Pokémon to attune their powers, rewarding the player in return

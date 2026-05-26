@@ -1,0 +1,32 @@
+mapscripts Rusturf_MagmaCave_ShinyLairon_MapScripts {}
+
+script Rusturf_MagmaCave_ShinyLairon_EventScript_LaironBall {
+    lock
+    if (flag(FLAG_TUNNEL_LAIRON_GIVEN)) {
+        release
+        end
+    }
+    msgbox(Rusturf_MagmaCave_ShinyLairon_Text_ShinyGlint)
+    closemessage()
+    playmoncry(SPECIES_LAIRON, CRY_MODE_ENCOUNTER)
+    delay(40)
+    waitmoncry()
+    special(CreateShinyLaironEnemy)
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    switch (specialvar(VAR_RESULT, GetBattleOutcome)) {
+        case B_OUTCOME_WON:
+            setflag(FLAG_TUNNEL_LAIRON_GIVEN)
+            goto(Common_EventScript_RemoveStaticPokemon)
+        case B_OUTCOME_CAUGHT:
+            setflag(FLAG_TUNNEL_LAIRON_GIVEN)
+            goto(Common_EventScript_RemoveStaticPokemon)
+    }
+    release
+    end
+}
+
+text Rusturf_MagmaCave_ShinyLairon_Text_ShinyGlint {
+    format("A glimmer catches your eye!\nSomething stirs inside...\pA {COLOR RED}{SHADOW LIGHT_RED}shiny{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} LAIRON emerges!")
+}

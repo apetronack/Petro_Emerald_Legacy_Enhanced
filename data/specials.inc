@@ -543,3 +543,5 @@ gSpecials::
 	def_special CheckFoundAllKecleon
 	def_special CheckGotAllKantoStarters
 	def_special UpdateGymLeaderRematch
+	def_special CreateShinyLaironEnemy
+	def_special GiveGiftRelicanth

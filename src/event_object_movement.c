@@ -514,6 +514,7 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
 #define OBJ_EVENT_PAL_TAG_DEOXYS_ATTACK           0x1133
 #define OBJ_EVENT_PAL_TAG_DEOXYS_DEFENSE          0x1134
 #define OBJ_EVENT_PAL_TAG_DEOXYS_SPEED            0x1135
+#define OBJ_EVENT_PAL_TAG_LAIRON                  0x1136
 
 #if OW_MON_POKEBALLS
 // Vanilla
@@ -620,6 +621,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Moltres,               OBJ_EVENT_PAL_TAG_MOLTRES},
     {gObjectEventPal_Zinnia,                OBJ_EVENT_PAL_TAG_ZINNIA},
     {gObjectEventPal_Whismur,               OBJ_EVENT_PAL_TAG_WHISMUR},
+    {gObjectEventPal_Lairon,                OBJ_EVENT_PAL_TAG_LAIRON},
     {gObjectEventPal_CastformSunny,         OBJ_EVENT_PAL_TAG_CASTFORM_SUNNY},
     {gObjectEventPal_CastformRainy,         OBJ_EVENT_PAL_TAG_CASTFORM_RAINY},
     {gObjectEventPal_CastformSnowy,         OBJ_EVENT_PAL_TAG_CASTFORM_SNOWY},

@@ -114,6 +114,10 @@ LIBPATH := -L "$(dir $(shell $(PATH_MODERNCC) -mthumb -print-file-name=libgcc.a)
 LIB := $(LIBPATH) -lc -lnosys -lgcc -L../../libagbsyscall -lagbsyscall
 endif
 
+ifeq ($(DDEBUGGING),1)
+ROM := $(ROM:.gba=_debug.gba)
+endif
+
 CPPFLAGS := -iquote include -iquote $(GFLIB_SUBDIR) -Wno-trigraphs -DMODERN=$(MODERN)
 ifneq ($(MODERN),1)
 CPPFLAGS += -I tools/agbcc/include -I tools/agbcc -nostdinc -undef
@@ -304,6 +308,11 @@ endif
 
 ifeq ($(DINFO),1)
 override CFLAGS += -g
+endif
+
+ifeq ($(DDEBUGGING),1)
+override ASFLAGS += --defsym DEBUGGING=1
+override CPPFLAGS += -DDEBUGGING=1
 endif
 
 # The dep rules have to be explicit or else missing files won't be reported.

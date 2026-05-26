@@ -239,6 +239,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoOh;
 // Begin pokemon event objects
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokeBall;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Follower;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lairon;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mewtwo;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Jirachi;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Celebi;
@@ -530,6 +531,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_JOLTEON] =                  &gObjectEventGraphicsInfo_Jolteon,
     [OBJ_EVENT_GFX_UMBREON] =                  &gObjectEventGraphicsInfo_Umbreon,
     [OBJ_EVENT_GFX_ESPEON] =                   &gObjectEventGraphicsInfo_Espeon,
+    [OBJ_EVENT_GFX_LAIRON] =                   &gObjectEventGraphicsInfo_Lairon,
     [OBJ_EVENT_GFX_POKE_BALL] =                &gObjectEventGraphicsInfo_PokeBall,
     [OBJ_EVENT_GFX_OW_MON] =                   &gObjectEventGraphicsInfo_Follower,
 };

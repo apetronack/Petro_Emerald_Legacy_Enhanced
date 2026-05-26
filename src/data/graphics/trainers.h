@@ -289,6 +289,9 @@ const u32 gTrainerPalette_ArchieAndMatt[] = INCBIN_U32("graphics/trainers/front_
 const u32 gTrainerFrontPic_Zinnia[] = INCBIN_U32("graphics/trainers/front_pics/zinnia.4bpp.lz");
 const u32 gTrainerPalette_Zinnia[] = INCBIN_U32("graphics/trainers/front_pics/zinnia.gbapal.lz");
 
+const u32 gTrainerFrontPic_MagmaAdminTabithaAndCourtney[] = INCBIN_U32("graphics/trainers/front_pics/magma_admin_tabitha_and_courtney.4bpp.lz");
+const u32 gTrainerPalette_MagmaAdminTabithaAndCourtney[] = INCBIN_U32("graphics/trainers/front_pics/magma_admin_tabitha_and_courtney.gbapal.lz");
+
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red.4bpp");

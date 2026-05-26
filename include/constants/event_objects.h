@@ -261,6 +261,7 @@
 #define OBJ_EVENT_GFX_JOLTEON                    257
 #define OBJ_EVENT_GFX_UMBREON                    258
 #define OBJ_EVENT_GFX_ESPEON                     259
+#define OBJ_EVENT_GFX_LAIRON                     260
 #define OBJ_EVENT_GFX_POKE_BALL                  OBJ_EVENT_GFX_ITEM_BALL // replaces ITEM_BALL
 #define OBJ_EVENT_GFX_OW_MON                     OBJ_EVENT_GFX_REGICE
 

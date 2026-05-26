@@ -1,0 +1,46 @@
+{
+  "id": "MAP_RUSTURF_MAGMA_CAVE_SHINY_LAIRON",
+  "name": "Rusturf_MagmaCave_ShinyLairon",
+  "layout": "LAYOUT_RUSTURF_MAGMA_CAVE_SHINY_LAIRON",
+  "music": "MUS_CAVE_OF_ORIGIN",
+  "region_map_section": "MAPSEC_RUSTURF_TUNNEL",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LAIRON",
+      "x": 5,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Rusturf_MagmaCave_ShinyLairon_EventScript_LaironBall",
+      "flag": "FLAG_TUNNEL_LAIRON_GIVEN"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_RUSTURF_MAGMA_CAVE_MAIN",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}
