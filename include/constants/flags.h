@@ -716,12 +716,12 @@
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_TABITHA                 0x2A5 // Hide flag for Tabitha in Rusturf Magma Cave Final (set = hidden)
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_COURTNEY                0x2A6 // Hide flag for Courtney in Rusturf Magma Cave Final (set = hidden)
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_GRUNT                   0x2A7 // Hide flag for the Grunt in Rusturf Magma Cave Final (set = hidden)
-#define FLAG_UNUSED_0x2A8                                          0x2A8 // Unused Flag
-#define FLAG_UNUSED_0x2A9                                          0x2A9 // Unused Flag
-#define FLAG_UNUSED_0x2AA                                          0x2AA // Unused Flag
-#define FLAG_UNUSED_0x2AB                                          0x2AB // Unused Flag
-#define FLAG_UNUSED_0x2AC                                          0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD                                          0x2AD // Unused Flag
+#define FLAG_BRAWLY_QUEST_ACTIVE                                   0x2A8 // Flag for Brawly Quest Active
+#define FLAG_BRAWLY_QUEST_COMPLETE                                 0x2A9 // Flag for Brawly Quest Complete
+#define FLAG_BRAWLY_QUEST_ADMINS_DEFEATED                          0x2AA // Flag for Brawly Quest Admins Defeated
+#define FLAG_HIDE_BRAWLY_OUTSIDE_GYM                               0x2AB // Flag for hiding Brawly outside the gym
+#define FLAG_RECEIVED_STAR_PIECE_BRAWLY                            0x2AC // Flag for receiving Star Piece from Brawly
+#define FLAG_HIDE_BRAWLY_QUEST_NPCS                                0x2AD // Flag for hiding Brawly Quest NPCs
 #define FLAG_UNUSED_0x2AE                                          0x2AE // Unused Flag
 #define FLAG_UNUSED_0x2AF                                          0x2AF // Unused Flag
 #define FLAG_UNUSED_0x2B0                                          0x2B0 // Unused Flag

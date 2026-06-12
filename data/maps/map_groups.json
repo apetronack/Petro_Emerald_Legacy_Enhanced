@@ -433,7 +433,8 @@
     "Rusturf_MagmaCave_Entry",
     "Rusturf_MagmaCave_Main",
     "Rusturf_MagmaCave_ShinyLairon",
-    "Rusturf_MagmaCave_Final"
+    "Rusturf_MagmaCave_Final",
+    "DewfordBeach"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

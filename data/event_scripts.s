@@ -1083,3 +1083,5 @@ Common_EventScript_LegendaryRanAway::
 	.include "data/maps/Rusturf_MagmaCave_ShinyLairon/scripts.inc"
 
 	.include "data/maps/Rusturf_MagmaCave_Final/scripts.inc"
+
+	.include "data/maps/DewfordBeach/scripts.inc"

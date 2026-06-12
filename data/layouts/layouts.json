@@ -4460,6 +4460,16 @@
       "secondary_tileset": "gTileset_Lavaridge",
       "border_filepath": "data/layouts/Rusturf_MagmaCave_Final/border.bin",
       "blockdata_filepath": "data/layouts/Rusturf_MagmaCave_Final/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_BEACH",
+      "name": "DewfordBeach_Layout",
+      "width": 30,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/DewfordBeach/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordBeach/map.bin"
     }
   ]
 }
