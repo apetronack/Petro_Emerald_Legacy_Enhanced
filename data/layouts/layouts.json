@@ -4470,6 +4470,36 @@
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/DewfordBeach/border.bin",
       "blockdata_filepath": "data/layouts/DewfordBeach/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_BEACH_INDOOR1",
+      "name": "DewfordBeach_Indoor1_Layout",
+      "width": 10,
+      "height": 10,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonFanClub",
+      "border_filepath": "data/layouts/DewfordBeach_Indoor1/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordBeach_Indoor1/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_BEACH_INDOOR2",
+      "name": "DewfordBeach_Indoor2_Layout",
+      "width": 8,
+      "height": 7,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/DewfordBeach_Indoor2/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordBeach_Indoor2/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_BEACH_INDOOR3",
+      "name": "DewfordBeach_Indoor3_Layout",
+      "width": 10,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/DewfordBeach_Indoor3/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordBeach_Indoor3/map.bin"
     }
   ]
 }
