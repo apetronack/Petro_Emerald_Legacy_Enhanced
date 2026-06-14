@@ -10,6 +10,7 @@ raw `
 
 .equ LOCALID_BOAT_R104, 7
 .equ LOCALID_BRINEY_R104, 8
+.equ LOCALID_BRAWLY_DEWFORD, 6
 
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
@@ -811,3 +812,53 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
 `
+script DewfordTown_EventScript_BrawlyQuest {
+	lock()
+	faceplayer()
+	// Check for quest completion first
+	if (flag(FLAG_BRAWLY_QUEST_ADMINS_DEFEATED)) {
+		// Give player reward (star piece) for completing quest
+		if (!flag(FLAG_RECEIVED_STAR_PIECE_BRAWLY)) {
+			msgbox(DewfordTown_Text_BrawlyQuestComplete, MSGBOX_DEFAULT)
+			giveitem(ITEM_STAR_PIECE)
+			goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+			setflag(FLAG_RECEIVED_STAR_PIECE_BRAWLY)
+			// Fade to black, remove Brawly sprite from Dewford Town, complete quest, and return to overworld
+			fadescreen(FADE_TO_BLACK)
+			removeobject(LOCALID_BRAWLY_DEWFORD)
+			setflag(FLAG_HIDE_BRAWLY_OUTSIDE_GYM)
+			// Set flag to indicate quest is complete
+			setflag(FLAG_BRAWLY_QUEST_COMPLETE)
+			fadescreen(FADE_FROM_BLACK)
+			release()
+			end()
+		}
+	}
+	// Check if quest is already active
+	if (flag(FLAG_BRAWLY_QUEST_ACTIVE)) {
+		// Handle quest still in progress
+		msgbox(DewfordTown_Text_BrawlyQuestInProgress, MSGBOX_DEFAULT)
+		release()
+		end()
+	}
+	// Need to initialize quest
+	msgbox(DewfordTown_Text_BrawlyQuestStart, MSGBOX_DEFAULT)
+	setflag(FLAG_BRAWLY_QUEST_ACTIVE)
+	// Open Route 107 river to allow player to access
+	setflag(FLAG_HIDE_BRAWLY_QUEST_ROUTE_107_AQUA_GRUNT)
+	release()
+	end()
+}
+
+text DewfordTown_Text_BrawlyQuestStart {
+	format("BRAWLY: {PLAYER}, I have an urgent request for you. TEAM AQUA are running amok in Dewford Town and are terrifying the locals. I'd do it myself, but I'm busy with my gym training! I've heard from the local fishermen that TEAM AQUA has been seen near ROUTE 107, so that might be a good place to start looking. Please, {PLAYER}, help me out!")
+}
+
+text DewfordTown_Text_BrawlyQuestInProgress {
+	format("BRAWLY: {PLAYER}, have you found where those TEAM AQUA grunts are organizing yet? I'd do it myself, but I'm busy with my gym training! I've heard from the local fishermen that TEAM AQUA has been seen near ROUTE 107, so that might be a good place to start looking. Please, {PLAYER}, help me out!")
+}
+
+text DewfordTown_Text_BrawlyQuestComplete {
+	format("BRAWLY: Well, {PLAYER}, I'm happy to have asked you for help! Those TEAM AQUA grunts around DEWFORD sure left town in a hurry! I am ashamed that I have been so focused on my gym training to notice that they set up shop under my nose on DEWFORD BEACH, just south of town! My parents retired to DEWFORD BEACH not long ago hoping to see me more often, and I suppose if I visited them more often I might have noticed TEAM AQUA hanging around there and been able to stop them before they got so bold. You should visit my parents at DEWFORD BEACH sometime. I'm sure they'd love to thank you in person! Thanks again for your help. Please, take this STAR PIECE as a token of my gratitude!")
+}
+

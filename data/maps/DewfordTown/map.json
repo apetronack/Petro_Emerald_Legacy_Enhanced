@@ -114,7 +114,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_BRAWLY_QUEST_ADMINS_DEFEATED"
+      "flag": "FLAG_HIDE_BRAWLY_QUEST_AQUAS"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
@@ -127,7 +127,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_BRAWLY_QUEST_ADMINS_DEFEATED"
+      "flag": "FLAG_HIDE_BRAWLY_QUEST_AQUAS"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
@@ -140,7 +140,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_BRAWLY_QUEST_ADMINS_DEFEATED"
+      "flag": "FLAG_HIDE_BRAWLY_QUEST_AQUAS"
     }
   ],
   "warp_events": [
