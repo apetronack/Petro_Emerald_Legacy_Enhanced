@@ -24,6 +24,17 @@ DewfordTown_House2_EventScript_ExplainSilkScarf::
 	end
 
 DewfordTown_House2_EventScript_Boy::
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_House2_EventScript_Boy_QuestComplete
+	goto_if_unset FLAG_BRAWLY_QUEST_ACTIVE, DewfordTown_House2_EventScript_Boy_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_House2_EventScript_Boy_Default
+	msgbox DewfordTown_House2_Text_BrawlySoCool_BrawlyQuest, MSGBOX_NPC
+	end
+
+DewfordTown_House2_EventScript_Boy_QuestComplete::
+	msgbox DewfordTown_House2_Text_BrawlySoCool_BrawlyQuest_Complete, MSGBOX_NPC
+	end
+
+DewfordTown_House2_EventScript_Boy_Default::
 	msgbox DewfordTown_House2_Text_BrawlySoCool, MSGBOX_NPC
 	end
 
@@ -57,3 +68,11 @@ DewfordTown_House2_Text_BrawlySoCool:
 	.string "Everyone idolizes him.$"
 
 `
+
+text DewfordTown_House2_Text_BrawlySoCool_BrawlyQuest {
+	format("Wow, you came all the way across the sea to visit DEWFORD? With TEAM AQUA hanging around, you're bound to see a good show when BRAWLY takes them down! ............ Any day now.")
+}
+
+text DewfordTown_House2_Text_BrawlySoCool_BrawlyQuest_Complete {
+	format("Wow, you came all the way across the sea to visit DEWFORD? I kept waiting for BRAWLY to do something about TEAM AQUA, but it was YOU who drove them off?! That's amazing!")
+}

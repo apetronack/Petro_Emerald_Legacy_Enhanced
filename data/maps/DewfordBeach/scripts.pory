@@ -1,1 +1,63 @@
 mapscripts DewfordBeach_MapScripts {}
+
+script DewfordBeach_EventScript_AquaGrunt1 {
+    trainerbattle_single(TRAINER_AQUA_GRUNT_BRAWLY_QUEST_1, DewfordBeach_Text_AquaGrunt1Intro, DewfordBeach_Text_AquaGrunt1Defeat)
+    msgbox(DewfordBeach_Text_AquaGrunt1PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DewfordBeach_EventScript_AquaGrunt2 {
+    trainerbattle_single(TRAINER_AQUA_GRUNT_BRAWLY_QUEST_2, DewfordBeach_Text_AquaGrunt2Intro, DewfordBeach_Text_AquaGrunt2Defeat)
+    msgbox(DewfordBeach_Text_AquaGrunt2PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DewfordBeach_EventScript_AquaGrunt3 {
+    trainerbattle_single(TRAINER_AQUA_GRUNT_BRAWLY_QUEST_3, DewfordBeach_Text_AquaGrunt3Intro, DewfordBeach_Text_AquaGrunt3Defeat)
+    msgbox(DewfordBeach_Text_AquaGrunt3PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+text DewfordBeach_Text_AquaGrunt1Intro {
+    "TEAM AQUA claimed this beach!\n"
+    "Get out before I make you!"
+}
+
+text DewfordBeach_Text_AquaGrunt1Defeat {
+    "Impossible! You defeated me!"
+}
+
+text DewfordBeach_Text_AquaGrunt1PostBattle {
+    "Don't think this is over...\n"
+    "TEAM AQUA will have the last laugh!"
+}
+
+text DewfordBeach_Text_AquaGrunt2Intro {
+    "Hmph! You've got some nerve\n"
+    "coming here.\p"
+    "TEAM AQUA controls this beach!\n"
+    "Turn back now!"
+}
+
+text DewfordBeach_Text_AquaGrunt2Defeat {
+    "Not bad... for a beginner."
+}
+
+text DewfordBeach_Text_AquaGrunt2PostBattle {
+    "Hmph! Don't get too full of\n"
+    "yourself! Our Admin won't lose!"
+}
+
+text DewfordBeach_Text_AquaGrunt3Intro {
+    "Halt! This area is sealed off\n"
+    "under TEAM AQUA orders!"
+}
+
+text DewfordBeach_Text_AquaGrunt3Defeat {
+    "What?! How did you beat me?!"
+}
+
+text DewfordBeach_Text_AquaGrunt3PostBattle {
+    "Fine, go... But our Admin\n"
+    "will stop you!"
+}

@@ -893,11 +893,10 @@
 #define TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2  889
 #define TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3  890
 #define TRAINER_TABITHA_AND_COURTNEY_RUSTURF 891
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 8 additional trainers before trainer flag space overflows
-//       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
-
-#define TRAINERS_COUNT                      892
+#define TRAINER_AQUA_GRUNT_BRAWLY_QUEST_1   892
+#define TRAINER_AQUA_GRUNT_BRAWLY_QUEST_2   893
+#define TRAINER_AQUA_GRUNT_BRAWLY_QUEST_3   894
+#define TRAINERS_COUNT                      895
 #define MAX_TRAINERS_COUNT                  960
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

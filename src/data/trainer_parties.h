@@ -15426,3 +15426,55 @@ static const struct TrainerMon sParty_Evern[] = {
     .species = SPECIES_UMBREON,
     }
 };
+
+// Brawly quest battles
+static const struct TrainerMon sParty_GruntAquaBrawlyQuest1[] = {
+    {
+        .iv = 40,
+        .lvl = 31,
+        .species = SPECIES_VOLTORB,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SPARK, MOVE_SELF_DESTRUCT, MOVE_SCREECH, MOVE_THUNDER_WAVE}
+    },
+    {
+        .iv = 40,
+        .lvl = 32,
+        .species = SPECIES_SEADRA,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SMOKESCREEN, MOVE_AURORA_BEAM, MOVE_BUBBLE_BEAM, MOVE_AGILITY}
+    }
+};
+
+static const struct TrainerMon sParty_GruntAquaBrawlyQuest2[] = {
+    {
+        .iv = 40,
+        .lvl = 33,
+        .species = SPECIES_SNEASEL,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_ICE_PUNCH, MOVE_FAINT_ATTACK, MOVE_SLASH, MOVE_TAUNT}
+    },
+    {
+        .iv = 40,
+        .lvl = 31,
+        .species = SPECIES_GOLBAT,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WING_ATTACK, MOVE_SLUDGE, MOVE_CONFUSE_RAY, MOVE_SCREECH}
+    }
+};
+
+static const struct TrainerMon sParty_GruntAquaBrawlyQuest3[] = {
+    {
+        .iv = 40,
+        .lvl = 31,
+        .species = SPECIES_WAILMER,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WATER_PULSE, MOVE_MIST, MOVE_ASTONISH, MOVE_ROLLOUT}
+    },
+    {
+        .iv = 40,
+        .lvl = 33,
+        .species = SPECIES_CRAWDAUNT,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_KNOCK_OFF, MOVE_BUBBLE_BEAM, MOVE_PROTECT, MOVE_LEER}
+    }
+};
