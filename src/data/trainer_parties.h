@@ -15478,3 +15478,48 @@ static const struct TrainerMon sParty_GruntAquaBrawlyQuest3[] = {
         .moves = {MOVE_KNOCK_OFF, MOVE_BUBBLE_BEAM, MOVE_PROTECT, MOVE_LEER}
     }
 };
+
+static const struct TrainerMon sParty_MattAndShelly_BrawlyQuest[] = {
+    {
+        .iv = 90,
+        .lvl = 32,
+        .species = SPECIES_ELECTRODE,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_RAIN_DANCE, MOVE_THUNDER, MOVE_LIGHT_SCREEN, MOVE_THUNDER_WAVE}
+    },
+    {
+        .iv = 90,
+        .lvl = 34,
+        .species = SPECIES_GOREBYSS,
+        .heldItem = ITEM_SITRUS_BERRY,
+        .moves = {MOVE_WATER_PULSE, MOVE_AMNESIA, MOVE_ATTRACT, MOVE_PSYCHIC}
+    },
+    {
+        .iv = 90,
+        .lvl = 33,
+        .species = SPECIES_MACHOKE,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_VITAL_THROW, MOVE_LEER, MOVE_BULK_UP, MOVE_THIEF}
+    },
+    {
+        .iv = 90,
+        .lvl = 33,
+        .species = SPECIES_SEVIPER,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_POISON_FANG, MOVE_CRUNCH, MOVE_GLARE, MOVE_SCREECH}
+    }, 
+    {
+        .iv = 90,
+        .lvl = 34,
+        .species = SPECIES_HUNTAIL,
+        .heldItem = ITEM_SITRUS_BERRY,
+        .moves = {MOVE_DRAGON_DANCE, MOVE_BITE, MOVE_WATER_PULSE, MOVE_ROCK_TOMB}
+    },
+    {
+        .iv = 90,
+        .lvl = 32,
+        .species = SPECIES_MIGHTYENA,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SAND_ATTACK, MOVE_SCARY_FACE, MOVE_CRUNCH, MOVE_DOUBLE_EDGE}
+    }
+};

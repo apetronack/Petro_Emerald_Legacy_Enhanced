@@ -193,6 +193,66 @@ void CompareLotadSize(void)
     gSpecialVar_Result = CompareMonSize(SPECIES_LOTAD, sizeRecord);
 }
 
+// Size hash thresholds for Dewford Beach fishing challenges.
+// Mean size is at hash 0x8000. Standard deviation ≈ 0.179 * mean.
+// +1 SD → effective size multiplier ≥ 1179/1000 → minimum hash 55610
+// +2 SD → effective size multiplier ≥ 1358/1000 → minimum hash 63870
+#define FISHING_CHALLENGE_THRESHOLD_1SD 55610u
+#define FISHING_CHALLENGE_THRESHOLD_2SD 63870u
+
+// Returns via gSpecialVar_Result:
+//   0 = no Pokemon selected
+//   1 = wrong species (or egg)
+//   2 = Pokemon is below the size threshold
+//   3 = Pokemon meets or exceeds the size threshold
+// Also writes the selected Pokemon's formatted size into gStringVar2.
+static u8 CompareMonSizeThreshold(u16 species, u32 sizeHashThreshold)
+{
+    struct Pokemon *pkmn;
+    u32 sizeHash;
+
+    if (gSpecialVar_Result == 0xFF)
+        return 0;
+
+    pkmn = &gPlayerParty[gSpecialVar_Result];
+
+    if (GetMonData(pkmn, MON_DATA_IS_EGG) == TRUE || GetMonData(pkmn, MON_DATA_SPECIES) != species)
+        return 1;
+
+    sizeHash = GetMonSizeHash(pkmn);
+    FormatMonSizeRecord(gStringVar2, GetMonSize(species, (u16)sizeHash));
+
+    if (sizeHash < sizeHashThreshold)
+        return 2;
+    else
+        return 3;
+}
+
+void CompareMagikarpFishingSize(void)
+{
+    gSpecialVar_Result = CompareMonSizeThreshold(SPECIES_MAGIKARP, FISHING_CHALLENGE_THRESHOLD_1SD);
+}
+
+void CompareTentacoolFishingSize(void)
+{
+    gSpecialVar_Result = CompareMonSizeThreshold(SPECIES_TENTACOOL, FISHING_CHALLENGE_THRESHOLD_1SD);
+}
+
+void CompareWailmerFishingSize(void)
+{
+    gSpecialVar_Result = CompareMonSizeThreshold(SPECIES_WAILMER, FISHING_CHALLENGE_THRESHOLD_1SD);
+}
+
+void CompareStaryuFishingSize(void)
+{
+    gSpecialVar_Result = CompareMonSizeThreshold(SPECIES_STARYU, FISHING_CHALLENGE_THRESHOLD_2SD);
+}
+
+void CompareSharpedoFishingSize(void)
+{
+    gSpecialVar_Result = CompareMonSizeThreshold(SPECIES_SHARPEDO, FISHING_CHALLENGE_THRESHOLD_2SD);
+}
+
 void GiveGiftRibbonToParty(u8 index, u8 ribbonId)
 {
     s32 i;

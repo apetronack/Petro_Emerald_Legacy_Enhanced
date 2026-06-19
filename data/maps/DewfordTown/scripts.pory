@@ -865,6 +865,7 @@ script DewfordTown_EventScript_BrawlyQuest {
 			setflag(FLAG_HIDE_BRAWLY_OUTSIDE_GYM)
 			// Set flag to indicate quest is complete
 			setflag(FLAG_BRAWLY_QUEST_COMPLETE)
+			clearflag(FLAG_HIDE_BRAWLY_QUEST_NPCS)
 			fadescreen(FADE_FROM_BLACK)
 			release()
 			end()
@@ -882,6 +883,8 @@ script DewfordTown_EventScript_BrawlyQuest {
 	setflag(FLAG_BRAWLY_QUEST_ACTIVE)
 	// Open Route 107 river to allow player to access
 	setflag(FLAG_HIDE_BRAWLY_QUEST_ROUTE_107_AQUA_GRUNT)
+	// Hide beach NPCs while quest is active
+	setflag(FLAG_HIDE_BRAWLY_QUEST_NPCS)
 	release()
 	end()
 }

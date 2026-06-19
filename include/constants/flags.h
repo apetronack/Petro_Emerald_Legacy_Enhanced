@@ -730,6 +730,11 @@
 #define FLAG_UNUSED_0x2B2                                          0x2B2 // Unused Flag
 #define FLAG_UNUSED_0x2B3                                          0x2B3 // Unused Flag
 #define FLAG_UNUSED_0x2B4                                          0x2B4 // Unused Flag
+#define FLAG_ITEM_DEWFORD_BEACH_ETHER                              FLAG_UNUSED_0x2B0
+#define FLAG_ITEM_DEWFORD_BEACH_X_ATTACK                           FLAG_UNUSED_0x2B1
+#define FLAG_ITEM_DEWFORD_BEACH_BIG_PEARL                          FLAG_UNUSED_0x2B2
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_MAX_ELIXIR                  FLAG_UNUSED_0x2B3
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_STAR_PIECE                  FLAG_UNUSED_0x2B4
 #define FLAG_SYS_NO_COLLISION                                      0x2B5 // Unused Flag // Debug
 #define FLAG_SYS_NO_ENCOUNTER                                      0x2B6 // Unused Flag // Debug
 #define FLAG_SYS_NO_TRAINER_SEE                                    0x2B7 // Unused Flag // Debug
@@ -1292,11 +1297,12 @@
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_ESCAPE_ROPE                0x4DF // Flag for obtaining Escape Rope in Rusturf Magma Cave Main
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_FIRE_STONE                 0x4E0 // Flag for obtaining Fire Stone in Rusturf Magma Cave Main
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_NUGGET                     0x4E1 // Flag for obtaining Nugget in Rusturf Magma Cave Main
-#define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
-#define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
-#define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
-#define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
-#define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
+// Dewford Beach Fishing Challenge Flags
+#define FLAG_FISHING_CHALLENGE_MAGIKARP_COMPLETE                    0x4E2 // Rewarded 5x Net Ball for large Magikarp (+1 SD)
+#define FLAG_FISHING_CHALLENGE_TENTACOOL_COMPLETE                   0x4E3 // Rewarded Poison Barb for large Tentacool (+1 SD)
+#define FLAG_FISHING_CHALLENGE_WAILMER_COMPLETE                     0x4E4 // Rewarded HP Up for large Wailmer (+1 SD)
+#define FLAG_FISHING_CHALLENGE_STARYU_COMPLETE                      0x4E5 // Rewarded Water Stone for large Staryu (+2 SD)
+#define FLAG_FISHING_CHALLENGE_SHARPEDO_COMPLETE                    0x4E6 // Rewarded Scope Lens for large Sharpedo (+2 SD)
 #define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
 #define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag

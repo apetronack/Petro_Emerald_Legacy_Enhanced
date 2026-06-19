@@ -61,7 +61,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "DewfordBeach_EventScript_AquaGruntNorth",
       "flag": "FLAG_BRAWLY_QUEST_ADMINS_DEFEATED"
     },
     {
@@ -74,8 +74,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FLAG_BRAWLY_QUEST_ADMINS_DEFEATED",
-      "flag": "0"
+      "script": "DewfordBeach_EventScript_AquaGruntWest",
+      "flag": "FLAG_BRAWLY_QUEST_ADMINS_DEFEATED"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MATT",
@@ -113,8 +113,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "DewfordBeach_EventScript_ItemEther",
+      "flag": "FLAG_ITEM_DEWFORD_BEACH_ETHER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
@@ -126,8 +126,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "DewfordBeach_EventScript_ItemXAttack",
+      "flag": "FLAG_ITEM_DEWFORD_BEACH_X_ATTACK"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
@@ -139,8 +139,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "DewfordBeach_EventScript_ItemBigPearl",
+      "flag": "FLAG_ITEM_DEWFORD_BEACH_BIG_PEARL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
@@ -152,7 +152,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "DewfordBeach_EventScript_FisherBeach",
       "flag": "FLAG_HIDE_BRAWLY_QUEST_NPCS"
     },
     {
@@ -165,7 +165,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "DewfordBeach_EventScript_FisherBridge",
       "flag": "FLAG_HIDE_BRAWLY_QUEST_NPCS"
     },
     {
@@ -178,7 +178,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "DewfordBeach_EventScript_BoyByHouse",
       "flag": "FLAG_HIDE_BRAWLY_QUEST_NPCS"
     },
     {
@@ -191,7 +191,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "DewfordBeach_EventScript_SwimmerWater",
       "flag": "FLAG_HIDE_BRAWLY_QUEST_NPCS"
     },
     {
@@ -204,7 +204,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "DewfordBeach_EventScript_GirlByBrawlyParentsHouse",
       "flag": "FLAG_HIDE_BRAWLY_QUEST_NPCS"
     },
     {
@@ -230,7 +230,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "DewfordBeach_EventScript_TuberWater",
       "flag": "FLAG_HIDE_BRAWLY_QUEST_NPCS"
     },
     {
@@ -278,7 +278,7 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "NULL"
+      "script": "DewfordBeach_EventScript_AdminBattle_SouthernTrigger"
     },
     {
       "type": "trigger",
@@ -287,41 +287,33 @@
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
-      "script": "NULL"
+      "script": "DewfordBeach_EventScript_AdminBattle_NorthernTrigger"
     }
   ],
   "bg_events": [
-    {
-      "type": "sign",
-      "x": 5,
-      "y": 6,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
-    },
     {
       "type": "sign",
       "x": 21,
       "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "NULL"
+      "script": "DewfordBeach_Sign_BrawlysParents"
     },
     {
       "type": "hidden_item",
       "x": 17,
       "y": 2,
       "elevation": 0,
-      "item": "ITEM_NONE",
-      "flag": "FLAG_TEMP_1"
+      "item": "ITEM_MAX_ELIXIR",
+      "flag": "FLAG_HIDDEN_ITEM_DEWFORD_BEACH_MAX_ELIXIR"
     },
     {
       "type": "hidden_item",
       "x": 2,
       "y": 4,
       "elevation": 0,
-      "item": "ITEM_NONE",
-      "flag": "FLAG_TEMP_1"
+      "item": "ITEM_STAR_PIECE",
+      "flag": "FLAG_HIDDEN_ITEM_DEWFORD_BEACH_STAR_PIECE"
     }
   ]
 }

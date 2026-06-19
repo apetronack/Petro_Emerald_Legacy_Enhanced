@@ -10741,4 +10741,15 @@ const struct Trainer gTrainers[] = {
         .party = TRAINER_MON(sParty_GruntAquaBrawlyQuest3),
     },
     
+    [TRAINER_AQUA_ADMINS_BRAWLY_QUEST] =
+    {
+        .trainerClass = TRAINER_CLASS_TEAM_AQUA,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
+        .trainerPic = TRAINER_PIC_MAGMA_ADMIN_TABITHA_AND_COURTNEY, //TODO: Fill with custom sprite for Matt and Shelly
+        .trainerName = _("ADMINS"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_MattAndShelly_BrawlyQuest),
+    }
 };
