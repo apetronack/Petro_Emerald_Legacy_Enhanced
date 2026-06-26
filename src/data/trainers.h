@@ -10745,7 +10745,7 @@ const struct Trainer gTrainers[] = {
     {
         .trainerClass = TRAINER_CLASS_TEAM_AQUA,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
-        .trainerPic = TRAINER_PIC_MAGMA_ADMIN_TABITHA_AND_COURTNEY, //TODO: Fill with custom sprite for Matt and Shelly
+        .trainerPic = TRAINER_PIC_AQUA_ADMIN_MATT_AND_SHELLY,
         .trainerName = _("ADMINS"),
         .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
         .doubleBattle = TRUE,
