@@ -1,1 +1,242 @@
+// Local IDs for Brawly's parents
+const LOCALID_BRAWLY_DAD = 1
+const LOCALID_BRAWLY_MOM = 2
+
 mapscripts DewfordBeach_Indoor3_MapScripts {}
+
+// ============================================================
+// BRAWLY'S FATHER (OBJ_EVENT_GFX_EXPERT_M)
+// Teaches: Body Slam, Rock Slide, Dynamic Punch, Swords Dance,
+//          Fire Punch, Ice Punch, Thunder Punch (costs 2 Star Pieces)
+// ============================================================
+
+script DewfordBeach_Indoor3_EventScript_BrawlyDad {
+    lock()
+    faceplayer()
+    if (!flag(FLAG_BRAWLY_QUEST_COMPLETE)) {
+        msgbox(DewfordBeach_Indoor3_Text_DadPreQuest, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    msgbox(DewfordBeach_Indoor3_Text_DadGreeting, MSGBOX_DEFAULT)
+    goto(DewfordBeach_Indoor3_EventScript_DadMoveTutor)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadMoveTutor {
+    checkitem(ITEM_STAR_PIECE, 2)
+    if (var(VAR_RESULT) == FALSE) {
+        checkitem(ITEM_STAR_PIECE)
+        if (var(VAR_RESULT) == TRUE) {
+            msgbox(DewfordBeach_Indoor3_Text_DadNotEnoughStarPieces, MSGBOX_DEFAULT)
+        } else {
+            msgbox(DewfordBeach_Indoor3_Text_DadNoStarPiece, MSGBOX_DEFAULT)
+        }
+        release()
+        end()
+    }
+    message(DewfordBeach_Indoor3_Text_ChooseMove)
+    waitmessage()
+    multichoice(0, 0, MULTI_BRAWLY_DAD_TUTOR, FALSE)
+    switch (var(VAR_RESULT)) {
+        case 0: goto(DewfordBeach_Indoor3_EventScript_DadSelectBodySlam)
+        case 1: goto(DewfordBeach_Indoor3_EventScript_DadSelectRockSlide)
+        case 2: goto(DewfordBeach_Indoor3_EventScript_DadSelectDynamicPunch)
+        case 3: goto(DewfordBeach_Indoor3_EventScript_DadSelectSwordsDance)
+        case 4: goto(DewfordBeach_Indoor3_EventScript_DadSelectFirePunch)
+        case 5: goto(DewfordBeach_Indoor3_EventScript_DadSelectIcePunch)
+        case 6: goto(DewfordBeach_Indoor3_EventScript_DadSelectThunderPunch)
+        case 7: goto(DewfordBeach_Indoor3_EventScript_TutorCancel)
+        case MULTI_B_PRESSED: goto(DewfordBeach_Indoor3_EventScript_TutorCancel)
+    }
+    goto(DewfordBeach_Indoor3_EventScript_TutorCancel)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadSelectBodySlam {
+    setvar(VAR_0x8005, TUTOR_MOVE_BODY_SLAM)
+    goto(DewfordBeach_Indoor3_EventScript_DadTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadSelectRockSlide {
+    setvar(VAR_0x8005, TUTOR_MOVE_ROCK_SLIDE)
+    goto(DewfordBeach_Indoor3_EventScript_DadTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadSelectDynamicPunch {
+    setvar(VAR_0x8005, TUTOR_MOVE_DYNAMIC_PUNCH)
+    goto(DewfordBeach_Indoor3_EventScript_DadTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadSelectSwordsDance {
+    setvar(VAR_0x8005, TUTOR_MOVE_SWORDS_DANCE)
+    goto(DewfordBeach_Indoor3_EventScript_DadTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadSelectFirePunch {
+    setvar(VAR_0x8005, TUTOR_MOVE_FIRE_PUNCH)
+    goto(DewfordBeach_Indoor3_EventScript_DadTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadSelectIcePunch {
+    setvar(VAR_0x8005, TUTOR_MOVE_ICE_PUNCH)
+    goto(DewfordBeach_Indoor3_EventScript_DadTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadSelectThunderPunch {
+    setvar(VAR_0x8005, TUTOR_MOVE_THUNDER_PUNCH)
+    goto(DewfordBeach_Indoor3_EventScript_DadTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_DadTeachMove {
+    msgbox(DewfordBeach_Indoor3_Text_TeachToWhichMon, MSGBOX_DEFAULT)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        goto(DewfordBeach_Indoor3_EventScript_DadMoveTutor)
+    }
+    removeitem(ITEM_STAR_PIECE, 2)
+    msgbox(DewfordBeach_Indoor3_Text_DadThanks, MSGBOX_DEFAULT)
+    goto(DewfordBeach_Indoor3_EventScript_DadMoveTutor)
+}
+
+// ============================================================
+// BRAWLY'S MOTHER (OBJ_EVENT_GFX_EXPERT_F)
+// Teaches: Mud Slap, Seismic Toss, Endure,
+//          Counter, Mega Punch, Mega Kick (costs 1 Star Piece)
+// ============================================================
+
+script DewfordBeach_Indoor3_EventScript_BrawlyMom {
+    lock()
+    faceplayer()
+    if (!flag(FLAG_BRAWLY_QUEST_COMPLETE)) {
+        msgbox(DewfordBeach_Indoor3_Text_MomPreQuest, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    msgbox(DewfordBeach_Indoor3_Text_MomGreeting, MSGBOX_DEFAULT)
+    goto(DewfordBeach_Indoor3_EventScript_MomMoveTutor)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomMoveTutor {
+    checkitem(ITEM_STAR_PIECE)
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox(DewfordBeach_Indoor3_Text_MomNoStarPiece, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    message(DewfordBeach_Indoor3_Text_ChooseMove)
+    waitmessage()
+    multichoice(0, 0, MULTI_BRAWLY_MOM_TUTOR, FALSE)
+    switch (var(VAR_RESULT)) {
+        case 0: goto(DewfordBeach_Indoor3_EventScript_MomSelectMudSlap)
+        case 1: goto(DewfordBeach_Indoor3_EventScript_MomSelectSeismicToss)
+        case 2: goto(DewfordBeach_Indoor3_EventScript_MomSelectEndure)
+        case 3: goto(DewfordBeach_Indoor3_EventScript_MomSelectCounter)
+        case 4: goto(DewfordBeach_Indoor3_EventScript_MomSelectMegaPunch)
+        case 5: goto(DewfordBeach_Indoor3_EventScript_MomSelectMegaKick)
+        case 6: goto(DewfordBeach_Indoor3_EventScript_TutorCancel)
+        case MULTI_B_PRESSED: goto(DewfordBeach_Indoor3_EventScript_TutorCancel)
+    }
+    goto(DewfordBeach_Indoor3_EventScript_TutorCancel)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomSelectMudSlap {
+    setvar(VAR_0x8005, TUTOR_MOVE_MUD_SLAP)
+    goto(DewfordBeach_Indoor3_EventScript_MomTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomSelectSeismicToss {
+    setvar(VAR_0x8005, TUTOR_MOVE_SEISMIC_TOSS)
+    goto(DewfordBeach_Indoor3_EventScript_MomTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomSelectEndure {
+    setvar(VAR_0x8005, TUTOR_MOVE_ENDURE)
+    goto(DewfordBeach_Indoor3_EventScript_MomTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomSelectCounter {
+    setvar(VAR_0x8005, TUTOR_MOVE_COUNTER)
+    goto(DewfordBeach_Indoor3_EventScript_MomTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomSelectMegaPunch {
+    setvar(VAR_0x8005, TUTOR_MOVE_MEGA_PUNCH)
+    goto(DewfordBeach_Indoor3_EventScript_MomTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomSelectMegaKick {
+    setvar(VAR_0x8005, TUTOR_MOVE_MEGA_KICK)
+    goto(DewfordBeach_Indoor3_EventScript_MomTeachMove)
+}
+
+script DewfordBeach_Indoor3_EventScript_MomTeachMove {
+    msgbox(DewfordBeach_Indoor3_Text_TeachToWhichMon, MSGBOX_DEFAULT)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        goto(DewfordBeach_Indoor3_EventScript_MomMoveTutor)
+    }
+    removeitem(ITEM_STAR_PIECE, 1)
+    msgbox(DewfordBeach_Indoor3_Text_MomThanks, MSGBOX_DEFAULT)
+    goto(DewfordBeach_Indoor3_EventScript_MomMoveTutor)
+}
+
+// ============================================================
+// SHARED
+// ============================================================
+
+script DewfordBeach_Indoor3_EventScript_TutorCancel {
+    msgbox(DewfordBeach_Indoor3_Text_TutorCancel, MSGBOX_DEFAULT)
+    release()
+    end()
+}
+
+// ============================================================
+// TEXT
+// ============================================================
+
+text DewfordBeach_Indoor3_Text_DadPreQuest {
+    format("My boy BRAWLY doesn't visit much these days. Always off training. Those rough-looking strangers in town have me a bit uneasy. I hope BRAWLY comes home soon.")
+}
+
+text DewfordBeach_Indoor3_Text_DadGreeting {
+    format("You're the one who drove out TEAM AQUA? I am very grateful! I taught BRAWLY everything I know. I still remember every move, so it's no trouble at all to teach you, too. These techniques are advanced, so I ask for 2 STAR PIECEs each.")
+}
+
+text DewfordBeach_Indoor3_Text_DadNoStarPiece {
+    format("You don't have any STAR PIECEs! These techniques aren't for the faint of heart. Come back when you have 2 STAR PIECEs to spare!")
+}
+
+text DewfordBeach_Indoor3_Text_DadNotEnoughStarPieces {
+    format("You only have 1 STAR PIECE, but my techniques cost 2 each. Any serious fighter knows these moves don't come cheap! Come back when you have 2!")
+}
+
+text DewfordBeach_Indoor3_Text_DadThanks {
+    format("There you go! I'll take those 2 STAR PIECEs. Tell that BRAWLY to come visit me more often! I hope to see you again soon, {PLAYER}!")
+}
+
+text DewfordBeach_Indoor3_Text_MomPreQuest {
+    format("Oh, I worry about BRAWLY so. He trains so hard, but never visits. And with those odd people hanging around town lately... I do worry.")
+}
+
+text DewfordBeach_Indoor3_Text_MomGreeting {
+    format("You helped drive out TEAM AQUA? Oh, what a relief! Thank you! I was quite the TRAINER in my day. I still know all my best moves! I'd be happy to teach your POKéMON. I just ask for a STAR PIECE each time.")
+}
+
+text DewfordBeach_Indoor3_Text_MomNoStarPiece {
+    format("Oh, you don't have a STAR PIECE? Those are my payment for lessons! They're not easy to find, but trust me, they're worth it. Come back when you have one, dear!")
+}
+
+text DewfordBeach_Indoor3_Text_ChooseMove {
+    format("Which move would you like to learn?")
+}
+
+text DewfordBeach_Indoor3_Text_TeachToWhichMon {
+    format("And which POKéMON should learn the move?")
+}
+
+text DewfordBeach_Indoor3_Text_MomThanks {
+    format("Wonderful! I'll take that STAR PIECE, dear. You remind me of BRAWLY when he was training as a young lad. Come back whenever you'd like to learn more!")
+}
+
+text DewfordBeach_Indoor3_Text_TutorCancel {
+    format("Come back if you change your mind!")
+}
