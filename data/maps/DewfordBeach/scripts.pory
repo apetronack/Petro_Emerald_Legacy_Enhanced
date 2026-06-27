@@ -339,6 +339,11 @@ script DewfordBeach_EventScript_GirlByBrawlyParentsHouse {
     end
 }
 
+script DewfordBeach_EventScript_KidByWater {
+    msgbox(DewfordBeach_Text_KidByWater, MSGBOX_NPC)
+    end
+}
+
 // Admin Double Battle Triggers
 script DewfordBeach_EventScript_AdminBattle_NorthernTrigger {
     // If the admins have already been defeated, do nothing
@@ -497,6 +502,10 @@ text DewfordBeach_Text_TuberWater {
 
 text DewfordBeach_Text_GirlByBrawlyParentsHouse {
     format("Thank you for helping DEWFORD BEACH! If you have a minute, you should visit BRAWLY's parents in the nearby house. They really want to thank you, too.")
+}
+
+text DewfordBeach_Text_KidByWater {
+    format("This water looks cold. I might just play on the beach today instead.")
 }
 
 text DewfordBeach_Text_MattNotEnoughMons {

@@ -1863,7 +1863,23 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_TOTODILE
-    }
+    },
+    [INGAME_TRADE_PHANPY] =
+    {
+        .nickname = _("PHANFY"),
+        .species = SPECIES_PHANPY,
+        .ivs = {17, 19, 18, 11, 16, 12},
+        .abilityNum = 0,
+        .otId = 63876,
+        .conditions = {5, 5, 5, 30, 5},
+        .personality = 0x7F,
+        .heldItem = ITEM_NONE,
+        .mailNum = -1,
+        .otName = _("NATHAN"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_JIGGLYPUFF,
+    },
 };
 
 static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =

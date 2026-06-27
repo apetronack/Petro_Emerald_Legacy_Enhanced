@@ -725,16 +725,11 @@
 #define FLAG_HIDE_BRAWLY_QUEST_NPCS                                0x2AD // Flag for hiding Brawly Quest NPCs
 #define FLAG_HIDE_BRAWLY_QUEST_AQUAS                               0x2AE // Flag for hiding Brawly Quest Aqua NPCs
 #define FLAG_HIDE_BRAWLY_QUEST_ROUTE_107_AQUA_GRUNT                0x2AF // Flag for hiding Brawly Quest Route 107 Aqua Grunt
-#define FLAG_UNUSED_0x2B0                                          0x2B0 // Unused Flag
-#define FLAG_UNUSED_0x2B1                                          0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2                                          0x2B2 // Unused Flag
-#define FLAG_UNUSED_0x2B3                                          0x2B3 // Unused Flag
-#define FLAG_UNUSED_0x2B4                                          0x2B4 // Unused Flag
-#define FLAG_ITEM_DEWFORD_BEACH_ETHER                              FLAG_UNUSED_0x2B0
-#define FLAG_ITEM_DEWFORD_BEACH_X_ATTACK                           FLAG_UNUSED_0x2B1
-#define FLAG_ITEM_DEWFORD_BEACH_BIG_PEARL                          FLAG_UNUSED_0x2B2
-#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_MAX_ELIXIR                  FLAG_UNUSED_0x2B3
-#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_STAR_PIECE                  FLAG_UNUSED_0x2B4
+#define FLAG_ITEM_DEWFORD_BEACH_ETHER                              0x2B0 // Flag for Dewford Beach Ether Item Pickup
+#define FLAG_ITEM_DEWFORD_BEACH_X_ATTACK                           0x2B1 // Flag for Dewford Beach X Attack Item Pickup
+#define FLAG_ITEM_DEWFORD_BEACH_BIG_PEARL                          0x2B2 // Flag for Dewford Beach Big Pearl Item Pickup
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_MAX_ELIXIR                  0x2B3 // Flag for Dewford Beach Max Elixir Item Pickup
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_STAR_PIECE                  0x2B4 // Flag for Dewford Beach Star Piece Item Pickup
 #define FLAG_SYS_NO_COLLISION                                      0x2B5 // Unused Flag // Debug
 #define FLAG_SYS_NO_ENCOUNTER                                      0x2B6 // Unused Flag // Debug
 #define FLAG_SYS_NO_TRAINER_SEE                                    0x2B7 // Unused Flag // Debug
@@ -1303,7 +1298,7 @@
 #define FLAG_FISHING_CHALLENGE_WAILMER_COMPLETE                     0x4E4 // Rewarded HP Up for large Wailmer (+1 SD)
 #define FLAG_FISHING_CHALLENGE_STARYU_COMPLETE                      0x4E5 // Rewarded Water Stone for large Staryu (+2 SD)
 #define FLAG_FISHING_CHALLENGE_SHARPEDO_COMPLETE                    0x4E6 // Rewarded Scope Lens for large Sharpedo (+2 SD)
-#define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
+#define FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED                      0x4E7 // Flag for Dewford Beach NPC trade completed
 #define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
