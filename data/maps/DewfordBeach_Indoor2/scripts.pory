@@ -1,1 +1,19 @@
 mapscripts DewfordBeach_Indoor2_MapScripts {}
+
+script DewfordBeach_Indoor2_EventScript_Woman {
+    msgbox(DewfordBeach_Indoor2_Text_Woman, MSGBOX_NPC)
+    end()
+}
+
+script DewfordBeach_Indoor2_EventScript_Man {
+    msgbox(DewfordBeach_Indoor2_Text_Man, MSGBOX_NPC)
+    end()
+}
+
+text DewfordBeach_Indoor2_Text_Woman {
+    format("My partner and I just moved here! We've always dreamed of having a little beach house. I still can't believe it's finally ours!")
+}
+
+text DewfordBeach_Indoor2_Text_Man {
+    format("We heard a young TRAINER drove TEAM AQUA out of DEWFORD. Because of that, we finally felt safe enough to move here. We're forever grateful!")
+}
