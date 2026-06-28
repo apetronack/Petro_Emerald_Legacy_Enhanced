@@ -4,7 +4,7 @@ DewfordTown_House1_MapScripts::
 
 DewfordTown_House1_EventScript_Man::
 	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_House1_EventScript_Man_QuestComplete
-	goto_if_unset FLAG_BRAWLY_QUEST_ACTIVE, DewfordTown_House1_EventScript_Man_Default
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_House1_EventScript_Man_Default
 	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_House1_EventScript_Man_Default
 	msgbox DewfordTown_House1_Text_LivingOnIsland_BrawlyQuest, MSGBOX_NPC
 	end
@@ -19,7 +19,7 @@ DewfordTown_House1_EventScript_Man_Default::
 
 DewfordTown_House1_EventScript_Woman::
 	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_House1_EventScript_Woman_QuestComplete
-	goto_if_unset FLAG_BRAWLY_QUEST_ACTIVE, DewfordTown_House1_EventScript_Woman_Default
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_House1_EventScript_Woman_Default
 	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_House1_EventScript_Woman_Default
 	msgbox DewfordTown_House1_Text_LifeGoesSlowlyOnIsland_BrawlyQuest, MSGBOX_NPC
 	end

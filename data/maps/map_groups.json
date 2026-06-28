@@ -437,7 +437,8 @@
     "Rusturf_MagmaCave_Final",
     "DewfordBeach",
     "DewfordBeach_Indoor1",
-    "DewfordBeach_Indoor2"
+    "DewfordBeach_Indoor2",
+    "DewfordBeachBorder"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

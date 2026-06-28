@@ -4500,6 +4500,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/DewfordBeach_Indoor3/border.bin",
       "blockdata_filepath": "data/layouts/DewfordBeach_Indoor3/map.bin"
+    },
+    {
+      "id": "LAYOUT_DEWFORD_BEACH_BORDER",
+      "name": "DewfordBeachBorder_Layout",
+      "width": 20,
+      "height": 45,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Dewford",
+      "border_filepath": "data/layouts/DewfordBeachBorder/border.bin",
+      "blockdata_filepath": "data/layouts/DewfordBeachBorder/map.bin"
     }
   ]
 }

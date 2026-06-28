@@ -405,9 +405,14 @@ script DewfordBeach_EventScript_AdminBattle_DoBattle {
     closemessage()
 
     // Battle the player
-    trainerbattle_double(TRAINER_AQUA_ADMINS_BRAWLY_QUEST, DewfordBeach_Text_AdminBattleIntro, DewfordBeach_Text_AdminBattleDefeat, DewfordBeach_Text_MattNotEnoughMons)
+    // Note: If this doesn't work, add event script as last argument to be run after battle ends
+    trainerbattle_double(TRAINER_AQUA_ADMINS_BRAWLY_QUEST, DewfordBeach_Text_AdminBattleIntro, DewfordBeach_Text_AdminBattleDefeat, DewfordBeach_Text_MattNotEnoughMons, DewfordBeach_EventScript_AdminBattle_PostBattle)
+    release
+    end
+}
 
-    // Trainer won. Play post-battle dialogue, fade to black, remove the Aquas from the beach, then fade back in
+script DewfordBeach_EventScript_AdminBattle_PostBattle {
+    // This script is run after the player defeats the admins
     msgbox(DewfordBeach_Text_AdminBattlePostBattle, MSGBOX_DEFAULT)
     closemessage()
     fadescreen(FADE_TO_BLACK)
@@ -426,58 +431,47 @@ script DewfordBeach_EventScript_AdminBattle_DoBattle {
 }
 
 text DewfordBeach_Text_AquaGrunt1Intro {
-    "TEAM AQUA claimed this beach!"
-    "Get out before I make you!"
+    format("TEAM AQUA claimed this beach! Get out before I make you!")
 }
 
 text DewfordBeach_Text_AquaGrunt1Defeat {
-    "... Oh. As you were."
+    format("... Oh. As you were.")
 }
 
 text DewfordBeach_Text_AquaGrunt1PostBattle {
-    "I thought you were one of those"
-    "hapless townspeople... You can fight!"
+    format("I thought you were one of those hapless townspeople... You can fight!")
 }
 
 text DewfordBeach_Text_AquaGrunt2Intro {
-    "Hmph! You've got some nerve"
-    "coming here."
-    "TEAM AQUA controls this beach!"
-    "Turn back now!"
+    format("Hmph! You've got some nerve coming here. TEAM AQUA controls this beach! Turn back now!")
 }
 
 text DewfordBeach_Text_AquaGrunt2Defeat {
-    "Not bad... for a beginner."
+    format("Not bad...\Nfor a beginner.")
 }
 
 text DewfordBeach_Text_AquaGrunt2PostBattle {
-    "Hmph! Don't get too full of"
-    "yourself! Our Admins won't lose!"
+    format("Hmph! Don't get too full of yourself! Our Admins won't lose!")
 }
 
 text DewfordBeach_Text_AquaGrunt3Intro {
-    "Halt! This area is sealed off"
-    "under TEAM AQUA's orders!"
+    format("Halt! This area is sealed off under TEAM AQUA's orders!")
 }
 
 text DewfordBeach_Text_AquaGrunt3Defeat {
-    "What?! How did you beat me?!"
+    format("What?! How did you beat me?!")
 }
 
 text DewfordBeach_Text_AquaGrunt3PostBattle {
-    "Fine, go... But our Admins"
-    "will stop you!"
+    format("Fine, go... But our Admins will stop you!")
 }
 
 text DewfordBeach_Text_AquaGruntNorth {
-    "TEAM AQUA's got this beach on"
-    "lockdown until the bosses say so."
+    format("TEAM AQUA's got this beach on lockdown until the bosses say so.")
 }
 
 text DewfordBeach_Text_AquaGruntWest {
-    "I'm doing my part to keep this beach"
-    "secure for TEAM AQUA. You aren't"
-    "welcome here, so move along!"
+    format("I'm doing my part to keep this beach secure for TEAM AQUA. You aren't welcome here, so move along!")
 }
 
 text DewfordBeach_Text_FisherBeach {
@@ -513,36 +507,36 @@ text DewfordBeach_Text_MattNotEnoughMons {
 }
 
 text DewfordBeach_Text_AdminBattlePreamble {
-    "MATT: So, YOU found our hideout, huh?"
+    format("MATT: So, YOU found our hideout, huh?"
     "I was expecting BRAWLY."
     "You don't look like much, but you did"
-    "get past our comrades. Impressive."
+    "get past our comrades. Impressive.\N"
     "SHELLY: Yeah, not bad. But  we're"
     "a cut above those grunts."
-    "Your meddling stops here with us!"
+    "Your meddling stops here with us!")
 }
 
 text DewfordBeach_Text_AdminBattleIntro {
-    "MATT: Let's see if you can back up"
-    "your confidence in battle!"
+    format("MATT: Let's see if you can back up"
+    "your confidence in battle!\N"
     "SHELLY: Don't hold back, Matt! Let's"
-    "show them what TEAM AQUA is made of!"
+    "show them what TEAM AQUA is made of!")
 }
 
 text DewfordBeach_Text_AdminBattleDefeat {
-    "MATT: What?! How did you beat us?!"
+    format("MATT: What?! How did you beat us?!\N"
     "SHELLY: No way... I thought we were"
-    "stronger than that!"
+    "stronger than that!")
 }
 
 text DewfordBeach_Text_AdminBattlePostBattle {
-    "MATT: I can't believe we lost to you..."
-    "SHELLY: Ugh, how embarrassing!"
+    format("MATT: I can't believe we lost to you...\N"
+    "SHELLY: Ugh, how embarrassing!\N"
     "MATT: This place wasn't as hidden"
     "or secure as ARCHIE made it out to be."
     "We'd better get out of here before"
-    "more tough trainers slow us down!"
-    "SHELLY: Yeah, let's scram!"
+    "more tough trainers slow us down!\N"
+    "SHELLY: Yeah, let's scram!")
 }
 
 script DewfordBeach_Sign_BrawlysParents {
@@ -551,7 +545,7 @@ script DewfordBeach_Sign_BrawlysParents {
 }
 
 text DewfordBeach_Text_SignBrawlysParents {
-    "Home of BRAWLY's Parents"
-    "Where Dewford's big wave"
-    "began as a ripple..."
+    format("Home of BRAWLY's Parents\N"
+    "Where Dewford's big wave\N"
+    "began as a ripple...")
 }

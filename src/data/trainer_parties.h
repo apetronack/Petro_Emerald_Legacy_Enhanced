@@ -2873,7 +2873,7 @@ static const struct TrainerMon sParty_Bernie2[] = {
     },
     {
     .iv = 10,
-    .lvl = 232,
+    .lvl = 32,
     .species = SPECIES_HOUNDOOM,
     }
 };
