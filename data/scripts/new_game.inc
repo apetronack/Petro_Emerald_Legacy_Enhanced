@@ -363,4 +363,5 @@ EventScript_SetWildEncountersToNationalDex::
 	setvar VAR_SOOTOPOLIS_CITY_WILD_SET, 1
 	setvar VAR_ARTISAN_CAVE_B1F_WILD_SET, 1
 	setvar VAR_SHOAL_CAVE_LOW_TIDE_INNER_ROOM_WILD_SET, 1
+	setvar VAR_DEWFORD_TOWN_STATE, 0
 	end

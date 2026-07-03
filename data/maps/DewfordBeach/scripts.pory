@@ -6,6 +6,9 @@ const LOCALID_AQUA_F_WEST         = 4  // Aqua F non-trainer, west beach (x:6, y
 const LOCALID_MATT                = 5  // Matt, southwest beach (x:2, y:19)
 const LOCALID_AQUA_GRUNT_2        = 6  // Aqua F trainer, south beach (x:14, y:18)
 const LOCALID_SHELLY              = 17 // Shelly, southwest beach (x:3, y:20)
+const LOCALID_BRAWLY              = 18 // Brawly, southwest beach (x:5, y:17)
+const SOUTHERN_TRIGGERED = 0
+const NORTHERN_TRIGGERED = 1
 
 mapscripts DewfordBeach_MapScripts {}
 
@@ -351,6 +354,7 @@ script DewfordBeach_EventScript_AdminBattle_NorthernTrigger {
         end
     }
     lock
+    setvar(VAR_TEMP_0, NORTHERN_TRIGGERED)
     // Matt needs to move 1 step east, and Shelly needs to turn right, take 1 step east, then face up
     // Handle Matt's movement
     applymovement(LOCALID_MATT, moves(walk_right))
@@ -370,6 +374,7 @@ script DewfordBeach_EventScript_AdminBattle_SouthernTrigger {
         end
     }
     lock
+    setvar(VAR_TEMP_0, SOUTHERN_TRIGGERED)
     //Matt needs to move two steps east, then face down. Shelly needs to face right.
     // Handle Matt's movement
     applymovement(LOCALID_MATT, moves(walk_right*2, face_down))
@@ -426,8 +431,39 @@ script DewfordBeach_EventScript_AdminBattle_PostBattle {
     setflag(FLAG_BRAWLY_QUEST_ADMINS_DEFEATED)
     setflag(FLAG_HIDE_BRAWLY_QUEST_AQUAS)
     fadescreen(FADE_FROM_BLACK)
+
+    // Have Brawly swoop in
+    delay(30)
+    setfieldeffectargument(0,1)
+    dofieldeffect(FLDEFF_NPCFLY_OUT)
+    waitfieldeffect(FLDEFF_NPCFLY_OUT)
+    addobject(LOCALID_BRAWLY)
+    if (var(VAR_TEMP_0) == NORTHERN_TRIGGERED) {
+        applymovement(LOCALID_BRAWLY, DewfordBeach_Movement_BrawlyApproachPlayer_NorthTriggerTile)
+    } else {
+        applymovement(LOCALID_BRAWLY, DewfordBeach_Movement_BrawlyApproachPlayer_SouthTriggerTile)
+    }
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(face_right))
+    waitmovement(0)
+    msgbox(DewfordBeach_Text_BrawlyPostBattle, MSGBOX_DEFAULT)
+    closemessage()
+
+    // Teleport player back to in front of Brawly's gym in Dewford to finish quest
+    setvar(VAR_DEWFORD_TOWN_STATE, 1)
+    warp(MAP_DEWFORD_TOWN, 8, 19)
+    waitstate()
     release
     end
+}
+
+movement DewfordBeach_Movement_BrawlyApproachPlayer_NorthTriggerTile {
+    walk_down*2
+    face_left
+}
+
+movement DewfordBeach_Movement_BrawlyApproachPlayer_SouthTriggerTile {
+    walk_down*3
+    face_left
 }
 
 text DewfordBeach_Text_AquaGrunt1Intro {
@@ -534,8 +570,8 @@ text DewfordBeach_Text_AdminBattlePostBattle {
     "SHELLY: Ugh, how embarrassing!\N"
     "MATT: This place wasn't as hidden"
     "or secure as ARCHIE made it out to be."
-    "We'd better get out of here before"
-    "more tough trainers slow us down!\N"
+    "We'd better clear out before"
+    "word gets back to BRAWLY!\N"
     "SHELLY: Yeah, let's scram!")
 }
 
@@ -548,4 +584,8 @@ text DewfordBeach_Text_SignBrawlysParents {
     format("Home of BRAWLY's Parents\N"
     "Where Dewford's big wave\N"
     "began as a ripple...")
+}
+
+text DewfordBeach_Text_BrawlyPostBattle {
+    format("BRAWLY: I came as fast as I could! TEAM AQUA, right here on DEWFORD BEACH - I can't believe it. You've done something today that I should have handled myself, and I owe you for it. Head back to DEWFORD TOWN and meet me outside the gym - I want to thank you properly.")
 }

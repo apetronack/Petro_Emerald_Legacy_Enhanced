@@ -14,11 +14,16 @@ raw `
 
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, DewfordTown_OnFrame
 	.byte 0
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
 	end
+
+DewfordTown_OnFrame:
+	map_script_2 VAR_DEWFORD_TOWN_STATE, 1, DewfordTown_EventScript_BrawlyQuestAutoComplete
+	.2byte 0
 
 DewfordTown_EventScript_Briney::
 	lock
@@ -889,6 +894,28 @@ script DewfordTown_EventScript_BrawlyQuest {
 	end()
 }
 
+script DewfordTown_EventScript_BrawlyQuestAutoComplete {
+	// This script runs immediately following the teleport from Dewford Beach after defeating the Aqua Admins and automatically completes the Brawly quest
+	lockall()
+	setvar(VAR_DEWFORD_TOWN_STATE, 0)
+	msgbox(DewfordTown_Text_BrawlyQuestComplete, MSGBOX_DEFAULT)
+	giveitem(ITEM_STAR_PIECE)
+	goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+	waitmessage()
+	setflag(FLAG_RECEIVED_STAR_PIECE_BRAWLY)
+	delay(15)
+	// Fade to black, remove Brawly sprite from Dewford Town, complete quest, and return to overworld
+	fadescreen(FADE_TO_BLACK)
+	removeobject(LOCALID_BRAWLY_DEWFORD)
+	setflag(FLAG_HIDE_BRAWLY_OUTSIDE_GYM)
+	// Set flag to indicate quest is complete
+	setflag(FLAG_BRAWLY_QUEST_COMPLETE)
+	clearflag(FLAG_HIDE_BRAWLY_QUEST_NPCS)
+	fadescreen(FADE_FROM_BLACK)
+	releaseall()
+	end()
+}
+
 script DewfordTown_EventScript_AquaGrunt1 {
 	msgbox(DewfordTown_Text_AquaGrunt1, MSGBOX_NPC)
 	end
@@ -905,19 +932,19 @@ script DewfordTown_EventScript_AquaGrunt3 {
 }
 
 text DewfordTown_Text_BrawlyQuestStart {
-	format("BRAWLY: {PLAYER}, I have an urgent request for you. TEAM AQUA are running amok in Dewford Town and are terrifying the locals. I'd do it myself, but I'm busy with my gym training! I've heard from the local fishermen that TEAM AQUA has been seen near ROUTE 107, so that might be a good place to start looking. Please, {PLAYER}, help me out!")
+	format("BRAWLY: Hey, {PLAYER}, I need your help! TEAM AQUA has been hassling the locals all across DEWFORD and I can't just let that ride. I'd handle it myself, but I can't abandon the gym. A fisherman says he spotted TEAM AQUA near ROUTE 107. Please, check it out!")
 }
 
 text DewfordTown_Text_BrawlyQuestInProgress {
-	format("BRAWLY: {PLAYER}, have you found where those TEAM AQUA grunts are organizing yet? I'd do it myself, but I'm busy with my gym training! I've heard from the local fishermen that TEAM AQUA has been seen near ROUTE 107, so that might be a good place to start looking. Please, {PLAYER}, help me out!")
+	format("BRAWLY: {PLAYER}! Still no luck tracking those TEAM AQUA grunts down? The complaints from the locals keep piling up and it's getting hard to focus on training. ROUTE 107 is your best lead - the fishermen are sure they've spotted them around there. Hang in there!")
 }
 
 text DewfordTown_Text_BrawlyQuestComplete {
-	format("BRAWLY: Well, {PLAYER}, I'm happy to have asked you for help! Those TEAM AQUA grunts around DEWFORD sure left town in a hurry! I am ashamed that I have been so focused on my gym training to notice that they set up shop under my nose on DEWFORD BEACH, just south of town! My parents retired to DEWFORD BEACH not long ago hoping to see me more often, and I suppose if I visited them more often I might have noticed TEAM AQUA hanging around there and been able to stop them before they got so bold. You should visit my parents at DEWFORD BEACH sometime. I'm sure they'd love to thank you in person! Thanks again for your help. Please, take this STAR PIECE as a token of my gratitude!")
+	format("BRAWLY: You did it, {PLAYER}! Those TEAM AQUA grunts scattered and DEWFORD is safe again! I can't believe they set up right on DEWFORD BEACH, just south of town. I've been so caught up in training that I wasn't paying attention to my own backyard. That's on me. Please, take this STAR PIECE. You've really come through for DEWFORD today!")
 }
 
 text DewfordTown_Text_TrendyPhraseBoy_BrawlyQuest {
-	format("TEAM AQUA is really harshing my {STR_VAR_1} mellow! They're, like, the opposite of trendy and cool. I wish BRAWLY would do something about them! He's the leader of the DEWFORD GYM, after all! I bet if you talked to him, he'd have an idea of how to kick out those lame TEAM AQUA grunts from DEWFORD TOWN! Then, we can get back to talking about how trendy {STR_VAR_1} is!")
+	format("TEAM AQUA is really harshing my {STR_VAR_1} mellow! They're, like, the opposite of trendy and cool. If anyone can do something about them, it's BRAWLY! He's the GYM LEADER, after all! I'm sure he's already got a plan!")
 }
 
 text DewfordTown_Text_TinyIslandCommunity_BrawlyQuest {
@@ -941,7 +968,7 @@ text DewfordTown_Text_OldRodFisherman_BrawlyQuest_Complete {
 }
 
 text DewfordTown_Text_AquaGrunt1 {
-	format("I like the feel of this town! ARCHIE was right, this is a great place to set up shop! Just have to clear out these lame locals...")
+	format("I like the feel of this town! ARCHIE was right, this is a great place to set up shop! Just have to convince these stubborn locals to clear out...")
 }
 
 text DewfordTown_Text_AquaGrunt2 {
@@ -949,5 +976,5 @@ text DewfordTown_Text_AquaGrunt2 {
 }
 
 text DewfordTown_Text_AquaGrunt3 {
-	format("The residents of DEWFORD should be grateful for all TEAM AQUA is doing to make the world a better place! Some of them need an attitude adjustment, hehehe...")
+	format("The residents of DEWFORD should be grateful for all TEAM AQUA is doing to make the world a better place! Some of them could stand to be a little more... cooperative.")
 }

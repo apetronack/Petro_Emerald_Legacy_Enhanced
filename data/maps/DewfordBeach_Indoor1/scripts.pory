@@ -65,6 +65,8 @@ script DewfordBeach_Indoor1_EventScript_Youngster {
         fadescreen(FADE_FROM_BLACK)
         special(DoInGameTradeScene)
         waitstate()
+        lock()
+        faceplayer()
         bufferspeciesname(STR_VAR_1, VAR_0x8009)
         msgbox(DewfordBeach_Indoor1_Text_MonYouTakeCare, MSGBOX_DEFAULT)
         closemessage()

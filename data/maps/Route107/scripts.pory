@@ -66,13 +66,13 @@ script Route107_EventScript_Wailmer {
 }
 
 text Route107_Text_AquaGrunt {
-	"Get lost, kid! I'm training my WAILMER!"
-	"There's nothing to see here!"
+	format("Get lost, kid! I'm training my WAILMER!\N"
+	"There's nothing to see here!")
 }
 
 text Route107_Text_Wailmer {
-	"WHOOARGH!"
-	"..."
-	"..."
-	"The WAILMER looks at you forlornly."
+	format("WHOOARGH!\N"
+	"...\N"
+	"...\N"
+	"The WAILMER looks at you forlornly.")
 }
