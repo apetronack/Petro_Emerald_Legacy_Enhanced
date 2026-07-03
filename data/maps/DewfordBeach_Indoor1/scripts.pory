@@ -1,0 +1,161 @@
+const LOCALID_TRADEMON = 3
+
+mapscripts DewfordBeach_Indoor1_MapScripts {
+    MAP_SCRIPT_ON_RESUME: DewfordBeach_Indoor1_OnResume
+}
+
+script DewfordBeach_Indoor1_OnResume {
+    if (!flag(FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED)) {
+        call(DewfordBeach_Indoor1_EventScript_SetUpPhanpy)
+        return()
+    }
+    // If the trade has been completed, set up Jigglypuff instead
+    call(DewfordBeach_Indoor1_EventScript_SetUpJigglypuff)
+    return()
+}
+
+script DewfordBeach_Indoor1_EventScript_SetUpPhanpy {
+    setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_MON_BASE+SPECIES_PHANPY)
+    return()
+}
+
+script DewfordBeach_Indoor1_EventScript_SetUpJigglypuff {
+    setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_MON_BASE+SPECIES_JIGGLYPUFF)
+    return()
+}
+
+script DewfordBeach_Indoor1_EventScript_OldWoman {
+    msgbox(DewfordBeach_Indoor1_Text_OldWoman, MSGBOX_NPC)
+    end()
+}
+
+script DewfordBeach_Indoor1_EventScript_Youngster {
+    lock()
+    faceplayer()
+    // Check if trade has been completed yet
+    if (!flag(FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED)) {
+        // Trade has not been completed yet, so proceed with the trade
+        setvar(VAR_0x8008, INGAME_TRADE_PHANPY)
+        copyvar(VAR_0x8004, VAR_0x8008)
+        specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+        copyvar(VAR_0x8009, VAR_RESULT)
+        msgbox(DewfordBeach_Indoor1_Text_YouWillTradeWontYou, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == NO) {
+            goto(DewfordBeach_Indoor1_EventScript_DeclineTrade)
+        }
+        // Chose to trade
+        special(ChoosePartyMon)
+        waitstate()
+        copyvar(VAR_0x800A, VAR_0x8004)
+        if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+            goto(DewfordBeach_Indoor1_EventScript_DeclineTrade)
+        }
+        copyvar(VAR_0x8005, VAR_0x800A)
+        specialvar(VAR_RESULT, GetTradeSpecies)
+        copyvar(VAR_0x800B, VAR_RESULT)
+        if (var(VAR_RESULT) != VAR_0x8009) {
+            goto(DewfordBeach_Indoor1_EventScript_NotRequestedMon)
+        }
+        // Trade is valid, proceed with trade
+        copyvar(VAR_0x8004, VAR_0x8008)
+        copyvar(VAR_0x8005, VAR_0x800A)
+        special(CreateInGameTradePokemon)
+        fadescreen(FADE_TO_BLACK)
+        removeobject(LOCALID_TRADEMON)
+        fadescreen(FADE_FROM_BLACK)
+        special(DoInGameTradeScene)
+        waitstate()
+        lock()
+        faceplayer()
+        bufferspeciesname(STR_VAR_1, VAR_0x8009)
+        msgbox(DewfordBeach_Indoor1_Text_MonYouTakeCare, MSGBOX_DEFAULT)
+        closemessage()
+        fadescreen(FADE_TO_BLACK)
+        call(DewfordBeach_Indoor1_EventScript_SetUpJigglypuff)
+        addobject(LOCALID_TRADEMON)
+        fadescreen(FADE_FROM_BLACK)
+        setflag(FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED)
+        release()
+        end()
+    }
+    // Trade has already been completed, so just show the post-trade message
+    msgbox(DewfordBeach_Indoor1_Text_PostTradeText, MSGBOX_DEFAULT)
+    release()
+    end()
+}
+
+script DewfordBeach_Indoor1_EventScript_DeclineTrade {
+    msgbox(DewfordBeach_Indoor1_Text_YouWontTradeMe, MSGBOX_DEFAULT)
+    release()
+    end()
+}
+
+script DewfordBeach_Indoor1_EventScript_NotRequestedMon {
+    bufferspeciesname(STR_VAR_1, VAR_0x8009)
+    msgbox(DewfordBeach_Indoor1_Text_ThisIsntAMon, MSGBOX_DEFAULT)
+    release()
+    end()
+}
+
+script DewfordBeach_Indoor1_EventScript_Mon {
+    if (!flag(FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED)) {
+        call(DewfordBeach_Indoor1_EventScript_Phanpy)
+    } else {
+        call(DewfordBeach_Indoor1_EventScript_Jigglypuff)
+    }
+    end()
+}
+
+script DewfordBeach_Indoor1_EventScript_Phanpy {
+    lock()
+    faceplayer()
+    waitse()
+    playmoncry(SPECIES_PHANPY, CRY_MODE_NORMAL)
+    msgbox(DewfordBeach_Indoor1_Text_Phanpy, MSGBOX_DEFAULT)
+    waitmoncry()
+    release()
+    end()
+}
+
+script DewfordBeach_Indoor1_EventScript_Jigglypuff {
+    lock()
+    faceplayer()
+    waitse()
+    playmoncry(SPECIES_JIGGLYPUFF, CRY_MODE_NORMAL)
+    msgbox(DewfordBeach_Indoor1_Text_Jigglypuff, MSGBOX_DEFAULT)
+    waitmoncry()
+    release()
+    end()
+}
+
+text DewfordBeach_Indoor1_Text_OldWoman {
+    format("My grandson NATHAN has had a rough time lately, but after you cleared out those TEAM AQUA thugs, he can finally enjoy a more peaceful life on the beach. Thank you for your help!")
+}
+
+text DewfordBeach_Indoor1_Text_YouWillTradeWontYou {
+    format("We just moved to DEWFORD BEACH from the mainland. I don't think my {STR_VAR_2} likes water much. Would you trade me a {STR_VAR_1} for my {STR_VAR_2}? I think a {STR_VAR_1} would really cheer me up!")
+}
+
+text DewfordBeach_Indoor1_Text_ThisIsntAMon {
+    format("That's not the {STR_VAR_1} I wanted! I can't trade with you if you don't have the right Pokémon!")
+}
+
+text DewfordBeach_Indoor1_Text_MonYouTakeCare {
+    format("Thanks for the trade! I can't wait to play with this {STR_VAR_1}! Please take good care of my {STR_VAR_2}!")
+}
+
+text DewfordBeach_Indoor1_Text_YouWontTradeMe {
+    format("Oh, I see. You don't want to trade with me. That's okay, I understand. Maybe some other time!")
+}
+
+text DewfordBeach_Indoor1_Text_PostTradeText {
+    format("JIGGLYPUFF is my new best friend! It's been great having a POKéMON to play with on the beach. I hope you're taking good care of my PHANFY!")
+}
+
+text DewfordBeach_Indoor1_Text_Phanpy {
+    format("PHANFY: PHOWOUGH!")
+}
+
+text DewfordBeach_Indoor1_Text_Jigglypuff {
+    format("JIGGLYPUFF: Hmm Ha Humm!")
+}

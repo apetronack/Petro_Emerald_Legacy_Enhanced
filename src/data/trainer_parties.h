@@ -2873,7 +2873,7 @@ static const struct TrainerMon sParty_Bernie2[] = {
     },
     {
     .iv = 10,
-    .lvl = 232,
+    .lvl = 32,
     .species = SPECIES_HOUNDOOM,
     }
 };
@@ -15424,5 +15424,102 @@ static const struct TrainerMon sParty_Evern[] = {
     .iv = 0,
     .lvl = 5,
     .species = SPECIES_UMBREON,
+    }
+};
+
+// Brawly quest battles
+static const struct TrainerMon sParty_GruntAquaBrawlyQuest1[] = {
+    {
+        .iv = 40,
+        .lvl = 31,
+        .species = SPECIES_VOLTORB,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SPARK, MOVE_SELF_DESTRUCT, MOVE_SCREECH, MOVE_THUNDER_WAVE}
+    },
+    {
+        .iv = 40,
+        .lvl = 32,
+        .species = SPECIES_SEADRA,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SMOKESCREEN, MOVE_AURORA_BEAM, MOVE_BUBBLE_BEAM, MOVE_AGILITY}
+    }
+};
+
+static const struct TrainerMon sParty_GruntAquaBrawlyQuest2[] = {
+    {
+        .iv = 40,
+        .lvl = 33,
+        .species = SPECIES_SNEASEL,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_ICE_PUNCH, MOVE_FAINT_ATTACK, MOVE_SLASH, MOVE_TAUNT}
+    },
+    {
+        .iv = 40,
+        .lvl = 31,
+        .species = SPECIES_GOLBAT,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WING_ATTACK, MOVE_SLUDGE, MOVE_CONFUSE_RAY, MOVE_SCREECH}
+    }
+};
+
+static const struct TrainerMon sParty_GruntAquaBrawlyQuest3[] = {
+    {
+        .iv = 40,
+        .lvl = 31,
+        .species = SPECIES_WAILMER,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WATER_PULSE, MOVE_MIST, MOVE_ASTONISH, MOVE_ROLLOUT}
+    },
+    {
+        .iv = 40,
+        .lvl = 33,
+        .species = SPECIES_CRAWDAUNT,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_KNOCK_OFF, MOVE_BUBBLE_BEAM, MOVE_PROTECT, MOVE_LEER}
+    }
+};
+
+static const struct TrainerMon sParty_MattAndShelly_BrawlyQuest[] = {
+    {
+        .iv = 90,
+        .lvl = 32,
+        .species = SPECIES_ELECTRODE,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_RAIN_DANCE, MOVE_THUNDER, MOVE_LIGHT_SCREEN, MOVE_THUNDER_WAVE}
+    },
+    {
+        .iv = 90,
+        .lvl = 34,
+        .species = SPECIES_GOREBYSS,
+        .heldItem = ITEM_SITRUS_BERRY,
+        .moves = {MOVE_WATER_PULSE, MOVE_AMNESIA, MOVE_ATTRACT, MOVE_PSYCHIC}
+    },
+    {
+        .iv = 90,
+        .lvl = 33,
+        .species = SPECIES_MACHOKE,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_VITAL_THROW, MOVE_LEER, MOVE_BULK_UP, MOVE_THIEF}
+    },
+    {
+        .iv = 90,
+        .lvl = 33,
+        .species = SPECIES_SEVIPER,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_POISON_FANG, MOVE_CRUNCH, MOVE_GLARE, MOVE_SCREECH}
+    }, 
+    {
+        .iv = 90,
+        .lvl = 34,
+        .species = SPECIES_HUNTAIL,
+        .heldItem = ITEM_SITRUS_BERRY,
+        .moves = {MOVE_DRAGON_DANCE, MOVE_BITE, MOVE_WATER_PULSE, MOVE_ROCK_TOMB}
+    },
+    {
+        .iv = 90,
+        .lvl = 32,
+        .species = SPECIES_MIGHTYENA,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SAND_ATTACK, MOVE_SCARY_FACE, MOVE_CRUNCH, MOVE_DOUBLE_EDGE}
     }
 };

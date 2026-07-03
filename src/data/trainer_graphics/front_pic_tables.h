@@ -98,6 +98,7 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     [TRAINER_PIC_ARCHIE_AND_MATT] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_ZINNIA] = {.size = 8, .y_offset = 1},
     [TRAINER_PIC_MAGMA_ADMIN_TABITHA_AND_COURTNEY] = {.size = 8, .y_offset = 1},
+    [TRAINER_PIC_AQUA_ADMIN_MATT_AND_SHELLY] = {.size = 8, .y_offset = 1},
 };
 
 #define TRAINER_SPRITE(trainerPic, sprite, size) [TRAINER_PIC_##trainerPic] = {sprite, size, TRAINER_PIC_##trainerPic}
@@ -202,6 +203,7 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(ARCHIE_AND_MATT, gTrainerFrontPic_ArchieAndMatt, TRAINER_PIC_SIZE),
     TRAINER_SPRITE(ZINNIA, gTrainerFrontPic_Zinnia, TRAINER_PIC_SIZE),
     TRAINER_SPRITE(MAGMA_ADMIN_TABITHA_AND_COURTNEY, gTrainerFrontPic_MagmaAdminTabithaAndCourtney, TRAINER_PIC_SIZE),
+    TRAINER_SPRITE(AQUA_ADMIN_MATT_AND_SHELLY, gTrainerFrontPic_AquaAdminMattAndShelly, TRAINER_PIC_SIZE),
 };
 
 #define TRAINER_PAL(trainerPic, pal) [TRAINER_PIC_##trainerPic] = {pal, TRAINER_PIC_##trainerPic}
@@ -306,4 +308,5 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(ARCHIE_AND_MATT, gTrainerPalette_ArchieAndMatt),
     TRAINER_PAL(ZINNIA, gTrainerPalette_Zinnia),
     TRAINER_PAL(MAGMA_ADMIN_TABITHA_AND_COURTNEY, gTrainerPalette_MagmaAdminTabithaAndCourtney),
+    TRAINER_PAL(AQUA_ADMIN_MATT_AND_SHELLY, gTrainerPalette_AquaAdminMattAndShelly),
 };

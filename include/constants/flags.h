@@ -716,19 +716,20 @@
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_TABITHA                 0x2A5 // Hide flag for Tabitha in Rusturf Magma Cave Final (set = hidden)
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_COURTNEY                0x2A6 // Hide flag for Courtney in Rusturf Magma Cave Final (set = hidden)
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_GRUNT                   0x2A7 // Hide flag for the Grunt in Rusturf Magma Cave Final (set = hidden)
-#define FLAG_UNUSED_0x2A8                                          0x2A8 // Unused Flag
-#define FLAG_UNUSED_0x2A9                                          0x2A9 // Unused Flag
-#define FLAG_UNUSED_0x2AA                                          0x2AA // Unused Flag
-#define FLAG_UNUSED_0x2AB                                          0x2AB // Unused Flag
-#define FLAG_UNUSED_0x2AC                                          0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD                                          0x2AD // Unused Flag
-#define FLAG_UNUSED_0x2AE                                          0x2AE // Unused Flag
-#define FLAG_UNUSED_0x2AF                                          0x2AF // Unused Flag
-#define FLAG_UNUSED_0x2B0                                          0x2B0 // Unused Flag
-#define FLAG_UNUSED_0x2B1                                          0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2                                          0x2B2 // Unused Flag
-#define FLAG_UNUSED_0x2B3                                          0x2B3 // Unused Flag
-#define FLAG_UNUSED_0x2B4                                          0x2B4 // Unused Flag
+// Brawly Quest Flags
+#define FLAG_BRAWLY_QUEST_ACTIVE                                   0x2A8 // Flag for Brawly Quest Active
+#define FLAG_BRAWLY_QUEST_COMPLETE                                 0x2A9 // Flag for Brawly Quest Complete
+#define FLAG_BRAWLY_QUEST_ADMINS_DEFEATED                          0x2AA // Flag for Brawly Quest Admins Defeated
+#define FLAG_HIDE_BRAWLY_OUTSIDE_GYM                               0x2AB // Flag for hiding Brawly outside the gym
+#define FLAG_RECEIVED_STAR_PIECE_BRAWLY                            0x2AC // Flag for receiving Star Piece from Brawly
+#define FLAG_HIDE_BRAWLY_QUEST_NPCS                                0x2AD // Flag for hiding Brawly Quest NPCs
+#define FLAG_HIDE_BRAWLY_QUEST_AQUAS                               0x2AE // Flag for hiding Brawly Quest Aqua NPCs
+#define FLAG_HIDE_BRAWLY_QUEST_ROUTE_107_AQUA_GRUNT                0x2AF // Flag for hiding Brawly Quest Route 107 Aqua Grunt
+#define FLAG_ITEM_DEWFORD_BEACH_ETHER                              0x2B0 // Flag for Dewford Beach Ether Item Pickup
+#define FLAG_ITEM_DEWFORD_BEACH_X_ATTACK                           0x2B1 // Flag for Dewford Beach X Attack Item Pickup
+#define FLAG_ITEM_DEWFORD_BEACH_BIG_PEARL                          0x2B2 // Flag for Dewford Beach Big Pearl Item Pickup
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_MAX_ELIXIR                  0x2B3 // Flag for Dewford Beach Max Elixir Item Pickup
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_STAR_PIECE                  0x2B4 // Flag for Dewford Beach Star Piece Item Pickup
 #define FLAG_SYS_NO_COLLISION                                      0x2B5 // Unused Flag // Debug
 #define FLAG_SYS_NO_ENCOUNTER                                      0x2B6 // Unused Flag // Debug
 #define FLAG_SYS_NO_TRAINER_SEE                                    0x2B7 // Unused Flag // Debug
@@ -1291,12 +1292,13 @@
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_ESCAPE_ROPE                0x4DF // Flag for obtaining Escape Rope in Rusturf Magma Cave Main
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_FIRE_STONE                 0x4E0 // Flag for obtaining Fire Stone in Rusturf Magma Cave Main
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_NUGGET                     0x4E1 // Flag for obtaining Nugget in Rusturf Magma Cave Main
-#define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
-#define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
-#define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
-#define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
-#define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
-#define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
+// Dewford Beach Fishing Challenge Flags
+#define FLAG_FISHING_CHALLENGE_MAGIKARP_COMPLETE                    0x4E2 // Rewarded 5x Net Ball for large Magikarp (+1 SD)
+#define FLAG_FISHING_CHALLENGE_TENTACOOL_COMPLETE                   0x4E3 // Rewarded Poison Barb for large Tentacool (+1 SD)
+#define FLAG_FISHING_CHALLENGE_WAILMER_COMPLETE                     0x4E4 // Rewarded HP Up for large Wailmer (+1 SD)
+#define FLAG_FISHING_CHALLENGE_STARYU_COMPLETE                      0x4E5 // Rewarded Water Stone for large Staryu (+2 SD)
+#define FLAG_FISHING_CHALLENGE_SHARPEDO_COMPLETE                    0x4E6 // Rewarded Scope Lens for large Sharpedo (+2 SD)
+#define FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED                      0x4E7 // Flag for Dewford Beach NPC trade completed
 #define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag

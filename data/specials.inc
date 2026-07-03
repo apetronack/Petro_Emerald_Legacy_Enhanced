@@ -134,6 +134,11 @@ gSpecials::
 	def_special CompareSeedotSize
 	def_special GetLotadSizeRecordInfo
 	def_special CompareLotadSize
+	def_special CompareMagikarpFishingSize
+	def_special CompareTentacoolFishingSize
+	def_special CompareWailmerFishingSize
+	def_special CompareStaryuFishingSize
+	def_special CompareSharpedoFishingSize
 	def_special TryPutNameRaterShowOnTheAir
 	def_special BufferMonNickname
 	def_special IsMonOTIDNotPlayers

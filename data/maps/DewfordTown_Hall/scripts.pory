@@ -11,6 +11,19 @@ DewfordTown_Hall_EventScript_Girl::
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_Girl_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_Girl_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_Girl_Default
+	msgbox DewfordTown_Hall_Text_Girl_BrawlyQuest, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Girl_QuestComplete::
+	msgbox DewfordTown_Hall_Text_Girl_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Girl_Default::
 	special IsTrendyPhraseBoring
 	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Hall_EventScript_GirlBoredOfTrend
 	msgbox DewfordTown_Hall_Text_CantImagineLifeWithoutTrend, MSGBOX_DEFAULT
@@ -26,6 +39,19 @@ DewfordTown_Hall_EventScript_Woman::
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_Woman_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_Woman_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_Woman_Default
+	msgbox DewfordTown_Hall_Text_Woman_BrawlyQuest, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Woman_QuestComplete::
+	msgbox DewfordTown_Hall_Text_Woman_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Woman_Default::
 	msgbox DewfordTown_Hall_Text_TeachingMonAboutTrend, MSGBOX_DEFAULT
 	release
 	end
@@ -34,6 +60,19 @@ DewfordTown_Hall_EventScript_Man::
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_Man_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_Man_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_Man_Default
+	msgbox DewfordTown_Hall_Text_Man_BrawlyQuest, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Man_QuestComplete::
+	msgbox DewfordTown_Hall_Text_Man_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Man_Default::
 	special BufferDeepLinkPhrase
 	msgbox DewfordTown_Hall_Text_DeepLinkBetweenXAndY, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, DewfordTown_Hall_EventScript_ConfirmTrendLink
@@ -54,6 +93,19 @@ DewfordTown_Hall_EventScript_ExpertM::
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_ExpertM_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_ExpertM_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_ExpertM_Default
+	msgbox DewfordTown_Hall_Text_ExpertM_BrawlyQuest, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_ExpertM_QuestComplete::
+	msgbox DewfordTown_Hall_Text_ExpertM_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_ExpertM_Default::
 	msgbox DewfordTown_Hall_Text_TVShowAboutTrend, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_EXPERT_M, Common_Movement_WalkInPlaceFasterUp
@@ -65,6 +117,19 @@ DewfordTown_Hall_EventScript_Twin::
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_Twin_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_Twin_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_Twin_Default
+	msgbox DewfordTown_Hall_Text_Twin_BrawlyQuest, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Twin_QuestComplete::
+	msgbox DewfordTown_Hall_Text_Twin_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_Twin_Default::
 	msgbox DewfordTown_Hall_Text_IsTrendMorePopularAcrossSea, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_TWIN, Common_Movement_WalkInPlaceFasterUp
@@ -76,6 +141,19 @@ DewfordTown_Hall_EventScript_LittleBoy::
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_LittleBoy_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_LittleBoy_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_LittleBoy_Default
+	msgbox DewfordTown_Hall_Text_LittleBoy_BrawlyQuest, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_LittleBoy_QuestComplete::
+	msgbox DewfordTown_Hall_Text_LittleBoy_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_Hall_EventScript_LittleBoy_Default::
 	msgbox DewfordTown_Hall_Text_CollectTrendMerchandise, MSGBOX_DEFAULT
 	release
 	end
@@ -124,12 +202,42 @@ DewfordTown_Hall_EventScript_BirthTitle::
 
 DewfordTown_Hall_EventScript_SchoolKidM::
 	lockall
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_SchoolKidM_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_SchoolKidM_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_SchoolKidM_Default
+	call Common_EventScript_BufferTrendyPhrase
+	msgbox DewfordTown_Hall_Text_SchoolKidM_BrawlyQuest, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DewfordTown_Hall_EventScript_SchoolKidM_QuestComplete::
+	call Common_EventScript_BufferTrendyPhrase
+	msgbox DewfordTown_Hall_Text_SchoolKidM_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DewfordTown_Hall_EventScript_SchoolKidM_Default::
 	setvar VAR_0x8008, 0
 	goto DewfordTown_Hall_EventScript_DoTrendDebate
 	end
 
 DewfordTown_Hall_EventScript_PsychicM::
 	lockall
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_Hall_EventScript_PsychicM_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_Hall_EventScript_PsychicM_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_Hall_EventScript_PsychicM_Default
+	call Common_EventScript_BufferTrendyPhrase
+	msgbox DewfordTown_Hall_Text_PsychicM_BrawlyQuest, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DewfordTown_Hall_EventScript_PsychicM_QuestComplete::
+	call Common_EventScript_BufferTrendyPhrase
+	msgbox DewfordTown_Hall_Text_PsychicM_BrawlyQuest_Complete, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DewfordTown_Hall_EventScript_PsychicM_Default::
 	setvar VAR_0x8008, 1
 	goto DewfordTown_Hall_EventScript_DoTrendDebate
 	end
@@ -445,3 +553,66 @@ DewfordTown_Hall_Text_LoveSludgeBombButTrendInToo:
 	.string "are in, too.$"
 
 `
+text DewfordTown_Hall_Text_Girl_BrawlyQuest {
+	format("What's in vogue? It has to be {STR_VAR_1}! But with those TEAM AQUA grunts lurking around town, I can't even enjoy how trendy {STR_VAR_1} is. They're really killing the vibe around here.")
+}
+
+text DewfordTown_Hall_Text_Girl_BrawlyQuest_Complete {
+	format("What's in vogue? It has to be {STR_VAR_1}! And now that those TEAM AQUA grunts are gone, I can enjoy it again! I can't imagine what life would be like without {STR_VAR_1}--or without you!")
+}
+
+text DewfordTown_Hall_Text_Woman_BrawlyQuest {
+	format("I've been trying to teach my POKéMON about {STR_VAR_1}, but it's hard to focus with those TEAM AQUA grunts causing trouble outside. My POKéMON can sense my anxiety, so the lessons aren't going well.")
+}
+
+text DewfordTown_Hall_Text_Woman_BrawlyQuest_Complete {
+	format("Those TEAM AQUA grunts are finally gone! Now I can get back to teaching my POKéMON about {STR_VAR_1}! It was a bit too much to focus while they were around, but I think we can make real progress.")
+}
+
+text DewfordTown_Hall_Text_Man_BrawlyQuest {
+	format("I've been studying {STR_VAR_1}, but I can't concentrate with those TEAM AQUA grunts making everyone anxious. Is there a deep link between trends and peace of mind? I'd say yes!")
+}
+
+text DewfordTown_Hall_Text_Man_BrawlyQuest_Complete {
+	format("Now that those TEAM AQUA grunts are gone, I can get back to my research on {STR_VAR_1}! I heard you're the one who drove them off. One step closer to being hip and happening, I say!")
+}
+
+text DewfordTown_Hall_Text_ExpertM_BrawlyQuest {
+	format("This whole business about TEAM AQUA hanging around DEWFORD... isn't there a TV show on them? At this rate, there will be! I just hope someone can get them out of here.")
+}
+
+text DewfordTown_Hall_Text_ExpertM_BrawlyQuest_Complete {
+	format("You're the one who drove those TEAM AQUA grunts out of DEWFORD! This whole business about {STR_VAR_1}... isn't there a TV show on it? Forget that--there should be a TV show about you!")
+}
+
+text DewfordTown_Hall_Text_Twin_BrawlyQuest {
+	format("Across the sea... I wonder where those TEAM AQUA grunts came from. Wherever it was, I wish they would go back there!")
+}
+
+text DewfordTown_Hall_Text_Twin_BrawlyQuest_Complete {
+	format("Across the sea... is {STR_VAR_1} even more popular there? I can finally wonder about that again now that those TEAM AQUA grunts are gone. Thanks to you, things are back to normal!")
+}
+
+text DewfordTown_Hall_Text_LittleBoy_BrawlyQuest {
+	format("I've been keeping my {STR_VAR_1} merchandise hidden while those TEAM AQUA grunts are around. I'm not letting them near my official {STR_VAR_1} DOLLS, brand clothing, or picture books!")
+}
+
+text DewfordTown_Hall_Text_LittleBoy_BrawlyQuest_Complete {
+	format("Those TEAM AQUA grunts are gone, so I can show off my {STR_VAR_1} merchandise again! Official {STR_VAR_1} DOLLS, brand clothing, and picture books. Heheh, I own! Thanks for getting rid of them!")
+}
+
+text DewfordTown_Hall_Text_SchoolKidM_BrawlyQuest {
+	format("I can't focus on the debate with those TEAM AQUA grunts causing trouble in town. Some things are more important than trends--like keeping DEWFORD TOWN safe!")
+}
+
+text DewfordTown_Hall_Text_SchoolKidM_BrawlyQuest_Complete {
+	format("You got those TEAM AQUA grunts to leave! Now we can finally get back to our debate. Some things ARE more important than trends--but not many!")
+}
+
+text DewfordTown_Hall_Text_PsychicM_BrawlyQuest {
+	format("I've been sensing some very dark vibes coming from around DEWFORD TOWN. Those TEAM AQUA grunts have disrupted the flow of trendy energy here. I hope someone can resolve this soon!")
+}
+
+text DewfordTown_Hall_Text_PsychicM_BrawlyQuest_Complete {
+	format("The dark vibes from before have lifted! You drove out those TEAM AQUA grunts and restored the flow of trendy energy to DEWFORD TOWN. Now, where were we?")
+}

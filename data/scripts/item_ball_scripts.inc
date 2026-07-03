@@ -681,3 +681,15 @@ Route125_EventScript_ItemYellowShard::
 Route134_EventScript_ItemBlueShard::
 	finditem ITEM_BLUE_SHARD
 	end
+
+DewfordBeach_EventScript_ItemEther::
+	finditem ITEM_ETHER
+	end
+
+DewfordBeach_EventScript_ItemXAttack::
+	finditem ITEM_X_ATTACK
+	end
+
+DewfordBeach_EventScript_ItemBigPearl::
+	finditem ITEM_BIG_PEARL
+	end
