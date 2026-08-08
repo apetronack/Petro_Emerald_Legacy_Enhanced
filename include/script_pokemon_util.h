@@ -5,6 +5,7 @@ u8 ScriptGiveMon(u16, u8, u16, u16, u16, u16, u16, u8);
 u8 ScriptGiveEgg(u16);
 void CreateScriptedWildMon(u16, u8, u16);
 void CreateShinyLaironEnemy(void);
+void CreateShinyPikachuEnemy(void);
 void GiveGiftRelicanth(void);
 void ScriptSetMonMoveSlot(u8, u16, u8);
 void ReducePlayerPartyToSelectedMons(void);
