@@ -256,9 +256,60 @@ Debug_Script_2::
 	waitstate
 	end
 
-@ --- Script 3 reserved for future Brawly quest checkpoint ---
+@ --- Debug_Script_3: New Mauville Wattson Quest ---
+@ Warps to New Mauville, gives a high-level Pokemon for combat testing, and sets the Wattson quest state to active.
 
 Debug_Script_3::
+	lockall
+	setflag FLAG_BADGE01_GET
+	setflag FLAG_BADGE02_GET
+	setflag FLAG_BADGE03_GET
+	setflag FLAG_BADGE04_GET
+	setflag FLAG_BADGE05_GET
+	setflag FLAG_DEFEATED_RUSTBORO_GYM
+	setflag FLAG_DEFEATED_DEWFORD_GYM
+	setflag FLAG_DEFEATED_MAUVILLE_GYM
+	setflag FLAG_DEFEATED_LAVARIDGE_GYM
+	setflag FLAG_DEFEATED_PETALBURG_GYM
+	setflag FLAG_RECEIVED_TM_ROCK_TOMB
+	setflag FLAG_RECEIVED_TM_BULK_UP
+	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
+	setflag FLAG_RECEIVED_TM_OVERHEAT
+	setflag FLAG_RECEIVED_TM_FACADE
+	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
+	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
+	setflag FLAG_REMATCH_READY_ROXANNE
+	setflag FLAG_REMATCH_READY_BRAWLY
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setvar VAR_RUSTBORO_CITY_STATE, 1
+	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	setvar VAR_PETALBURG_GYM_STATE, 6
+	setvar VAR_0x8008, 5
+	setflag FLAG_DELIVERED_STEVEN_LETTER
+	setflag FLAG_RETURNED_DEVON_GOODS
+	setflag FLAG_RECOVERED_DEVON_GOODS
+	setflag FLAG_MET_DEVON_EMPLOYEE
+	setflag FLAG_MR_BRINEY_SAILING_INTRO
+	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
+	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	setflag FLAG_SYS_POKEDEX_GET
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_SYS_B_DASH
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_ADVENTURE_STARTED
+	setflag FLAG_RESCUED_BIRCH
+	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_GOT_BASEMENT_KEY_FROM_WATTSON 
+	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
+	givemon SPECIES_PARASECT, 50, ITEM_NONE
+	warp MAP_NEW_MAUVILLE_INSIDE, 32, 34
+	waitstate
+
 	end
 
 @ --- Scripts 4-8 reserved for future quest checkpoints ---

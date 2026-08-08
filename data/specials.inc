@@ -550,3 +550,4 @@ gSpecials::
 	def_special UpdateGymLeaderRematch
 	def_special CreateShinyLaironEnemy
 	def_special GiveGiftRelicanth
+	def_special CreateShinyPikachuEnemy

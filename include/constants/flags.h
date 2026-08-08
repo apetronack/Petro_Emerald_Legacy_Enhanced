@@ -1116,7 +1116,7 @@
 #define FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL                        0x430
 #define FLAG_ITEM_MT_PYRE_EXTERIOR_MAX_POTION                       0x431
 #define FLAG_ITEM_MT_PYRE_EXTERIOR_TM_SKILL_SWAP                    0x432
-#define FLAG_ITEM_NEW_MAUVILLE_ULTRA_BALL                           0x433
+#define FLAG_UNUSED_0x433                                           0x433
 #define FLAG_ITEM_NEW_MAUVILLE_ESCAPE_ROPE                          0x434
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL    0x435
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER        0x436
@@ -1299,7 +1299,8 @@
 #define FLAG_FISHING_CHALLENGE_STARYU_COMPLETE                      0x4E5 // Rewarded Water Stone for large Staryu (+2 SD)
 #define FLAG_FISHING_CHALLENGE_SHARPEDO_COMPLETE                    0x4E6 // Rewarded Scope Lens for large Sharpedo (+2 SD)
 #define FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED                      0x4E7 // Flag for Dewford Beach NPC trade completed
-#define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
+// Wattson Quest Flags
+#define FLAG_NEW_MAUVILLE_PIKACHU_GIVEN                             0x4E8 // Flag for giving Pikachu in New Mauville
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag

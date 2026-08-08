@@ -28,5 +28,5 @@ script Rusturf_MagmaCave_ShinyLairon_EventScript_LaironBall {
 }
 
 text Rusturf_MagmaCave_ShinyLairon_Text_ShinyGlint {
-    format("A glimmer catches your eye!\nSomething stirs inside...\pA {COLOR RED}{SHADOW LIGHT_RED}shiny{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} LAIRON emerges!")
+    format("A glimmer catches your eye!\n........\pA {COLOR RED}{SHADOW LIGHT_RED}shiny{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} LAIRON emerges!")
 }
