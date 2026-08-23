@@ -707,7 +707,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_RivalPostGame::
 	goto_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanStarter1
 
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalPostGame_GiftMon3Check:
-	goto_if_set FLAG_RIVAL_TRADE_3_COMPLETED, Common_EventScript_NopReturn
+	@ All rival quests completed, go to rebattle teams
+	goto_if_set FLAG_RIVAL_TRADE_3_COMPLETED, LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle
 	goto_if_set FLAG_RIVAL_TRADE_2_COMPLETED, LittlerootTown_ProfessorBirchsLab_EventScript_RivalGiftMon3
 	end
 
@@ -2128,3 +2129,85 @@ LittlerootTown_ProfessorBirchsLab_Text_GotGiftMon:
 	.string "I have a feeling you'll both take\n"
 	.string "a shine to each other.$"
 `
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle {
+	msgbox(LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle, MSGBOX_DEFAULT)
+	// Choose a random rebattle team for the rival
+	random(3)
+	switch(var(VAR_RESULT)) {
+		// Case 0: Hoenn team
+		case 0: goto(LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Hoenn)
+		// Case 1: Johto team
+		case 1: goto(LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Johto)
+		// Case 2: Kanto team
+		case 2: goto(LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Kanto)
+	}
+	end
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Hoenn {
+	// Determine rival's gender to select the appropriate trainer battle
+	checkplayergender()
+	// Player is male, so rival must be female
+	if (var(VAR_RESULT) == MALE) {
+		trainerbattle_no_intro(TRAINER_MAY_POSTGAME_HOENN, LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_Defeat)
+	// Player is female, so rival must be male
+	} else {
+		trainerbattle_no_intro(TRAINER_BRENDAN_POSTGAME_HOENN, LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_Defeat)
+	}
+	goto(LittlerootTown_ProfessorBirchsLab_EventScript_RivalDefeated)
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Johto {
+	// Determine rival's gender to select the appropriate trainer battle
+	checkplayergender()
+	// Player is male, so rival must be female
+	if (var(VAR_RESULT) == MALE) {
+		trainerbattle_no_intro(TRAINER_MAY_POSTGAME_JOHTO, LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_Defeat)
+	// Player is female, so rival must be male
+	} else {
+		trainerbattle_no_intro(TRAINER_BRENDAN_POSTGAME_JOHTO, LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_Defeat)
+	}
+	goto(LittlerootTown_ProfessorBirchsLab_EventScript_RivalDefeated)
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Kanto {
+	// Determine rival's gender to select the appropriate trainer battle
+	checkplayergender()
+	// Player is male, so rival must be female
+	if (var(VAR_RESULT) == MALE) {
+		trainerbattle_no_intro(TRAINER_MAY_POSTGAME_KANTO, LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_Defeat)
+	// Player is female, so rival must be male
+	} else {
+		trainerbattle_no_intro(TRAINER_BRENDAN_POSTGAME_KANTO, LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_Defeat)
+	}
+	goto(LittlerootTown_ProfessorBirchsLab_EventScript_RivalDefeated)
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalDefeated {
+	msgbox(LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_ShowMeAgainSometime, MSGBOX_DEFAULT)
+	releaseall
+	end
+}
+
+text LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle {
+	"Hi, {PLAYER}{KUN}!\p"
+	"My Pokédex is really coming along!\n"
+	"How is yours looking?\p"
+	"Care to compare with a battle?\n"
+	"I'll show you my rare POKéMON!"
+}
+
+text LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_Defeat {
+	"You have some great POKéMON!\p"
+	"I always learn something new from you!"
+}
+
+text LittlerootTown_ProfessorBirchsLab_Text_RivalRebattle_ShowMeAgainSometime {
+	"Wow, {PLAYER}{KUN}!\n"
+	"You've really done it all!\p"
+	"I can't thank you enough for\n"
+	"your help with my research.\p"
+	"You'll have to come back soon\n"
+	"to show me what else you've discovered!"
+}

@@ -825,31 +825,31 @@
 #define TRAINER_CORY_4                      818
 #define TRAINER_CORY_5                      819
 #define TRAINER_PABLO_2                     820
-// #define TRAINER_PABLO_3                     821
+#define TRAINER_MAY_POSTGAME_HOENN          821
 #define TRAINER_PABLO_4                     822
 #define TRAINER_PABLO_5                     823
 #define TRAINER_KOJI_2                      824
-// #define TRAINER_KOJI_3                      825
+#define TRAINER_MAY_POSTGAME_JOHTO          825
 #define TRAINER_KOJI_4                      826
 #define TRAINER_KOJI_5                      827
 #define TRAINER_CRISTIN_2                   828
-// #define TRAINER_CRISTIN_3                   829
+#define TRAINER_MAY_POSTGAME_KANTO          829
 #define TRAINER_CRISTIN_4                   830
 #define TRAINER_CRISTIN_5                   831
 #define TRAINER_FERNANDO_2                  832
-// #define TRAINER_FERNANDO_3                  833
+#define TRAINER_BRENDAN_POSTGAME_HOENN      833
 #define TRAINER_FERNANDO_4                  834
 #define TRAINER_FERNANDO_5                  835
 #define TRAINER_SAWYER_2                    836
-// #define TRAINER_SAWYER_3                    837
+#define TRAINER_BRENDAN_POSTGAME_JOHTO      837
 #define TRAINER_SAWYER_4                    838
 #define TRAINER_SAWYER_5                    839
 #define TRAINER_GABRIELLE_2                 840
-// #define TRAINER_GABRIELLE_3                 841
+#define TRAINER_BRENDAN_POSTGAME_KANTO      841
 #define TRAINER_GABRIELLE_4                 842
 #define TRAINER_GABRIELLE_5                 843
 #define TRAINER_THALIA_2                    844
-// #define TRAINER_THALIA_3                    845
+#define TRAINER_WALLY_CHAMPION              845
 #define TRAINER_THALIA_4                    846
 #define TRAINER_THALIA_5                    847
 #define TRAINER_MARIELA                     848

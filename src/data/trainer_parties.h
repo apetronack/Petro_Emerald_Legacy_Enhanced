@@ -14561,3 +14561,438 @@ static const struct TrainerMon sParty_MattAndShelly_BrawlyQuest[] = {
         .moves = {MOVE_SAND_ATTACK, MOVE_SCARY_FACE, MOVE_CRUNCH, MOVE_DOUBLE_EDGE}
     }
 };
+
+static const struct TrainerMon sParty_MayPostgame_Hoenn[] = {
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_ZANGOOSE,
+    .heldItem = ITEM_FOCUS_BAND,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .moves = {MOVE_RETURN, MOVE_SWORDS_DANCE, MOVE_FAINT_ATTACK, MOVE_BRICK_BREAK},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_GRUMPIG,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 63, 126, 63, 0},
+    .moves = {MOVE_REST, MOVE_SLEEP_TALK, MOVE_PSYCHIC, MOVE_ICE_PUNCH},
+    .nature = NATURE_CALM
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SALAMENCE,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {126, 126, 0, 126, 0, 130},
+    .moves = {MOVE_DRAGON_CLAW, MOVE_BRICK_BREAK, MOVE_WISH, MOVE_FIRE_BLAST},
+    .nature = NATURE_RASH
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SCEPTILE,
+    .heldItem = ITEM_SCOPE_LENS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .moves = {MOVE_CRUNCH, MOVE_THUNDER_PUNCH, MOVE_LEAF_BLADE, MOVE_DRAGON_CLAW},
+    .nature = NATURE_MODEST
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_BLAZIKEN,
+    .heldItem = ITEM_BLACK_BELT,
+    .ability = ABILITY_SLOT_1,
+    .evs = {0, 252, 0, 126, 0, 126},
+    .moves = {MOVE_BLAZE_KICK, MOVE_SKY_UPPERCUT, MOVE_EARTHQUAKE, MOVE_THUNDER_PUNCH},
+    .nature = NATURE_LONELY 
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SWAMPERT,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 252, 0, 4, 0},
+    .moves = {MOVE_MUDDY_WATER, MOVE_EARTHQUAKE, MOVE_BLIZZARD, MOVE_BODY_SLAM                         },
+    .nature = NATURE_RELAXED
+    }
+};
+
+static const struct TrainerMon sParty_MayPostgame_Johto[] = {
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_URSARING,
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = ABILITY_SLOT_1,
+    .evs = {160, 252, 0, 0, 0, 96},
+    .moves = {MOVE_RETURN, MOVE_SUBMISSION, MOVE_CRUNCH, MOVE_EARTHQUAKE},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_MISDREAVUS,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 84, 0, 172, 0},
+    .moves = {MOVE_THUNDER_WAVE, MOVE_PAIN_SPLIT, MOVE_THUNDERBOLT, MOVE_SHADOW_BALL},
+    .nature = NATURE_CALM
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_TYRANITAR,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .moves = {MOVE_DRAGON_DANCE, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+    .nature = NATURE_JOLLY
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_TYPHLOSION,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {32, 16, 0, 252, 0, 208},
+    .moves = {MOVE_SUBSTITUTE, MOVE_FIRE_BLAST, MOVE_FOCUS_PUNCH, MOVE_THUNDER_PUNCH},
+    .nature = NATURE_RASH
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_FERALIGATR,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {170, 252, 0, 0, 0, 88},
+    .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SWORDS_DANCE, MOVE_HYDRO_PUMP},
+    .nature = NATURE_BRAVE 
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_MEGANIUM,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 252, 0, 4, 0},
+    .moves = {MOVE_BODY_SLAM, MOVE_LEECH_SEED, MOVE_SYNTHESIS, MOVE_GIGA_DRAIN},
+    .nature = NATURE_BOLD 
+    }
+};
+
+static const struct TrainerMon sParty_MayPostgame_Kanto[] = {
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_KANGASKHAN,
+    .heldItem = ITEM_SILK_SCARF,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 126, 126, 0, 0, 252},
+    .moves = {MOVE_RETURN, MOVE_DYNAMIC_PUNCH, MOVE_IRON_TAIL, MOVE_EARTHQUAKE},
+    .nature = NATURE_JOLLY
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SCYTHER,
+    .heldItem = ITEM_FOCUS_BAND,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .moves = {MOVE_SWORDS_DANCE, MOVE_TWINEEDLE, MOVE_WING_ATTACK, MOVE_STEEL_WING},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_JYNX,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .moves = {MOVE_BLIZZARD, MOVE_PSYCHIC, MOVE_LOVELY_KISS, MOVE_ATTRACT},
+    .nature = NATURE_TIMID
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_CHARIZARD,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .moves = {MOVE_SUBSTITUTE, MOVE_FOCUS_PUNCH, MOVE_DRAGON_CLAW, MOVE_FIRE_BLAST},
+    .nature = NATURE_HASTY
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_BLASTOISE,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 148, 68, 0, 40},
+    .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_REST, MOVE_SLEEP_TALK},
+    .nature = NATURE_BOLD 
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_VENUSAUR,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 84, 0, 148, 24},
+    .moves = {MOVE_SLEEP_POWDER, MOVE_LEECH_SEED, MOVE_SLUDGE_BOMB, MOVE_GIGA_DRAIN},
+    .nature = NATURE_CAREFUL 
+    }
+};
+
+static const struct TrainerMon sParty_BrendanPostgame_Hoenn[] = {
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_ZANGOOSE,
+    .heldItem = ITEM_FOCUS_BAND,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .moves = {MOVE_RETURN, MOVE_SWORDS_DANCE, MOVE_FAINT_ATTACK, MOVE_BRICK_BREAK},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_GRUMPIG,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 63, 126, 63, 0},
+    .moves = {MOVE_REST, MOVE_SLEEP_TALK, MOVE_PSYCHIC, MOVE_ICE_PUNCH},
+    .nature = NATURE_CALM
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SALAMENCE,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {126, 126, 0, 126, 0, 130},
+    .moves = {MOVE_DRAGON_CLAW, MOVE_BRICK_BREAK, MOVE_WISH, MOVE_FIRE_BLAST},
+    .nature = NATURE_RASH
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SCEPTILE,
+    .heldItem = ITEM_SCOPE_LENS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .moves = {MOVE_CRUNCH, MOVE_THUNDER_PUNCH, MOVE_LEAF_BLADE, MOVE_DRAGON_CLAW},
+    .nature = NATURE_MODEST
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_BLAZIKEN,
+    .heldItem = ITEM_BLACK_BELT,
+    .ability = ABILITY_SLOT_1,
+    .evs = {0, 252, 0, 126, 0, 126},
+    .moves = {MOVE_BLAZE_KICK, MOVE_SKY_UPPERCUT, MOVE_EARTHQUAKE, MOVE_THUNDER_PUNCH},
+    .nature = NATURE_LONELY 
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SWAMPERT,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 252, 0, 4, 0},
+    .moves = {MOVE_MUDDY_WATER, MOVE_EARTHQUAKE, MOVE_BLIZZARD, MOVE_BODY_SLAM                         },
+    .nature = NATURE_RELAXED
+    }
+};
+
+static const struct TrainerMon sParty_BrendanPostgame_Johto[] = {
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_URSARING,
+    .heldItem = ITEM_CHOICE_BAND,
+    .ability = ABILITY_SLOT_1,
+    .evs = {160, 252, 0, 0, 0, 96},
+    .moves = {MOVE_RETURN, MOVE_SUBMISSION, MOVE_CRUNCH, MOVE_EARTHQUAKE},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_MISDREAVUS,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 84, 0, 172, 0},
+    .moves = {MOVE_THUNDER_WAVE, MOVE_PAIN_SPLIT, MOVE_THUNDERBOLT, MOVE_SHADOW_BALL},
+    .nature = NATURE_CALM
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_TYRANITAR,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .moves = {MOVE_DRAGON_DANCE, MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_CRUNCH},
+    .nature = NATURE_JOLLY
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_TYPHLOSION,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {32, 16, 0, 252, 0, 208},
+    .moves = {MOVE_SUBSTITUTE, MOVE_FIRE_BLAST, MOVE_FOCUS_PUNCH, MOVE_THUNDER_PUNCH},
+    .nature = NATURE_RASH
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_FERALIGATR,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {170, 252, 0, 0, 0, 88},
+    .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SWORDS_DANCE, MOVE_HYDRO_PUMP},
+    .nature = NATURE_BRAVE 
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_MEGANIUM,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 252, 0, 4, 0},
+    .moves = {MOVE_BODY_SLAM, MOVE_LEECH_SEED, MOVE_SYNTHESIS, MOVE_GIGA_DRAIN},
+    .nature = NATURE_BOLD 
+    }
+};
+
+static const struct TrainerMon sParty_BrendanPostgame_Kanto[] = {
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_KANGASKHAN,
+    .heldItem = ITEM_SILK_SCARF,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 126, 126, 0, 0, 252},
+    .moves = {MOVE_RETURN, MOVE_DYNAMIC_PUNCH, MOVE_IRON_TAIL, MOVE_EARTHQUAKE},
+    .nature = NATURE_JOLLY
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_SCYTHER,
+    .heldItem = ITEM_FOCUS_BAND,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 252, 0, 0, 0, 252},
+    .moves = {MOVE_SWORDS_DANCE, MOVE_TWINEEDLE, MOVE_WING_ATTACK, MOVE_STEEL_WING},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_JYNX,
+    .heldItem = ITEM_LUM_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .moves = {MOVE_BLIZZARD, MOVE_PSYCHIC, MOVE_LOVELY_KISS, MOVE_ATTRACT},
+    .nature = NATURE_TIMID
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_CHARIZARD,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .ability = ABILITY_SLOT_1,
+    .evs = {4, 0, 0, 252, 0, 252},
+    .moves = {MOVE_SUBSTITUTE, MOVE_FOCUS_PUNCH, MOVE_DRAGON_CLAW, MOVE_FIRE_BLAST},
+    .nature = NATURE_HASTY
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_BLASTOISE,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 148, 68, 0, 40},
+    .moves = {MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_REST, MOVE_SLEEP_TALK},
+    .nature = NATURE_BOLD 
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 75,
+    .species = SPECIES_VENUSAUR,
+    .heldItem = ITEM_LEFTOVERS,
+    .ability = ABILITY_SLOT_1,
+    .evs = {252, 0, 84, 0, 148, 24},
+    .moves = {MOVE_SLEEP_POWDER, MOVE_LEECH_SEED, MOVE_SLUDGE_BOMB, MOVE_GIGA_DRAIN},
+    .nature = NATURE_CAREFUL 
+    }
+};
+
+// Champion (Rematch), after all normal trainer rematches
+static const struct TrainerMon sParty_WallyChampion[] = {
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 76,
+    .species = SPECIES_RAPIDASH,
+    .heldItem = ITEM_MAGO_BERRY,
+    .evs = {4, 126, 0, 130, 0, 252},
+    .moves = {MOVE_HI_JUMP_KICK, MOVE_FIRE_BLAST, MOVE_HYPNOSIS, MOVE_CHARM},
+    .nature = NATURE_NAIVE,
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 77,
+    .species = SPECIES_MAGNETON,
+    .heldItem = ITEM_MAGNET,
+    .evs = {252, 0, 0, 252, 4, 0},
+    .moves = {MOVE_RAIN_DANCE, MOVE_THUNDER, MOVE_THUNDER_WAVE, MOVE_TRI_ATTACK},
+    .nature = NATURE_MODEST,
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 77,
+    .species = SPECIES_AZUMARILL,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .evs = {252, 252, 0, 4, 0, 0},
+    .moves = {MOVE_BELLY_DRUM, MOVE_HYDRO_PUMP, MOVE_SUPERPOWER, MOVE_DOUBLE_EDGE},
+    .nature = NATURE_NAUGHTY,
+    .ability = ABILITY_SLOT_2,
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 76,
+    .species = SPECIES_ALTARIA,
+    .heldItem = ITEM_CHESTO_BERRY,
+    .evs = {252, 252, 0, 0, 4, 0},
+    .moves = {MOVE_REST, MOVE_DRAGON_CLAW, MOVE_DRAGON_DANCE, MOVE_SKY_ATTACK},
+    .nature = NATURE_ADAMANT,
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 76,
+    .species = SPECIES_MEGANIUM,
+    .heldItem = ITEM_LEFTOVERS,
+    .evs = {126, 126, 126, 0, 126, 0},
+    .moves = {MOVE_SWORDS_DANCE, MOVE_EARTHQUAKE, MOVE_BODY_SLAM, MOVE_LEECH_SEED}
+    },
+    {
+    .ivs = BEST_IV_SPREAD,
+    .lvl = 78,
+    .species = SPECIES_GARDEVOIR,
+    .heldItem = ITEM_LUM_BERRY,
+    .evs = {0, 0, 0, 252, 4, 252},
+    .moves = {MOVE_CALM_MIND, MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_ICE_PUNCH}
+    }
+};
