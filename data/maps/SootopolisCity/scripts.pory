@@ -72,8 +72,17 @@ SootopolisCity_OnTransition:
 	call_if_eq VAR_SOOTOPOLIS_CITY_STATE, 6, SootopolisCity_EventScript_SetExpertBlockCaveEntrance
 	call_if_eq VAR_SOOTOPOLIS_CITY_STATE, 7, SootopolisCity_EventScript_SetExpertBlockCaveEntrance
 	call_if_eq VAR_SOOTOPOLIS_CITY_STATE, 7, SootopolisCity_EventScript_ShowRival
+	call SootopolisCity_EventScript_EnforcePreChampionWallaceHide
 	call_if_set FLAG_OPEN_CAVE_OF_ORIGIN, SootopolisCity_EventScript_OpenCaveOfOrigin
 	end
+
+SootopolisCity_EventScript_EnforcePreChampionWallaceHide::
+	@ Option A: Hall of Fame owns normal clue state writes for this flag.
+	@ Sootopolis only enforces hidden state before the first championship clear.
+	goto_if_set FLAG_IS_CHAMPION, SootopolisCity_EventScript_KeepWallaceVisitingState
+	setflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+SootopolisCity_EventScript_KeepWallaceVisitingState::
+	return
 
 SootopolisCity_EventScript_ShowRival::
 	checkplayergender
@@ -1945,3 +1954,15 @@ SootopolisCity_Text_RivalBecomingProfessor5:
 	.string "Good luck with everything,\n"
 	.string "{PLAYER}{KUN}!$"
 `
+
+script SootopolisCity_EventScript_WallaceVisiting {
+	lockall()
+	msgbox(SootopolisCity_Text_WallaceVisiting, MSGBOX_DEFAULT)
+	closemessage()
+	releaseall()
+	end()
+}
+
+text SootopolisCity_Text_WallaceVisiting {
+	format("WALLACE: {PLAYER}{KUN}! It's good to see you again! After I lost my position as CHAMPION, I decided to come back to SOOTOPOLIS CITY to pay a visit to my old friend, JUAN. I must say, the city looks as beautiful as ever!$")
+}

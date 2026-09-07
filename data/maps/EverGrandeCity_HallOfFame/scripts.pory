@@ -1,6 +1,7 @@
 raw `
 .set LOCALID_WALLACE, 1
 .set LOCALID_STEVEN, 2
+.set LOCALID_WALLY, 3
 
 EverGrandeCity_HallOfFame_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, EverGrandeCity_HallOfFame_OnFrame
@@ -20,8 +21,9 @@ EverGrandeCity_HallOfFame_OnFrame:
 	.2byte 0
 
 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame::
-	goto_if_unset FLAG_IS_CHAMPION, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameSteven
-	goto EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWallace
+	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameSteven
+	goto_if_eq VAR_NEXT_CHAMPION, 1, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWallace
+	goto_if_eq VAR_NEXT_CHAMPION, 2, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWally
 
 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWallace::
 	lockall
@@ -69,12 +71,113 @@ EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameSteven::
 	goto EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame
 	end
 
+EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWally::
+	lockall
+	applymovement LOCALID_WALLY, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1
+	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1
+	waitmovement 0
+	applymovement LOCALID_WALLY, Common_Movement_WalkInPlaceFasterRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	msgbox EverGrandeCity_HallOfFame_Text_WallyHereWeHonorLeagueChampions, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_WALLY, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame2
+	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame2
+	waitmovement 0
+	delay 20
+	applymovement LOCALID_WALLY, Common_Movement_WalkInPlaceFasterRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	msgbox EverGrandeCity_HallOfFame_Text_WallyLetsRecordYouAndYourPartnersNames, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_WALLY, Common_Movement_WalkInPlaceFasterUp
+	goto EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame
+	end
+
 EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	delay 20
 	dofieldeffect FLDEFF_HALL_OF_FAME_RECORD
 	waitfieldeffect FLDEFF_HALL_OF_FAME_RECORD
+	@ Progression state:
+	@ 1) Steven is the default initial champion.
+	@ 2) After Steven is defeated once, Wallace becomes the fixed champion.
+	@ 3) After Wallace has been defeated as champion and all 5 Wally VR rematches are cleared,
+	@    the next champion is chosen randomly from Steven, Wallace, and Wally.
+	@ If Wallace has not yet been defeated as champion, keep Wallace as the next champion.
+	goto_if_unset FLAG_DEFEATED_WALLACE_AS_CHAMPION, HoF_WallaceNext
+	@ If Wally is not yet eligible for the postgame random phase, keep Wallace as the next champion.
+	checktrainerflag TRAINER_WALLY_VR_5 @ All 5 Wally VR rematches cleared
+	goto_if_eq VAR_RESULT, FALSE, HoF_WallaceNext @ Keep Wallace fixed until the Wally unlock condition is met
+	@ Once both gates are satisfied, randomize across the full postgame champion pool.
+	goto HoF_RollThreeWay
+	end
+
+HoF_WallaceNext::
+	copyvar VAR_NEXT_CHAMPION, 1 @ Wallace is the fixed next champion during the post-Steven phase
+	goto HoF_ApplyClues
+	end
+
+HoF_RollThreeWay::
+	random 3
+	copyvar VAR_NEXT_CHAMPION, VAR_RESULT @ 0 = Steven, 1 = Wallace, 2 = Wally
+	goto HoF_ApplyClues
+	end
+
+HoF_ApplyClues::
+	@ Clear all clues first to avoid stale states
+	clearflag FLAG_HIDE_STEVEN_CHAMPION_CLUE
+	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	@ Keep Wallace visiting hidden unless explicitly shown.
+	setflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+	@ If Steven is the selected next champion, hide him from Meteor Falls as a clue.
+	call_if_eq VAR_NEXT_CHAMPION, 0, HoF_EventScript_HideStevenClue
+	@ If Wally is the selected next champion, hide him from Victory Road as a clue.
+	call_if_eq VAR_NEXT_CHAMPION, 2, HoF_EventScript_HideWallyClue
+	@ If Wallace is not the selected next champion, show him visiting Sootopolis as a clue.
+	call_if_ne VAR_NEXT_CHAMPION, 1, HoF_EventScript_ShowWallaceVisiting
+	@ If Wallace is next champion, clear the applicable hide flags for next run
+	call_if_eq VAR_NEXT_CHAMPION, 1, HoF_EventScript_WallaceNext
+	goto HoF_EventScript_FinishHallOfFame
+
+HoF_EventScript_WallaceNext::
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	clearflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	setflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	return
+
+HoF_EventScript_HideStevenClue::
+	setflag FLAG_HIDE_STEVEN_CHAMPION_CLUE
+	@ Steven is next champion, so clear applicable hide flags for next run
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	clearflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	return
+
+HoF_EventScript_HideWallyClue::
+	setflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	@ Wally is next champion, so clear applicable hide flags for next run
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	setflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	clearflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	return
+
+HoF_EventScript_ShowWallaceVisiting::
+	@ Sootopolis transition logic interprets this flag with inverted hide/show semantics.
+	clearflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+	return
+
+HoF_EventScript_FinishHallOfFame::
 	delay 40
 	setvar VAR_TEMP_1, 1
 	call EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags @ sets event flag
@@ -82,6 +185,7 @@ EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame::
 	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_HallOfFame_EventScript_GameClearMale
 	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_HallOfFame_EventScript_GameClearFemale
 	end
+
 
 EverGrandeCity_HallOfFame_EventScript_GameClearMale::
 	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F
@@ -139,9 +243,23 @@ EverGrandeCity_HallOfFame_Text_StevenHereWeHonorLeagueChampions:
 	.string "It is here that the LEAGUE CHAMPIONS\n"
 	.string "are honored.$"
 
+EverGrandeCity_HallOfFame_Text_WallyHereWeHonorLeagueChampions:
+	.string "WALLY: Back again, huh {PLAYER}{KUN}?\p"
+	.string "You already know that this is where\n"
+	.string "LEAGUE CHAMPIONS and their.\p"
+	.string "chosen POKéMON are recorded.\n"
+	.string "You've reached the summit once again!$"
+
 EverGrandeCity_HallOfFame_Text_StevenLetsRecordYouAndYourPartnersNames:
 	.string "STEVEN: Come on, let's record your\n"
 	.string "name as a TRAINER who triumphed over\l"
 	.string "the POKéMON LEAGUE, and the names of\l"
 	.string "the partners who battled with you.$"
+
+EverGrandeCity_HallOfFame_Text_WallyLetsRecordYouAndYourPartnersNames:
+	.string "WALLY: Let's put your name back\n"
+	.string "in the HALL OF FAME records\l"
+	.string "along with the incredible POKéMON\p"
+	.string "that battled alongside you\n"
+	.string "to achieve greatness.$"
 `

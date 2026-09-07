@@ -3,6 +3,7 @@ raw `
 .set LOCALID_RIVAL, 2
 .set LOCALID_BIRCH, 3
 .set LOCALID_STEVEN, 4
+.set LOCALID_WALLY, 5
 
 EverGrandeCity_ChampionsRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_ChampionsRoom_OnTransition
@@ -12,7 +13,8 @@ EverGrandeCity_ChampionsRoom_MapScripts::
 
 EverGrandeCity_ChampionsRoom_OnTransition:
 	call Common_EventScript_SetupRivalGfxId
-	call_if_unset FLAG_IS_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_SetStevenLayout
+	@ Set the layout based on the next champion. Wallace and Wally share same layout, just different NPCs.
+	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_ChampionsRoom_EventScript_SetStevenLayout
 	end
 
 EverGrandeCity_ChampionsRoom_OnWarp:
@@ -38,9 +40,11 @@ EverGrandeCity_ChampionsRoom_EventScript_EnterRoom::
 	delay 40
 	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace
 	waitmovement 0
+	@ Determine which champion the player will face next based on VAR_NEXT_CHAMPION
 	setvar VAR_TEMP_1, 1
-	goto_if_unset FLAG_IS_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_Steven
-	goto EverGrandeCity_ChampionsRoom_EventScript_Wallace
+	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_ChampionsRoom_EventScript_Steven
+	goto_if_eq VAR_NEXT_CHAMPION, 1, EverGrandeCity_ChampionsRoom_EventScript_Wallace
+	goto_if_eq VAR_NEXT_CHAMPION, 2, EverGrandeCity_ChampionsRoom_EventScript_Wally
 	releaseall
 	end
 
@@ -54,6 +58,21 @@ EverGrandeCity_ChampionsRoom_EventScript_Steven::
 	msgbox EverGrandeCity_ChampionsRoom_Text_StevenIntroSpeech, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_STEVEN_1, EverGrandeCity_ChampionsRoom_Text_StevenDefeat
 	goto EverGrandeCity_ChampionsRoom_EventScript_StevenDefeated
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_Wallace::
+	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallaceIntroSpeech, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_WALLACE_2, EverGrandeCity_ChampionsRoom_Text_WallaceDefeat
+	setflag FLAG_DEFEATED_WALLACE_AS_CHAMPION
+	goto EverGrandeCity_ChampionsRoom_EventScript_WallaceDefeated
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_Wally::
+	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallyIntroSpeech, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_WALLY_CHAMPION, EverGrandeCity_ChampionsRoom_Text_WallyDefeat
+	goto EverGrandeCity_ChampionsRoom_EventScript_WallyDefeated
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_StevenDefeated::
@@ -118,8 +137,9 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF::
 	msgbox EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex, MSGBOX_DEFAULT
 	call ProfBirch_EventScript_RatePokedex
 	msgbox EverGrandeCity_ChampionsRoom_Text_BirchCongratulations, MSGBOX_DEFAULT
-	goto_if_unset FLAG_IS_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_StevenGoToHOF
-	goto EverGrandeCity_ChampionsRoom_EventScript_WallaceGoToHOF
+	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_ChampionsRoom_EventScript_StevenGoToHOF
+	goto_if_eq VAR_NEXT_CHAMPION, 1, EverGrandeCity_ChampionsRoom_EventScript_WallaceGoToHOF
+	goto_if_eq VAR_NEXT_CHAMPION, 2, EverGrandeCity_ChampionsRoom_EventScript_WallyGoToHOF
 	
 EverGrandeCity_ChampionsRoom_EventScript_StevenGoToHOF::
 	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterUp
@@ -172,19 +192,12 @@ EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth::
 	waitmovement 0
 	return
 
-EverGrandeCity_ChampionsRoom_EventScript_Wallace::
-	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
-	msgbox EverGrandeCity_ChampionsRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_WALLACE_2, EverGrandeCity_ChampionsRoom_Text_Defeat
-	goto EverGrandeCity_ChampionsRoom_EventScript_WallaceDefeated
-	end
-
 EverGrandeCity_ChampionsRoom_EventScript_WallaceDefeated::
 	playse SE_DOOR
 	setmetatile 6, 1, METATILE_EliteFour_OpenDoorChampion_Frame, FALSE
 	setmetatile 6, 2, METATILE_EliteFour_OpenDoorChampion_Opening, FALSE
 	special DrawWholeMapView
-	msgbox EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallacePostBattleSpeech, MSGBOX_DEFAULT
 	closemessage
 	playse SE_DOOR
 	checkplayergender
@@ -193,17 +206,45 @@ EverGrandeCity_ChampionsRoom_EventScript_WallaceDefeated::
 	addobject LOCALID_RIVAL
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
 	checkplayergender
-	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_RematchMayAdvice
-	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_RematchBrendanAdvice
+	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_RematchWallaceMayAdvice
+	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_RematchWallaceBrendanAdvice
 	end
 
-EverGrandeCity_ChampionsRoom_EventScript_RematchMayAdvice::
-	msgbox EverGrandeCity_ChampionsRoom_Text_RematchMayAdvice, MSGBOX_DEFAULT
+EverGrandeCity_ChampionsRoom_EventScript_WallyDefeated::
+	playse SE_DOOR
+	setmetatile 6, 1, METATILE_EliteFour_OpenDoorChampion_Frame, FALSE
+	setmetatile 6, 2, METATILE_EliteFour_OpenDoorChampion_Opening, FALSE
+	special DrawWholeMapView
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallyPostBattleSpeech, MSGBOX_DEFAULT
+	closemessage
+	playse SE_DOOR
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
+	addobject LOCALID_RIVAL
+	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
+	checkplayergender
+	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_WallyRematchMayAdvice
+	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_WallyRematchBrendanAdvice
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_RematchWallaceMayAdvice::
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallaceRematchMayAdvice, MSGBOX_DEFAULT
 	goto EverGrandeCity_ChampionsRoom_EventScript_RematchBirchArrivesExitForHoF
 	end
 
-EverGrandeCity_ChampionsRoom_EventScript_RematchBrendanAdvice::
-	msgbox EverGrandeCity_ChampionsRoom_Text_RematchBrendanAdvice, MSGBOX_DEFAULT
+EverGrandeCity_ChampionsRoom_EventScript_RematchWallaceBrendanAdvice::
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallaceRematchBrendanAdvice, MSGBOX_DEFAULT
+	goto EverGrandeCity_ChampionsRoom_EventScript_RematchBirchArrivesExitForHoF
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_WallyRematchMayAdvice::
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallyRematchMayAdvice, MSGBOX_DEFAULT
+	goto EverGrandeCity_ChampionsRoom_EventScript_RematchBirchArrivesExitForHoF
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_WallyRematchBrendanAdvice::
+	msgbox EverGrandeCity_ChampionsRoom_Text_WallyRematchBrendanAdvice, MSGBOX_DEFAULT
 	goto EverGrandeCity_ChampionsRoom_EventScript_RematchBirchArrivesExitForHoF
 	end
 
@@ -218,8 +259,9 @@ EverGrandeCity_ChampionsRoom_EventScript_RematchBirchArrivesExitForHoF::
 	call ProfBirch_EventScript_RatePokedex
 	msgbox EverGrandeCity_ChampionsRoom_Text_RematchBirchCongratulations, MSGBOX_DEFAULT
 	closemessage
-	goto_if_unset FLAG_IS_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_StevenGoToHOF
-	goto EverGrandeCity_ChampionsRoom_EventScript_WallaceGoToHOF
+	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_ChampionsRoom_EventScript_StevenGoToHOF
+	goto_if_eq VAR_NEXT_CHAMPION, 1, EverGrandeCity_ChampionsRoom_EventScript_WallaceGoToHOF
+	goto_if_eq VAR_NEXT_CHAMPION, 2, EverGrandeCity_ChampionsRoom_EventScript_WallyGoToHOF
 
 EverGrandeCity_ChampionsRoom_EventScript_WallaceGoToHOF::
 	applymovement LOCALID_WALLACE, Common_Movement_WalkInPlaceFasterUp
@@ -252,12 +294,50 @@ EverGrandeCity_ChampionsRoom_EventScript_WallaceGoToHOF::
 	releaseall
 	end
 
+EverGrandeCity_ChampionsRoom_EventScript_WallyGoToHOF::
+	applymovement LOCALID_WALLY, Common_Movement_WalkInPlaceFasterUp
+	waitmovement 0
+	delay 20
+	applymovement LOCALID_WALLY, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	msgbox EverGrandeCity_ChampionsRoom_Text_RematchWallyComeWithMe, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	applymovement LOCALID_WALLY, EverGrandeCity_ChampionsRoom_Movement_WallyExitStart
+	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart
+	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFasterUp
+	applymovement LOCALID_RIVAL, EverGrandeCity_ChampionsRoom_Movement_RivalFollows
+	waitmovement 0
+	delay 20
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_MayCongratulationsAgain
+	call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulationsAgain
+	closemessage
+	applymovement LOCALID_WALLY, EverGrandeCity_ChampionsRoom_Movement_WallyExit
+	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExit
+	waitmovement 0
+	setflag FLAG_HIDE_PETALBURG_GYM_GREETER
+	warp MAP_EVER_GRANDE_CITY_HALL_OF_FAME, 7, 16
+	waitstate
+	releaseall
+	end
+
 EverGrandeCity_ChampionsRoom_EventScript_RematchMayCantGoIn::
 	msgbox EverGrandeCity_ChampionsRoom_Text_RematchMayCantGoIn, MSGBOX_DEFAULT
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_RematchBrendanCantGoIn::
 	msgbox EverGrandeCity_ChampionsRoom_Text_RematchBrendanCantGoIn, MSGBOX_DEFAULT
+	return
+
+EverGrandeCity_ChampionsRoom_EventScript_MayCongratulationsAgain::
+	msgbox EverGrandeCity_ChampionsRoom_Text_MayCongratulationsAgain, MSGBOX_DEFAULT
+	return
+
+EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulationsAgain::
+	msgbox EverGrandeCity_ChampionsRoom_Text_BrendanCongratulationsAgain, MSGBOX_DEFAULT
 	return
 
 EverGrandeCity_ChampionsRoom_Movement_PlayerExitStart:
@@ -307,6 +387,18 @@ EverGrandeCity_ChampionsRoom_Movement_WallaceExitStart:
 	step_end
 
 EverGrandeCity_ChampionsRoom_Movement_WallaceExit:
+	walk_up
+	delay_8
+	set_invisible
+	step_end
+
+EverGrandeCity_ChampionsRoom_Movement_WallyExitStart:
+	walk_up
+	walk_up
+	walk_in_place_faster_down
+	step_end
+
+EverGrandeCity_ChampionsRoom_Movement_WallyExit:
 	walk_up
 	delay_8
 	set_invisible
@@ -432,7 +524,23 @@ EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations:
 	.string "{PLAYER}, way to go!\n"
 	.string "Congratulations!$"
 
-EverGrandeCity_ChampionsRoom_Text_IntroSpeech:
+EverGrandeCity_ChampionsRoom_Text_MayCongratulationsAgain:
+	.string "MAY: Aw, man! This again?!\p"
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
+	.string "I'm just joking! That's okay!\n"
+	.string "That's the rule!\p"
+	.string "{PLAYER}{KUN}!\n"
+	.string "Honestly, congratulations!$"
+
+EverGrandeCity_ChampionsRoom_Text_BrendanCongratulationsAgain:
+	.string "BRENDAN: Aw, man! This again?!\n"
+	.string "… … … … … … … …\p"
+	.string "It can't be helped if that's the rule.\p"
+	.string "{PLAYER}, way to go!\n"
+	.string "Congratulations!$"
+
+EverGrandeCity_ChampionsRoom_Text_WallaceIntroSpeech:
 	.string "WALLACE: Welcome, {PLAYER}{KUN}.\p"
 	.string "Our paths cross again…\n"
 	.string "but this time, I am the challenger.\p"
@@ -453,12 +561,37 @@ EverGrandeCity_ChampionsRoom_Text_IntroSpeech:
 	.string "their POKéMON in HOENN?\p"
 	.string "Show me right here and now!$"
 
-EverGrandeCity_ChampionsRoom_Text_Defeat:
+EverGrandeCity_ChampionsRoom_Text_WallyIntroSpeech:
+	.string "WALLY: Hey, {PLAYER}{KUN}.\p"
+	.string "I didn't expect to see you here already.\p"
+	.string "I finally did it! I'm the CHAMPION!\n"
+	.string "I've grown so much thanks to you.\p"
+	.string "You helped me build confidence \n"
+	.string "and a great team!\p"
+	.string "Just because I'm appreciative,\n"
+	.string "don't think that I'll be a pushover!\p"
+	.string "Let me show you why I'm the CHAMPION!\p"
+	.string "{PLAYER}{KUN}! Give me your best shot!$"
+
+EverGrandeCity_ChampionsRoom_Text_WallaceDefeat:
 	.string "I, the challenger, fall in defeat…\n"
 	.string "That was wonderful work.\l"
 	.string "Kudos to you, {PLAYER}{KUN}!$"
 
-EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech:
+EverGrandeCity_ChampionsRoom_Text_WallyDefeat:
+	.string "After all that effort, I lost…\p"
+	.string "My POKéMON and I did all we could,\n"
+	.string "but we were no match for you!$"
+
+EverGrandeCity_ChampionsRoom_Text_WallyPostBattleSpeech:
+	.string "WALLY: Wow, {PLAYER}{KUN}!\n"
+	.string "I can't believe I lost…\p"
+	.string "I guess I still have more to learn...\n"
+	.string "But I'll keep trying!\p"
+	.string "You really are the greatest trainer!\p"
+	.string "Congratulations... HOENN's CHAMPION!$"
+
+EverGrandeCity_ChampionsRoom_Text_WallacePostBattleSpeech:
 	.string "WALLACE: The POKéMON you sent into\n"
 	.string "battle…\p"
 	.string "At times they danced like a spring\n"
@@ -472,19 +605,33 @@ EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech:
 	.string "of the POKéMON LEAGUE, {PLAYER}{KUN}.\p"
 	.string "Congratulations… HOENN's CHAMPION.$"
 
-EverGrandeCity_ChampionsRoom_Text_RematchMayAdvice:
+EverGrandeCity_ChampionsRoom_Text_WallaceRematchMayAdvice:
 	.string "MAY: {PLAYER}{KUN}!\p"
 	.string "Wow! You did it!\n"
 	.string "No advice this time… just congrats!\p"
 	.string "Taking on WALLACE and winning…\n"
 	.string "That's amazing!$"
 
-EverGrandeCity_ChampionsRoom_Text_RematchBrendanAdvice:
+EverGrandeCity_ChampionsRoom_Text_WallaceRematchBrendanAdvice:
 	.string "BRENDAN: {PLAYER}{KUN}!\p"
 	.string "Wow! You did it!\n"
 	.string "No advice this time… just congrats!\p"
 	.string "Taking on WALLACE and winning…\n"
 	.string "That's amazing!$"
+
+EverGrandeCity_ChampionsRoom_Text_WallyRematchMayAdvice:
+	.string "MAY: {PLAYER}{KUN}!\p"
+	.string "Wow! You did it!\n"
+	.string "No advice this time… just congrats!\p"
+	.string "Wally has grown so much…\n"
+	.string "But you beat him again, all the same!$"
+
+EverGrandeCity_ChampionsRoom_Text_WallyRematchBrendanAdvice:
+	.string "BRENDAN: {PLAYER}{KUN}!\p"
+	.string "Wow! You did it!\n"
+	.string "No advice this time… just congrats!\p"
+	.string "Wally has grown so much…\n"
+	.string "But you beat him again, all the same!$"
 
 EverGrandeCity_ChampionsRoom_Text_RematchBirchArriveRatePokedex:
 	.string "PROF. BIRCH: Well, {RIVAL}, looks like\n"
@@ -511,6 +658,14 @@ EverGrandeCity_ChampionsRoom_Text_RematchWallaceComeWithMe:
 	.string "CHAMPION, follow me…\p"
 	.string "It's time we head to the HALL OF FAME\n"
 	.string "to record this latest triumph.$"
+
+EverGrandeCity_ChampionsRoom_Text_RematchWallyComeWithMe:
+	.string "WALLY: {PLAYER}{KUN},\n"
+	.string "you've done it again!\p"
+	.string "You're probably itching"
+	.string "to register your victory…\p"
+	.string "There's no time like the present!\n"
+	.string "Follow me to the HALL OF FAME!$"
 
 EverGrandeCity_ChampionsRoom_Text_RematchMayCantGoIn:
 	.string "MAY: Hey, wait a second!\n"
