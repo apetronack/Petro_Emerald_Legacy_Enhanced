@@ -312,19 +312,232 @@ Debug_Script_3::
 
 	end
 
-@ --- Scripts 4-8 reserved for future quest checkpoints ---
+@ =============================================================================
+@ Champion Rotation Test Suite (Scripts 4-8)
+@ -----------------------------------------------------------------------------
+@ Script 4: Baseline/Initial route. Forces next champion = Steven and warps to
+@           Champions Room for a direct battle flow check.
+@ Script 5: Post-Steven fixed phase. Forces next champion = Wallace and warps
+@           to Champions Room for Wallace battle flow check.
+@ Script 6: Random-phase setup (gates met), force next champion = Steven.
+@           Warps to Steven's Cave to validate clue visibility.
+@ Script 7: Random-phase setup (gates met), force next champion = Wallace.
+@           Warps to Sootopolis to validate Wallace visiting clue visibility.
+@ Script 8: Random-phase setup (gates met), force next champion = Wally.
+@           Warps to Victory Road 1F to validate Exit Wally clue visibility.
+@ =============================================================================
 
 Debug_Script_4::
+	lockall
+	call Debug_SetupChampionTestBase
+	@ Expected outcome:
+	@ - Champions Room: Steven present, Wallace/Wally hidden.
+	@ - Meteor Falls Steven clue: hidden (Steven absent).
+	@ - Sootopolis Wallace visiting: visible.
+	@ - Victory Road Exit Wally: visible.
+	@ Gate state: Wallace not yet defeated as champion and Wally VR5 not done.
+	clearflag FLAG_DEFEATED_WALLACE_AS_CHAMPION
+	cleartrainerflag TRAINER_WALLY_VR_5
+	setvar VAR_NEXT_CHAMPION, 0
+	@ Champion object visibility for next run.
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	clearflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	@ Clues for next champion = Steven.
+	setflag FLAG_HIDE_STEVEN_CHAMPION_CLUE
+	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	clearflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+	call Debug_GrantChampionTestTeam
+	warp MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM, 6, 12
+	waitstate
 	end
 
 Debug_Script_5::
+	lockall
+	call Debug_SetupChampionTestBase
+	@ Expected outcome:
+	@ - Champions Room: Wallace present, Steven/Wally hidden.
+	@ - Meteor Falls Steven clue: visible.
+	@ - Sootopolis Wallace visiting: hidden.
+	@ - Victory Road Exit Wally: visible.
+	@ Gate state: fixed Wallace phase.
+	clearflag FLAG_DEFEATED_WALLACE_AS_CHAMPION
+	cleartrainerflag TRAINER_WALLY_VR_5
+	setvar VAR_NEXT_CHAMPION, 1
+	@ Champion object visibility for next run.
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	clearflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	setflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	@ Clues for next champion = Wallace.
+	clearflag FLAG_HIDE_STEVEN_CHAMPION_CLUE
+	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	setflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+	call Debug_GrantChampionTestTeam
+	warp MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM, 6, 12
+	waitstate
 	end
 
 Debug_Script_6::
+	lockall
+	call Debug_SetupChampionTestBase
+	@ Expected outcome:
+	@ - Random pool unlocked, forced next champion = Steven.
+	@ - Champions Room: Steven present, Wallace/Wally hidden.
+	@ - Meteor Falls Steven clue: hidden (validate immediately at warp target).
+	@ - Sootopolis Wallace visiting: visible.
+	@ - Victory Road Exit Wally: visible.
+	@ Gate state: random pool unlocked.
+	setflag FLAG_DEFEATED_WALLACE_AS_CHAMPION
+	settrainerflag TRAINER_WALLY_VR_5
+	setvar VAR_NEXT_CHAMPION, 0
+	@ Champion object visibility for next run.
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	clearflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	@ Clues for selected next champion = Steven.
+	setflag FLAG_HIDE_STEVEN_CHAMPION_CLUE
+	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	clearflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+	call Debug_GrantChampionTestTeam
+	warp MAP_METEOR_FALLS_STEVENS_CAVE, 10, 28
+	waitstate
 	end
 
 Debug_Script_7::
+	lockall
+	call Debug_SetupChampionTestBase
+	@ Expected outcome:
+	@ - Random pool unlocked, forced next champion = Wallace.
+	@ - Champions Room: Wallace present, Steven/Wally hidden.
+	@ - Sootopolis Wallace visiting: hidden (validate immediately at warp target).
+	@ - Meteor Falls Steven clue: visible.
+	@ - Victory Road Exit Wally: visible.
+	@ Gate state: random pool unlocked.
+	setflag FLAG_DEFEATED_WALLACE_AS_CHAMPION
+	settrainerflag TRAINER_WALLY_VR_5
+	setvar VAR_NEXT_CHAMPION, 1
+	@ Champion object visibility for next run.
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	clearflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	setflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	@ Clues for selected next champion = Wallace.
+	clearflag FLAG_HIDE_STEVEN_CHAMPION_CLUE
+	clearflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	setflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+	call Debug_GrantChampionTestTeam
+	warp MAP_SOOTOPOLIS_CITY, 29, 34
+	waitstate
 	end
 
 Debug_Script_8::
+	lockall
+	call Debug_SetupChampionTestBase
+	@ Expected outcome:
+	@ - Random pool unlocked, forced next champion = Wally.
+	@ - Champions Room: Wally present, Steven/Wallace hidden.
+	@ - Victory Road Exit Wally: hidden (validate immediately at warp target).
+	@ - Meteor Falls Steven clue: visible.
+	@ - Sootopolis Wallace visiting: visible.
+	@ Gate state: random pool unlocked.
+	setflag FLAG_DEFEATED_WALLACE_AS_CHAMPION
+	settrainerflag TRAINER_WALLY_VR_5
+	setvar VAR_NEXT_CHAMPION, 2
+	@ Champion object visibility for next run.
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_WALLACE
+	setflag FLAG_HIDE_HALL_OF_FAME_WALLACE
+	setflag FLAG_HIDE_CHAMPIONS_ROOM_STEVEN
+	setflag FLAG_HIDE_HALL_OF_FAME_STEVEN
+	clearflag FLAG_HIDE_CHAMPIONS_ROOM_WALLY
+	clearflag FLAG_HIDE_HALL_OF_FAME_WALLY
+	@ Clues for selected next champion = Wally.
+	clearflag FLAG_HIDE_STEVEN_CHAMPION_CLUE
+	setflag FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY
+	clearflag FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS
+	call Debug_GrantChampionTestTeam
+	warp MAP_VICTORY_ROAD_1F, 31, 10
+	waitstate
 	end
+
+Debug_SetupChampionTestBase::
+	@ Core progression and postgame assumptions used by all champion tests.
+	setflag FLAG_SYS_POKEMON_GET
+	setflag FLAG_SYS_POKEDEX_GET
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setflag FLAG_SYS_B_DASH
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_ADVENTURE_STARTED
+	setflag FLAG_RESCUED_BIRCH
+	setflag FLAG_IS_CHAMPION
+	setflag FLAG_BADGE01_GET
+	setflag FLAG_BADGE02_GET
+	setflag FLAG_BADGE03_GET
+	setflag FLAG_BADGE04_GET
+	setflag FLAG_BADGE05_GET
+	setflag FLAG_BADGE06_GET
+	setflag FLAG_BADGE07_GET
+	setflag FLAG_BADGE08_GET
+	setflag FLAG_DEFEATED_RUSTBORO_GYM
+	setflag FLAG_DEFEATED_DEWFORD_GYM
+	setflag FLAG_DEFEATED_MAUVILLE_GYM
+	setflag FLAG_DEFEATED_LAVARIDGE_GYM
+	setflag FLAG_DEFEATED_PETALBURG_GYM
+	setflag FLAG_DEFEATED_FORTREE_GYM
+	setflag FLAG_DEFEATED_MOSSDEEP_GYM
+	setflag FLAG_DEFEATED_SOOTOPOLIS_GYM
+	setflag FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN
+	setflag FLAG_SOOTOPOLIS_ARCHIE_MAXIE_LEAVE
+	setflag FLAG_DEFEATED_ELITE_4_SIDNEY
+	setflag FLAG_DEFEATED_ELITE_4_PHOEBE
+	setflag FLAG_DEFEATED_ELITE_4_GLACIA
+	setflag FLAG_DEFEATED_ELITE_4_DRAKE
+	setvar VAR_SOOTOPOLIS_CITY_STATE, 0
+	setvar VAR_SKY_PILLAR_STATE, 2
+	setflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
+	return
+
+Debug_GrantChampionTestTeam::
+	@ Battle-capable team for champion and rematch testing.
+	givemon SPECIES_SWAMPERT, 80, ITEM_LEFTOVERS
+	givemon SPECIES_METAGROSS, 80, ITEM_CHOICE_BAND
+	givemon SPECIES_SALAMENCE, 80, ITEM_LUM_BERRY
+	givemon SPECIES_GARDEVOIR, 80, ITEM_TWISTED_SPOON
+	givemon SPECIES_MANECTRIC, 80, ITEM_MAGNET
+	givemon SPECIES_BRELOOM, 80, ITEM_BLACK_BELT
+	additem ITEM_FULL_RESTORE, 30
+	additem ITEM_MAX_REVIVE, 20
+	additem ITEM_MAX_ETHER, 20
+	additem ITEM_TM_EARTHQUAKE, 3
+	additem ITEM_TM_FLAMETHROWER, 1
+	additem ITEM_TM_THUNDERBOLT, 1
+	additem ITEM_TM_ICE_BEAM, 1
+	additem ITEM_TM_CALM_MIND, 1
+	additem ITEM_TM_GIGA_DRAIN, 1
+	additem ITEM_TM_SHADOW_BALL, 1
+	additem ITEM_TM_FIRE_BLAST, 1
+	additem ITEM_TM_DRAGON_CLAW, 1
+	additem ITEM_TM_BULK_UP, 1
+	additem ITEM_TM_BLIZZARD, 2
+	additem ITEM_TM_BRICK_BREAK, 2
+	additem ITEM_TM_SLUDGE_BOMB, 1
+	additem ITEM_TM_AERIAL_ACE, 1
+	additem ITEM_HM_SURF, 1
+	additem ITEM_HM_FLY, 1
+	additem ITEM_HM_CUT, 1
+	additem ITEM_HM_STRENGTH, 1
+	additem ITEM_HM_ROCK_SMASH, 1
+	additem ITEM_HM_DIVE, 1
+	additem ITEM_HM_FLASH, 1
+	addmoney 99999, 0
+	return

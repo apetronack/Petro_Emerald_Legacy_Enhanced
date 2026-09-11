@@ -115,7 +115,7 @@ EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame::
 	end
 
 HoF_WallaceNext::
-	copyvar VAR_NEXT_CHAMPION, 1 @ Wallace is the fixed next champion during the post-Steven phase
+	setvar VAR_NEXT_CHAMPION, 1 @ Wallace is the fixed next champion during the post-Steven phase
 	goto HoF_ApplyClues
 	end
 
