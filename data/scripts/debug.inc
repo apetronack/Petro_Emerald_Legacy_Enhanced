@@ -251,8 +251,6 @@ Debug_Script_3::
 @           Warps to Victory Road 1F to validate Exit Wally clue visibility.
 @ Script 9: Mixed gate case A. Wallace defeated as champion, but Wally VR5 not done.
 @           Force next champion = Wallace and verify Wallace remains the only option.
-@ Script 10: Mixed gate case B. Wally VR5 done, but Wallace not defeated as champion.
-@            Force next champion = Steven and verify Steven uses INITIAL team path.
 @ =============================================================================
 
 Debug_Script_4::
@@ -423,6 +421,52 @@ Debug_Script_9::
 	warp MAP_EVER_GRANDE_CITY_CHAMPIONS_ROOM, 6, 12
 	waitstate
 	end
+
+@ =============================================================================
+@ Rival Postgame Rebattle Test Suite (Scripts 10-12)
+@ -----------------------------------------------------------------------------
+@ Scripts 10-12 set postgame rival progression to the rebattle state and then
+@ immediately launch a specific rival team:
+@ - Script 10: Hoenn team
+@ - Script 11: Johto team
+@ - Script 12: Kanto team
+@ =============================================================================
+
+Debug_Script_10::
+	lockall
+	call Debug_SetupRivalPostgameRebattleBase
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Hoenn
+
+Debug_Script_11::
+	lockall
+	call Debug_SetupRivalPostgameRebattleBase
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Johto
+
+Debug_Script_12::
+	lockall
+	call Debug_SetupRivalPostgameRebattleBase
+	goto LittlerootTown_ProfessorBirchsLab_EventScript_RivalRebattle_Kanto
+
+Debug_SetupRivalPostgameRebattleBase::
+	@ Reuse champion/postgame baseline assumptions.
+	call Debug_SetupChampionTestBase
+
+	@ Ensure rival is available in Birch's Lab and rebattle branch is unlocked.
+	setvar VAR_BIRCH_STATE, 8
+	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
+	setflag FLAG_IS_CHAMPION
+	setflag FLAG_SYS_NATIONAL_DEX
+	special EnableNationalPokedex
+	setflag FLAG_RIVAL_TRADE_1_COMPLETED
+	setflag FLAG_RIVAL_TRADE_2_COMPLETED
+	setflag FLAG_RIVAL_TRADE_3_COMPLETED
+	setflag FLAG_RIVAL_GOT_ALL_KANTO_MONS
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
+
+	@ Battle-capable team for reliable rebattle testing.
+	call Debug_GrantChampionTestTeam
+	return
 
 Debug_SetupChampionTestBase::
 	@ Core progression and postgame assumptions used by all champion tests.
