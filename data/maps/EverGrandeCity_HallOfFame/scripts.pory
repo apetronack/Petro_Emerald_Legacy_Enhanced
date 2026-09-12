@@ -21,9 +21,15 @@ EverGrandeCity_HallOfFame_OnFrame:
 	.2byte 0
 
 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFame::
-	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameSteven
+	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameStevenByProgress
 	goto_if_eq VAR_NEXT_CHAMPION, 1, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWallace
 	goto_if_eq VAR_NEXT_CHAMPION, 2, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWally
+
+EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameStevenByProgress::
+	@ Steven rematch unlock requires Wallace champion defeat + Wally VR5 rematch flag.
+	goto_if_unset FLAG_DEFEATED_WALLACE_AS_CHAMPION, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameSteven
+	goto_if_unset FLAG_DEFEATED_WALLY_VR5_REMATCH, EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameSteven
+	goto EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameStevenRematch
 
 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWallace::
 	lockall
@@ -71,6 +77,29 @@ EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameSteven::
 	goto EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame
 	end
 
+EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameStevenRematch::
+	lockall
+	applymovement LOCALID_STEVEN, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1
+	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1
+	waitmovement 0
+	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	msgbox EverGrandeCity_HallOfFame_Text_StevenRematchHereWeHonorLeagueChampions, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_STEVEN, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame2
+	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame2
+	waitmovement 0
+	delay 20
+	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+	waitmovement 0
+	msgbox EverGrandeCity_HallOfFame_Text_StevenRematchLetsRecordYouAndYourPartnersNames, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterUp
+	goto EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame
+	end
+
 EverGrandeCity_HallOfFame_EventScript_EnterHallOfFameWally::
 	lockall
 	applymovement LOCALID_WALLY, EverGrandeCity_HallOfFame_Movement_WalkIntoHallOfFame1
@@ -108,8 +137,7 @@ EverGrandeCity_HallOfFame_EventScript_FinishEnterHallOfFame::
 	@ If Wallace has not yet been defeated as champion, keep Wallace as the next champion.
 	goto_if_unset FLAG_DEFEATED_WALLACE_AS_CHAMPION, HoF_WallaceNext
 	@ If Wally is not yet eligible for the postgame random phase, keep Wallace as the next champion.
-	checktrainerflag TRAINER_WALLY_VR_5 @ All 5 Wally VR rematches cleared
-	goto_if_eq VAR_RESULT, FALSE, HoF_WallaceNext @ Keep Wallace fixed until the Wally unlock condition is met
+	goto_if_unset FLAG_DEFEATED_WALLY_VR5_REMATCH, HoF_WallaceNext @ Keep Wallace fixed until the Wally unlock condition is met
 	@ Once both gates are satisfied, randomize across the full postgame champion pool.
 	goto HoF_RollThreeWay
 	end
@@ -262,4 +290,15 @@ EverGrandeCity_HallOfFame_Text_WallyLetsRecordYouAndYourPartnersNames:
 	.string "along with the incredible POKéMON\p"
 	.string "that battled alongside you\n"
 	.string "to achieve greatness.$"
+
+EverGrandeCity_HallOfFame_Text_StevenRematchHereWeHonorLeagueChampions:
+	.string "STEVEN: Back again, CHAMPION...\p"
+	.string "This hall preserves the legacy of\n"
+	.string "those who continue to rise higher.\p"
+	.string "You've proven your strength once more.$"
+
+EverGrandeCity_HallOfFame_Text_StevenRematchLetsRecordYouAndYourPartnersNames:
+	.string "STEVEN: Let's record this latest\n"
+	.string "victory, and the names of your\l"
+	.string "trusted POKEMON partners, once again.$"
 `

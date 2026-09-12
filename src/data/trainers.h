@@ -10064,8 +10064,20 @@ const struct Trainer gTrainers[] = {
         .trainerPic = TRAINER_PIC_WALLY,
         .trainerName = _("WALLY"),
         .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
-        .doubleBattle = TRUE,
+        .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .party = TRAINER_MON(sParty_WallyChampion),
+    },
+
+    [TRAINER_STEVEN_CHAMPION_REMATCH] = 
+    {
+        .trainerClass = TRAINER_CLASS_CHAMPION_STEVEN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_STEVEN,
+        .trainerName = _("STEVEN"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_Steven_Champion_Rematch),
     },
 };

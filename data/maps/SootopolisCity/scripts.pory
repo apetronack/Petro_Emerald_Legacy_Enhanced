@@ -18,6 +18,7 @@ raw `
 .set LOCALID_WALLACE, 18
 .set LOCALID_MAY, 19
 .set LOCALID_BRENDAN, 20
+.set LOCALID_WALLACE_VISITING, 21
 
 SootopolisCity_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, SootopolisCity_OnLoad
@@ -1957,8 +1958,12 @@ SootopolisCity_Text_RivalBecomingProfessor5:
 
 script SootopolisCity_EventScript_WallaceVisiting {
 	lockall()
+	applymovement(LOCALID_WALLACE_VISITING, Common_Movement_FacePlayer)
+	waitmovement(0)
 	msgbox(SootopolisCity_Text_WallaceVisiting, MSGBOX_DEFAULT)
 	closemessage()
+	applymovement(LOCALID_WALLACE_VISITING, Common_Movement_FaceOriginalDirection)
+	waitmovement(0)
 	releaseall()
 	end()
 }

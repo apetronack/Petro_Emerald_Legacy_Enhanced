@@ -12661,6 +12661,64 @@ static const struct TrainerMon sParty_Steven3[] = {
     }
 };
 
+static const struct TrainerMon sParty_Steven_Champion_Rematch[] = {
+    {
+    .iv = 255,
+    .lvl = 77,
+    .species = SPECIES_TYRANITAR,
+    .heldItem = ITEM_SALAC_BERRY,
+    .evs = {0, 252, 252, 0, 0, 0},
+    .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_CRUNCH, MOVE_THUNDER},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .iv = 255,
+    .lvl = 76,
+    .species = SPECIES_ARMALDO,
+    .heldItem = ITEM_SCOPE_LENS,
+    .evs = {0, 252, 252, 0, 0, 0},
+    .moves = {MOVE_ROCK_BLAST, MOVE_TWINEEDLE, MOVE_EARTHQUAKE, MOVE_SWORDS_DANCE},
+    .nature = NATURE_ADAMANT
+    },
+    {
+    .iv = 255,
+    .lvl = 75,
+    .species = SPECIES_AERODACTYL,
+    .heldItem = ITEM_CHOICE_BAND,
+    .evs = {0, 252, 0, 252, 0, 0},
+    .moves = {MOVE_ROCK_SLIDE, MOVE_EARTHQUAKE, MOVE_SKY_ATTACK, MOVE_DOUBLE_EDGE},
+    .nature = NATURE_JOLLY
+    },
+    {
+    .iv = 255,
+    .lvl = 76,
+    .species = SPECIES_CRADILY,
+    .heldItem = ITEM_LEFTOVERS,
+    .evs = {252, 0, 0, 0, 0, 252},
+    .moves = {MOVE_LEECH_SEED, MOVE_CURSE, MOVE_RECOVER, MOVE_ANCIENT_POWER},
+    .nature = NATURE_CALM
+    },
+    {
+    .iv = 255,
+    .lvl = 76,
+    .species = SPECIES_STEELIX,
+    .heldItem = ITEM_QUICK_CLAW,
+    .evs = {252, 252, 0, 0, 0, 0},
+    .moves = {MOVE_EARTHQUAKE, MOVE_IRON_TAIL, MOVE_EXPLOSION, MOVE_CRUNCH},
+    .nature = NATURE_IMPISH
+    },
+    {
+    .iv = 255,
+    .lvl = 78,
+    .species = SPECIES_METAGROSS,
+    .heldItem = ITEM_SITRUS_BERRY,
+    .evs = {252, 252, 0, 0, 0, 0},
+    .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_METEOR_MASH, MOVE_PSYCHIC},
+    .nature = NATURE_ADAMANT,
+    .shiny = TRUE
+    }
+};
+
 static const struct TrainerMon sParty_Anabel[] = {
     {
     .iv = 0,
@@ -14944,7 +15002,7 @@ static const struct TrainerMon sParty_BrendanPostgame_Kanto[] = {
 static const struct TrainerMon sParty_WallyChampion[] = {
     {
     .ivs = BEST_IV_SPREAD,
-    .lvl = 76,
+    .lvl = 81,
     .species = SPECIES_RAPIDASH,
     .heldItem = ITEM_MAGO_BERRY,
     .evs = {4, 126, 0, 130, 0, 252},
@@ -14953,7 +15011,7 @@ static const struct TrainerMon sParty_WallyChampion[] = {
     },
     {
     .ivs = BEST_IV_SPREAD,
-    .lvl = 77,
+    .lvl = 82,
     .species = SPECIES_MAGNETON,
     .heldItem = ITEM_MAGNET,
     .evs = {252, 0, 0, 252, 4, 0},
@@ -14962,7 +15020,7 @@ static const struct TrainerMon sParty_WallyChampion[] = {
     },
     {
     .ivs = BEST_IV_SPREAD,
-    .lvl = 77,
+    .lvl = 82,
     .species = SPECIES_AZUMARILL,
     .heldItem = ITEM_SITRUS_BERRY,
     .evs = {252, 252, 0, 4, 0, 0},
@@ -14972,7 +15030,7 @@ static const struct TrainerMon sParty_WallyChampion[] = {
     },
     {
     .ivs = BEST_IV_SPREAD,
-    .lvl = 76,
+    .lvl = 81,
     .species = SPECIES_ALTARIA,
     .heldItem = ITEM_CHESTO_BERRY,
     .evs = {252, 252, 0, 0, 4, 0},
@@ -14981,7 +15039,7 @@ static const struct TrainerMon sParty_WallyChampion[] = {
     },
     {
     .ivs = BEST_IV_SPREAD,
-    .lvl = 76,
+    .lvl = 81,
     .species = SPECIES_MEGANIUM,
     .heldItem = ITEM_LEFTOVERS,
     .evs = {126, 126, 126, 0, 126, 0},
@@ -14989,7 +15047,7 @@ static const struct TrainerMon sParty_WallyChampion[] = {
     },
     {
     .ivs = BEST_IV_SPREAD,
-    .lvl = 78,
+    .lvl = 83,
     .species = SPECIES_GARDEVOIR,
     .heldItem = ITEM_LUM_BERRY,
     .evs = {0, 0, 0, 252, 4, 252},

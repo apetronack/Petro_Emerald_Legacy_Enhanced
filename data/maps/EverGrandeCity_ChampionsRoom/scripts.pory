@@ -42,11 +42,17 @@ EverGrandeCity_ChampionsRoom_EventScript_EnterRoom::
 	waitmovement 0
 	@ Determine which champion the player will face next based on VAR_NEXT_CHAMPION
 	setvar VAR_TEMP_1, 1
-	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_ChampionsRoom_EventScript_Steven
+	goto_if_eq VAR_NEXT_CHAMPION, 0, EverGrandeCity_ChampionsRoom_EventScript_StevenByProgress
 	goto_if_eq VAR_NEXT_CHAMPION, 1, EverGrandeCity_ChampionsRoom_EventScript_Wallace
 	goto_if_eq VAR_NEXT_CHAMPION, 2, EverGrandeCity_ChampionsRoom_EventScript_Wally
 	releaseall
 	end
+
+EverGrandeCity_ChampionsRoom_EventScript_StevenByProgress::
+	@ Steven rematch unlock requires Wallace champion defeat + Wally VR5 rematch flag.
+	goto_if_unset FLAG_DEFEATED_WALLACE_AS_CHAMPION, EverGrandeCity_ChampionsRoom_EventScript_Steven
+	goto_if_unset FLAG_DEFEATED_WALLY_VR5_REMATCH, EverGrandeCity_ChampionsRoom_EventScript_Steven
+	goto EverGrandeCity_ChampionsRoom_EventScript_StevenRematch
 
 EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace:
 	walk_up
@@ -58,6 +64,13 @@ EverGrandeCity_ChampionsRoom_EventScript_Steven::
 	msgbox EverGrandeCity_ChampionsRoom_Text_StevenIntroSpeech, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_STEVEN_1, EverGrandeCity_ChampionsRoom_Text_StevenDefeat
 	goto EverGrandeCity_ChampionsRoom_EventScript_StevenDefeated
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_StevenRematch::
+	playbgm MUS_ENCOUNTER_CHAMPION, FALSE
+	msgbox EverGrandeCity_ChampionsRoom_Text_StevenRematchIntroSpeech, MSGBOX_DEFAULT
+	trainerbattle_no_intro TRAINER_STEVEN_CHAMPION_REMATCH, EverGrandeCity_ChampionsRoom_Text_StevenRematchDefeat
+	goto EverGrandeCity_ChampionsRoom_EventScript_StevenRematchDefeated
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_Wallace::
@@ -226,6 +239,34 @@ EverGrandeCity_ChampionsRoom_EventScript_WallyDefeated::
 	checkplayergender
 	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_WallyRematchMayAdvice
 	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_WallyRematchBrendanAdvice
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_StevenRematchDefeated::
+	playse SE_DOOR
+	setmetatile 6, 1, METATILE_EliteFour_OpenDoorChampion_Frame, FALSE
+	setmetatile 6, 2, METATILE_EliteFour_OpenDoorChampion_Opening, FALSE
+	special DrawWholeMapView
+	msgbox EverGrandeCity_ChampionsRoom_Text_StevenRematchPostBattleSpeech, MSGBOX_DEFAULT
+	closemessage
+	playse SE_DOOR
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+	call_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
+	addobject LOCALID_RIVAL
+	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
+	checkplayergender
+	goto_if_eq VAR_RESULT, MALE, EverGrandeCity_ChampionsRoom_EventScript_StevenRematchMayAdvice
+	goto_if_eq VAR_RESULT, FEMALE, EverGrandeCity_ChampionsRoom_EventScript_StevenRematchBrendanAdvice
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_StevenRematchMayAdvice::
+	msgbox EverGrandeCity_ChampionsRoom_Text_StevenRematchMayAdvice, MSGBOX_DEFAULT
+	goto EverGrandeCity_ChampionsRoom_EventScript_RematchBirchArrivesExitForHoF
+	end
+
+EverGrandeCity_ChampionsRoom_EventScript_StevenRematchBrendanAdvice::
+	msgbox EverGrandeCity_ChampionsRoom_Text_StevenRematchBrendanAdvice, MSGBOX_DEFAULT
+	goto EverGrandeCity_ChampionsRoom_EventScript_RematchBirchArrivesExitForHoF
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_RematchWallaceMayAdvice::
@@ -689,4 +730,31 @@ EverGrandeCity_ChampionsRoom_Text_RematchWallaceChampion::
 	.string "{PLAYER}{KUN}.\p"
 	.string "Come, CHAMPION. Let us mark this moment\n"
 	.string "in the HALL OF FAME!$"
+
+EverGrandeCity_ChampionsRoom_Text_StevenRematchIntroSpeech:
+	.string "STEVEN: Welcome back, {PLAYER}{KUN}.\p"
+	.string "You've defended your title against\n"
+	.string "many strong challengers.\p"
+	.string "Let's see how your bond with your\n"
+	.string "POKEMON has grown since last time.$"
+
+EverGrandeCity_ChampionsRoom_Text_StevenRematchDefeat:
+	.string "Impressive... You outmatched me again.\p"
+	.string "You've earned your place at the top\n"
+	.string "once more, {PLAYER}{KUN}.$"
+
+EverGrandeCity_ChampionsRoom_Text_StevenRematchPostBattleSpeech:
+	.string "STEVEN: Outstanding work, CHAMPION.\p"
+	.string "Your team keeps reaching new heights\n"
+	.string "with every battle.$"
+
+EverGrandeCity_ChampionsRoom_Text_StevenRematchMayAdvice:
+	.string "MAY: Wow, that was incredible!\p"
+	.string "No advice this time, {PLAYER}{KUN}...\n"
+	.string "just congratulations!$"
+
+EverGrandeCity_ChampionsRoom_Text_StevenRematchBrendanAdvice:
+	.string "BRENDAN: That was amazing!\p"
+	.string "No advice this time, {PLAYER}...\n"
+	.string "just congratulations!$"
 `

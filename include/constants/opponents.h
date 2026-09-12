@@ -817,7 +817,7 @@
 #define TRAINER_LUCY                        810
 #define TRAINER_BRANDON                     811
 #define TRAINER_ANDRES_2                    812
-// #define TRAINER_ANDRES_3                    813
+#define TRAINER_STEVEN_CHAMPION_REMATCH     813
 #define TRAINER_ANDRES_4                    814
 #define TRAINER_ANDRES_5                    815
 #define TRAINER_CORY_2                      816
