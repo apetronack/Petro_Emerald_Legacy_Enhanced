@@ -88,8 +88,8 @@
 #define FLAG_EGG_MOVES_TUTOR                                0x4B // Enable Egg Move Tutor
 #define FLAG_CAUGHT_JIRACHI                                 0x4C // Check for Jirachi Caught, for Rematch
 #define FLAG_DEFEATED_JIRACHI                               0x4D // Check for Jirachi Defeated, for Rematch
-#define FLAG_UNUSED_0x04E                                   0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F                                   0x4F // Unused Flag
+#define FLAG_DEFEATED_WALLACE_AS_CHAMPION                   0x4E // Check for if player has defeated Wallace's Champion battle
+#define FLAG_HIDE_STEVEN_CHAMPION_CLUE                      0x4F // Hide Steven in Meteor Falls if he is next Champion
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL             0x50
@@ -97,10 +97,10 @@
 #define FLAG_RESCUED_BIRCH                                  0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS                      0x53
 
-#define FLAG_UNUSED_0x054                                   0x54  // Unused Flag
+#define FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS               0x54  // Set = hide Wallace visitor, clear = show visitor
 #define FLAG_UNLOCKED_BIKE_SWITCHING                        0x55
 
-#define FLAG_UNUSED_0x056                                   0x56  // Unused Flag
+#define FLAG_HIDE_CHAMPIONS_ROOM_WALLY                      0x56  // Hide Wally in the Champions Room
 #define FLAG_MET_RIVAL_MOM                                  0x57
 #define FLAG_BIRCH_AIDE_MET                                 0x58
 #define FLAG_DECLINED_BIKE                                  0x59
@@ -129,7 +129,7 @@
 #define FLAG_RECEIVED_HM_FLY                                0x6E
 #define FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT                 0x6F
 #define FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE                 0x70
-#define FLAG_UNUSED_0x071                                   0x71 // Unused Flag
+#define FLAG_HIDE_HALL_OF_FAME_WALLY                        0x71 // Hide Wally in the HOF
 #define FLAG_SCOTT_CALL_BATTLE_FRONTIER                     0x72 // Used in order to activate a phone call from Scott, inviting the player to the SS Tidal.
 #define FLAG_RECEIVED_METEORITE                             0x73
 #define FLAG_ADVENTURE_STARTED                              0x74 // RECEIVED Pokédex.
@@ -955,6 +955,7 @@
 #define FLAG_HIDE_MAUVILLE_GYM_WATTSON                              0x391
 #define FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS                        0x392
 #define FLAG_UNUSED_0x393                                           0x393 // Unused Flag
+#define FLAG_DEFEATED_WALLY_VR5_REMATCH                             FLAG_UNUSED_0x393
 #define FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE                             0x394
 #define FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA                          0x395
 #define FLAG_HIDE_BATTLE_TOWER_REPORTER                             0x396

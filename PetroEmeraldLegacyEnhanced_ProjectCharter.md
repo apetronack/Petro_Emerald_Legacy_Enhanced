@@ -73,15 +73,17 @@
             * Moves: Thunderbolt, Surf, Fly, Slam
             * Nature: Rash
     4. Flannery
-        1. Find Flannery at the Scorched Slab after Groudon is released. She says she was looking for Groudon because she heard reports of suspicious seismic activity in the area and wanted to investigate.
-        2. Area: Add a Dive area at the Scorched Slab entrance that surfaces beyond the Scorched Slab
-            1. The new area has mining equipment and evidence of Team Magma, but no grunts
-            2. Flannery rejoins the player and concludes that Team Magma must have been searching here but abandoned the area
-            3. Reward the player with TM Flamethrower for their help
-            4. Venture deeper into the cave to find a shiny Houndour with above-average IVs. Beat Up and Will-O-Wisp are egg moves; Torment is from a TM.
-                * Ability: Flash Fire
-                * Moves: Flamethrower, Will-O-Wisp, Beat Up, Torment
-                * Nature: Hasty (+ Speed / - Def)
+        1. Find Flannery outside her gym after Groudon is released. Lavaridge's hot springs have begun noticeably cooling, and Flannery wants to solve this problem rather than ask Steven or Devon Corp for help. Sends the player (and herself) to the Scorched Slab, where she has heard has gotten remarkably hotter as Lavaridge gets cooler.
+        2. Area: Add a new vent system branching from the Scorched Slab entrance, eventually connecting underground to a cave mouth that will appear by Lavaridge's hot springs path
+            1. Antechamber and hazard passage: environmental hazards (new lava flows, steam vents) 
+            2. Player and Flannery rescue two stranded survey workers along the way
+            3. Vent chamber: Flannery identifies redirected magma flow as the cause of the cooling springs; player helps reopen a secondary channel (Rock Smash / Strength puzzle) to partially restore flow immediately
+        4. Flannery has idea to cultivate a Slugma / Torkoal colony in the old flow vent under Lavaridge to restore heat and partially restore lava flow under area
+        5. Underground tunnel connects the vent chamber to Lavaridge's hot springs path. Only appears after player has worked through vent chamber from Scorched Slab and opens entrance with Rock Smash scripted event
+        6. Rewards: 
+            1. Rescued survey workers set up renewable shard mining node in the stabilized vent chamber and a small White Herb shop from a fire-type herbalist among them
+            2. Chamber with Sun Stone item. Once player has obtained National Pokedex, can find wild Sunkern who have been attracted by stable conditions
+            3. Player can find shiny Houndour in side chamber with above-average IVs, a Hasty nature (+Speed / -Def) knowing Flamethrower, Torment, and egg moves Beat Up and Will-O-Wisp.
     5. Norman
         1. Find Norman in Littleroot after the player's first gym battle
             * Norman makes a comment after losing, reflecting that he needs to get to know his family better and acknowledging that his career focus has caused him to miss out on family connection
@@ -93,33 +95,40 @@
             * Nature: Adamant
             * Moves: Hypnosis, Secret Power, Bite (egg move), Earthquake (TM)
         5. Worldbuilding: Make Norman appear at home with mom between each rematch
-            * After second rematch, give player an egg for Girafarig
-            * After third rematch (postgame), give player an egg for Eevee
-            * After fourth rematch (postgame), give player an egg for Tauros
-            * After fifth and final rematch (postgame), give player an egg for Kangaskhan
+            * After second rematch, give player an egg for Aipom
+            * After third rematch (postgame), give player an egg for Snubbull
+            * After fourth rematch (postgame), give player an egg for Girafarig
+            * After fifth and final rematch (postgame), give player an egg for Miltank
     6. Winona
-        1. Find Winona at Mt. Pyre after Kyogre and Groudon are released; she is looking for Rayquaza
-        2. Ask the player for help. Fly to Mt. Chimney to look around
-        3. New area: on top of Mt. Magma, find a new Magma hideout expansion
-        * Fight off Magma grunts with Winona
-        * Culminate in a fight with 2 Magma admins
-        4. After winning without finding Rayquaza, gift the player a Scope Lens for their trouble
-        5. Worldbuilding: Have grunts/admins talk about how Maxie gave up on his land expansion goals and how he is being misled
-        6. Order routing: Wallace in the Cave of Origin suggests the player look at Mt. Pyre first; he will go look at Sky Pillar
-            * The player can choose to ignore him and go to Sky Pillar, leaving Winona at Mt. Pyre for later
-            * Make sure there is no event collision on Mt. Pyre - if other events occur in the postgame, have Winona appear outside her gym instead
+        1. Find Winona outside her gym after Kyogre and Groudon are released
+        2. Winona explains that the seasonal migratory bird Pokemon flocks that nest on the Sootopolis caldera's exterior cliffs have vanished, and asks the player to help her investigate
+        3. Winona flies the player to a new small platform on Route 126, built into the exterior caldera cliff face, with an entrance leading to a new cliff interior area
+        4. New areas:
+            1. Short transition cave from Route 126. Uses existing cave tilesets
+            2. Sootopolis exterior cliff face. Uses Sootopolis tilesets if possible
+            3. New cave at upper portion of cliff face
+        5. Partway up, the player and Winona find a newly opened cave, created from shifting after Groudon's awakening
+            1. A group of Loudred and Exploud have gathered outside the cave entrance and are causing a continuous Uproar, which has driven off the nesting birds
+            2. Approaching the group triggers an escalating two-stage warning/rockslide sequence. If the player gets too close, a rockslide sends the player back to a position lower on the cliff face.
+        6. Once the player makes their way past the Loudred and Exploud, they find a Whismur trapped by a Strength/Rock Smash obstacle
+            1. Clearing the obstacle and freeing the Whismur allows it to return to the group
+            2. The Whismur returned, the Loudred/Exploud group calms the uproar and returns to the cave
+        7. Winona and the player observe some Pelipper returning to the cliff face, resolving the quest.
+        8. Reward: Winona gifts the player a Scope Lens
+        9. After quest completion, non-Hoenn migratory bird encounters become available on this new area after receiving the National Dex
+        10. After quest completion, the player can enter the Exploud cave to find a shiny Loudred
     7. Tate and Liza
         1. Find them in the postgame at Altering Cave
         2. Worldbuilding: They talk about meditating and ask to see specific Pokémon to attune their powers, rewarding the player in return
             1. Ask to see Alakazam
-                * After the player shows Alakazam, add Drowzee and Unown to Altering Cave encounters
+                * After the player shows Alakazam, add Drowzee and Abra to Altering Cave encounters
             2. Ask to see Unown
                 * After the player shows Unown, add Mr. Mime and Misdreavus encounters to Altering Cave
             3. Ask to see Chimecho
-                * After the player shows Chimecho, add a Larvitar encounter to Altering Cave
+                * After the player shows Chimecho, add Psyduck and Jynx encounters to Altering Cave
         3. After all Pokémon are shown, Tate and Liza say they have unlocked their potential and gained the ability to help the player unlock theirs
             * Create shop to enable IV editing
-                * 1 BP per IV point of choice
+                * 1 Heart Scale per IV point of choice
     8. Wallace
 		1. After the initial E4 defeat, find Wallace in the Battle Frontier
 		2. Ask the player for help investigating a rumor of a group of Aqua grunts seen near the Battle Frontier
@@ -137,10 +146,12 @@
 				* Reward: Give the player a shiny Huntail with max IVs
 					* Level: 50
 					* Moves: Dragon Dance, Crunch, Hydro Pump, Earthquake (exclusive move!)
+                    * Nature: Brave (+Attack / -Speed)
 			4. Show Archie a Luvdisc with Max Cuteness
 				* Reward: Give the player a shiny Gorebyss with max IVs
 					* Level: 50
 					* Moves: Calm Mind (exclusive move!), Psychic, Hydro Pump, Ice Beam
+                    * Nature: Quiet (+SpAtk / -Speed)
 		9. Immediately add a vendor that trades Deep Sea Tooth and Deep Sea Scale for each other
 3. Other changes
     1. Make dynamic team selection for Brawly, Wattson, and Flannery

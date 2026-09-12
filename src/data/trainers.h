@@ -9983,5 +9983,101 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
         .party = TRAINER_MON(sParty_MattAndShelly_BrawlyQuest),
-    }
+    },
+
+    [TRAINER_MAY_POSTGAME_HOENN] =
+    {
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_MAY,
+        .trainerName = _("MAY"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_MayPostgame_Hoenn),
+    },
+
+    [TRAINER_MAY_POSTGAME_JOHTO] =
+    {
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_MAY,
+        .trainerName = _("MAY"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_MayPostgame_Johto),
+    },
+
+    [TRAINER_MAY_POSTGAME_KANTO] =
+    {
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_MAY,
+        .trainerName = _("MAY"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_MayPostgame_Kanto),
+    },
+
+    [TRAINER_BRENDAN_POSTGAME_HOENN] =
+    {
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BRENDAN,
+        .trainerName = _("BRENDAN"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_BrendanPostgame_Hoenn),
+    },
+
+    [TRAINER_BRENDAN_POSTGAME_JOHTO] =
+    {
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BRENDAN,
+        .trainerName = _("BRENDAN"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_BrendanPostgame_Johto),
+    },
+
+    [TRAINER_BRENDAN_POSTGAME_KANTO] =
+    {
+        .trainerClass = TRAINER_CLASS_RIVAL,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BRENDAN,
+        .trainerName = _("BRENDAN"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_BrendanPostgame_Kanto),
+    },
+
+    [TRAINER_WALLY_CHAMPION] =
+    {
+        .trainerClass = TRAINER_CLASS_WALLY,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_WALLY,
+        .trainerName = _("WALLY"),
+        .items = {ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .party = TRAINER_MON(sParty_WallyChampion),
+    },
+
+    [TRAINER_STEVEN_CHAMPION_REMATCH] = 
+    {
+        .trainerClass = TRAINER_CLASS_CHAMPION_STEVEN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_STEVEN,
+        .trainerName = _("STEVEN"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .party = TRAINER_MON(sParty_Steven_Champion_Rematch),
+    },
 };
