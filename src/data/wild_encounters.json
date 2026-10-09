@@ -11268,7 +11268,7 @@
               {
                 "min_level": 44,
                 "max_level": 44,
-                "species": "SPECIES_AGGRON"
+                "species": "SPECIES_RHYDON"
               },
               {
                 "min_level": 44,
@@ -11283,7 +11283,7 @@
               {
                 "min_level": 45,
                 "max_level": 45,
-                "species": "SPECIES_MAWILE"
+                "species": "SPECIES_AGGRON"
               }
             ]
           },
@@ -11422,7 +11422,7 @@
               {
                 "min_level": 44,
                 "max_level": 44,
-                "species": "SPECIES_AGGRON"
+                "species": "SPECIES_RHYDON"
               },
               {
                 "min_level": 44,

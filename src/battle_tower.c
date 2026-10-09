@@ -788,7 +788,7 @@ struct
         .level = 42,
         .nature = NATURE_IMPISH,
         .evs = {255, 0, 255, 0, 0, 255},
-        .moves = {MOVE_IRON_DEFENSE, MOVE_IRON_TAIL, MOVE_SOLAR_BEAM, MOVE_THUNDERBOLT}
+        .moves = {MOVE_IRON_DEFENSE, MOVE_IRON_TAIL, MOVE_BLIZZARD, MOVE_THUNDERBOLT}
     },
     {
         .species = SPECIES_METAGROSS,
