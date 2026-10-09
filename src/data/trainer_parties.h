@@ -1045,7 +1045,7 @@ static const struct TrainerMon sParty_Edgar[] = {
     {
     .iv = 100,
     .lvl = 48,
-    .species = SPECIES_AGGRON,
+    .species = SPECIES_RHYDON,
     }
 };
 // Victory Road CooltrainerM
@@ -1252,7 +1252,7 @@ static const struct TrainerMon sParty_Keira[] = {
     {
     .iv = 100,
     .lvl = 50,
-    .species = SPECIES_AGGRON,
+    .species = SPECIES_GOLEM,
     },
     {
     .iv = 100,
@@ -8478,9 +8478,9 @@ static const struct TrainerMon sParty_MaxieMagmaHideout[] = {
     {
     .iv = 150,
     .lvl = 38,
-    .species = SPECIES_AGGRON,
+    .species = SPECIES_GOLEM,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_IRON_TAIL, MOVE_ROCK_THROW, MOVE_EARTHQUAKE, MOVE_IRON_DEFENSE}
+    .moves = {MOVE_IRON_TAIL, MOVE_ROCK_BLAST, MOVE_EARTHQUAKE, MOVE_SELF_DESTRUCT}
     },
     {
     .iv = 150,
