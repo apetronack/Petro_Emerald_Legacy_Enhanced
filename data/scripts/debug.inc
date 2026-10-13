@@ -49,7 +49,7 @@ Debug_CheatStart::
 @ activated. Roxanne NPC appears outside Rustboro Gym, blocking entry.
 @
 @ Automatically warps to Rusturf Tunnel (Route 116 entrance side).
-@ Gives a level 45 Sceptile for immediate combat testing.
+@ Gives a level 30 team for immediate combat testing.
 @ =============================================================================
 Debug_Script_1::
 	lockall
@@ -141,10 +141,23 @@ Debug_Script_1::
 	addmoney 5000, 0
 
 	@ --- Give a high-level starter for combat testing ---
-	givemon SPECIES_SCEPTILE, 45, ITEM_NONE
-	givemon SPECIES_BLAZIKEN, 45, ITEM_NONE
-	givemon SPECIES_SWAMPERT, 45, ITEM_NONE
-	giveitem ITEM_MASTER_BALL
+	givemon SPECIES_MARSHTOMP, 30, ITEM_NONE
+	givemon SPECIES_BRELOOM, 30, ITEM_NONE
+	givemon SPECIES_PONYTA, 30, ITEM_NONE
+	givemon SPECIES_SWELLOW, 30, ITEM_NONE
+	givemon SPECIES_MACHOKE, 30, ITEM_NONE
+	givemon SPECIES_GRAVELER, 30, ITEM_NONE
+	giveitem ITEM_TM_ROCK_TOMB, 3
+	giveitem ITEM_HM_ROCK_SMASH, 1
+	giveitem ITEM_HM_FLASH, 1
+	giveitem ITEM_HM_CUT, 1
+	giveitem ITEM_TM_BULK_UP, 2
+	giveitem ITEM_TM_SHOCK_WAVE, 1
+	giveitem ITEM_TM_SECRET_POWER, 6
+	giveitem ITEM_TM_BULLET_SEED, 1
+	giveitem ITEM_SOFT_SAND, 1
+	giveitem ITEM_MIRACLE_SEED, 1
+	giveitem ITEM_MASTER_BALL, 1
 
 	@ --- Warp directly into Rusturf Tunnel (Route 116 entrance side) ---
 	warp MAP_RUSTURF_TUNNEL, 5, 10
@@ -225,12 +238,23 @@ Debug_Script_2::
 	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
 
 	@ --- Give a high-level starter for combat testing ---
-	givemon SPECIES_SCEPTILE, 45, ITEM_NONE
-	givemon SPECIES_BLAZIKEN, 45, ITEM_NONE
-	givemon SPECIES_SWAMPERT, 45, ITEM_NONE
-
-	@ --- Give a master ball to catch the shiny Lairon in the cave ---
-	giveitem ITEM_MASTER_BALL
+	givemon SPECIES_MARSHTOMP, 30, ITEM_NONE
+	givemon SPECIES_BRELOOM, 30, ITEM_NONE
+	givemon SPECIES_PONYTA, 30, ITEM_NONE
+	givemon SPECIES_SWELLOW, 30, ITEM_NONE
+	givemon SPECIES_MACHOKE, 30, ITEM_NONE
+	givemon SPECIES_GRAVELER, 30, ITEM_NONE
+	giveitem ITEM_TM_ROCK_TOMB, 3
+	giveitem ITEM_HM_ROCK_SMASH, 1
+	giveitem ITEM_HM_FLASH, 1
+	giveitem ITEM_HM_CUT, 1
+	giveitem ITEM_TM_BULK_UP, 2
+	giveitem ITEM_TM_SHOCK_WAVE, 1
+	giveitem ITEM_TM_SECRET_POWER, 6
+	giveitem ITEM_TM_BULLET_SEED, 1
+	giveitem ITEM_SOFT_SAND, 1
+	giveitem ITEM_MIRACLE_SEED, 1
+	giveitem ITEM_MASTER_BALL, 1
 
 	@ --- Warp into Rusturf_MagmaCave_Main (past the Entry tunnel) ---
 	warp MAP_RUSTURF_MAGMA_CAVE_MAIN, 5, 25
