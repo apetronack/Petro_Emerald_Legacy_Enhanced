@@ -61,3 +61,8 @@ prefabs.json
 
 # Generated scripts files
 **/scripts.inc
+
+# Python helpers and files
+.venv/
+triple_layer_converter.py
+requirements.txt

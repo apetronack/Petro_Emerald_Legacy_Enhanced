@@ -13612,18 +13612,6 @@ static const struct TrainerMon sParty_TabithaAndCourtney_Rusturf[] = {
     },
     {
     .iv = 50,
-    .lvl = 31,
-    .species = SPECIES_ZANGOOSE,
-    .moves = {MOVE_SLASH, MOVE_METAL_CLAW, MOVE_SWORDS_DANCE, MOVE_QUICK_ATTACK}
-    },
-    {
-    .iv = 50,
-    .lvl = 32,
-    .species = SPECIES_CACTURNE,
-    .moves = {MOVE_PURSUIT, MOVE_PIN_MISSILE, MOVE_LEECH_SEED, MOVE_FOCUS_PUNCH}
-    },
-    {
-    .iv = 50,
     .lvl = 30,
     .species = SPECIES_CAMERUPT,
     .heldItem = ITEM_NONE,
@@ -13632,9 +13620,21 @@ static const struct TrainerMon sParty_TabithaAndCourtney_Rusturf[] = {
     {
     .iv = 50,
     .lvl = 31,
+    .species = SPECIES_ZANGOOSE,
+    .moves = {MOVE_SLASH, MOVE_METAL_CLAW, MOVE_SWORDS_DANCE, MOVE_QUICK_ATTACK}
+    },
+    {
+    .iv = 50,
+    .lvl = 31,
     .species = SPECIES_MIGHTYENA,
     .heldItem = ITEM_NONE,
     .moves = {MOVE_BITE, MOVE_HOWL, MOVE_SAND_ATTACK, MOVE_TAKE_DOWN}
+    },
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_CACTURNE,
+    .moves = {MOVE_PURSUIT, MOVE_PIN_MISSILE, MOVE_LEECH_SEED, MOVE_FOCUS_PUNCH}
     },
     {
     .iv = 50,
