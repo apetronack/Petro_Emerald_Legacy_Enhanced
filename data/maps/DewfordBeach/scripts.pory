@@ -1,0 +1,591 @@
+// Aqua NPCs present during the Brawly Quest
+const LOCALID_AQUA_GRUNT_3        = 1  // Aqua F trainer, northeast beach (x:13, y:3)
+const LOCALID_AQUA_GRUNT_1        = 2  // Aqua M trainer, north beach (x:19, y:5)
+const LOCALID_AQUA_M_NORTH        = 3  // Aqua M non-trainer, north indoor area (x:20, y:13)
+const LOCALID_AQUA_F_WEST         = 4  // Aqua F non-trainer, west beach (x:6, y:6)
+const LOCALID_MATT                = 5  // Matt, southwest beach (x:2, y:19)
+const LOCALID_AQUA_GRUNT_2        = 6  // Aqua F trainer, south beach (x:14, y:18)
+const LOCALID_SHELLY              = 17 // Shelly, southwest beach (x:3, y:20)
+const LOCALID_BRAWLY              = 18 // Brawly, southwest beach (x:5, y:17)
+const SOUTHERN_TRIGGERED = 0
+const NORTHERN_TRIGGERED = 1
+
+mapscripts DewfordBeach_MapScripts {}
+
+script DewfordBeach_EventScript_AquaGrunt1 {
+    trainerbattle_single(TRAINER_AQUA_GRUNT_BRAWLY_QUEST_1, DewfordBeach_Text_AquaGrunt1Intro, DewfordBeach_Text_AquaGrunt1Defeat)
+    msgbox(DewfordBeach_Text_AquaGrunt1PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DewfordBeach_EventScript_AquaGrunt2 {
+    trainerbattle_single(TRAINER_AQUA_GRUNT_BRAWLY_QUEST_2, DewfordBeach_Text_AquaGrunt2Intro, DewfordBeach_Text_AquaGrunt2Defeat)
+    msgbox(DewfordBeach_Text_AquaGrunt2PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DewfordBeach_EventScript_AquaGrunt3 {
+    trainerbattle_single(TRAINER_AQUA_GRUNT_BRAWLY_QUEST_3, DewfordBeach_Text_AquaGrunt3Intro, DewfordBeach_Text_AquaGrunt3Defeat)
+    msgbox(DewfordBeach_Text_AquaGrunt3PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script DewfordBeach_EventScript_AquaGruntNorth {
+    msgbox(DewfordBeach_Text_AquaGruntNorth, MSGBOX_NPC)
+    end
+}
+
+script DewfordBeach_EventScript_AquaGruntWest {
+    msgbox(DewfordBeach_Text_AquaGruntWest, MSGBOX_NPC)
+    end
+}
+
+script DewfordBeach_EventScript_FisherBeach {
+    // Before the Brawly quest is complete, use the pre-quest teaser text
+    if (!flag(FLAG_BRAWLY_QUEST_COMPLETE)) {
+        msgbox(DewfordBeach_Text_FisherBeach, MSGBOX_NPC)
+        end()
+    }
+    // All five challenges finished
+    if (flag(FLAG_FISHING_CHALLENGE_SHARPEDO_COMPLETE)) {
+        msgbox(DewfordBeach_Text_FisherAllChallengesDone, MSGBOX_NPC)
+        end()
+    }
+    // Route to the first uncompleted challenge in sequence
+    if (!flag(FLAG_FISHING_CHALLENGE_MAGIKARP_COMPLETE)) {
+        goto(DewfordBeach_EventScript_FishingChallenge_Magikarp)
+    }
+    if (!flag(FLAG_FISHING_CHALLENGE_TENTACOOL_COMPLETE)) {
+        goto(DewfordBeach_EventScript_FishingChallenge_Tentacool)
+    }
+    if (!flag(FLAG_FISHING_CHALLENGE_WAILMER_COMPLETE)) {
+        goto(DewfordBeach_EventScript_FishingChallenge_Wailmer)
+    }
+    if (!flag(FLAG_FISHING_CHALLENGE_STARYU_COMPLETE)) {
+        goto(DewfordBeach_EventScript_FishingChallenge_Staryu)
+    }
+    goto(DewfordBeach_EventScript_FishingChallenge_Sharpedo)
+}
+
+// ---- Challenge 1: Magikarp (+1 SD) - reward: 5x Net Ball ----
+script DewfordBeach_EventScript_FishingChallenge_Magikarp {
+    lock()
+    faceplayer()
+    msgbox(DewfordBeach_Text_FishingChallenge_Magikarp_Intro, MSGBOX_DEFAULT)
+    special(ChoosePartyMon)
+    waitstate()
+    copyvar(VAR_RESULT, VAR_0x8004)
+    if (var(VAR_RESULT) == PARTY_NOTHING_CHOSEN) {
+        msgbox(DewfordBeach_Text_FishingChallenge_NothingShown, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    special(CompareMagikarpFishingSize)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(DewfordBeach_Text_FishingChallenge_WrongSpecies_Magikarp, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    if (var(VAR_RESULT) == 2) {
+        msgbox(DewfordBeach_Text_FishingChallenge_TooSmall_Magikarp, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    msgbox(DewfordBeach_Text_FishingChallenge_Success_Magikarp, MSGBOX_DEFAULT)
+    giveitem(ITEM_NET_BALL, 5)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+    setflag(FLAG_FISHING_CHALLENGE_MAGIKARP_COMPLETE)
+    release()
+    end()
+}
+
+// ---- Challenge 2: Tentacool (+1 SD) - reward: Poison Barb ----
+script DewfordBeach_EventScript_FishingChallenge_Tentacool {
+    lock()
+    faceplayer()
+    msgbox(DewfordBeach_Text_FishingChallenge_Tentacool_Intro, MSGBOX_DEFAULT)
+    special(ChoosePartyMon)
+    waitstate()
+    copyvar(VAR_RESULT, VAR_0x8004)
+    if (var(VAR_RESULT) == PARTY_NOTHING_CHOSEN) {
+        msgbox(DewfordBeach_Text_FishingChallenge_NothingShown, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    special(CompareTentacoolFishingSize)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(DewfordBeach_Text_FishingChallenge_WrongSpecies_Tentacool, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    if (var(VAR_RESULT) == 2) {
+        msgbox(DewfordBeach_Text_FishingChallenge_TooSmall_Tentacool, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    msgbox(DewfordBeach_Text_FishingChallenge_Success_Tentacool, MSGBOX_DEFAULT)
+    giveitem(ITEM_POISON_BARB)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+    setflag(FLAG_FISHING_CHALLENGE_TENTACOOL_COMPLETE)
+    release()
+    end()
+}
+
+// ---- Challenge 3: Wailmer (+1 SD) - reward: HP Up ----
+script DewfordBeach_EventScript_FishingChallenge_Wailmer {
+    lock()
+    faceplayer()
+    msgbox(DewfordBeach_Text_FishingChallenge_Wailmer_Intro, MSGBOX_DEFAULT)
+    special(ChoosePartyMon)
+    waitstate()
+    copyvar(VAR_RESULT, VAR_0x8004)
+    if (var(VAR_RESULT) == PARTY_NOTHING_CHOSEN) {
+        msgbox(DewfordBeach_Text_FishingChallenge_NothingShown, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    special(CompareWailmerFishingSize)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(DewfordBeach_Text_FishingChallenge_WrongSpecies_Wailmer, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    if (var(VAR_RESULT) == 2) {
+        msgbox(DewfordBeach_Text_FishingChallenge_TooSmall_Wailmer, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    msgbox(DewfordBeach_Text_FishingChallenge_Success_Wailmer, MSGBOX_DEFAULT)
+    giveitem(ITEM_HP_UP)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+    setflag(FLAG_FISHING_CHALLENGE_WAILMER_COMPLETE)
+    release()
+    end()
+}
+
+// ---- Challenge 4: Staryu (+2 SD) - reward: Water Stone ----
+script DewfordBeach_EventScript_FishingChallenge_Staryu {
+    lock()
+    faceplayer()
+    msgbox(DewfordBeach_Text_FishingChallenge_Staryu_Intro, MSGBOX_DEFAULT)
+    special(ChoosePartyMon)
+    waitstate()
+    copyvar(VAR_RESULT, VAR_0x8004)
+    if (var(VAR_RESULT) == PARTY_NOTHING_CHOSEN) {
+        msgbox(DewfordBeach_Text_FishingChallenge_NothingShown, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    special(CompareStaryuFishingSize)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(DewfordBeach_Text_FishingChallenge_WrongSpecies_Staryu, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    if (var(VAR_RESULT) == 2) {
+        msgbox(DewfordBeach_Text_FishingChallenge_TooSmall_Staryu, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    msgbox(DewfordBeach_Text_FishingChallenge_Success_Staryu, MSGBOX_DEFAULT)
+    giveitem(ITEM_WATER_STONE)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+    setflag(FLAG_FISHING_CHALLENGE_STARYU_COMPLETE)
+    release()
+    end()
+}
+
+// ---- Challenge 5: Sharpedo (+2 SD) - reward: Scope Lens ----
+script DewfordBeach_EventScript_FishingChallenge_Sharpedo {
+    lock()
+    faceplayer()
+    msgbox(DewfordBeach_Text_FishingChallenge_Sharpedo_Intro, MSGBOX_DEFAULT)
+    special(ChoosePartyMon)
+    waitstate()
+    copyvar(VAR_RESULT, VAR_0x8004)
+    if (var(VAR_RESULT) == PARTY_NOTHING_CHOSEN) {
+        msgbox(DewfordBeach_Text_FishingChallenge_NothingShown, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    special(CompareSharpedoFishingSize)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(DewfordBeach_Text_FishingChallenge_WrongSpecies_Sharpedo, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    if (var(VAR_RESULT) == 2) {
+        msgbox(DewfordBeach_Text_FishingChallenge_TooSmall_Sharpedo, MSGBOX_DEFAULT)
+        release()
+        end()
+    }
+    msgbox(DewfordBeach_Text_FishingChallenge_Success_Sharpedo, MSGBOX_DEFAULT)
+    giveitem(ITEM_SCOPE_LENS)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+    setflag(FLAG_FISHING_CHALLENGE_SHARPEDO_COMPLETE)
+    release()
+    end()
+}
+
+// ---- Fishing challenge texts ----
+
+text DewfordBeach_Text_FisherAllChallengesDone {
+    format("You really are the finest angler on\nDEWFORD BEACH!\pI've never seen catches like yours.\nThank you for humoring an old fisherman!")
+}
+
+text DewfordBeach_Text_FishingChallenge_NothingShown {
+    format("Hm? Nothing to show me?\nCome back when you've got one!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Magikarp_Intro {
+    format("Glad the beach is open again!\nNow I can get back to business.\pI've spent years looking for a really\nbig MAGIKARP in these waters.\pA great specimen is well above average\nsize - not your everyday catch!\pIf you can show me a big one,\nI'll make it worth your while.")
+}
+
+text DewfordBeach_Text_FishingChallenge_WrongSpecies_Magikarp {
+    format("Ah, not bad! But that's no MAGIKARP.\nI'm only after the biggest of that kind.")
+}
+
+text DewfordBeach_Text_FishingChallenge_TooSmall_Magikarp {
+    format("{STR_VAR_2} dm… Not bad, but I've\nseen bigger MAGIKARP than that.\pCatch a larger one and come back!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Success_Magikarp {
+    format("{STR_VAR_2} dm! Now THAT is a MAGIKARP!\pYou've got a real eye for fishing.\nTake these NET BALLs as my thanks!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Tentacool_Intro {
+    format("Impressive! That MAGIKARP was a beauty.\pNow I've got another challenge for you.\nCan you find a large TENTACOOL?\pThose jellyfish are tricky to catch, but\na really big one is worth the effort!\pShow me a prize specimen and\nI'll reward you well.")
+}
+
+text DewfordBeach_Text_FishingChallenge_WrongSpecies_Tentacool {
+    format("Hmm, not what I'm after.\nI want to see a TENTACOOL this time.")
+}
+
+text DewfordBeach_Text_FishingChallenge_TooSmall_Tentacool {
+    format("{STR_VAR_2} dm… I appreciate the effort,\nbut I've seen bigger TENTACOOL.\pTry again with a larger one!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Success_Tentacool {
+    format("{STR_VAR_2} dm! What a splendid TENTACOOL!\pEven its tentacles look extra long!\nHere, take this POISON BARB!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Wailmer_Intro {
+    format("You're on a roll!\pNext up: a big WAILMER.\nThose round fellas can get really huge.\pA large WAILMER is a proper big catch.\nFind one and bring it to show me!")
+}
+
+text DewfordBeach_Text_FishingChallenge_WrongSpecies_Wailmer {
+    format("That one's not a WAILMER.\nI need to see a nice big one of those!")
+}
+
+text DewfordBeach_Text_FishingChallenge_TooSmall_Wailmer {
+    format("{STR_VAR_2} dm… That's a fine WAILMER,\nbut not quite big enough for me.\pBring me a larger one!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Success_Wailmer {
+    format("{STR_VAR_2} dm! What a wondrous WAILMER!\pThat thing is enormous!\nTake this HP UP - you've earned it!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Staryu_Intro {
+    format("Three for three - you're incredible!\pNow for a tougher one. Can you find\nan unusually large STARYU?\pThese ones are rare. You'll need\nreal luck and skill to catch one.\pIf you manage it, I have a\nvery special reward for you.")
+}
+
+text DewfordBeach_Text_FishingChallenge_WrongSpecies_Staryu {
+    format("That's not a STARYU.\nI need to see an exceptionally big one!")
+}
+
+text DewfordBeach_Text_FishingChallenge_TooSmall_Staryu {
+    format("{STR_VAR_2} dm… A good STARYU, but\nI need one truly exceptional in size.\pKeep searching - it's out there!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Success_Staryu {
+    format("{STR_VAR_2} dm! Incredible!\nThat STARYU is one in a million!\pYou have a gift for this.\nTake this WATER STONE!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Sharpedo_Intro {
+    format("I can't believe you found that STARYU!\pOne last challenge - and this is\nthe big one. A giant SHARPEDO.\pSHARPEDO are powerful and dangerous,\nand a truly huge one is terrifying.\pBut if anyone can find one,\nit's you. What do you say?")
+}
+
+text DewfordBeach_Text_FishingChallenge_WrongSpecies_Sharpedo {
+    format("Brave attempt, but that's not\na SHARPEDO. Go find the real thing!")
+}
+
+text DewfordBeach_Text_FishingChallenge_TooSmall_Sharpedo {
+    format("{STR_VAR_2} dm… Already terrifying,\nbut I need one even more massive.\pThat ultimate trophy is still out there!")
+}
+
+text DewfordBeach_Text_FishingChallenge_Success_Sharpedo {
+    format("{STR_VAR_2} dm! A colossal SHARPEDO!\pI've fished these waters my whole life\nand never seen anything like it!\pYou are without a doubt the greatest\nangler DEWFORD BEACH has ever known!\pTake this SCOPE LENS as the\nfinal prize of a true champion!")
+}
+
+script DewfordBeach_EventScript_FisherBridge {
+    msgbox(DewfordBeach_Text_FisherBridge, MSGBOX_NPC)
+    end
+}
+
+script DewfordBeach_EventScript_BoyByHouse {
+    msgbox(DewfordBeach_Text_BoyByHouse, MSGBOX_NPC)
+    end
+}
+
+script DewfordBeach_EventScript_SwimmerWater {
+    msgbox(DewfordBeach_Text_SwimmerWater, MSGBOX_NPC)
+    end
+}
+
+script DewfordBeach_EventScript_TuberWater {
+    msgbox(DewfordBeach_Text_TuberWater, MSGBOX_NPC)
+    end
+}
+
+script DewfordBeach_EventScript_GirlByBrawlyParentsHouse {
+    msgbox(DewfordBeach_Text_GirlByBrawlyParentsHouse, MSGBOX_NPC)
+    end
+}
+
+script DewfordBeach_EventScript_KidByWater {
+    msgbox(DewfordBeach_Text_KidByWater, MSGBOX_NPC)
+    end
+}
+
+// Admin Double Battle Triggers
+script DewfordBeach_EventScript_AdminBattle_NorthernTrigger {
+    // If the admins have already been defeated, do nothing
+    if (flag(FLAG_BRAWLY_QUEST_ADMINS_DEFEATED)) {
+        end
+    }
+    lock
+    setvar(VAR_TEMP_0, NORTHERN_TRIGGERED)
+    // Matt needs to move 1 step east, and Shelly needs to turn right, take 1 step east, then face up
+    // Handle Matt's movement
+    applymovement(LOCALID_MATT, moves(walk_right))
+    // Handle Shelly's movement
+    applymovement(LOCALID_SHELLY, moves(face_right, walk_right, face_up))
+    waitmovement(0)
+    // Check that the player has enough pokemon to battle, then start the battle
+    call(DewfordBeach_EventScript_AdminBattle_CheckEnoughMons)
+    call(DewfordBeach_EventScript_AdminBattle_DoBattle)
+    release
+    end
+}
+
+script DewfordBeach_EventScript_AdminBattle_SouthernTrigger {
+    // If the admins have already been defeated, do nothing
+    if (flag(FLAG_BRAWLY_QUEST_ADMINS_DEFEATED)) {
+        end
+    }
+    lock
+    setvar(VAR_TEMP_0, SOUTHERN_TRIGGERED)
+    //Matt needs to move two steps east, then face down. Shelly needs to face right.
+    // Handle Matt's movement
+    applymovement(LOCALID_MATT, moves(walk_right*2, face_down))
+    // Handle Shelly's movement
+    applymovement(LOCALID_SHELLY, moves(face_right))
+    waitmovement(0)
+    // Check that the player has enough pokemon to battle, then start the battle
+    call(DewfordBeach_EventScript_AdminBattle_CheckEnoughMons)
+    call(DewfordBeach_EventScript_AdminBattle_DoBattle)
+    release
+    end
+}
+
+script DewfordBeach_EventScript_AdminBattle_CheckEnoughMons {
+    // Check that the player has enough pokemon (2+)
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+    if (var(VAR_RESULT) < 2) {
+        msgbox(DewfordBeach_Text_MattNotEnoughMons, MSGBOX_DEFAULT)
+        closemessage()
+        fadescreen(FADE_TO_BLACK)
+        // Warp the player back to the entrance of the beach
+        warp(MAP_DEWFORD_BEACH, 20, 2) # X 20, Y 2
+        waitstate()
+        release
+        end
+    }
+    // In other case, fall through to the battle
+}
+
+script DewfordBeach_EventScript_AdminBattle_DoBattle {
+    // Play preamble messages from admins
+    msgbox(DewfordBeach_Text_AdminBattlePreamble, MSGBOX_DEFAULT)
+    closemessage()
+
+    // Battle the player
+    // Note: If this doesn't work, add event script as last argument to be run after battle ends
+    trainerbattle_double(TRAINER_AQUA_ADMINS_BRAWLY_QUEST, DewfordBeach_Text_AdminBattleIntro, DewfordBeach_Text_AdminBattleDefeat, DewfordBeach_Text_MattNotEnoughMons, DewfordBeach_EventScript_AdminBattle_PostBattle)
+    release
+    end
+}
+
+script DewfordBeach_EventScript_AdminBattle_PostBattle {
+    // This script is run after the player defeats the admins
+    msgbox(DewfordBeach_Text_AdminBattlePostBattle, MSGBOX_DEFAULT)
+    closemessage()
+    fadescreen(FADE_TO_BLACK)
+    removeobject(LOCALID_AQUA_GRUNT_1)
+    removeobject(LOCALID_AQUA_GRUNT_2)
+    removeobject(LOCALID_AQUA_GRUNT_3)
+    removeobject(LOCALID_AQUA_M_NORTH)
+    removeobject(LOCALID_AQUA_F_WEST)
+    removeobject(LOCALID_MATT)
+    removeobject(LOCALID_SHELLY)
+    setflag(FLAG_BRAWLY_QUEST_ADMINS_DEFEATED)
+    setflag(FLAG_HIDE_BRAWLY_QUEST_AQUAS)
+    fadescreen(FADE_FROM_BLACK)
+
+    // Have Brawly swoop in
+    delay(30)
+    setfieldeffectargument(0,1)
+    dofieldeffect(FLDEFF_NPCFLY_OUT)
+    waitfieldeffect(FLDEFF_NPCFLY_OUT)
+    addobject(LOCALID_BRAWLY)
+    if (var(VAR_TEMP_0) == NORTHERN_TRIGGERED) {
+        applymovement(LOCALID_BRAWLY, DewfordBeach_Movement_BrawlyApproachPlayer_NorthTriggerTile)
+    } else {
+        applymovement(LOCALID_BRAWLY, DewfordBeach_Movement_BrawlyApproachPlayer_SouthTriggerTile)
+    }
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(face_right))
+    waitmovement(0)
+    msgbox(DewfordBeach_Text_BrawlyPostBattle, MSGBOX_DEFAULT)
+    closemessage()
+
+    // Teleport player back to in front of Brawly's gym in Dewford to finish quest
+    setvar(VAR_DEWFORD_TOWN_STATE, 1)
+    warp(MAP_DEWFORD_TOWN, 8, 19)
+    waitstate()
+    release
+    end
+}
+
+movement DewfordBeach_Movement_BrawlyApproachPlayer_NorthTriggerTile {
+    walk_down*2
+    face_left
+}
+
+movement DewfordBeach_Movement_BrawlyApproachPlayer_SouthTriggerTile {
+    walk_down*3
+    face_left
+}
+
+text DewfordBeach_Text_AquaGrunt1Intro {
+    format("TEAM AQUA claimed this beach! Get out before I make you!")
+}
+
+text DewfordBeach_Text_AquaGrunt1Defeat {
+    format("... Oh. As you were.")
+}
+
+text DewfordBeach_Text_AquaGrunt1PostBattle {
+    format("I thought you were one of those hapless townspeople... You can fight!")
+}
+
+text DewfordBeach_Text_AquaGrunt2Intro {
+    format("Hmph! You've got some nerve coming here. TEAM AQUA controls this beach! Turn back now!")
+}
+
+text DewfordBeach_Text_AquaGrunt2Defeat {
+    format("Not bad...\Nfor a beginner.")
+}
+
+text DewfordBeach_Text_AquaGrunt2PostBattle {
+    format("Hmph! Don't get too full of yourself! Our Admins won't lose!")
+}
+
+text DewfordBeach_Text_AquaGrunt3Intro {
+    format("Halt! This area is sealed off under TEAM AQUA's orders!")
+}
+
+text DewfordBeach_Text_AquaGrunt3Defeat {
+    format("What?! How did you beat me?!")
+}
+
+text DewfordBeach_Text_AquaGrunt3PostBattle {
+    format("Fine, go... But our Admins will stop you!")
+}
+
+text DewfordBeach_Text_AquaGruntNorth {
+    format("TEAM AQUA's got this beach on lockdown until the bosses say so.")
+}
+
+text DewfordBeach_Text_AquaGruntWest {
+    format("I'm doing my part to keep this beach secure for TEAM AQUA. You aren't welcome here, so move along!")
+}
+
+text DewfordBeach_Text_FisherBeach {
+    format("I've been keeping an eye on these waters, and I can tell you've got the look of a real angler. Come find me again soon. I'd like to see what kind of Pokemon you can hook here on DEWFORD BEACH.")
+}
+
+text DewfordBeach_Text_FisherBridge {
+    format("The fish are really biting today! You can almost feel the rods bending all across DEWFORD BEACH.")
+}
+
+text DewfordBeach_Text_BoyByHouse {
+    format("Thanks for kicking out those TEAM AQUA grunts! Now I can play in the sand again without getting yelled at!")
+}
+
+text DewfordBeach_Text_SwimmerWater {
+    format("Ahh, this water is perfect today! Not too cold, not too warm, just right for a long swim.")
+}
+
+text DewfordBeach_Text_TuberWater {
+    format("Splashy-splash! The water feels like a giant bathtub for the whole beach!")
+}
+
+text DewfordBeach_Text_GirlByBrawlyParentsHouse {
+    format("Thank you for helping DEWFORD BEACH! If you have a minute, you should visit BRAWLY's parents in the nearby house. They really want to thank you, too.")
+}
+
+text DewfordBeach_Text_KidByWater {
+    format("This water looks cold. I might just play on the beach today instead.")
+}
+
+text DewfordBeach_Text_MattNotEnoughMons {
+    format("You're bold enough to challenge us, yet you don't even have enough Pokemon to battle? Come back when you have at least 2!")
+}
+
+text DewfordBeach_Text_AdminBattlePreamble {
+    format("MATT: So, YOU found our hideout, huh?"
+    "I was expecting BRAWLY."
+    "You don't look like much, but you did"
+    "get past our comrades. Impressive.\N"
+    "SHELLY: Yeah, not bad. But  we're"
+    "a cut above those grunts."
+    "Your meddling stops here with us!")
+}
+
+text DewfordBeach_Text_AdminBattleIntro {
+    format("MATT: Let's see if you can back up"
+    "your confidence in battle!\N"
+    "SHELLY: Don't hold back, Matt! Let's"
+    "show them what TEAM AQUA is made of!")
+}
+
+text DewfordBeach_Text_AdminBattleDefeat {
+    format("MATT: What?! How did you beat us?!\N"
+    "SHELLY: No way... I thought we were"
+    "stronger than that!")
+}
+
+text DewfordBeach_Text_AdminBattlePostBattle {
+    format("MATT: I can't believe we lost to you...\N"
+    "SHELLY: Ugh, how embarrassing!\N"
+    "MATT: This place wasn't as hidden"
+    "or secure as ARCHIE made it out to be."
+    "We'd better clear out before"
+    "word gets back to BRAWLY!\N"
+    "SHELLY: Yeah, let's scram!")
+}
+
+script DewfordBeach_Sign_BrawlysParents {
+    msgbox(DewfordBeach_Text_SignBrawlysParents, MSGBOX_SIGN)
+    end
+}
+
+text DewfordBeach_Text_SignBrawlysParents {
+    format("Home of BRAWLY's Parents\N"
+    "Where Dewford's big wave\N"
+    "began as a ripple...")
+}
+
+text DewfordBeach_Text_BrawlyPostBattle {
+    format("BRAWLY: I came as fast as I could! TEAM AQUA, right here on DEWFORD BEACH - I can't believe it. You've done something today that I should have handled myself, and I owe you for it. Head back to DEWFORD TOWN and meet me outside the gym - I want to thank you properly.")
+}

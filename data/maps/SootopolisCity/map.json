@@ -273,6 +273,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SootopolisCity_EventScript_BrendanProfessor",
       "flag": "FLAG_HIDE_SOOTOPOLIS_CITY_BRENDAN"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WALLACE",
+      "x": 29,
+      "y": 33,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SootopolisCity_EventScript_WallaceVisiting",
+      "flag": "FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS"
     }
   ],
   "warp_events": [

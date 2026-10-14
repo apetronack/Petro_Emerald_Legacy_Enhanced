@@ -2014,6 +2014,21 @@ const u8 gText_EVO_LEVEL_ATK_LT_DEF[]               = _("LvlUp to {STR_VAR_2}, A
 const u8 gText_EVO_LEVEL_SILCOON[]                  = _("LvlUp to {STR_VAR_2}, Silcoon persona");
 const u8 gText_EVO_LEVEL_CASCOON[]                  = _("LvlUp to {STR_VAR_2}, Cascoon persona");
 const u8 gText_EVO_LEVEL_NINJASK[]                  = _("LvlUp to {STR_VAR_2}");
+
+// DewfordBeach_Indoor3 move tutor move name strings
+const u8 gText_Tutor_MegaPunch[]     = _("MEGA PUNCH");
+const u8 gText_Tutor_MegaKick[]      = _("MEGA KICK");
+const u8 gText_Tutor_BodySlam[]      = _("BODY SLAM");
+const u8 gText_Tutor_RockSlide[]     = _("ROCK SLIDE");
+const u8 gText_Tutor_Counter[]       = _("COUNTER");
+const u8 gText_Tutor_DynamicPunch[]  = _("DYNAMICPUNCH");
+const u8 gText_Tutor_SwordsDance[]   = _("SWORDS DANCE");
+const u8 gText_Tutor_MudSlap[]       = _("MUD-SLAP");
+const u8 gText_Tutor_SeismicToss[]   = _("SEISMIC TOSS");
+const u8 gText_Tutor_Endure[]        = _("ENDURE");
+const u8 gText_Tutor_FirePunch[]     = _("FIRE PUNCH");
+const u8 gText_Tutor_IcePunch[]      = _("ICE PUNCH");
+const u8 gText_Tutor_ThunderPunch[]  = _("THUNDERPUNCH");
 const u8 gText_EVO_LEVEL_SHEDINJA[]                 = _("LvlUp to {STR_VAR_2}, party<6, 1x POKéBALL");
 const u8 gText_EVO_BEAUTY[]                         = _("LvlUp, high beauty");
 const u8 gText_EVO_LEVEL_FEMALE[]                   = _("LvlUp to {STR_VAR_2}, is female");

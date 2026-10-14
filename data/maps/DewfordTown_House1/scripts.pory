@@ -3,10 +3,32 @@ DewfordTown_House1_MapScripts::
 	.byte 0
 
 DewfordTown_House1_EventScript_Man::
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_House1_EventScript_Man_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_House1_EventScript_Man_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_House1_EventScript_Man_Default
+	msgbox DewfordTown_House1_Text_LivingOnIsland_BrawlyQuest, MSGBOX_NPC
+	end
+
+DewfordTown_House1_EventScript_Man_QuestComplete::
+	msgbox DewfordTown_House1_Text_LotToBeSaidForLivingOnIsland_BrawlyQuest_Complete, MSGBOX_NPC
+	end
+
+DewfordTown_House1_EventScript_Man_Default::
 	msgbox DewfordTown_House1_Text_LotToBeSaidForLivingOnIsland, MSGBOX_NPC
 	end
 
 DewfordTown_House1_EventScript_Woman::
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_House1_EventScript_Woman_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_House1_EventScript_Woman_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_House1_EventScript_Woman_Default
+	msgbox DewfordTown_House1_Text_LifeGoesSlowlyOnIsland_BrawlyQuest, MSGBOX_NPC
+	end
+
+DewfordTown_House1_EventScript_Woman_QuestComplete::
+	msgbox DewfordTown_House1_Text_LifeGoesSlowlyOnIsland_BrawlyQuest_Complete, MSGBOX_NPC
+	end
+
+DewfordTown_House1_EventScript_Woman_Default::
 	msgbox DewfordTown_House1_Text_LifeGoesSlowlyOnIsland, MSGBOX_NPC
 	end
 
@@ -36,3 +58,19 @@ DewfordTown_House1_Text_Zigzagoon:
 	.string "ZIGZAGOON: Guguuh!$"
 
 `
+
+text DewfordTown_House1_Text_LivingOnIsland_BrawlyQuest {
+	format("I came to DEWFORD TOWN to live a quiet life, but these TEAM AQUA grunts spell trouble for everyone here. I hope someone can stop them soon!")
+}
+
+text DewfordTown_House1_Text_LifeGoesSlowlyOnIsland_BrawlyQuest {
+	format("I thought I left the hustle and bustle and politics of the big city behind when I moved here. I wish those TEAM AQUA grunts would just leave us in peace.")
+}
+
+text DewfordTown_House1_Text_LotToBeSaidForLivingOnIsland_BrawlyQuest_Complete {
+	format("Were you the one who got those TEAM AQUA grunts to leave? Thank you. Now I can get back to enjoying the simple life on this island in harmony with POKéMON and the family.")
+}
+
+text DewfordTown_House1_Text_LifeGoesSlowlyOnIsland_BrawlyQuest_Complete {
+	format("Thank you for getting those TEAM AQUA grunts to leave. Now I can get back to enjoying the slow life on this island surrounded by the beautiful sea--that's what makes me truly happy.")
+}

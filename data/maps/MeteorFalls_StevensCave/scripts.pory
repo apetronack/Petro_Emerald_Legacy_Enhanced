@@ -4,6 +4,8 @@ raw `
 MeteorFalls_StevensCave_MapScripts::
 	.byte 0
 
+@ Note: Steven NPC uses FLAG_HIDE_STEVEN_CHAMPION_CLUE to determine visibility in map.
+@ If Steven is next champion, he will not appear in the map.
 MeteorFalls_StevensCave_EventScript_Steven::
 	lock
 	goto_if_set FLAG_REMATCH_METEOR_FALLS_STEVEN, MeteorFalls_StevensCave_EventScript_RematchSteven

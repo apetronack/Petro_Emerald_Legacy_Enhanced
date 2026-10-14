@@ -3768,6 +3768,7 @@ extern const u32 gTrainerFrontPic_MagmaAdminF[];
 extern const u32 gTrainerFrontPic_ArchieAndMatt[];
 extern const u32 gTrainerFrontPic_Zinnia[];
 extern const u32 gTrainerFrontPic_MagmaAdminTabithaAndCourtney[];
+extern const u32 gTrainerFrontPic_AquaAdminMattAndShelly[];
 
 extern const u32 gTrainerPalette_Hiker[];
 extern const u32 gTrainerPalette_AquaGruntM[];
@@ -3867,6 +3868,7 @@ extern const u32 gTrainerPalette_MagmaAdminF[];
 extern const u32 gTrainerPalette_ArchieAndMatt[];
 extern const u32 gTrainerPalette_Zinnia[];
 extern const u32 gTrainerPalette_MagmaAdminTabithaAndCourtney[];
+extern const u32 gTrainerPalette_AquaAdminMattAndShelly[];
 
 extern const u8 gTrainerBackPic_Brendan[];
 extern const u8 gTrainerBackPic_May[];

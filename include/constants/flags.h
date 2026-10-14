@@ -88,8 +88,8 @@
 #define FLAG_EGG_MOVES_TUTOR                                0x4B // Enable Egg Move Tutor
 #define FLAG_CAUGHT_JIRACHI                                 0x4C // Check for Jirachi Caught, for Rematch
 #define FLAG_DEFEATED_JIRACHI                               0x4D // Check for Jirachi Defeated, for Rematch
-#define FLAG_UNUSED_0x04E                                   0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F                                   0x4F // Unused Flag
+#define FLAG_DEFEATED_WALLACE_AS_CHAMPION                   0x4E // Check for if player has defeated Wallace's Champion battle
+#define FLAG_HIDE_STEVEN_CHAMPION_CLUE                      0x4F // Hide Steven in Meteor Falls if he is next Champion
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL             0x50
@@ -97,10 +97,10 @@
 #define FLAG_RESCUED_BIRCH                                  0x52
 #define FLAG_LEGENDARIES_IN_SOOTOPOLIS                      0x53
 
-#define FLAG_UNUSED_0x054                                   0x54  // Unused Flag
+#define FLAG_HIDE_WALLACE_VISITING_SOOTOPOLIS               0x54  // Set = hide Wallace visitor, clear = show visitor
 #define FLAG_UNLOCKED_BIKE_SWITCHING                        0x55
 
-#define FLAG_HIDE_CONTEST_POKE_BALL                         0x56  // Always set after new game, object it hides is added directly
+#define FLAG_HIDE_CHAMPIONS_ROOM_WALLY                      0x56  // Hide Wally in the Champions Room
 #define FLAG_MET_RIVAL_MOM                                  0x57
 #define FLAG_BIRCH_AIDE_MET                                 0x58
 #define FLAG_DECLINED_BIKE                                  0x59
@@ -114,10 +114,10 @@
 #define FLAG_MET_TEAM_AQUA_HARBOR                           0x61
 #define FLAG_TV_EXPLAINED                                   0x62
 #define FLAG_MAUVILLE_GYM_BARRIERS_STATE                    0x63
-#define FLAG_MOSSDEEP_GYM_SWITCH_1                          0x64 // Leftover from the RS version of Mossdeep Gym, functionally unused
-#define FLAG_MOSSDEEP_GYM_SWITCH_2                          0x65 //
-#define FLAG_MOSSDEEP_GYM_SWITCH_3                          0x66 //
-#define FLAG_MOSSDEEP_GYM_SWITCH_4                          0x67 //
+#define FLAG_UNUSED_0x064                                   0x64
+#define FLAG_UNUSED_0x065                                   0x65
+#define FLAG_UNUSED_0x066                                   0x66
+#define FLAG_UNUSED_0x067                                   0x67
 
 #define FLAG_MAUVILLE_NPC_TRADE_COMPLETED                   0x68
 
@@ -129,7 +129,7 @@
 #define FLAG_RECEIVED_HM_FLY                                0x6E
 #define FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT                 0x6F
 #define FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE                 0x70
-#define FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE                0x71 // Unused Flag. Used in R/S to indicate whether player defeated or caught Groudon/Kyogre in Cave of Origin.
+#define FLAG_HIDE_HALL_OF_FAME_WALLY                        0x71 // Hide Wally in the HOF
 #define FLAG_SCOTT_CALL_BATTLE_FRONTIER                     0x72 // Used in order to activate a phone call from Scott, inviting the player to the SS Tidal.
 #define FLAG_RECEIVED_METEORITE                             0x73
 #define FLAG_ADVENTURE_STARTED                              0x74 // RECEIVED Pokédex.
@@ -168,7 +168,7 @@
 #define FLAG_MR_BRINEY_SAILING_INTRO                        0x93
 #define FLAG_DOCK_REJECTED_DEVON_GOODS                      0x94
 #define FLAG_DELIVERED_DEVON_GOODS                          0x95
-#define FLAG_RECEIVED_CONTEST_PASS                          0x96 // Unused, leftover from R/S
+#define FLAG_UNUSED_0x096                                   0x96 // Unused
 #define FLAG_RECEIVED_CASTFORM                              0x97
 #define FLAG_RECEIVED_SUPER_ROD                             0x98
 #define FLAG_RUSTBORO_NPC_TRADE_COMPLETED                   0x99
@@ -212,11 +212,11 @@
 #define FLAG_DEFEATED_GRUNT_SPACE_CENTER_1F                 0xBF
 #define FLAG_RECEIVED_SUN_STONE_MOSSDEEP                    0xC0
 #define FLAG_WALLY_SPEECH                                   0xC1
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_1                  0xC2 // Leftover from the RS version of Puzzle Room 7, functionally unused
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_2                  0xC3 //
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_3                  0xC4 //
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_4                  0xC5 //
-#define FLAG_TRICK_HOUSE_PUZZLE_7_SWITCH_5                  0xC6 //
+#define FLAG_UNUSED_0x0C2                                   0xC2 // Unused Flag
+#define FLAG_UNUSED_0x0C3                                   0xC3 // Unused Flag
+#define FLAG_UNUSED_0x0C4                                   0xC4 // Unused Flag
+#define FLAG_UNUSED_0x0C5                                   0xC5 // Unused Flag
+#define FLAG_UNUSED_0x0C6                                   0xC6 // Unused Flag
 #define FLAG_RUSTURF_TUNNEL_OPENED                          0xC7
 #define FLAG_RECEIVED_RED_SCARF                             0xC8
 #define FLAG_RECEIVED_BLUE_SCARF                            0xC9
@@ -239,7 +239,7 @@
 #define FLAG_MET_WAILMER_TRAINER                            0xDA
 #define FLAG_EVIL_LEADER_PLEASE_STOP                        0xDB
 
-#define FLAG_NEVER_SET_0x0DC                                0xDC // This flag is read, but never written to
+#define FLAG_UNUSED_0x0DC                                    0xDC // Unused Flag
 
 #define FLAG_RECEIVED_GO_GOGGLES                            0xDD
 #define FLAG_WINGULL_SENT_ON_ERRAND                         0xDE
@@ -292,7 +292,7 @@
 #define FLAG_RECEIVED_REVIVED_FOSSIL_MON                    0x10B
 #define FLAG_SECRET_BASE_REGISTRY_ENABLED                   0x10C
 #define FLAG_RECEIVED_TM_THIEF                              0x10D
-#define FLAG_CONTEST_SKETCH_CREATED                         0x10E  // Set but never read
+#define FLAG_UNUSED_0x10E                                    0x10E  // Unused Flag
 #define FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE                  0x10F
 #define FLAG_RECEIVED_EXP_SHARE                             0x110
 #define FLAG_POKERUS_EXPLAINED                              0x111
@@ -716,19 +716,20 @@
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_TABITHA                 0x2A5 // Hide flag for Tabitha in Rusturf Magma Cave Final (set = hidden)
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_COURTNEY                0x2A6 // Hide flag for Courtney in Rusturf Magma Cave Final (set = hidden)
 #define FLAG_HIDE_RUSTURF_MAGMA_CAVE_FINAL_GRUNT                   0x2A7 // Hide flag for the Grunt in Rusturf Magma Cave Final (set = hidden)
-#define FLAG_UNUSED_0x2A8                                          0x2A8 // Unused Flag
-#define FLAG_UNUSED_0x2A9                                          0x2A9 // Unused Flag
-#define FLAG_UNUSED_0x2AA                                          0x2AA // Unused Flag
-#define FLAG_UNUSED_0x2AB                                          0x2AB // Unused Flag
-#define FLAG_UNUSED_0x2AC                                          0x2AC // Unused Flag
-#define FLAG_UNUSED_0x2AD                                          0x2AD // Unused Flag
-#define FLAG_UNUSED_0x2AE                                          0x2AE // Unused Flag
-#define FLAG_UNUSED_0x2AF                                          0x2AF // Unused Flag
-#define FLAG_UNUSED_0x2B0                                          0x2B0 // Unused Flag
-#define FLAG_UNUSED_0x2B1                                          0x2B1 // Unused Flag
-#define FLAG_UNUSED_0x2B2                                          0x2B2 // Unused Flag
-#define FLAG_UNUSED_0x2B3                                          0x2B3 // Unused Flag
-#define FLAG_UNUSED_0x2B4                                          0x2B4 // Unused Flag
+// Brawly Quest Flags
+#define FLAG_BRAWLY_QUEST_ACTIVE                                   0x2A8 // Flag for Brawly Quest Active
+#define FLAG_BRAWLY_QUEST_COMPLETE                                 0x2A9 // Flag for Brawly Quest Complete
+#define FLAG_BRAWLY_QUEST_ADMINS_DEFEATED                          0x2AA // Flag for Brawly Quest Admins Defeated
+#define FLAG_HIDE_BRAWLY_OUTSIDE_GYM                               0x2AB // Flag for hiding Brawly outside the gym
+#define FLAG_RECEIVED_STAR_PIECE_BRAWLY                            0x2AC // Flag for receiving Star Piece from Brawly
+#define FLAG_HIDE_BRAWLY_QUEST_NPCS                                0x2AD // Flag for hiding Brawly Quest NPCs
+#define FLAG_HIDE_BRAWLY_QUEST_AQUAS                               0x2AE // Flag for hiding Brawly Quest Aqua NPCs
+#define FLAG_HIDE_BRAWLY_QUEST_ROUTE_107_AQUA_GRUNT                0x2AF // Flag for hiding Brawly Quest Route 107 Aqua Grunt
+#define FLAG_ITEM_DEWFORD_BEACH_ETHER                              0x2B0 // Flag for Dewford Beach Ether Item Pickup
+#define FLAG_ITEM_DEWFORD_BEACH_X_ATTACK                           0x2B1 // Flag for Dewford Beach X Attack Item Pickup
+#define FLAG_ITEM_DEWFORD_BEACH_BIG_PEARL                          0x2B2 // Flag for Dewford Beach Big Pearl Item Pickup
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_MAX_ELIXIR                  0x2B3 // Flag for Dewford Beach Max Elixir Item Pickup
+#define FLAG_HIDDEN_ITEM_DEWFORD_BEACH_STAR_PIECE                  0x2B4 // Flag for Dewford Beach Star Piece Item Pickup
 #define FLAG_SYS_NO_COLLISION                                      0x2B5 // Unused Flag // Debug
 #define FLAG_SYS_NO_ENCOUNTER                                      0x2B6 // Unused Flag // Debug
 #define FLAG_SYS_NO_TRAINER_SEE                                    0x2B7 // Unused Flag // Debug
@@ -863,7 +864,7 @@
 #define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE         0x336
 #define FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA                          0x337
 #define FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD                          0x338
-#define FLAG_HIDE_LEGEND_MON_CAVE_OF_ORIGIN                         0x339 // Unused, leftover from R/S
+#define FLAG_UNUSED_0x339                                           0x339 // Unused Flag
 #define FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE                            0x33A
 #define FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE                             0x33B
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE                     0x33C
@@ -905,7 +906,7 @@
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1           0x360
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2           0x361
 #define FLAG_HIDE_PETALBURG_GYM_WALLY                               0x362
-#define FLAG_UNKNOWN_0x363                                          0x363 // Set, however has no purpose.
+#define FLAG_UNUSED_0x363                                          0x363 // Unused Flag
 #define FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN                           0x364
 #define FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY          0x365
 #define FLAG_HIDE_LANETTES_HOUSE_LANETTE                            0x366
@@ -953,7 +954,8 @@
 #define FLAG_HIDE_MAUVILLE_CITY_WATTSON                             0x390
 #define FLAG_HIDE_MAUVILLE_GYM_WATTSON                              0x391
 #define FLAG_HIDE_ROUTE_121_TEAM_AQUA_GRUNTS                        0x392
-#define FLAG_UNKNOWN_0x393                                          0x393 // Set, however has no purpose.
+#define FLAG_UNUSED_0x393                                           0x393 // Unused Flag
+#define FLAG_DEFEATED_WALLY_VR5_REMATCH                             FLAG_UNUSED_0x393
 #define FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE                             0x394
 #define FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA                          0x395
 #define FLAG_HIDE_BATTLE_TOWER_REPORTER                             0x396
@@ -1115,7 +1117,7 @@
 #define FLAG_ITEM_AQUA_HIDEOUT_B2F_NEST_BALL                        0x430
 #define FLAG_ITEM_MT_PYRE_EXTERIOR_MAX_POTION                       0x431
 #define FLAG_ITEM_MT_PYRE_EXTERIOR_TM_SKILL_SWAP                    0x432
-#define FLAG_ITEM_NEW_MAUVILLE_ULTRA_BALL                           0x433
+#define FLAG_UNUSED_0x433                                           0x433
 #define FLAG_ITEM_NEW_MAUVILLE_ESCAPE_ROPE                          0x434
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_6_LUXURY_BALL    0x435
 #define FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_2_SCANNER        0x436
@@ -1166,8 +1168,8 @@
 #define FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL                        0x463
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
 #define FLAG_RIVAL_TRADE_3_COMPLETED                                0x465 // Was previously FLAG_ITEM_OLD_MAGMA_HIDEOUT_B1F_MASTER_BALL flag, reused for 3rd Starter Trade in National Dex Mode
-#define FLAG_ITEM_OLD_MAGMA_HIDEOUT_B1F_MAX_ELIXIR                  0x466 // Unused Flag, leftover from the Ruby Magma hideout
-#define FLAG_ITEM_OLD_MAGMA_HIDEOUT_B2F_NEST_BALL                   0x467 // Unused Flag, leftover from the Ruby Magma hideout
+#define FLAG_UNUSED_0x466                                           0x466 // Unused Flag
+#define FLAG_UNUSED_0x467                                           0x467 // Unused Flag
 #define FLAG_ITEM_ROUTE_108_BLUE_SHARD                              0x468
 #define FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL                             0x469
 #define FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE                            0x46A
@@ -1291,13 +1293,15 @@
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_ESCAPE_ROPE                0x4DF // Flag for obtaining Escape Rope in Rusturf Magma Cave Main
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_FIRE_STONE                 0x4E0 // Flag for obtaining Fire Stone in Rusturf Magma Cave Main
 #define FLAG_ITEM_RUSTURF_MAGMACAVE_MAIN_NUGGET                     0x4E1 // Flag for obtaining Nugget in Rusturf Magma Cave Main
-#define FLAG_UNUSED_0x4E2                                           0x4E2 // Unused Flag
-#define FLAG_UNUSED_0x4E3                                           0x4E3 // Unused Flag
-#define FLAG_UNUSED_0x4E4                                           0x4E4 // Unused Flag
-#define FLAG_UNUSED_0x4E5                                           0x4E5 // Unused Flag
-#define FLAG_UNUSED_0x4E6                                           0x4E6 // Unused Flag
-#define FLAG_UNUSED_0x4E7                                           0x4E7 // Unused Flag
-#define FLAG_UNUSED_0x4E8                                           0x4E8 // Unused Flag
+// Dewford Beach Fishing Challenge Flags
+#define FLAG_FISHING_CHALLENGE_MAGIKARP_COMPLETE                    0x4E2 // Rewarded 5x Net Ball for large Magikarp (+1 SD)
+#define FLAG_FISHING_CHALLENGE_TENTACOOL_COMPLETE                   0x4E3 // Rewarded Poison Barb for large Tentacool (+1 SD)
+#define FLAG_FISHING_CHALLENGE_WAILMER_COMPLETE                     0x4E4 // Rewarded HP Up for large Wailmer (+1 SD)
+#define FLAG_FISHING_CHALLENGE_STARYU_COMPLETE                      0x4E5 // Rewarded Water Stone for large Staryu (+2 SD)
+#define FLAG_FISHING_CHALLENGE_SHARPEDO_COMPLETE                    0x4E6 // Rewarded Scope Lens for large Sharpedo (+2 SD)
+#define FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED                      0x4E7 // Flag for Dewford Beach NPC trade completed
+// Wattson Quest Flags
+#define FLAG_NEW_MAUVILLE_PIKACHU_GIVEN                             0x4E8 // Flag for giving Pikachu in New Mauville
 #define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
@@ -1402,9 +1406,9 @@
 #define FLAG_SYS_MIX_RECORD                         (SYSTEM_FLAGS + 0x34)
 #define FLAG_SYS_CLOCK_SET                          (SYSTEM_FLAGS + 0x35)
 #define FLAG_SYS_NATIONAL_DEX                       (SYSTEM_FLAGS + 0x36)
-#define FLAG_SYS_CAVE_SHIP                          (SYSTEM_FLAGS + 0x37) // Unused Flag, leftover from R/S debug, presumably used by Emerald's debug too
-#define FLAG_SYS_CAVE_WONDER                        (SYSTEM_FLAGS + 0x38) // Unused Flag, same as above
-#define FLAG_SYS_CAVE_BATTLE                        (SYSTEM_FLAGS + 0x39) // Unused Flag, same as above
+#define FLAG_UNUSED_0x897                           (SYSTEM_FLAGS + 0x37) // Unused Flag
+#define FLAG_UNUSED_0x898                           (SYSTEM_FLAGS + 0x38) // Unused Flag
+#define FLAG_UNUSED_0x899                           (SYSTEM_FLAGS + 0x39) // Unused Flag
 #define FLAG_SYS_SHOAL_TIDE                         (SYSTEM_FLAGS + 0x3A)
 #define FLAG_SYS_RIBBON_GET                         (SYSTEM_FLAGS + 0x3B)
 

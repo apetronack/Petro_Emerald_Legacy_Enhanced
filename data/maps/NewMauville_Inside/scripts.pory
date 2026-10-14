@@ -12,6 +12,7 @@ NewMauville_Inside_OnResume:
 	call_if_eq VAR_TEMP_2, 1, NewMauville_Inside_EventScript_SetBarrierStateGreenButton
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NewMauville_Inside_EventScript_TryRemoveVoltorb
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NewMauville_Inside_EventScript_TryRemoveZapdos
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NewMauville_Inside_EventScript_TryRemovePikachu
 	end
 
 NewMauville_Inside_EventScript_TryRemoveVoltorb::
@@ -19,6 +20,13 @@ NewMauville_Inside_EventScript_TryRemoveVoltorb::
 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
 	removeobject VAR_LAST_TALKED
 	return
+
+NewMauville_Inside_EventScript_TryRemovePikachu::
+    specialvar VAR_RESULT, GetBattleOutcome
+    goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
+    setflag FLAG_NEW_MAUVILLE_PIKACHU_GIVEN
+    removeobject VAR_LAST_TALKED
+    return
 
 NewMauville_Inside_OnTransition:
 	setvar VAR_TEMP_1, 0
@@ -318,3 +326,37 @@ NewMauville_Inside_Text_SteppedOnSwitchGeneratorStopped:
 	.string "The generator appears to have\n"
 	.string "stopped…$"
 `
+
+script NewMauville_Inside_EventScript_Pikachu_Encounter {
+	lock
+	faceplayer
+	if (flag(FLAG_NEW_MAUVILLE_PIKACHU_GIVEN)) {
+		release
+		end
+	}
+	msgbox(NewMauville_Inside_Text_PikachuEncounter)
+	closemessage()
+	waitse
+	playmoncry(SPECIES_PIKACHU, CRY_MODE_ENCOUNTER)
+	delay(40)
+	waitmoncry()
+	special(CreateShinyPikachuEnemy)
+	setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	dowildbattle
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	switch (specialvar(VAR_RESULT, GetBattleOutcome)) {
+		case B_OUTCOME_WON:
+			setflag(FLAG_NEW_MAUVILLE_PIKACHU_GIVEN)
+			goto(Common_EventScript_RemoveStaticPokemon)
+		case B_OUTCOME_CAUGHT:
+			setflag(FLAG_NEW_MAUVILLE_PIKACHU_GIVEN)
+			goto(Common_EventScript_RemoveStaticPokemon)
+	}
+	release
+	end
+}
+
+text NewMauville_Inside_Text_PikachuEncounter {
+	format("A glimmer catches your eye!\n........\pA {COLOR RED}{SHADOW LIGHT_RED}shiny{COLOR DARK_GRAY}{SHADOW LIGHT_GRAY} PIKACHU emerges!")
+}
+

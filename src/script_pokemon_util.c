@@ -189,6 +189,21 @@ void CreateShinyLaironEnemy(void)
     SetMonMoveSlot(&gEnemyParty[0], MOVE_IRON_DEFENSE, 3);
 }
 
+void CreateShinyPikachuEnemy(void)
+{
+    u8 abilityNum = 0; // ABILITY_STATIC (slot 0)
+
+    ZeroEnemyPartyMons();
+    FlagSet(FLAG_SHINY_CREATION);
+    CreateMonWithNature(&gEnemyParty[0], SPECIES_PIKACHU, 26, MAX_PER_STAT_IVS, NATURE_RASH);
+    SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
+    // Set moves. Surf and Fly as event moves
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_THUNDERBOLT, 0);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_SLAM, 1);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_SURF, 2);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_FLY, 3);
+}
+
 // Gift Relicanth for completing the Roxanne quest.
 // Above-average IVs (25 each), random nature, holds Hard Stone, default moves.
 // gSpecialVar_Result: MON_GIVEN_TO_PARTY=0, MON_GIVEN_TO_PC=1, MON_CANT_GIVE=2

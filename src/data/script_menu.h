@@ -747,6 +747,29 @@ static const struct MenuAction MultichoiceList_ShinyLati[] =
     {gText_Teal},
 };
 
+static const struct MenuAction MultichoiceList_BrawlyDadTutor[] =
+{
+    {gText_Tutor_BodySlam},
+    {gText_Tutor_RockSlide},
+    {gText_Tutor_DynamicPunch},
+    {gText_Tutor_SwordsDance},
+    {gText_Tutor_FirePunch},
+    {gText_Tutor_IcePunch},
+    {gText_Tutor_ThunderPunch},
+    {gText_Cancel},
+};
+
+static const struct MenuAction MultichoiceList_BrawlyMomTutor[] =
+{
+    {gText_Tutor_MudSlap},
+    {gText_Tutor_SeismicToss},
+    {gText_Tutor_Endure},
+    {gText_Tutor_Counter},
+    {gText_Tutor_MegaPunch},
+    {gText_Tutor_MegaKick},
+    {gText_Cancel},
+};
+
 static const struct MenuAction MultichoiceList_BattleTowerFeelings[] =
 {
     {gText_IllBattleNow},
@@ -921,6 +944,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_SHINY_LATI]                 = MULTICHOICE(MultichoiceList_ShinyLati),
+    [MULTI_BRAWLY_DAD_TUTOR]           = MULTICHOICE(MultichoiceList_BrawlyDadTutor),
+    [MULTI_BRAWLY_MOM_TUTOR]           = MULTICHOICE(MultichoiceList_BrawlyMomTutor),
 };
 
 const u8 *const gStdStrings[] =

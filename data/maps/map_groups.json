@@ -92,7 +92,8 @@
     "Underwater_Route128",
     "Underwater_Route129",
     "Underwater_Route105",
-    "Underwater_Route125"
+    "Underwater_Route125",
+    "DewfordBeach_Indoor3"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -433,7 +434,11 @@
     "Rusturf_MagmaCave_Entry",
     "Rusturf_MagmaCave_Main",
     "Rusturf_MagmaCave_ShinyLairon",
-    "Rusturf_MagmaCave_Final"
+    "Rusturf_MagmaCave_Final",
+    "DewfordBeach",
+    "DewfordBeach_Indoor1",
+    "DewfordBeach_Indoor2",
+    "DewfordBeachBorder"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

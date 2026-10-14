@@ -10,14 +10,20 @@ raw `
 
 .equ LOCALID_BOAT_R104, 7
 .equ LOCALID_BRINEY_R104, 8
+.equ LOCALID_BRAWLY_DEWFORD, 6
 
 DewfordTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, DewfordTown_OnFrame
 	.byte 0
 
 DewfordTown_OnTransition:
 	setflag FLAG_VISITED_DEWFORD_TOWN
 	end
+
+DewfordTown_OnFrame:
+	map_script_2 VAR_DEWFORD_TOWN_STATE, 1, DewfordTown_EventScript_BrawlyQuestAutoComplete
+	.2byte 0
 
 DewfordTown_EventScript_Briney::
 	lock
@@ -76,6 +82,17 @@ DewfordTown_EventScript_SailBackToPetalburg::
 	end
 
 DewfordTown_EventScript_Woman::
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_EventScript_Woman_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_EventScript_Woman_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_EventScript_Woman_Default
+	msgbox DewfordTown_Text_TinyIslandCommunity_BrawlyQuest, MSGBOX_NPC
+	end
+
+DewfordTown_EventScript_Woman_QuestComplete::
+	msgbox DewfordTown_Text_TinyIslandCommunity_BrawlyQuest_Complete, MSGBOX_NPC
+	end
+
+DewfordTown_EventScript_Woman_Default::
 	msgbox DewfordTown_Text_TinyIslandCommunity, MSGBOX_NPC
 	end
 
@@ -94,11 +111,23 @@ DewfordTown_EventScript_HallSign::
 DewfordTown_EventScript_OldRodFisherman::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_OLD_ROD, DewfordTown_EventScript_HowsFishing
+	goto_if_set FLAG_RECEIVED_OLD_ROD, DewfordTown_EventScript_OldRodFisherman_CheckQuest
 	msgbox DewfordTown_Text_GettingItchToFish, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, DewfordTown_EventScript_GiveOldRod
 	goto_if_eq VAR_RESULT, NO, DewfordTown_EventScript_NotGettingItchToFish
 	end
+
+DewfordTown_EventScript_OldRodFisherman_CheckQuest::
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_EventScript_OldRodFisherman_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_EventScript_HowsFishing
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_EventScript_HowsFishing
+	msgbox DewfordTown_Text_OldRodFisherman_BrawlyQuest, MSGBOX_NPC
+	release
+	end
+
+DewfordTown_EventScript_OldRodFisherman_QuestComplete::
+	msgbox DewfordTown_Text_OldRodFisherman_BrawlyQuest_Complete, MSGBOX_NPC
+	goto DewfordTown_EventScript_HowsFishing
 
 DewfordTown_EventScript_GiveOldRod::
 	msgbox DewfordTown_Text_GiveYouOneOfMyRods, MSGBOX_DEFAULT
@@ -611,6 +640,19 @@ DewfordTown_EventScript_TrendyPhraseBoy::
 	lock
 	faceplayer
 	call Common_EventScript_BufferTrendyPhrase
+	goto_if_set FLAG_BRAWLY_QUEST_COMPLETE, DewfordTown_EventScript_TrendyPhraseBoy_QuestComplete
+	goto_if_set FLAG_HIDE_BRAWLY_QUEST_AQUAS, DewfordTown_EventScript_TrendyPhraseBoy_Default
+	goto_if_set FLAG_BRAWLY_QUEST_ADMINS_DEFEATED, DewfordTown_EventScript_TrendyPhraseBoy_Default
+	msgbox DewfordTown_Text_TrendyPhraseBoy_BrawlyQuest, MSGBOX_NPC
+	release
+	end
+
+DewfordTown_EventScript_TrendyPhraseBoy_QuestComplete::
+	msgbox DewfordTown_Text_TrendyPhraseBoy_BrawlyQuest_Complete, MSGBOX_NPC
+	release
+	end
+
+DewfordTown_EventScript_TrendyPhraseBoy_Default::
 	msgbox DewfordTown_Text_XIsTheBiggestHappeningThingRight, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, DewfordTown_EventScript_ConfirmTrendyPhrase
 	goto_if_eq VAR_RESULT, NO, DewfordTown_EventScript_RejectTrendyPhrase
@@ -811,3 +853,128 @@ DewfordTown_Text_YeahDefinitionOfInRightNow:
 	.string "“{STR_VAR_1}” is the\n"
 	.string "definition of “in” right now.$"
 `
+script DewfordTown_EventScript_BrawlyQuest {
+	lock()
+	faceplayer()
+	// Check for quest completion first
+	if (flag(FLAG_BRAWLY_QUEST_ADMINS_DEFEATED)) {
+		// Give player reward (star piece) for completing quest
+		if (!flag(FLAG_RECEIVED_STAR_PIECE_BRAWLY)) {
+			msgbox(DewfordTown_Text_BrawlyQuestComplete, MSGBOX_DEFAULT)
+			giveitem(ITEM_STAR_PIECE)
+			goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+			setflag(FLAG_RECEIVED_STAR_PIECE_BRAWLY)
+			// Fade to black, remove Brawly sprite from Dewford Town, complete quest, and return to overworld
+			fadescreen(FADE_TO_BLACK)
+			removeobject(LOCALID_BRAWLY_DEWFORD)
+			setflag(FLAG_HIDE_BRAWLY_OUTSIDE_GYM)
+			// Set flag to indicate quest is complete
+			setflag(FLAG_BRAWLY_QUEST_COMPLETE)
+			clearflag(FLAG_HIDE_BRAWLY_QUEST_NPCS)
+			fadescreen(FADE_FROM_BLACK)
+			release()
+			end()
+		}
+	}
+	// Check if quest is already active
+	if (flag(FLAG_BRAWLY_QUEST_ACTIVE)) {
+		// Handle quest still in progress
+		msgbox(DewfordTown_Text_BrawlyQuestInProgress, MSGBOX_DEFAULT)
+		release()
+		end()
+	}
+	// Need to initialize quest
+	msgbox(DewfordTown_Text_BrawlyQuestStart, MSGBOX_DEFAULT)
+	setflag(FLAG_BRAWLY_QUEST_ACTIVE)
+	// Open Route 107 river to allow player to access
+	setflag(FLAG_HIDE_BRAWLY_QUEST_ROUTE_107_AQUA_GRUNT)
+	// Hide beach NPCs while quest is active
+	setflag(FLAG_HIDE_BRAWLY_QUEST_NPCS)
+	release()
+	end()
+}
+
+script DewfordTown_EventScript_BrawlyQuestAutoComplete {
+	// This script runs immediately following the teleport from Dewford Beach after defeating the Aqua Admins and automatically completes the Brawly quest
+	lockall()
+	setvar(VAR_DEWFORD_TOWN_STATE, 0)
+	msgbox(DewfordTown_Text_BrawlyQuestComplete, MSGBOX_DEFAULT)
+	giveitem(ITEM_STAR_PIECE)
+	goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+	waitmessage()
+	setflag(FLAG_RECEIVED_STAR_PIECE_BRAWLY)
+	delay(15)
+	// Fade to black, remove Brawly sprite from Dewford Town, complete quest, and return to overworld
+	fadescreen(FADE_TO_BLACK)
+	removeobject(LOCALID_BRAWLY_DEWFORD)
+	setflag(FLAG_HIDE_BRAWLY_OUTSIDE_GYM)
+	// Set flag to indicate quest is complete
+	setflag(FLAG_BRAWLY_QUEST_COMPLETE)
+	clearflag(FLAG_HIDE_BRAWLY_QUEST_NPCS)
+	fadescreen(FADE_FROM_BLACK)
+	releaseall()
+	end()
+}
+
+script DewfordTown_EventScript_AquaGrunt1 {
+	msgbox(DewfordTown_Text_AquaGrunt1, MSGBOX_NPC)
+	end
+}
+
+script DewfordTown_EventScript_AquaGrunt2 {
+	msgbox(DewfordTown_Text_AquaGrunt2, MSGBOX_NPC)
+	end
+}
+
+script DewfordTown_EventScript_AquaGrunt3 {
+	msgbox(DewfordTown_Text_AquaGrunt3, MSGBOX_NPC)
+	end
+}
+
+text DewfordTown_Text_BrawlyQuestStart {
+	format("BRAWLY: Hey, {PLAYER}, I need your help! TEAM AQUA has been hassling the locals all across DEWFORD and I can't just let that ride. I'd handle it myself, but I can't abandon the gym. A fisherman says he spotted TEAM AQUA near ROUTE 107. Please, check it out!")
+}
+
+text DewfordTown_Text_BrawlyQuestInProgress {
+	format("BRAWLY: {PLAYER}! Still no luck tracking those TEAM AQUA grunts down? The complaints from the locals keep piling up and it's getting hard to focus on training. ROUTE 107 is your best lead - the fishermen are sure they've spotted them around there. Hang in there!")
+}
+
+text DewfordTown_Text_BrawlyQuestComplete {
+	format("BRAWLY: You did it, {PLAYER}! Those TEAM AQUA grunts scattered and DEWFORD is safe again! I can't believe they set up right on DEWFORD BEACH, just south of town. I've been so caught up in training that I wasn't paying attention to my own backyard. That's on me. Please, take this STAR PIECE. You've really come through for DEWFORD today!")
+}
+
+text DewfordTown_Text_TrendyPhraseBoy_BrawlyQuest {
+	format("TEAM AQUA is really harshing my {STR_VAR_1} mellow! They're, like, the opposite of trendy and cool. If anyone can do something about them, it's BRAWLY! He's the GYM LEADER, after all! I'm sure he's already got a plan!")
+}
+
+text DewfordTown_Text_TinyIslandCommunity_BrawlyQuest {
+	format("DEWFORD is a tiny island community. I wish those TEAM AQUA grunts would leave us alone! I hope BRAWLY can do something about them soon! He's the leader of the DEWFORD GYM, after all.")
+}
+
+text DewfordTown_Text_OldRodFisherman_BrawlyQuest {
+	format("I'm as passionate about the sea as the next fisherman, but those TEAM AQUA grunts are going too far! I miss when DEWFORD TOWN was a quiet place where we could all fish and enjoy the cool ocean breeze.")
+}
+
+text DewfordTown_Text_TinyIslandCommunity_BrawlyQuest_Complete {
+	format("DEWFORD is a tiny island community. Word travels fast here, and everyone already knows you're the one who got those TEAM AQUA grunts to leave! If something happens around here, everyone picks up on it right away.")
+}
+
+text DewfordTown_Text_TrendyPhraseBoy_BrawlyQuest_Complete {
+	format("Did you hear? With those TEAM AQUA grunts gone, “{STR_VAR_1}” is trendier than ever! They were, like, totally cramping the island's style. You know what's the hippest, most happening thing in cool right now? Taking out TEAM AQUA! You're even trendier than “{STR_VAR_1}”!")
+}
+
+text DewfordTown_Text_OldRodFisherman_BrawlyQuest_Complete {
+	format("Thanks to you, DEWFORD TOWN is a quiet place again where we can all fish and enjoy the cool ocean breeze! I'm grateful you came when you did.")
+}
+
+text DewfordTown_Text_AquaGrunt1 {
+	format("I like the feel of this town! ARCHIE was right, this is a great place to set up shop! Just have to convince these stubborn locals to clear out...")
+}
+
+text DewfordTown_Text_AquaGrunt2 {
+	format("DEWFORD is nice, but once we expand the oceans, it will all be underwater. Clearing out these locals is for the greater good, you see?")
+}
+
+text DewfordTown_Text_AquaGrunt3 {
+	format("The residents of DEWFORD should be grateful for all TEAM AQUA is doing to make the world a better place! Some of them could stand to be a little more... cooperative.")
+}

@@ -54,3 +54,25 @@ Route107_EventScript_Camron::
 	end
 
 `
+
+script Route107_EventScript_AquaGrunt {
+    msgbox(Route107_Text_AquaGrunt, MSGBOX_NPC)
+    end
+}
+
+script Route107_EventScript_Wailmer {
+    msgbox(Route107_Text_Wailmer, MSGBOX_NPC)
+    end
+}
+
+text Route107_Text_AquaGrunt {
+	format("Get lost, kid! I'm training my WAILMER!\N"
+	"There's nothing to see here!")
+}
+
+text Route107_Text_Wailmer {
+	format("WHOOARGH!\N"
+	"...\N"
+	"...\N"
+	"The WAILMER looks at you forlornly.")
+}

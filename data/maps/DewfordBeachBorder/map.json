@@ -1,0 +1,39 @@
+{
+  "id": "MAP_DEWFORD_BEACH_BORDER",
+  "name": "DewfordBeachBorder",
+  "layout": "LAYOUT_DEWFORD_BEACH_BORDER",
+  "music": "MUS_DEWFORD",
+  "region_map_section": "MAPSEC_DEWFORD_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_DEWFORD_BEACH",
+      "offset": 8,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_DEWFORD_TOWN",
+      "offset": -12,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}
