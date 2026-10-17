@@ -1,10 +1,39 @@
 raw `
 .set LOCALID_GRUNT, 3
 .set LOCALID_DEVON_EMPLOYEE, 4
+.set LOCALID_NORMAN, 15
 
 PetalburgWoods_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PetalburgWoods_OnTransition
 	.byte 0
 
+PetalburgWoods_OnTransition:
+	hideobjectat LOCALID_NORMAN, MAP_PETALBURG_WOODS
+	end
+
+PetalburgWoods_EventScript_NormanJoinPlayer::
+	lockall
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceLeft
+	waitmovement 0
+	setfieldeffectargument 0, 1
+	dofieldeffect FLDEFF_NPCFLY_OUT
+	waitfieldeffect FLDEFF_NPCFLY_OUT
+	showobjectat LOCALID_NORMAN, MAP_PETALBURG_WOODS
+	applymovement LOCALID_NORMAN, PetalburgWoods_Movement_NormanApproachPlayer
+	waitmovement 0
+	msgbox PetalburgWoods_Text_NormanGreetsPlayer, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, PetalburgWoods_Movement_PlayerMakesRoomForNorman
+	waitmovement 0
+	applymovement LOCALID_NORMAN, PetalburgWoods_Movement_NormanExit
+	waitmovement 0
+	hideobjectat LOCALID_NORMAN, MAP_PETALBURG_WOODS
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
+	waitmovement 0
+	setvar VAR_NORMAN_QUEST_STATE, 1
+	unlockall
+	end
+	
 PetalburgWoods_EventScript_DevonResearcherLeft::
 	lockall
 	call PetalburgWoods_EventScript_DevonResearcherIntro
@@ -115,6 +144,22 @@ PetalburgWoods_EventScript_RemoveDevonResearcher::
 	setvar VAR_PETALBURG_WOODS_STATE, 1
 	releaseall
 	end
+
+PetalburgWoods_Movement_NormanApproachPlayer:
+	walk_right
+	step_end
+
+PetalburgWoods_Movement_PlayerMakesRoomForNorman:
+	face_right
+	walk_right
+	face_left
+	step_end
+
+PetalburgWoods_Movement_NormanExit:
+	walk_right
+	face_down
+	walk_down
+	step_end
 
 PetalburgWoods_Movement_DevonResearcherLookAround:
 	face_up
@@ -243,6 +288,10 @@ PetalburgWoods_Movement_AquaApproachPlayer:
 
 PetalburgWoods_EventScript_Boy1::
 	msgbox PetalburgWoods_Text_StayOutOfTallGrass, MSGBOX_NPC
+	end
+
+PetalburgWoods_EventScript_SanctuaryBlocker::
+	msgbox PetalburgWoods_Text_SanctuaryNotReady, MSGBOX_NPC
 	end
 
 PetalburgWoods_EventScript_Boy2::
@@ -469,4 +518,30 @@ PetalburgWoods_Text_TrainerTipsPP:
 	.string "In battle, you can quickly check your\n"
 	.string "moves' power and effects with the\l"
 	.string "START Button.$"
+
+PetalburgWoods_Text_SanctuaryNotReady:
+	.string "Sorry, I can't let you through.\p"
+	.string "The SANCTUARY isn't open \n"
+	.string "to the public yet.$"
+
+PetalburgWoods_Text_NormanGreetsPlayer:
+	.string "{PLAYER}, you found it!\p"
+	.string "I've been working a special project\n"
+	.string "that I think you're going to love.\p"
+	.string "I can tell that you're starting to\n"
+	.string "think of HOENN as home, but if\p"
+	.string "you're like me, you still miss our"
+	.string "old home in JOHTO.\p"
+	.string "With help from some of HOENN's\n"
+	.string "POKéMON RANGERS, I've started a\p"
+	.string "project to create a sanctuary for\n"
+	.string "endangered POKéMON from JOHTO.\p"
+	.string "It hasn't been ready to open to the\n"
+	.string "public, but I think it's finally time.\p"
+	.string "{PLAYER}, I've seen firsthand how much\n"
+	.string "you have come to care for POKéMON.\p"
+	.string "I want you to be the first to explore\n"
+	.string "our new JOHTO SANCTUARY.\p"
+	.string "I hope you'll enjoy it as much as I do.$"
+
 `

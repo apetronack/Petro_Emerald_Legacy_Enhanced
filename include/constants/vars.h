@@ -199,7 +199,7 @@
 #define VAR_WEATHER_INSTITUTE_STATE                      0x40B3
 #define VAR_SS_TIDAL_STATE                               0x40B4
 #define VAR_TRICK_HOUSE_ENTER_FROM_CORRIDOR              0x40B5
-#define VAR_TRICK_HOUSE_PUZZLE_7_STATE_2                 0x40B6 // Leftover from RS, never set
+#define VAR_NORMAN_QUEST_STATE                           0x40B6 // Tracks the state of Norman's quest. 0: Norman hasn't introduced sanctuary yet, 1: seen first Stantler encounter, 2: seen second stantler encounter, 3: seen final stantler encounter, 4: quest completed
 #define VAR_SLATEPORT_FAN_CLUB_STATE                     0x40B7
 #define VAR_GRANITE_CAVE_B1F_WILD_SET                    0x40B8
 #define VAR_MT_PYRE_STATE                                0x40B9
