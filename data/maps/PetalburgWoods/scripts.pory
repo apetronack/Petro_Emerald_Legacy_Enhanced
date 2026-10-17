@@ -31,7 +31,7 @@ PetalburgWoods_EventScript_NormanJoinPlayer::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	setvar VAR_NORMAN_QUEST_STATE, 1
-	unlockall
+	releaseall
 	end
 	
 PetalburgWoods_EventScript_DevonResearcherLeft::
