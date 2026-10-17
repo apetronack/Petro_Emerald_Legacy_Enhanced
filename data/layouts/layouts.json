@@ -4510,6 +4510,16 @@
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/DewfordBeachBorder/border.bin",
       "blockdata_filepath": "data/layouts/DewfordBeachBorder/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ARBORETUM",
+      "name": "JohtoArboretum_Layout",
+      "width": 30,
+      "height": 20,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ShadyForest",
+      "border_filepath": "data/layouts/JohtoArboretum/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoArboretum/map.bin"
     }
   ]
 }

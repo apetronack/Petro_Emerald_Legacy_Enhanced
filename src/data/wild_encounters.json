@@ -3234,6 +3234,91 @@
                 "species": "SPECIES_SLAKOTH"
               }
             ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 30,
+                "species": "SPECIES_SURSKIT"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_LOTAD"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_LOTAD"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_LOMBRE"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_MASQUERAIN"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 5,
+                "max_level": 10,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 10,
+                "max_level": 30,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 10,
+                "max_level": 30,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 10,
+                "max_level": 30,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 25,
+                "max_level": 30,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 30,
+                "max_level": 35,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 40,
+                "max_level": 45,
+                "species": "SPECIES_MAGIKARP"
+              }
+            ]
           }
         },
         {
@@ -18876,6 +18961,105 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_STARYU"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_JOHTO_ARBORETUM",
+          "base_label": "gJohtoArboretum0",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 16,
+                "max_level": 20,
+                "species": "SPECIES_SPINARAK"
+              },
+              {
+                "min_level": 16,
+                "max_level": 20,
+                "species": "SPECIES_HOPPIP"
+              },
+              {
+                "min_level": 17,
+                "max_level": 19,
+                "species": "SPECIES_HOOTHOOT"
+              },
+              {
+                "min_level": 18,
+                "max_level": 23,
+                "species": "SPECIES_SKIPLOOM"
+              },
+              {
+                "min_level": 18,
+                "max_level": 23,
+                "species": "SPECIES_MISDREAVUS"
+              },
+              {
+                "min_level": 18,
+                "max_level": 23,
+                "species": "SPECIES_TEDDIURSA"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_PINECO"
+              },
+              {
+                "min_level": 18,
+                "max_level": 23,
+                "species": "SPECIES_PINECO"
+              },
+              {
+                "min_level": 22,
+                "max_level": 27,
+                "species": "SPECIES_ARIADOS"
+              },
+              {
+                "min_level": 22,
+                "max_level": 27,
+                "species": "SPECIES_HERACROSS"
+              },
+              {
+                "min_level": 24,
+                "max_level": 29,
+                "species": "SPECIES_ARIADOS"
+              },
+              {
+                "min_level": 24,
+                "max_level": 29,
+                "species": "SPECIES_HERACROSS"
+              }
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 10,
+                "max_level": 15,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_GEODUDE"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_ONIX"
+              },
+              {
+                "min_level": 18,
+                "max_level": 23,
+                "species": "SPECIES_ONIX"
+              },
+              {
+                "min_level": 25,
+                "max_level": 35,
+                "species": "SPECIES_GRAVELER"
               }
             ]
           }

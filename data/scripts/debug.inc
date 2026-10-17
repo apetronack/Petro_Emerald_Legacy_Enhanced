@@ -365,3 +365,15 @@ Debug_Script_7::
 
 Debug_Script_8::
 	end
+
+Debug_Script_9::
+	end
+
+Debug_Script_10::
+	end
+
+Debug_Script_11::
+	end
+
+Debug_Script_12::
+	end

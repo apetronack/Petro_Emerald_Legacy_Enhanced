@@ -409,6 +409,7 @@
 #define MAP_DEWFORD_BEACH_INDOOR1                    (113 | (24 << 8))
 #define MAP_DEWFORD_BEACH_INDOOR2                    (114 | (24 << 8))
 #define MAP_DEWFORD_BEACH_BORDER                     (115 | (24 << 8))
+#define MAP_JOHTO_ARBORETUM                          (116 | (24 << 8))
 
 // gMapGroup_IndoorDynamic
 #define MAP_SECRET_BASE_RED_CAVE1    (0 | (25 << 8))
@@ -601,7 +602,5 @@
 #define MAP_ROUTE124_DIVING_TREASURE_HUNTERS_HOUSE (0 | (33 << 8))
 
 #define MAP_GROUPS_COUNT 34
-
-// static const u8 MAP_GROUP_COUNT[] = {58, 5, 5, 6, 7, 8, 9, 7, 7, 14, 8, 17, 10, 23, 13, 15, 15, 2, 2, 2, 3, 1, 1, 1, 116, 61, 89, 2, 1, 13, 1, 1, 3, 1, 0};
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H

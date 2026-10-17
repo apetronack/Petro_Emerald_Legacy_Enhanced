@@ -1093,3 +1093,5 @@ Common_EventScript_LegendaryRanAway::
 	.include "data/maps/DewfordBeach_Indoor3/scripts.inc"
 
 	.include "data/maps/DewfordBeachBorder/scripts.inc"
+
+	.include "data/maps/JohtoArboretum/scripts.inc"

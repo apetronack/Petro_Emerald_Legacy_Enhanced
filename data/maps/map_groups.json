@@ -438,7 +438,8 @@
     "DewfordBeach",
     "DewfordBeach_Indoor1",
     "DewfordBeach_Indoor2",
-    "DewfordBeachBorder"
+    "DewfordBeachBorder",
+    "JohtoArboretum"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",
