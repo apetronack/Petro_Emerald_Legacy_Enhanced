@@ -539,7 +539,7 @@ text DewfordBeach_Text_KidByWater {
 }
 
 text DewfordBeach_Text_MattNotEnoughMons {
-    format("You're bold enough to challenge us, yet you don't even have enough Pokemon to battle? Come back when you have at least 2!")
+    format("You're bold enough to challenge us, yet you don't even have enough POKéMON to battle? Come back when you have at least 2!")
 }
 
 text DewfordBeach_Text_AdminBattlePreamble {

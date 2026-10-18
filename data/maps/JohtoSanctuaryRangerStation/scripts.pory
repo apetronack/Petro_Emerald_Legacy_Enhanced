@@ -1,0 +1,118 @@
+mapscripts JohtoSanctuaryRangerStation_MapScripts {}
+
+script JohtoSanctuaryRangerStation_EventScript_EntryRanger {
+    msgbox(JohtoSanctuaryRangerStation_Text_EntryRanger, MSGBOX_NPC)
+    end
+}
+
+script JohtoSanctuaryRangerStation_EventScript_StationRanger {
+    msgbox(JohtoSanctuaryRangerStation_Text_StationRanger, MSGBOX_NPC)
+    end
+}
+
+text JohtoSanctuaryRangerStation_Text_EntryRanger {
+    format(
+        "Hey, Kid! Welcome to the Ranger Station!"
+    )
+}
+
+text JohtoSanctuaryRangerStation_Text_StationRanger {
+    format(
+        "How are you liking the Johto SANCTUARY so far? NORMAN put a lot of work into getting it ready for visitors, but it's still a little rough around the edges."
+    )
+}
+
+script JohtoSanctuaryRangerStation_EventScript_Ranger1 {
+    trainerbattle_single(TRAINER_RANGER_NORMAN_QUEST_1, JohtoSanctuaryRangerStation_Text_Ranger1Intro, JohtoSanctuaryRangerStation_Text_Ranger1Defeat)
+    msgbox(JohtoSanctuaryRangerStation_Text_Ranger1PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script JohtoSanctuaryRangerStation_EventScript_Ranger2 {
+    trainerbattle_single(TRAINER_RANGER_NORMAN_QUEST_2, JohtoSanctuaryRangerStation_Text_Ranger2Intro, JohtoSanctuaryRangerStation_Text_Ranger2Defeat)
+    msgbox(JohtoSanctuaryRangerStation_Text_Ranger2PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script JohtoSanctuaryRangerStation_EventScript_Ranger3 {
+    trainerbattle_single(TRAINER_RANGER_NORMAN_QUEST_3, JohtoSanctuaryRangerStation_Text_Ranger3Intro, JohtoSanctuaryRangerStation_Text_Ranger3Defeat)
+    msgbox(JohtoSanctuaryRangerStation_Text_Ranger3PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger1Intro {
+    format(
+        "It's been a quiet day here at the Ranger Station. Help me get my blood pumping!"
+        )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger1Defeat {
+    format(
+        "Wide awake!"
+    )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger1PostBattle {
+    format(
+        "Thanks for the help! I'm ready and raring to go!"
+    )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger2Intro {
+    format(
+        "Check out these cool JOHTO POKéMON I found in the SANCTUARY!"
+        )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger2Defeat {
+    format(
+        "Cool, but weak..."
+    )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger2PostBattle {
+    format(
+        "You're NORMAN's kid, huh? I can see where you get your skills!"
+    )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger3Intro {
+    format(
+        "Eyes up, trainer!"
+    )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger3Defeat {
+    format(
+        "You were ready!"
+    )
+}
+
+text JohtoSanctuaryRangerStation_Text_Ranger3PostBattle {
+    format(
+        "The SANCTUARY is built for POKéMON, so you have to stay alert!"
+    )
+}
+
+script JohtoSanctuaryRangerStation_Sign_Building {
+    msgbox(JohtoSanctuaryRangerStation_Text_SignBuilding, MSGBOX_SIGN)
+    end
+}
+
+text JohtoSanctuaryRangerStation_Text_SignBuilding {
+    format(
+        "JOHTO SANCTUARY RANGER STATION"
+    )
+}
+
+script JohtoSanctuaryRangerStation_Sign_Shrine {
+    msgbox(JohtoSanctuaryRangerStation_Text_SignShrine, MSGBOX_SIGN)
+    end
+}
+
+text JohtoSanctuaryRangerStation_Text_SignShrine {
+    format(
+        "JOHTO SANCTUARY SHRINE\N"
+        "A PLACE OF PEACE FOR POKéMON"
+    )
+}

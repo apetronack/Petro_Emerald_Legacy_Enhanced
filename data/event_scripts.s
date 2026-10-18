@@ -1097,3 +1097,5 @@ Common_EventScript_LegendaryRanAway::
 	.include "data/maps/JohtoArboretum/scripts.inc"
 
 	.include "data/maps/JohtoSanctuary_Entrance/scripts.inc"
+
+	.include "data/maps/JohtoSanctuaryRangerStation/scripts.inc"

@@ -697,3 +697,11 @@ DewfordBeach_EventScript_ItemBigPearl::
 JohtoSanctuaryEntrance_EventScript_ItemFullHeal::
 	finditem ITEM_FULL_HEAL
 	end
+
+JohtoSanctuaryRangerStation_EventScript_ItemUltraBall::
+	finditem ITEM_ULTRA_BALL
+	end
+
+JohtoSanctuaryRangerStation_EventScript_ItemFullHeal::
+	finditem ITEM_FULL_HEAL
+	end

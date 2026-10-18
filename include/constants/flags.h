@@ -1304,9 +1304,9 @@
 #define FLAG_NEW_MAUVILLE_PIKACHU_GIVEN                             0x4E8 // Flag for giving Pikachu in New Mauville
 #define FLAG_JOHTO_SANCTUARY_ITEM_REVIVAL_HERB                      0x4E9 // Hidden Revival Herb item in Johto Sanctuary Entrance
 #define FLAG_ITEM_JOHTO_SANCTUARY_FULL_HEAL                         0x4EA // Full Heal item in Johto Sanctuary Entrance
-#define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
-#define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
-#define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
+#define FLAG_HIDDEN_ITEM_JOHTOSANCTUARY_RANGERSTATION_SITRUS        0x4EB // Hidden Sitrus Berry item in Johto Sanctuary Ranger Station
+#define FLAG_ITEM_JOHTO_SANCTUARY_RANGERSTATION_FULL_HEAL           0x4EC // Full Heal item in Johto Sanctuary Ranger Station
+#define FLAG_ITEM_JOHTO_SANCTUARY_RANGERSTATION_ULTRA_BALL          0x4ED // Ultra Ball item in Johto Sanctuary Ranger Station
 #define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
 
 #define FLAG_REMATCH_METEOR_FALLS_STEVEN                            0x4EF // Flag to allow Steven Meteor Cave Rematch

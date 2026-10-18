@@ -15061,3 +15061,61 @@ static const struct TrainerMon sParty_WallyChampion[] = {
     .moves = {MOVE_CALM_MIND, MOVE_PSYCHIC, MOVE_THUNDERBOLT, MOVE_ICE_PUNCH}
     }
 };
+
+// Norman Quest Johto Sanctuary Ranger Station Trainers
+static const struct TrainerMon sParty_Sanjay[] = {
+    {
+    .iv = 50,
+    .lvl = 31,
+    .species = SPECIES_PINECO,
+    .moves = {MOVE_BIDE, MOVE_TAKE_DOWN, MOVE_PROTECT, MOVE_SELF_DESTRUCT}
+    },
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_SPINARAK,
+    .moves = {MOVE_TWINEEDLE, MOVE_NIGHT_SHADE, MOVE_SCARY_FACE, MOVE_LEECH_LIFE}
+    },
+    {
+    .iv = 50,
+    .lvl = 33,
+    .species = SPECIES_FORRETRESS,
+    .moves = {MOVE_BIDE, MOVE_PROTECT, MOVE_SELF_DESTRUCT, MOVE_TAKE_DOWN}
+    },
+};
+
+static const struct TrainerMon sParty_Grant[] = {
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_SKIPLOOM,
+    .moves = {MOVE_LEECH_SEED, MOVE_STUN_SPORE, MOVE_GUST, MOVE_MEGA_DRAIN}
+    },
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_NOCTOWL,
+    .moves = {MOVE_LIGHT_SCREEN, MOVE_HYPNOSIS, MOVE_PSYBEAM, MOVE_WING_ATTACK}
+    },
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_MISDREAVUS,
+    .moves = {MOVE_SHADOW_BALL, MOVE_CONFUSE_RAY, MOVE_SPITE, MOVE_PSYBEAM}
+    }
+};
+
+static const struct TrainerMon sParty_Riaz[] = {
+    {
+    .iv = 50,
+    .lvl = 31,
+    .species = SPECIES_TEDDIURSA,
+    .moves = {MOVE_REST, MOVE_FAINT_ATTACK, MOVE_FURY_SWIPES, MOVE_LICK}
+    },
+    {
+    .iv = 50,
+    .lvl = 34,
+    .species = SPECIES_URSARING,
+    .moves = {MOVE_FAINT_ATTACK, MOVE_SLASH, MOVE_LEER, MOVE_ROCK_TOMB}
+    }
+};

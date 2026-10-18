@@ -151,15 +151,15 @@
       "x": 1,
       "y": 15,
       "elevation": 0,
-      "dest_map": "MAP_JOHTO_SANCTUARY_ENTRANCE",
+      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION",
       "dest_warp_id": "0"
     },
     {
       "x": 0,
       "y": 15,
       "elevation": 0,
-      "dest_map": "MAP_JOHTO_SANCTUARY_ENTRANCE",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION",
+      "dest_warp_id": "1"
     },
     {
       "x": 11,

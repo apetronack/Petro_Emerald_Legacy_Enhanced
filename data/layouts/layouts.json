@@ -4530,6 +4530,16 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/JohtoSanctuary_Entrance/border.bin",
       "blockdata_filepath": "data/layouts/JohtoSanctuary_Entrance/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_SANCTUARY_RANGER_STATION",
+      "name": "JohtoSanctuaryRangerStation_Layout",
+      "width": 28,
+      "height": 28,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ShadyForest",
+      "border_filepath": "data/layouts/JohtoSanctuaryRangerStation/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoSanctuaryRangerStation/map.bin"
     }
   ]
 }
