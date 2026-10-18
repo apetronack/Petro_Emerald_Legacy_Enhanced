@@ -4520,6 +4520,16 @@
       "secondary_tileset": "gTileset_ShadyForest",
       "border_filepath": "data/layouts/JohtoArboretum/border.bin",
       "blockdata_filepath": "data/layouts/JohtoArboretum/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_SANCTUARY_ENTRANCE",
+      "name": "JohtoSanctuary_Entrance_Layout",
+      "width": 14,
+      "height": 18,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/JohtoSanctuary_Entrance/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoSanctuary_Entrance/map.bin"
     }
   ]
 }

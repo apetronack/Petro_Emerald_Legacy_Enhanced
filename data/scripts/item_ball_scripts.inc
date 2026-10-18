@@ -693,3 +693,7 @@ DewfordBeach_EventScript_ItemXAttack::
 DewfordBeach_EventScript_ItemBigPearl::
 	finditem ITEM_BIG_PEARL
 	end
+
+JohtoSanctuaryEntrance_EventScript_ItemFullHeal::
+	finditem ITEM_FULL_HEAL
+	end

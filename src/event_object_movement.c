@@ -515,6 +515,7 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
 #define OBJ_EVENT_PAL_TAG_DEOXYS_DEFENSE          0x1134
 #define OBJ_EVENT_PAL_TAG_DEOXYS_SPEED            0x1135
 #define OBJ_EVENT_PAL_TAG_LAIRON                  0x1136
+#define OBJ_EVENT_PAL_TAG_STANTLER                0x1137
 
 #if OW_MON_POKEBALLS
 // Vanilla

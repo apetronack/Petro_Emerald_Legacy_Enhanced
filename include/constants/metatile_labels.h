@@ -219,6 +219,9 @@
 #define METATILE_General_Grass_TreeLeft        0x1CE
 #define METATILE_General_Grass_TreeRight       0x1CF
 #define METATILE_General_Grass_TreeUp          0x00E
+#define METATILE_General_GreyLargeRocks        0x20F
+#define METATILE_General_GreyLargeRocksShaded  0x207
+#define METATILE_General_GreySmallRocks        0x21F
 #define METATILE_General_LongGrass             0x015
 #define METATILE_General_MuddySlope_Frame0     0x0E8
 #define METATILE_General_MuddySlope_Frame1     0x0E9
@@ -243,9 +246,6 @@
 #define METATILE_General_TallGrass_TreeUp      0x025
 #define METATILE_General_YellowCaveIndent      0x1A8
 #define METATILE_General_YellowCaveOpen        0x1A9
-#define METATILE_General_GreyLargeRocksShaded  0x207  // Added for dynamically moving some Sky Pillar Rocks
-#define METATILE_General_GreyLargeRocks        0x20F  // Added for dynamically moving some Sky Pillar Rocks
-#define METATILE_General_GreySmallRocks        0x21F  // Added for dynamically moving some Sky Pillar Rocks
 
 // gTileset_GenericBuilding
 #define METATILE_GenericBuilding_TableEdge               0x2F1
@@ -354,9 +354,6 @@
 #define METATILE_MauvilleGym_RedBeamV1_On     0x241
 #define METATILE_MauvilleGym_RedBeamV2_On     0x249
 
-// gTileset_MirageTower
-#define METATILE_Route111_MirageTower_SandFloor   0x211 // Added for dynamically removing some Mirage Tower Cracked Floor Tiles
-
 // gTileset_MeteorFalls
 #define METATILE_MeteorFalls_CaveEntrance_Bottom  0x24E
 #define METATILE_MeteorFalls_CaveEntrance_Left    0x24D
@@ -389,11 +386,11 @@
 #define METATILE_Pacifidlog_SkyPillar_CrackedFloor_Hole        0x237
 #define METATILE_Pacifidlog_SkyPillar_DoorOpen_Bottom          0x2B2
 #define METATILE_Pacifidlog_SkyPillar_DoorOpen_Top             0x2AA
+#define METATILE_Pacifidlog_SkyPillar_GreyFloor                0x234
 #define METATILE_Pacifidlog_SubmergedLogs_HorizontalLeft       0x254
 #define METATILE_Pacifidlog_SubmergedLogs_HorizontalRight      0x255
 #define METATILE_Pacifidlog_SubmergedLogs_VerticalBottom       0x262
 #define METATILE_Pacifidlog_SubmergedLogs_VerticalTop          0x25A
-#define METATILE_Pacifidlog_SkyPillar_GreyFloor                0x234 // Added for dynamically moving some Sky Pillar Rocks
 
 // gTileset_Petalburg
 #define METATILE_Petalburg_Door_BirchsLab   0x249
@@ -787,11 +784,12 @@
 #define METATILE_Underwater_RockWall     0x21E
 
 // Other
-#define METATILE_RSMossdeepGym_RedArrow_Down   0x205
-#define METATILE_RSMossdeepGym_RedArrow_Left   0x20C
-#define METATILE_RSMossdeepGym_RedArrow_Right  0x204
-#define METATILE_RSMossdeepGym_RedArrow_Up     0x20D
-#define METATILE_RSMossdeepGym_Switch_Down     0x239
-#define METATILE_RSMossdeepGym_Switch_Up       0x238
+#define METATILE_RSMossdeepGym_RedArrow_Down     0x205
+#define METATILE_RSMossdeepGym_RedArrow_Left     0x20C
+#define METATILE_RSMossdeepGym_RedArrow_Right    0x204
+#define METATILE_RSMossdeepGym_RedArrow_Up       0x20D
+#define METATILE_RSMossdeepGym_Switch_Down       0x239
+#define METATILE_RSMossdeepGym_Switch_Up         0x238
+#define METATILE_Route111_MirageTower_SandFloor  0x211
 
 #endif // GUARD_METATILE_LABELS_H

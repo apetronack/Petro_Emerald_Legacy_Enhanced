@@ -1168,8 +1168,8 @@
 #define FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL                        0x463
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
 #define FLAG_RIVAL_TRADE_3_COMPLETED                                0x465 // Was previously FLAG_ITEM_OLD_MAGMA_HIDEOUT_B1F_MASTER_BALL flag, reused for 3rd Starter Trade in National Dex Mode
-#define FLAG_UNUSED_0x466                                           0x466 // Unused Flag
-#define FLAG_UNUSED_0x467                                           0x467 // Unused Flag
+#define FLAG_JOHTO_SANCTUARY_CUT_TREE_1                             0x466 // Tracks cut state of first tree in Johto Sanctuary
+#define FLAG_JOHTO_SANCTUARY_CUT_TREE_2                             0x467 // Tracks cut state of second tree in Johto Sanctuary
 #define FLAG_ITEM_ROUTE_108_BLUE_SHARD                              0x468
 #define FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL                             0x469
 #define FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE                            0x46A
@@ -1302,8 +1302,8 @@
 #define FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED                      0x4E7 // Flag for Dewford Beach NPC trade completed
 // Wattson Quest Flags
 #define FLAG_NEW_MAUVILLE_PIKACHU_GIVEN                             0x4E8 // Flag for giving Pikachu in New Mauville
-#define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
-#define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
+#define FLAG_JOHTO_SANCTUARY_ITEM_REVIVAL_HERB                      0x4E9 // Hidden Revival Herb item in Johto Sanctuary Entrance
+#define FLAG_ITEM_JOHTO_SANCTUARY_FULL_HEAL                         0x4EA // Full Heal item in Johto Sanctuary Entrance
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
 #define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
 #define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
