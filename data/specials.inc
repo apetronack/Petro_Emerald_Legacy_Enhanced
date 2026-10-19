@@ -551,3 +551,4 @@ gSpecials::
 	def_special CreateShinyLaironEnemy
 	def_special GiveGiftRelicanth
 	def_special CreateShinyPikachuEnemy
+	def_special CreateShinyStantlerEnemy

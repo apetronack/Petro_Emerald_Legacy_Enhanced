@@ -7,6 +7,7 @@ void CreateScriptedWildMon(u16, u8, u16);
 void CreateShinyLaironEnemy(void);
 void CreateShinyPikachuEnemy(void);
 void GiveGiftRelicanth(void);
+void CreateShinyStantlerEnemy(void);
 void ScriptSetMonMoveSlot(u8, u16, u8);
 void ReducePlayerPartyToSelectedMons(void);
 void HealPlayerParty(void);

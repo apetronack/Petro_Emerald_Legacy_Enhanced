@@ -1507,7 +1507,7 @@
 #define FLAG_ROCK_SMASH_JOHTO_ARBORETUM_3                           (SYSTEM_FLAGS + 0x89) // Unused Flag
 #define FLAG_ITEM_JOHTO_ARBORETUM_HEAL_POWDER                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
 #define FLAG_ITEM_JOHTO_ARBORETUM_SILVER_POWDER                           (SYSTEM_FLAGS + 0x8B) // Unused Flag
-#define FLAG_UNUSED_0x8EC                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
+#define FLAG_JOHTO_ARBORETUM_STANTLER_GIVEN                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
 #define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
 #define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
