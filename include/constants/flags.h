@@ -906,7 +906,7 @@
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1           0x360
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2           0x361
 #define FLAG_HIDE_PETALBURG_GYM_WALLY                               0x362
-#define FLAG_UNUSED_0x363                                          0x363 // Unused Flag
+#define FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_2_COMPLETED   0x363 // Flag for completion of the second NPC trade at Johto Sanctuary Ranger Station for Chinchou
 #define FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN                           0x364
 #define FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY          0x365
 #define FLAG_HIDE_LANETTES_HOUSE_LANETTE                            0x366
@@ -1307,7 +1307,7 @@
 #define FLAG_HIDDEN_ITEM_JOHTOSANCTUARY_RANGERSTATION_SITRUS        0x4EB // Hidden Sitrus Berry item in Johto Sanctuary Ranger Station
 #define FLAG_ITEM_JOHTO_SANCTUARY_RANGERSTATION_FULL_HEAL           0x4EC // Full Heal item in Johto Sanctuary Ranger Station
 #define FLAG_ITEM_JOHTO_SANCTUARY_RANGERSTATION_ULTRA_BALL          0x4ED // Ultra Ball item in Johto Sanctuary Ranger Station
-#define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
+#define FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_1_COMPLETED   0x4EE // Flag for Johto Sanctuary Ranger Station NPC trade 1 completed (Bellossom)
 
 #define FLAG_REMATCH_METEOR_FALLS_STEVEN                            0x4EF // Flag to allow Steven Meteor Cave Rematch
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0

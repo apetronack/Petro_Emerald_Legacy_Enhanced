@@ -125,21 +125,21 @@
       "x": 12,
       "y": 15,
       "elevation": 0,
-      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION",
+      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION_BUILDING2",
       "dest_warp_id": "0"
     },
     {
       "x": 4,
       "y": 15,
       "elevation": 0,
-      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION",
+      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION_BUILDING1",
       "dest_warp_id": "0"
     },
     {
       "x": 12,
       "y": 22,
       "elevation": 0,
-      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION",
+      "dest_map": "MAP_JOHTO_SANCTUARY_RANGER_STATION_BUILDING3",
       "dest_warp_id": "0"
     }
   ],

@@ -4540,6 +4540,36 @@
       "secondary_tileset": "gTileset_ShadyForest",
       "border_filepath": "data/layouts/JohtoSanctuaryRangerStation/border.bin",
       "blockdata_filepath": "data/layouts/JohtoSanctuaryRangerStation/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_SANCTUARY_RANGER_STATION_BUILDING1",
+      "name": "JohtoSanctuary_RangerStation_Building1_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_SecretBase",
+      "secondary_tileset": "gTileset_SecretBaseTree",
+      "border_filepath": "data/layouts/JohtoSanctuary_RangerStation_Building1/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoSanctuary_RangerStation_Building1/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_SANCTUARY_RANGER_STATION_BUILDING2",
+      "name": "JohtoSanctuary_RangerStation_Building2_Layout",
+      "width": 7,
+      "height": 6,
+      "primary_tileset": "gTileset_SecretBase",
+      "secondary_tileset": "gTileset_SecretBaseTree",
+      "border_filepath": "data/layouts/JohtoSanctuary_RangerStation_Building2/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoSanctuary_RangerStation_Building2/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_SANCTUARY_RANGER_STATION_BUILDING3",
+      "name": "JohtoSanctuary_RangerStation_Building3_Layout",
+      "width": 13,
+      "height": 9,
+      "primary_tileset": "gTileset_SecretBase",
+      "secondary_tileset": "gTileset_SecretBaseTree",
+      "border_filepath": "data/layouts/JohtoSanctuary_RangerStation_Building3/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoSanctuary_RangerStation_Building3/map.bin"
     }
   ]
 }

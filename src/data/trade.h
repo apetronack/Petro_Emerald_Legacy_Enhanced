@@ -1880,6 +1880,38 @@ static const struct InGameTrade sIngameTrades[] =
         .sheen = 10,
         .requestedSpecies = SPECIES_JIGGLYPUFF,
     },
+    [INGAME_TRADE_GLOOM] =
+    {
+        .nickname = _("GLOOM"),
+        .species = SPECIES_GLOOM,
+        .ivs = {20, 16, 23, 19, 13, 12},
+        .abilityNum = 0,
+        .otId = 17089,
+        .conditions = {30, 5, 5, 5, 5},
+        .personality = 0x84,
+        .heldItem = ITEM_SUN_STONE,
+        .mailNum = -1,
+        .otName = _("REBECCA"),
+        .otGender = FEMALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_BEAUTIFLY,
+    },
+    [INGAME_TRADE_CHINCHOU] =
+    {
+        .nickname = _("CHINCHOU"),
+        .species = SPECIES_CHINCHOU,
+        .ivs = {27, 8, 22, 25, 29, 7},
+        .abilityNum = 0,
+        .otId = 4508,
+        .conditions = {30, 5, 5, 5, 5},
+        .personality = 0x7F,
+        .heldItem = ITEM_SEA_INCENSE,
+        .mailNum = -1,
+        .otName = _("MICHIO"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_SPINDA,
+    }
 };
 
 static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =

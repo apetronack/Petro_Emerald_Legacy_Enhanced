@@ -1099,3 +1099,9 @@ Common_EventScript_LegendaryRanAway::
 	.include "data/maps/JohtoSanctuary_Entrance/scripts.inc"
 
 	.include "data/maps/JohtoSanctuaryRangerStation/scripts.inc"
+
+	.include "data/maps/JohtoSanctuary_RangerStation_Building1/scripts.inc"
+
+	.include "data/maps/JohtoSanctuary_RangerStation_Building2/scripts.inc"
+
+	.include "data/maps/JohtoSanctuary_RangerStation_Building3/scripts.inc"
