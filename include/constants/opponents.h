@@ -903,7 +903,9 @@
 #define TRAINER_RANGER_NORMAN_QUEST_1       896
 #define TRAINER_RANGER_NORMAN_QUEST_2       897
 #define TRAINER_RANGER_NORMAN_QUEST_3       898
-#define TRAINERS_COUNT                      899
+#define TRAINER_RANGER_NORMAN_QUEST_4       899
+#define TRAINER_RANGER_NORMAN_QUEST_5       900
+#define TRAINERS_COUNT                      901
 #define MAX_TRAINERS_COUNT                  960
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

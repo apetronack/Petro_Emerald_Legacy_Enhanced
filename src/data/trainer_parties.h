@@ -15119,3 +15119,33 @@ static const struct TrainerMon sParty_Riaz[] = {
     .moves = {MOVE_FAINT_ATTACK, MOVE_SLASH, MOVE_LEER, MOVE_ROCK_TOMB}
     }
 };
+
+static const struct TrainerMon sParty_Anika[] = {
+    {
+    .iv = 50,
+    .lvl = 34,
+    .species = SPECIES_ARIADOS,
+    .moves = {MOVE_SPIDER_WEB, MOVE_TWINEEDLE, MOVE_NIGHT_SHADE, MOVE_LEECH_LIFE}
+    },
+    {
+    .iv = 50,
+    .lvl = 32,
+    .species = SPECIES_SKARMORY,
+    .moves = {MOVE_STEEL_WING, MOVE_SWIFT, MOVE_SAND_ATTACK, MOVE_LEER}
+    }
+};
+
+static const struct TrainerMon sParty_Alexei[] = {
+    {
+    .iv = 50,
+    .lvl = 33,
+    .species = SPECIES_TEDDIURSA,
+    .moves = {MOVE_FAKE_TEARS, MOVE_FAINT_ATTACK, MOVE_FURY_SWIPES, MOVE_LICK}
+    },
+    {
+    .iv = 50,
+    .lvl = 34,
+    .species = SPECIES_MISDREAVUS,
+    .moves = {MOVE_SHADOW_BALL, MOVE_CONFUSE_RAY, MOVE_SPITE, MOVE_PSYBEAM}
+    }
+};
