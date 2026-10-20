@@ -745,9 +745,104 @@ PlayersHouse_1F_EventScript_DadQuestConclusion::
 	release
 	end
 
-@ Repeated idle dialogue after quest is complete
+@ Repeated idle dialogue after quest is complete; also distributes rematch egg rewards
 PlayersHouse_1F_EventScript_DadPostQuestIdle::
+	@ Girafarig egg: given after 1st rematch (TRAINER_NORMAN_2)
+	goto_if_set FLAG_GIVEN_NORMAN_GIRAFARIG_EGG, PlayersHouse_1F_EventScript_DadCheckAipomEgg
+	setvar 0x8005, TRAINER_NORMAN_2
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveGirafarigEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ Girafarig egg given, but not yet the Aipom egg
+PlayersHouse_1F_EventScript_DadCheckAipomEgg::
+	@ Aipom egg: given after 2nd rematch (TRAINER_NORMAN_3)
+	goto_if_set FLAG_GIVEN_NORMAN_AIPOM_EGG, PlayersHouse_1F_EventScript_DadCheckSnubbullEgg
+	setvar 0x8005, TRAINER_NORMAN_3
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveAipomEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ Aipom egg given, but not yet the Snubbull egg
+PlayersHouse_1F_EventScript_DadCheckSnubbullEgg::
+	@ Snubbull egg: given after 3rd rematch (TRAINER_NORMAN_4)
+	goto_if_set FLAG_GIVEN_NORMAN_SNUBBULL_EGG, PlayersHouse_1F_EventScript_DadCheckMiltankEgg
+	setvar 0x8005, TRAINER_NORMAN_4
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveSnubbullEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ Snubbull egg given, but not yet the Miltank egg
+PlayersHouse_1F_EventScript_DadCheckMiltankEgg::
+	@ Miltank egg: given after 4th rematch (TRAINER_NORMAN_5)
+	goto_if_set FLAG_GIVEN_NORMAN_MILTANK_EGG, PlayersHouse_1F_EventScript_DadIdleDialogue
+	setvar 0x8005, TRAINER_NORMAN_5
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveMiltankEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ All rematch eggs have been given or next rematch has not yet been fought
+@ This is the default idle dialogue for Dad after the quest is complete
+PlayersHouse_1F_EventScript_DadIdleDialogue::
 	msgbox PlayersHouse_1F_Text_DadPostQuestIdle, MSGBOX_DEFAULT
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveAipomEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveAipomEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_AIPOM
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_AIPOM_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveSnubbullEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveSnubbullEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_SNUBBULL
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_SNUBBULL_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveGirafarigEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveGirafarigEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_GIRAFARIG
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_GIRAFARIG_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveMiltankEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveMiltankEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_MILTANK
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_MILTANK_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadEggPartyFull::
+	msgbox PlayersHouse_1F_Text_DadEggPartyFull, MSGBOX_DEFAULT
+	closemessage
 	release
 	end
 
@@ -825,3 +920,45 @@ PlayersHouse_1F_Text_DadPostQuestIdle:
 	.string "catching up on so much.\p"
 	.string "I'd almost forgotten how much I\n"
 	.string "missed this.$"
+
+PlayersHouse_1F_Text_DadGiveAipomEgg:
+	.string "DAD: {PLAYER}, I've been meaning\n"
+	.string "to give you something.\p"
+	.string "Back in JOHTO, AIPOM used to swing\n"
+	.string "through the trees.\p"
+	.string "They are mischevious, but quite\n"
+	.string "lovable. Here's an AIPOM EGG.\p"
+	.string "Take it. It deserves a good\n"
+	.string "TRAINER.$"
+
+PlayersHouse_1F_Text_DadGiveSnubbullEgg:
+	.string "DAD: You keep getting stronger,\n"
+	.string "{PLAYER}!\p"
+	.string "A SNUBBULL used to follow me\n"
+	.string "home in JOHTO sometimes…\p"
+	.string "It was feisty, but loyal.\n"
+	.string "I think you'll get along.$"
+
+PlayersHouse_1F_Text_DadGiveGirafarigEgg:
+	.string "DAD: Every time we battle, I see\n"
+	.string "how well you embody balance.\p"
+	.string "GIRAFARIG are balanced too.\p"
+	.string "Here is a GIRAFARIG EGG. I know\n"
+	.string "you will treat it with love.$"
+
+PlayersHouse_1F_Text_DadGaveEggSuccess:
+	.string "DAD: Take good care of it.$"
+
+PlayersHouse_1F_Text_DadEggPartyFull:
+	.string "DAD: Looks like your party is\n"
+	.string "already full.\p"
+	.string "Come back when you have room.\n"
+	.string "I'll keep it safe.$"
+
+PlayersHouse_1F_Text_DadGiveMiltankEgg:
+	.string "DAD: You've come such a long way\n"
+	.string "since this all started.\p"
+	.string "MILTANK are strong and dependable.\n"
+	.string "They were everywhere in JOHTO.\p"
+	.string "This is a final gift from your old\n"
+	.string "dad. Take good care of it.$"

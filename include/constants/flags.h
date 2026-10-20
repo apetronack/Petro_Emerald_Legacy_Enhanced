@@ -114,10 +114,10 @@
 #define FLAG_MET_TEAM_AQUA_HARBOR                           0x61
 #define FLAG_TV_EXPLAINED                                   0x62
 #define FLAG_MAUVILLE_GYM_BARRIERS_STATE                    0x63
-#define FLAG_UNUSED_0x064                                   0x64
-#define FLAG_UNUSED_0x065                                   0x65
-#define FLAG_UNUSED_0x066                                   0x66
-#define FLAG_UNUSED_0x067                                   0x67
+#define FLAG_GIVEN_NORMAN_AIPOM_EGG                         0x64 // Norman quest: Aipom egg given (after 1st rematch)
+#define FLAG_GIVEN_NORMAN_SNUBBULL_EGG                      0x65 // Norman quest: Snubbull egg given (after 2nd rematch)
+#define FLAG_GIVEN_NORMAN_GIRAFARIG_EGG                     0x66 // Norman quest: Girafarig egg given (after 3rd rematch)
+#define FLAG_GIVEN_NORMAN_MILTANK_EGG                       0x67 // Norman quest: Miltank egg given (after 4th rematch)
 
 #define FLAG_MAUVILLE_NPC_TRADE_COMPLETED                   0x68
 

@@ -95,10 +95,10 @@
             * Nature: Adamant
             * Moves: Hypnosis, Secret Power, Bite (egg move), Earthquake (TM)
         5. Worldbuilding: Make Norman appear at home with mom between each rematch
-            * After second rematch, give player an egg for Aipom
+            * After first rematch, give player an egg for Girafarig
+            * After second rematch (postgame), give player an egg for Aipom
             * After third rematch (postgame), give player an egg for Snubbull
-            * After fourth rematch (postgame), give player an egg for Girafarig
-            * After fifth and final rematch (postgame), give player an egg for Miltank
+            * After fourth and final rematch (postgame), give player an egg for Miltank
     6. Winona
         1. Find Winona outside her gym after Kyogre and Groudon are released
         2. Winona explains that the seasonal migratory bird Pokemon flocks that nest on the Sootopolis caldera's exterior cliffs have vanished, and asks the player to help her investigate
