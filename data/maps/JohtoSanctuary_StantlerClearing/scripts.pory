@@ -32,9 +32,11 @@ script JohtoSanctuary_StantlerClearing_EventScript_StantlerEncounter {
     switch (specialvar(VAR_RESULT, GetBattleOutcome)) {
         case B_OUTCOME_WON:
             setflag(FLAG_JOHTO_ARBORETUM_STANTLER_GIVEN)
+            setvar(VAR_NORMAN_QUEST_STATE, 4)
             goto(Common_EventScript_RemoveStaticPokemon)
         case B_OUTCOME_CAUGHT:
             setflag(FLAG_JOHTO_ARBORETUM_STANTLER_GIVEN)
+            setvar(VAR_NORMAN_QUEST_STATE, 4)
             goto(Common_EventScript_RemoveStaticPokemon)
     }
     release

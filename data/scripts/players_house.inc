@@ -64,8 +64,7 @@ PlayersHouse_2F_EventScript_WallClock::
 	delay 30
 	setvar VAR_LITTLEROOT_INTRO_STATE, 6
 	setflag FLAG_SET_WALL_CLOCK
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, PlayersHouse_2F_EventScript_MomComesUpstairsMale
 	call_if_eq VAR_RESULT, FEMALE, PlayersHouse_2F_EventScript_MomComesUpstairsFemale
@@ -702,3 +701,127 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 EventScript_RunningShoesManual::
 	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
 	end
+
+@ Norman Quest Additions
+
+PlayersHouse_1F_EventScript_Dad::
+	lock
+	faceplayer
+	goto_if_eq VAR_NORMAN_QUEST_STATE, 5, PlayersHouse_1F_EventScript_DadPostQuestIdle
+	goto_if_eq VAR_NORMAN_QUEST_STATE, 4, PlayersHouse_1F_EventScript_DadQuestConclusion
+	goto PlayersHouse_1F_EventScript_DadIntroduceQuest
+	end
+
+@ Norman introduces the Johto Sanctuary and departs
+PlayersHouse_1F_EventScript_DadIntroduceQuest::
+	msgbox PlayersHouse_1F_Text_DadIntroduceQuest, MSGBOX_DEFAULT
+	closemessage
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, PlayersHouse_1F_EventScript_DadExitQuestMale
+	call_if_eq VAR_RESULT, FEMALE, PlayersHouse_1F_EventScript_DadExitQuestFemale
+	removeobject LOCALID_DAD
+	playse SE_EXIT
+	setflag FLAG_NORMAN_QUEST_STARTED
+	setvar VAR_NORMAN_QUEST_STATE, 0
+	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadExitQuestMale::
+	applymovement LOCALID_DAD, PlayersHouse_1F_Movement_DadExitQuestMale
+	waitmovement 0
+	return
+
+PlayersHouse_1F_EventScript_DadExitQuestFemale::
+	applymovement LOCALID_DAD, PlayersHouse_1F_Movement_DadExitQuestFemale
+	waitmovement 0
+	return
+
+@ Norman returned; first interaction concludes the quest
+PlayersHouse_1F_EventScript_DadQuestConclusion::
+	msgbox PlayersHouse_1F_Text_DadQuestConclusion, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_NORMAN_QUEST_STATE, 5
+	release
+	end
+
+@ Repeated idle dialogue after quest is complete
+PlayersHouse_1F_EventScript_DadPostQuestIdle::
+	msgbox PlayersHouse_1F_Text_DadPostQuestIdle, MSGBOX_DEFAULT
+	release
+	end
+
+@ Called from both house OnTransition scripts whenever FLAG_DEFEATED_PETALBURG_GYM is set.
+@ Uses goto so that HideDad/ShowDad's return propagates back to the original caller.
+PlayersHouse_1F_EventScript_ManageNormanVisibility::
+	@ SS Ticket event pending: defer entirely, let that event manage Dad's NPC
+	goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_ManageNormanVisibilityEnd
+	@ Quest not yet initiated: Norman is home awaiting player (covers both pre-intro and
+	@ post-SS-Ticket cases where the player never triggered the house intro)
+	goto_if_unset FLAG_NORMAN_QUEST_STARTED, PlayersHouse_1F_EventScript_ShowDad
+	@ State 4: Stantler encounter resolved, Norman has returned home
+	goto_if_eq VAR_NORMAN_QUEST_STATE, 4, PlayersHouse_1F_EventScript_ShowDad
+	@ State 5+: quest complete; hide only during active rematch window
+	goto_if_ge VAR_NORMAN_QUEST_STATE, 5, PlayersHouse_1F_EventScript_CheckRematchHide
+	@ Remaining: states 0-3 with FLAG_NORMAN_QUEST_STARTED set (Norman at woods or sanctuary)
+	goto PlayersHouse_1F_EventScript_HideDad
+
+PlayersHouse_1F_EventScript_CheckRematchHide::
+	goto_if_set FLAG_REMATCH_READY_NORMAN, PlayersHouse_1F_EventScript_HideDad
+PlayersHouse_1F_EventScript_ManageNormanVisibilityEnd::
+	return
+
+PlayersHouse_1F_EventScript_HideDad::
+	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	return
+
+PlayersHouse_1F_EventScript_ShowDad::
+	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	return
+
+PlayersHouse_1F_Movement_DadExitQuestMale:
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	face_down
+	delay_8
+	step_end
+
+PlayersHouse_1F_Movement_DadExitQuestFemale:
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	face_down
+	delay_8
+	step_end
+
+PlayersHouse_1F_Text_DadIntroduceQuest:
+	.string "DAD: {PLAYER}! I'm glad you came.\p"
+	.string "I've been thinking a lot about\n"
+	.string "our old home in JOHTO lately…\p"
+	.string "The forests, the places we called\n"
+	.string "home before all this.\p"
+	.string "Meet me in PETALBURG WOODS when\n"
+	.string "you're ready, {PLAYER}.\p"
+	.string "I want to show you something.$"
+
+PlayersHouse_1F_Text_DadQuestConclusion:
+	.string "DAD: {PLAYER}…\p"
+	.string "Watching you out there today…\p"
+	.string "You have a true bond with\l"
+	.string "POKéMON.\p"
+	.string "You understand them, and they\n"
+	.string "feel a connection with you.\p"
+	.string "I'm proud of you, {PLAYER}.\n"
+	.string "Not just as a TRAINER.$"
+
+PlayersHouse_1F_Text_DadPostQuestIdle:
+	.string "DAD: It's good to be home.\p"
+	.string "Your mother and I have been\n"
+	.string "catching up on so much.\p"
+	.string "I'd almost forgotten how much I\n"
+	.string "missed this.$"

@@ -1,5 +1,6 @@
 raw `
 .set LOCALID_MOM, 1
+.set LOCALID_DAD, 5
 .set LOCALID_RIVAL_MOM, 4
 .set LOCALID_RIVAL, 7
 
@@ -32,6 +33,7 @@ LittlerootTown_BrendansHouse_1F_OnTransition:
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs
 	call_if_eq VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV
+	call_if_set FLAG_DEFEATED_PETALBURG_GYM, PlayersHouse_1F_EventScript_ManageNormanVisibility
 	end
 
 LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs::
