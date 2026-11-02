@@ -10,7 +10,7 @@ mapscripts JohtoArboretum_MapScripts {
 
 script JohtoArboretum_StantlerAppearance_UpperTrigger {
     lockall
-    showobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    addobject(LOCALID_STANTLER)
     // Stantler: left 2 to x=22, down 2 to y=9, left 3 stops at (19,9), adjacent to player at (18,9)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_left * 2,
@@ -40,10 +40,10 @@ script JohtoArboretum_StantlerAppearance_UpperTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_STANTLER)
 
     // Norman walks down from (17,3) to (17,9) to meet the player
-    showobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    addobject(LOCALID_NORMAN)
     applymovement(LOCALID_NORMAN, moves(
                         walk_fast_down * 6,
                         face_right
@@ -69,14 +69,14 @@ script JohtoArboretum_StantlerAppearance_UpperTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_NORMAN)
     setvar(VAR_NORMAN_QUEST_STATE, 3)
     releaseall()
 }
 
 script JohtoArboretum_StantlerAppearance_UpperMidTrigger {
     lockall
-    showobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    addobject(LOCALID_STANTLER)
     // Stantler: left 2 to x=22, down 3 to y=10, left 3 stops at (19,10), adjacent to player at (18,10)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_left * 2,
@@ -105,10 +105,10 @@ script JohtoArboretum_StantlerAppearance_UpperMidTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_STANTLER)
 
     // Norman walks down from (17,3) to (17,10)
-    showobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    addobject(LOCALID_NORMAN)
     applymovement(LOCALID_NORMAN, moves(
                         walk_fast_down * 7,
                         face_right
@@ -134,14 +134,14 @@ script JohtoArboretum_StantlerAppearance_UpperMidTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_NORMAN)
     setvar(VAR_NORMAN_QUEST_STATE, 3)
     releaseall()
 }
 
 script JohtoArboretum_StantlerAppearance_LowerMidTrigger {
     lockall
-    showobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    addobject(LOCALID_STANTLER)
     // Stantler: left 2 to x=22, down 4 to y=11, left 3 stops at (19,11), adjacent to player at (18,11)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_left * 2,
@@ -170,10 +170,10 @@ script JohtoArboretum_StantlerAppearance_LowerMidTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_STANTLER)
 
     // Norman walks down from (17,3) to (17,11)
-    showobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    addobject(LOCALID_NORMAN)
     applymovement(LOCALID_NORMAN, moves(
                         walk_fast_down * 8,
                         face_right
@@ -199,7 +199,7 @@ script JohtoArboretum_StantlerAppearance_LowerMidTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_NORMAN)
     setvar(VAR_NORMAN_QUEST_STATE, 3)
     releaseall()
 }
@@ -242,10 +242,10 @@ script JohtoArboretum_StantlerAppearance_LowerTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_STANTLER)
 
     // Norman walks down from (17,3) to (17,12)
-    showobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    addobject(LOCALID_NORMAN)
     applymovement(LOCALID_NORMAN, moves(
                         walk_fast_down * 9,
                         face_right
@@ -271,7 +271,7 @@ script JohtoArboretum_StantlerAppearance_LowerTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+    removeobject(LOCALID_NORMAN)
     setvar(VAR_NORMAN_QUEST_STATE, 3)
     releaseall()
 }

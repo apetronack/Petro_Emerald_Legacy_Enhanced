@@ -18,7 +18,7 @@ PetalburgWoods_EventScript_NormanJoinPlayer::
 	setfieldeffectargument 0, 1
 	dofieldeffect FLDEFF_NPCFLY_OUT
 	waitfieldeffect FLDEFF_NPCFLY_OUT
-	showobjectat LOCALID_NORMAN, MAP_PETALBURG_WOODS
+	addobject LOCALID_NORMAN
 	applymovement LOCALID_NORMAN, PetalburgWoods_Movement_NormanApproachPlayer
 	waitmovement 0
 	msgbox PetalburgWoods_Text_NormanGreetsPlayer, MSGBOX_DEFAULT
@@ -27,7 +27,7 @@ PetalburgWoods_EventScript_NormanJoinPlayer::
 	waitmovement 0
 	applymovement LOCALID_NORMAN, PetalburgWoods_Movement_NormanExit
 	waitmovement 0
-	hideobjectat LOCALID_NORMAN, MAP_PETALBURG_WOODS
+	removeobject LOCALID_NORMAN
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceDown
 	waitmovement 0
 	setvar VAR_NORMAN_QUEST_STATE, 1
@@ -530,7 +530,7 @@ PetalburgWoods_Text_NormanGreetsPlayer:
 	.string "that I think you're going to love.\p"
 	.string "I can tell that you're starting to\n"
 	.string "think of HOENN as home, but if\p"
-	.string "you're like me, you still miss our"
+	.string "you're like me, you still miss our\n"
 	.string "old home in JOHTO.\p"
 	.string "With help from some of HOENN's\n"
 	.string "POKéMON RANGERS, I've started a\p"

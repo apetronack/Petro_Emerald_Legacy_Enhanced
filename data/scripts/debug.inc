@@ -38,164 +38,152 @@ Debug_CheatStart::
 	setflag FLAG_HIDE_ROUTE_116_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	setvar VAR_PETALBURG_WOODS_STATE, 1
+	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
+	setvar VAR_PETALBURG_CITY_STATE, 3
 	closemessage
 	release
 	end
 
 @ =============================================================================
-@ Debug_Script_1 - Roxanne Quest: QUEST ACTIVE
+@ Debug_Script_1 - Norman Quest: PRE-BATTLE
 @ -----------------------------------------------------------------------------
-@ World state: Badges 1-3 obtained, Wattson just defeated, Roxanne quest
-@ activated. Roxanne NPC appears outside Rustboro Gym, blocking entry.
+@ World state: All 4 prerequisite badges obtained (Roxanne, Brawly, Wattson,
+@ Flannery). VAR_PETALBURG_GYM_STATE = 6: Norman is at his battle position
+@ (4, 2) and all gym doors are unlocked. FLAG_DEFEATED_PETALBURG_GYM not set.
+@ HMs Rock Smash, Strength, Cut, and Flash in bag with received flags set.
 @
-@ Automatically warps to Rusturf Tunnel (Route 116 entrance side).
-@ Gives a level 30 team for immediate combat testing.
+@ Warps directly in front of Norman in Petalburg City Gym.
 @ =============================================================================
 Debug_Script_1::
+	lockall
+
+	@ --- Badges (all 4 prerequisites) ---
+	setflag FLAG_BADGE01_GET
+	setflag FLAG_BADGE02_GET
+	setflag FLAG_BADGE03_GET
+	setflag FLAG_BADGE04_GET
+
+	@ --- Gym defeat flags ---
+	setflag FLAG_DEFEATED_RUSTBORO_GYM
+	setflag FLAG_DEFEATED_DEWFORD_GYM
+	setflag FLAG_DEFEATED_MAUVILLE_GYM
+	setflag FLAG_DEFEATED_LAVARIDGE_GYM
+
+	@ --- Petalburg Gym: 4 prerequisites met, Norman ready to battle ---
+	setvar VAR_PETALBURG_GYM_STATE, 6
+
+	@ --- Match Call / PokéNav ---
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
+	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+
+	@ --- Story-critical progression ---
+	setvar VAR_RUSTBORO_CITY_STATE, 1
+	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	setvar VAR_0x8008, 4
+	setflag FLAG_DELIVERED_STEVEN_LETTER
+	setflag FLAG_RETURNED_DEVON_GOODS
+	setflag FLAG_RECOVERED_DEVON_GOODS
+	setflag FLAG_MET_DEVON_EMPLOYEE
+	setflag FLAG_MR_BRINEY_SAILING_INTRO
+	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
+	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+
+	@ --- Player essentials ---
+	setflag FLAG_SYS_POKEDEX_GET
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_SYS_B_DASH
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_ADVENTURE_STARTED
+	setflag FLAG_RESCUED_BIRCH
+	setflag FLAG_SYS_POKEMON_GET
+
+	@ --- Littleroot intro complete ---
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
+
+	@ --- HMs ---
+	setflag FLAG_RECEIVED_HM_ROCK_SMASH
+	setflag FLAG_RECEIVED_HM_STRENGTH
+	setflag FLAG_RECEIVED_HM_CUT
+	setflag FLAG_RECEIVED_HM_FLASH
+	additem ITEM_HM_ROCK_SMASH
+	additem ITEM_HM_STRENGTH
+	additem ITEM_HM_CUT
+	additem ITEM_HM_FLASH
+
+	@ --- Party (levels 31-33) ---
+	givemon SPECIES_MARSHTOMP, 32, ITEM_NONE
+	givemon SPECIES_BRELOOM, 31, ITEM_NONE
+	givemon SPECIES_PONYTA, 33, ITEM_NONE
+	givemon SPECIES_SWELLOW, 31, ITEM_NONE
+	givemon SPECIES_MACHOKE, 32, ITEM_NONE
+	givemon SPECIES_GRAVELER, 33, ITEM_NONE
+	additem ITEM_ULTRA_BALL, 10
+	additem ITEM_FULL_RESTORE, 5
+
+	@ --- Warp directly in front of Norman in Petalburg City Gym ---
+	warp MAP_PETALBURG_CITY_GYM, 4, 6
+	waitstate
+	end
+
+@ =============================================================================
+@ Debug_Script_2 - Norman Quest: QUEST INITIATION
+@ -----------------------------------------------------------------------------
+@ World state: Norman just defeated for the first time. VAR_NORMAN_QUEST_STATE
+@ = 0, FLAG_NORMAN_QUEST_STARTED not set: Norman is home in the player's house
+@ waiting for the player to speak with him (DadIntroduceQuest dialogue).
+@ FLAG_HIDE_PLAYERS_HOUSE_DAD is cleared; ManageNormanVisibility confirms Norman
+@ visible on house entry. FLAG_HIDE_PETALBURG_GYM_NORMAN set.
+@
+@ Warps to Littleroot Town between the two player houses.
+@ Brendan's house entrance at (5, 8), May's house entrance at (14, 8).
+@ =============================================================================
+Debug_Script_2::
 	lockall
 
 	@ --- Badges ---
 	setflag FLAG_BADGE01_GET
 	setflag FLAG_BADGE02_GET
 	setflag FLAG_BADGE03_GET
+	setflag FLAG_BADGE04_GET
+	setflag FLAG_BADGE05_GET
 
 	@ --- Gym defeat flags ---
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_DEFEATED_DEWFORD_GYM
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
+	setflag FLAG_DEFEATED_LAVARIDGE_GYM
+	setflag FLAG_DEFEATED_PETALBURG_GYM
 
-	@ --- TM receipt flags ---
-	setflag FLAG_RECEIVED_TM_ROCK_TOMB
-	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
-	setflag FLAG_RECEIVED_TM_BULK_UP            @ Brawly's TM
+	@ --- Norman defeated; quest not yet started ---
+	setvar VAR_PETALBURG_GYM_STATE, 7
+	setvar VAR_NORMAN_QUEST_STATE, 0
+	@ FLAG_NORMAN_QUEST_STARTED intentionally not set: house intro not yet triggered
+	setflag FLAG_HIDE_PETALBURG_GYM_NORMAN      @ Norman left the gym after defeat
+	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD        @ Norman visible at home
 
-	@ --- Match Call / PokéNav registration ---
+	@ --- Match Call / PokéNav ---
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
 	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
 	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
-	setflag FLAG_REMATCH_READY_ROXANNE
-	setflag FLAG_HAS_MATCH_CALL
-	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
 
-	@ --- Story-critical vars ---
-	@ VAR_RUSTBORO_CITY_STATE 1: Devon goods quest resolved, city normal
-	setvar VAR_RUSTBORO_CITY_STATE, 1
-	@ VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE 3: Set by Wattson defeat
-	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
-	@ VAR_PETALBURG_GYM_STATE: 0 base + 1 (Wally intro) + 1 (Wally leaves)
-	@   + 1 (Roxanne badge) + 1 (Wattson badge) = 4
-	@   Value 6 triggers Norman unlock; 4 is safe.
-	setvar VAR_PETALBURG_GYM_STATE, 4
-	@ VAR_0x8008 3: Gym trainer difficulty tier after Badge 3
-	setvar VAR_0x8008, 3
-
-	@ --- Slateport / Devon goods chain resolved ---
-	setflag FLAG_DELIVERED_STEVEN_LETTER
-	setflag FLAG_RETURNED_DEVON_GOODS
-	setflag FLAG_RECOVERED_DEVON_GOODS
-	setflag FLAG_MET_DEVON_EMPLOYEE
-
-	@ --- Briney / sailing resolved so player can access Dewford/Slateport ---
-	setflag FLAG_MR_BRINEY_SAILING_INTRO
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-
-	@ --- Player progression essentials ---
-	setflag FLAG_SYS_POKEDEX_GET
-	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
-	setflag FLAG_SYS_POKENAV_GET
-	setflag FLAG_SYS_B_DASH                     @ Running shoes
-	setflag FLAG_RECEIVED_RUNNING_SHOES
-	setflag FLAG_ADVENTURE_STARTED
-	setflag FLAG_RESCUED_BIRCH
-	setflag FLAG_SYS_POKEMON_GET
-
-	@ --- Give HM Rock Smash so tunnel puzzle is immediately usable ---
-	additem ITEM_HM_ROCK_SMASH
-
-	@ --- Give a usable party if one is not already present ---
-	@ (Use Debug Menu > Pokemon Creator to set a proper party if needed)
-
-	@ --- Roxanne Quest activation ---
-	setflag FLAG_ROXANNE_QUEST_ACTIVE
-	setvar VAR_ROXANNE_QUEST_STATE, 1
-	@ Roxanne NPC visible outside gym; cleared when quest completes
-	clearflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
-
-	@ --- Rusturf Tunnel grunt guard visible (set by Wattson gym defeat in-game) ---
-	setflag FLAG_RUSTURF_MAGMA_GRUNT_VISIBLE
-	@ FLAG_RUSTURF_MAGMA_GRUNT_PAID intentionally NOT set here; tester must pay
-
-	@ --- Skip Briney/Peeko/Aqua Grunt encounter in Rusturf Tunnel ---
-	@ Devon goods quest resolved at state 1; ensure encounter NPCs are hidden
-	setvar VAR_RUSTURF_TUNNEL_STATE, 0
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
-	clearflag FLAG_DEVON_GOODS_STOLEN
-	@ Wanda and her boyfriend are hidden at new game; reveal them for the side quest
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
-
-	@ --- Give enough money to pay the Magma Grunt guard (¥5,000 required) ---
-	addmoney 5000, 0
-
-	@ --- Give a high-level starter for combat testing ---
-	givemon SPECIES_MARSHTOMP, 30, ITEM_NONE
-	givemon SPECIES_BRELOOM, 30, ITEM_NONE
-	givemon SPECIES_PONYTA, 30, ITEM_NONE
-	givemon SPECIES_SWELLOW, 30, ITEM_NONE
-	givemon SPECIES_MACHOKE, 30, ITEM_NONE
-	givemon SPECIES_GRAVELER, 30, ITEM_NONE
-	giveitem ITEM_TM_ROCK_TOMB, 3
-	giveitem ITEM_HM_ROCK_SMASH, 1
-	giveitem ITEM_HM_FLASH, 1
-	giveitem ITEM_HM_CUT, 1
-	giveitem ITEM_TM_BULK_UP, 2
-	giveitem ITEM_TM_SHOCK_WAVE, 1
-	giveitem ITEM_TM_SECRET_POWER, 6
-	giveitem ITEM_TM_BULLET_SEED, 1
-	giveitem ITEM_SOFT_SAND, 1
-	giveitem ITEM_MIRACLE_SEED, 1
-	giveitem ITEM_MASTER_BALL, 1
-
-	@ --- Warp directly into Rusturf Tunnel (Route 116 entrance side) ---
-	warp MAP_RUSTURF_TUNNEL, 5, 10
-	waitstate
-	end
-
-@ =============================================================================
-@ Debug_Script_2 - Roxanne Quest: GRUNTS CLEARED
-@ -----------------------------------------------------------------------------
-@ World state: Both Magma Grunts in the cave have been defeated. Player is
-@ ready to enter Rusturf_MagmaCave_Final and face the admin double battle.
-@
-@ Automatically warps to Rusturf_MagmaCave_Main entrance.
-@ Gives a level 45 Sceptile, Blaziken, and Swampert for immediate combat testing.
-@ =============================================================================
-Debug_Script_2::
-	lockall
-
-	@ --- All flags from Script 1 ---
-	setflag FLAG_BADGE01_GET
-	setflag FLAG_BADGE02_GET
-	setflag FLAG_BADGE03_GET
-	setflag FLAG_DEFEATED_RUSTBORO_GYM
-	setflag FLAG_DEFEATED_DEWFORD_GYM
-	setflag FLAG_DEFEATED_MAUVILLE_GYM
-	setflag FLAG_RECEIVED_TM_ROCK_TOMB
-	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
-	setflag FLAG_RECEIVED_TM_BULK_UP
-	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
-	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
-	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
-	setflag FLAG_REMATCH_READY_ROXANNE
-	setflag FLAG_HAS_MATCH_CALL
-	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	@ --- Story-critical progression ---
 	setvar VAR_RUSTBORO_CITY_STATE, 1
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
-	setvar VAR_PETALBURG_GYM_STATE, 4
-	setvar VAR_0x8008, 3
+	setvar VAR_0x8008, 4
 	setflag FLAG_DELIVERED_STEVEN_LETTER
 	setflag FLAG_RETURNED_DEVON_GOODS
 	setflag FLAG_RECOVERED_DEVON_GOODS
@@ -203,6 +191,8 @@ Debug_Script_2::
 	setflag FLAG_MR_BRINEY_SAILING_INTRO
 	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+
+	@ --- Player essentials ---
 	setflag FLAG_SYS_POKEDEX_GET
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setflag FLAG_SYS_POKENAV_GET
@@ -211,89 +201,89 @@ Debug_Script_2::
 	setflag FLAG_ADVENTURE_STARTED
 	setflag FLAG_RESCUED_BIRCH
 	setflag FLAG_SYS_POKEMON_GET
+
+	@ --- Littleroot intro complete ---
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
+
+	@ --- HMs ---
+	setflag FLAG_RECEIVED_HM_ROCK_SMASH
+	setflag FLAG_RECEIVED_HM_STRENGTH
+	setflag FLAG_RECEIVED_HM_CUT
+	setflag FLAG_RECEIVED_HM_FLASH
+	setflag FLAG_RECEIVED_HM_SURF
 	additem ITEM_HM_ROCK_SMASH
 	additem ITEM_HM_STRENGTH
-	setflag FLAG_ROXANNE_QUEST_ACTIVE
-	clearflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
+	additem ITEM_HM_CUT
+	additem ITEM_HM_FLASH
+	additem ITEM_HM_SURF
 
-	@ --- Rusturf Tunnel grunt guard visible (set by Wattson gym defeat in-game) ---
-	setflag FLAG_RUSTURF_MAGMA_GRUNT_VISIBLE
-	@ Player is past the grunt; mark as paid so OnTransition repositions him
-	setflag FLAG_RUSTURF_MAGMA_GRUNT_PAID
+	@ --- Party (levels 31-33) ---
+	givemon SPECIES_MARSHTOMP, 32, ITEM_NONE
+	givemon SPECIES_BRELOOM, 31, ITEM_NONE
+	givemon SPECIES_PONYTA, 33, ITEM_NONE
+	givemon SPECIES_SWELLOW, 31, ITEM_NONE
+	givemon SPECIES_MACHOKE, 32, ITEM_NONE
+	givemon SPECIES_GRAVELER, 33, ITEM_NONE
+	additem ITEM_ULTRA_BALL, 10
+	additem ITEM_FULL_RESTORE, 5
 
-	@ --- Quest progression: all 3 grunts defeated ---
-	setvar VAR_ROXANNE_QUEST_STATE, 3
-	setflag FLAG_MAGMA_GRUNT_RUSTURF_1_DEFEATED
-	settrainerflag TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_2
-	settrainerflag TRAINER_GRUNT_RUSTURF_MAGMA_CAVE_3
-
-	@ --- Skip Briney/Peeko/Aqua Grunt encounter in Rusturf Tunnel ---
-	setvar VAR_RUSTURF_TUNNEL_STATE, 0
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
-	clearflag FLAG_DEVON_GOODS_STOLEN
-	@ Wanda and her boyfriend are hidden at new game; reveal them for the side quest
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
-
-	@ --- Give a high-level starter for combat testing ---
-	givemon SPECIES_MARSHTOMP, 30, ITEM_NONE
-	givemon SPECIES_BRELOOM, 30, ITEM_NONE
-	givemon SPECIES_PONYTA, 30, ITEM_NONE
-	givemon SPECIES_SWELLOW, 30, ITEM_NONE
-	givemon SPECIES_MACHOKE, 30, ITEM_NONE
-	givemon SPECIES_GRAVELER, 30, ITEM_NONE
-	giveitem ITEM_TM_ROCK_TOMB, 3
-	giveitem ITEM_HM_ROCK_SMASH, 1
-	giveitem ITEM_HM_FLASH, 1
-	giveitem ITEM_HM_CUT, 1
-	giveitem ITEM_TM_BULK_UP, 2
-	giveitem ITEM_TM_SHOCK_WAVE, 1
-	giveitem ITEM_TM_SECRET_POWER, 6
-	giveitem ITEM_TM_BULLET_SEED, 1
-	giveitem ITEM_SOFT_SAND, 1
-	giveitem ITEM_MIRACLE_SEED, 1
-	giveitem ITEM_MASTER_BALL, 1
-
-	@ --- Warp into Rusturf_MagmaCave_Main (past the Entry tunnel) ---
-	warp MAP_RUSTURF_MAGMA_CAVE_MAIN, 5, 25
+	@ --- Warp to Littleroot Town between the two player houses ---
+	warp MAP_LITTLEROOT_TOWN, 9, 7
 	waitstate
 	end
 
 @ =============================================================================
-@ Debug_Script_3 - Roxanne Quest: QUEST COMPLETE (Reward Pending)
+@ Debug_Script_3 - Norman Quest: PETALBURG WOODS ENCOUNTER
 @ -----------------------------------------------------------------------------
-@ World state: Admin double battle done, fossil stolen, player has returned
-@ to Rustboro City. Roxanne is back inside the gym. Quest complete flag set,
-@ reward not yet given - triggers Roxanne's Relicanth gift dialogue on contact.
+@ World state: House intro has fired (DadIntroduceQuest). FLAG_NORMAN_QUEST_STARTED
+@ set, VAR_NORMAN_QUEST_STATE = 0. The SanctuaryBlocker NPC at (3, 39) is hidden
+@ by FLAG_NORMAN_QUEST_STARTED. Stepping on tile (4, 39) triggers
+@ EventScript_NormanJoinPlayer: Norman flies in, greets the player, and state
+@ advances to 1. FLAG_HIDE_PLAYERS_HOUSE_DAD set; Norman not in house.
 @
-@ Automatically warps to Rustboro City Gym (near Roxanne).
-@ Gives a level 45 Sceptile for immediate combat testing.
+@ Warps to Petalburg Woods north of the Norman coord event at (4, 39).
 @ =============================================================================
 Debug_Script_3::
 	lockall
 
-	@ --- All flags from Script 1 ---
+	@ --- Badges ---
 	setflag FLAG_BADGE01_GET
 	setflag FLAG_BADGE02_GET
 	setflag FLAG_BADGE03_GET
+	setflag FLAG_BADGE04_GET
+	setflag FLAG_BADGE05_GET
+
+	@ --- Gym defeat flags ---
 	setflag FLAG_DEFEATED_RUSTBORO_GYM
 	setflag FLAG_DEFEATED_DEWFORD_GYM
 	setflag FLAG_DEFEATED_MAUVILLE_GYM
-	setflag FLAG_RECEIVED_TM_ROCK_TOMB
-	setflag FLAG_RECEIVED_TM_SHOCK_WAVE
-	setflag FLAG_RECEIVED_TM_BULK_UP
+	setflag FLAG_DEFEATED_LAVARIDGE_GYM
+	setflag FLAG_DEFEATED_PETALBURG_GYM
+
+	@ --- Norman quest: house intro done, player directed to Petalburg Woods ---
+	setvar VAR_PETALBURG_GYM_STATE, 7
+	setvar VAR_NORMAN_QUEST_STATE, 0
+	setflag FLAG_NORMAN_QUEST_STARTED            @ house intro fired; Norman heading to woods
+	setflag FLAG_HIDE_PETALBURG_GYM_NORMAN
+	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD          @ Norman not at home
+
+	@ --- Match Call / PokéNav ---
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
 	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
 	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
 	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
-	setflag FLAG_REMATCH_READY_ROXANNE
-	setflag FLAG_HAS_MATCH_CALL
-	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
+
+	@ --- Story-critical progression ---
 	setvar VAR_RUSTBORO_CITY_STATE, 1
 	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
-	setvar VAR_PETALBURG_GYM_STATE, 4
-	setvar VAR_0x8008, 3
+	setvar VAR_0x8008, 4
 	setflag FLAG_DELIVERED_STEVEN_LETTER
 	setflag FLAG_RETURNED_DEVON_GOODS
 	setflag FLAG_RECOVERED_DEVON_GOODS
@@ -301,6 +291,8 @@ Debug_Script_3::
 	setflag FLAG_MR_BRINEY_SAILING_INTRO
 	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+
+	@ --- Player essentials ---
 	setflag FLAG_SYS_POKEDEX_GET
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setflag FLAG_SYS_POKENAV_GET
@@ -309,50 +301,142 @@ Debug_Script_3::
 	setflag FLAG_ADVENTURE_STARTED
 	setflag FLAG_RESCUED_BIRCH
 	setflag FLAG_SYS_POKEMON_GET
-	setflag FLAG_ROXANNE_QUEST_ACTIVE
-	@ Player is long past the grunt; mark as paid so OnTransition repositions him
-	setflag FLAG_RUSTURF_MAGMA_GRUNT_PAID
 
-	@ --- Quest complete state ---
-	setvar VAR_ROXANNE_QUEST_STATE, 5
-	setflag FLAG_MAGMA_GRUNT_RUSTURF_1_DEFEATED
-	setflag FLAG_MAGMA_ADMINS_RUSTURF_DEFEATED
-	setflag FLAG_ROXANNE_QUEST_COMPLETE
+	@ --- Littleroot intro complete ---
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
 
-	@ --- Fossil tracking (Helix chosen by default for testing) ---
-	@ To test Dome instead: swap setflag/clearflag below
-	setflag FLAG_CHOSE_HELIX_FOSSIL
-	clearflag FLAG_CHOSE_DOME_FOSSIL
-	setflag FLAG_FOSSIL_STOLEN_BY_GRUNT
+	@ --- HMs ---
+	setflag FLAG_RECEIVED_HM_ROCK_SMASH
+	setflag FLAG_RECEIVED_HM_STRENGTH
+	setflag FLAG_RECEIVED_HM_CUT
+	setflag FLAG_RECEIVED_HM_FLASH
+	setflag FLAG_RECEIVED_HM_SURF
+	additem ITEM_HM_ROCK_SMASH
+	additem ITEM_HM_STRENGTH
+	additem ITEM_HM_CUT
+	additem ITEM_HM_FLASH
+	additem ITEM_HM_SURF
 
-	@ --- Roxanne back inside gym; overworld NPC hidden ---
-	setflag FLAG_HIDE_ROXANNE_OUTSIDE_GYM
+	@ --- Party (levels 31-33) ---
+	givemon SPECIES_MARSHTOMP, 32, ITEM_NONE
+	givemon SPECIES_BRELOOM, 31, ITEM_NONE
+	givemon SPECIES_PONYTA, 33, ITEM_NONE
+	givemon SPECIES_SWELLOW, 31, ITEM_NONE
+	givemon SPECIES_MACHOKE, 32, ITEM_NONE
+	givemon SPECIES_GRAVELER, 33, ITEM_NONE
+	additem ITEM_ULTRA_BALL, 10
+	additem ITEM_FULL_RESTORE, 5
 
-	@ --- Reward not yet given; speaking to Roxanne will trigger gift ---
-	clearflag FLAG_ROXANNE_QUEST_REWARD_GIVEN
-
-	@ --- Skip Briney/Peeko/Aqua Grunt encounter in Rusturf Tunnel ---
-	setvar VAR_RUSTURF_TUNNEL_STATE, 0
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_BRINEY
-	setflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
-	clearflag FLAG_DEVON_GOODS_STOLEN
-	@ Wanda and her boyfriend are hidden at new game; reveal them for the side quest
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
-
-	@ --- Give a high-level starter for combat testing ---
-	givemon SPECIES_SCEPTILE, 45, ITEM_NONE
-
-	@ --- Warp to Rustboro City near Gym (near Roxanne for reward dialogue) ---
-	warp MAP_RUSTBORO_CITY, 27, 22 
+	@ --- Warp to Petalburg Woods north of Norman coord event (4, 39) ---
+	warp MAP_PETALBURG_WOODS, 4, 35
 	waitstate
 	end
 
-@ --- Scripts 4-8 reserved for future quest checkpoints ---
-
+@ =============================================================================
+@ Debug_Script_4 - Norman Quest: JOHTO SANCTUARY ENTRANCE
+@ -----------------------------------------------------------------------------
+@ World state: Norman met the player in Petalburg Woods and introduced the Johto
+@ Sanctuary (VAR_NORMAN_QUEST_STATE = 1). Stepping on tile (9, 10) triggers
+@ StantlerAppearance_NorthernTrigger: Stantler walks in from (11, 17), cries,
+@ leaves, then Norman runs in for the first re-encounter dialogue. State advances
+@ to 2. Cut trees at (10, 13) and (11, 14) can be cleared to test deeper access.
+@
+@ Warps to Johto Sanctuary Entrance north of the Stantler coord events (9, 10)/(9, 11).
+@ =============================================================================
 Debug_Script_4::
+	lockall
+
+	@ --- Badges ---
+	setflag FLAG_BADGE01_GET
+	setflag FLAG_BADGE02_GET
+	setflag FLAG_BADGE03_GET
+	setflag FLAG_BADGE04_GET
+	setflag FLAG_BADGE05_GET
+
+	@ --- Gym defeat flags ---
+	setflag FLAG_DEFEATED_RUSTBORO_GYM
+	setflag FLAG_DEFEATED_DEWFORD_GYM
+	setflag FLAG_DEFEATED_MAUVILLE_GYM
+	setflag FLAG_DEFEATED_LAVARIDGE_GYM
+	setflag FLAG_DEFEATED_PETALBURG_GYM
+
+	@ --- Norman quest: woods scene complete, player heading to sanctuary ---
+	setvar VAR_PETALBURG_GYM_STATE, 7
+	setvar VAR_NORMAN_QUEST_STATE, 1
+	setflag FLAG_NORMAN_QUEST_STARTED
+	setflag FLAG_HIDE_PETALBURG_GYM_NORMAN
+	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+
+	@ --- Match Call / PokéNav ---
+	setflag FLAG_HAS_MATCH_CALL
+	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
+	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+	setflag FLAG_ENABLE_BRAWLY_MATCH_CALL
+	setflag FLAG_ENABLE_WATTSON_MATCH_CALL
+	setflag FLAG_ENABLE_FLANNERY_MATCH_CALL
+	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
+
+	@ --- Story-critical progression ---
+	setvar VAR_RUSTBORO_CITY_STATE, 1
+	setvar VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 3
+	setvar VAR_0x8008, 4
+	setflag FLAG_DELIVERED_STEVEN_LETTER
+	setflag FLAG_RETURNED_DEVON_GOODS
+	setflag FLAG_RECOVERED_DEVON_GOODS
+	setflag FLAG_MET_DEVON_EMPLOYEE
+	setflag FLAG_MR_BRINEY_SAILING_INTRO
+	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
+	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+
+	@ --- Player essentials ---
+	setflag FLAG_SYS_POKEDEX_GET
+	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
+	setflag FLAG_SYS_POKENAV_GET
+	setflag FLAG_SYS_B_DASH
+	setflag FLAG_RECEIVED_RUNNING_SHOES
+	setflag FLAG_ADVENTURE_STARTED
+	setflag FLAG_RESCUED_BIRCH
+	setflag FLAG_SYS_POKEMON_GET
+
+	@ --- Littleroot intro complete ---
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
+	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
+
+	@ --- HMs ---
+	setflag FLAG_RECEIVED_HM_ROCK_SMASH
+	setflag FLAG_RECEIVED_HM_STRENGTH
+	setflag FLAG_RECEIVED_HM_CUT
+	setflag FLAG_RECEIVED_HM_FLASH
+	setflag FLAG_RECEIVED_HM_SURF
+	additem ITEM_HM_ROCK_SMASH
+	additem ITEM_HM_STRENGTH
+	additem ITEM_HM_CUT
+	additem ITEM_HM_FLASH
+	additem ITEM_HM_SURF
+
+	@ --- Party (levels 31-33) ---
+	givemon SPECIES_MARSHTOMP, 32, ITEM_NONE
+	givemon SPECIES_BRELOOM, 31, ITEM_NONE
+	givemon SPECIES_PONYTA, 33, ITEM_NONE
+	givemon SPECIES_SWELLOW, 31, ITEM_NONE
+	givemon SPECIES_MACHOKE, 32, ITEM_NONE
+	givemon SPECIES_GRAVELER, 33, ITEM_NONE
+	additem ITEM_ULTRA_BALL, 10
+	additem ITEM_FULL_RESTORE, 5
+
+	@ --- Warp to Johto Sanctuary Entrance north of Stantler coord events ---
+	warp MAP_JOHTO_SANCTUARY_ENTRANCE, 9, 7
+	waitstate
 	end
+
+@ --- Scripts 5-12 reserved ---
 
 Debug_Script_5::
 	end

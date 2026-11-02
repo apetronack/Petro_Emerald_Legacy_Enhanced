@@ -9,16 +9,14 @@ script JohtoSanctuary_StantlerClearing_EventScript_StantlerEncounter {
         end
     }
     applymovement(LOCALID_STANTLER, moves(
-        faceplayer,
-        jump_in_place_up_down*2
+        faceplayer
         )
     )
     waitmovement(0)
     msgbox(JohtoSanctuary_StantlerClearing_ShinyStantler_Text_ShinyGlint)
     closemessage()
     applymovement(LOCALID_STANTLER, moves(
-        faceplayer,
-        jump_in_place_up_down*2
+        faceplayer
         )
     )
     waitmovement(0)

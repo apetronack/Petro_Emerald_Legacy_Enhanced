@@ -10,7 +10,7 @@ mapscripts JohtoSanctuary_Entrance_MapScripts {
 
 script JohtoSanctuary_Entrance_StantlerAppearance_SouthernTrigger {
     lockall
-    showobjectat(LOCALID_STANTLER, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    addobject(LOCALID_STANTLER)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_up * 6,
                         face_left,
@@ -41,10 +41,10 @@ script JohtoSanctuary_Entrance_StantlerAppearance_SouthernTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_STANTLER, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    removeobject(LOCALID_STANTLER)
     
     // Now Stantler is gone, have Norman come in
-    showobjectat(LOCALID_NORMAN, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    addobject(LOCALID_NORMAN)
     applymovement(LOCALID_NORMAN, moves(
                         walk_fast_right * 8
                     )
@@ -71,7 +71,7 @@ script JohtoSanctuary_Entrance_StantlerAppearance_SouthernTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_NORMAN, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    removeobject(LOCALID_NORMAN)
     // Update var to indicate first stantler encounter is complete, prevent retrigger later
     setvar(VAR_NORMAN_QUEST_STATE, 2)
     releaseall()
@@ -79,7 +79,7 @@ script JohtoSanctuary_Entrance_StantlerAppearance_SouthernTrigger {
 
 script JohtoSanctuary_Entrance_StantlerAppearance_NorthernTrigger {
     lockall
-    showobjectat(LOCALID_STANTLER, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    addobject(LOCALID_STANTLER)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_up * 7,
                         face_left,
@@ -110,10 +110,10 @@ script JohtoSanctuary_Entrance_StantlerAppearance_NorthernTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_STANTLER, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    removeobject(LOCALID_STANTLER)
     
     // Now Stantler is gone, have Norman come in
-    showobjectat(LOCALID_NORMAN, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    addobject(LOCALID_NORMAN)
     applymovement(LOCALID_NORMAN, moves(
                         walk_fast_right * 4,
                         walk_fast_up,
@@ -145,7 +145,7 @@ script JohtoSanctuary_Entrance_StantlerAppearance_NorthernTrigger {
                     )
                 )
     waitmovement(0)
-    hideobjectat(LOCALID_NORMAN, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    removeobject(LOCALID_NORMAN)
     // Update var to indicate first stantler encounter is complete, prevent retrigger later
     setvar(VAR_NORMAN_QUEST_STATE, 2)
     releaseall()
