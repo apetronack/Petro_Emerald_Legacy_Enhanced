@@ -879,3 +879,4 @@ const u16 gObjectEventPal_Courtney[] = INCBIN_U16("graphics/object_events/pics/p
 const u32 gObjectEventPic_Zinnia[] = INCBIN_U32("graphics/object_events/pics/people/zinnia.4bpp");
 const u16 gObjectEventPal_Zinnia[] = INCBIN_U16("graphics/object_events/pics/people/zinnia.gbapal");
 const u16 gObjectEventPal_Lairon[] = INCBIN_U16("graphics/pokemon/lairon/overworld_normal.gbapal");
+const u16 gObjectEventPal_Stantler[] = INCBIN_U16("graphics/pokemon/stantler/overworld_normal.gbapal");
