@@ -728,12 +728,24 @@ PlayersHouse_1F_EventScript_DadIntroduceQuest::
 	end
 
 PlayersHouse_1F_EventScript_DadExitQuestMale::
+	call_if_eq VAR_FACING, DIR_NORTH, PlayersHouse_1F_EventScript_PlayerStepRightForDadExit
 	applymovement LOCALID_DAD, PlayersHouse_1F_Movement_DadExitQuestMale
 	waitmovement 0
 	return
 
 PlayersHouse_1F_EventScript_DadExitQuestFemale::
+	call_if_eq VAR_FACING, DIR_NORTH, PlayersHouse_1F_EventScript_PlayerStepLeftForDadExit
 	applymovement LOCALID_DAD, PlayersHouse_1F_Movement_DadExitQuestFemale
+	waitmovement 0
+	return
+
+PlayersHouse_1F_EventScript_PlayerStepRightForDadExit::
+	applymovement OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerStepRightForDadExit
+	waitmovement 0
+	return
+
+PlayersHouse_1F_EventScript_PlayerStepLeftForDadExit::
+	applymovement OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerStepLeftForDadExit
 	waitmovement 0
 	return
 
@@ -892,6 +904,16 @@ PlayersHouse_1F_Movement_DadExitQuestFemale:
 	walk_left
 	face_down
 	delay_8
+	step_end
+
+PlayersHouse_1F_Movement_PlayerStepRightForDadExit:
+	walk_right
+	face_left
+	step_end
+
+PlayersHouse_1F_Movement_PlayerStepLeftForDadExit:
+	walk_left
+	face_right
 	step_end
 
 PlayersHouse_1F_Text_DadIntroduceQuest:

@@ -66,3 +66,6 @@ prefabs.json
 .venv/
 triple_layer_converter.py
 requirements.txt
+
+# GIMP files
+*.xcf
