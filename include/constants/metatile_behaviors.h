@@ -5,8 +5,9 @@
 #define MB_SECRET_BASE_WALL 0x01
 #define MB_TALL_GRASS 0x02
 #define MB_LONG_GRASS 0x03
-#define MB_UNUSED_04 0x04
-#define MB_UNUSED_05 0x05
+// Alternate grass behavior slots for tilesets that need separate grass field effect palettes.
+#define MB_ALT_TALL_GRASS 0x04
+#define MB_ALT_LONG_GRASS 0x05
 #define MB_DEEP_SAND 0x06
 #define MB_SHORT_GRASS 0x07
 #define MB_CAVE 0x08
@@ -30,7 +31,7 @@
 #define MB_UNUSED_SOOTOPOLIS_DEEP_WATER_2 0x1A
 #define MB_STAIRS_OUTSIDE_ABANDONED_SHIP 0x1B
 #define MB_SHOAL_CAVE_ENTRANCE 0x1C
-#define MB_UNUSED_1D 0x1D
+#define MB_ALT_LONG_GRASS_SOUTH_EDGE 0x1D
 #define MB_UNUSED_1E 0x1E
 #define MB_UNUSED_1F 0x1F
 #define MB_ICE 0x20

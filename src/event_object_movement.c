@@ -9188,6 +9188,12 @@ static void SetObjectEventSpriteOamTableForLongGrass(struct ObjectEvent *objEven
     if (objEvent->disableCoveringGroundEffects)
         return;
 
+    if (MetatileBehavior_IsLongGrassSouthEdge(objEvent->currentMetatileBehavior))
+        return;
+
+    if (MetatileBehavior_IsLongGrassSouthEdge(objEvent->previousMetatileBehavior))
+        return;
+
     if (!MetatileBehavior_IsLongGrass(objEvent->currentMetatileBehavior))
         return;
 
@@ -9316,6 +9322,11 @@ static bool8 AreElevationsCompatible(u8 a, u8 b)
 
 void GroundEffect_SpawnOnTallGrass(struct ObjectEvent *objEvent, struct Sprite *sprite)
 {
+    u8 tallGrassFieldEffectId = FLDEFF_TALL_GRASS;
+
+    if (MetatileBehavior_IsAltTallGrass(objEvent->currentMetatileBehavior))
+        tallGrassFieldEffectId = FLDEFF_ALT_TALL_GRASS;
+
     gFieldEffectArguments[0] = objEvent->currentCoords.x;
     gFieldEffectArguments[1] = objEvent->currentCoords.y;
     gFieldEffectArguments[2] = objEvent->previousElevation;
@@ -9324,11 +9335,16 @@ void GroundEffect_SpawnOnTallGrass(struct ObjectEvent *objEvent, struct Sprite *
     gFieldEffectArguments[5] = objEvent->mapGroup;
     gFieldEffectArguments[6] = (u8)gSaveBlock1Ptr->location.mapNum << 8 | (u8)gSaveBlock1Ptr->location.mapGroup;
     gFieldEffectArguments[7] = TRUE; // skip to end of anim
-    FieldEffectStart(FLDEFF_TALL_GRASS);
+    FieldEffectStart(tallGrassFieldEffectId);
 }
 
 void GroundEffect_StepOnTallGrass(struct ObjectEvent *objEvent, struct Sprite *sprite)
 {
+    u8 tallGrassFieldEffectId = FLDEFF_TALL_GRASS;
+
+    if (MetatileBehavior_IsAltTallGrass(objEvent->currentMetatileBehavior))
+        tallGrassFieldEffectId = FLDEFF_ALT_TALL_GRASS;
+
     gFieldEffectArguments[0] = objEvent->currentCoords.x;
     gFieldEffectArguments[1] = objEvent->currentCoords.y;
     gFieldEffectArguments[2] = objEvent->previousElevation;
@@ -9337,11 +9353,16 @@ void GroundEffect_StepOnTallGrass(struct ObjectEvent *objEvent, struct Sprite *s
     gFieldEffectArguments[5] = objEvent->mapGroup;
     gFieldEffectArguments[6] = (u8)gSaveBlock1Ptr->location.mapNum << 8 | (u8)gSaveBlock1Ptr->location.mapGroup;
     gFieldEffectArguments[7] = FALSE; // don't skip to end of anim
-    FieldEffectStart(FLDEFF_TALL_GRASS);
+    FieldEffectStart(tallGrassFieldEffectId);
 }
 
 void GroundEffect_SpawnOnLongGrass(struct ObjectEvent *objEvent, struct Sprite *sprite)
 {
+    u8 longGrassFieldEffectId = FLDEFF_LONG_GRASS;
+
+    if (MetatileBehavior_IsAltLongGrass(objEvent->currentMetatileBehavior))
+        longGrassFieldEffectId = FLDEFF_ALT_LONG_GRASS;
+
     gFieldEffectArguments[0] = objEvent->currentCoords.x;
     gFieldEffectArguments[1] = objEvent->currentCoords.y;
     gFieldEffectArguments[2] = objEvent->previousElevation;
@@ -9350,11 +9371,16 @@ void GroundEffect_SpawnOnLongGrass(struct ObjectEvent *objEvent, struct Sprite *
     gFieldEffectArguments[5] = objEvent->mapGroup;
     gFieldEffectArguments[6] = (u8)gSaveBlock1Ptr->location.mapNum << 8 | (u8)gSaveBlock1Ptr->location.mapGroup;
     gFieldEffectArguments[7] = 1;
-    FieldEffectStart(FLDEFF_LONG_GRASS);
+    FieldEffectStart(longGrassFieldEffectId);
 }
 
 void GroundEffect_StepOnLongGrass(struct ObjectEvent *objEvent, struct Sprite *sprite)
 {
+    u8 longGrassFieldEffectId = FLDEFF_LONG_GRASS;
+
+    if (MetatileBehavior_IsAltLongGrass(objEvent->currentMetatileBehavior))
+        longGrassFieldEffectId = FLDEFF_ALT_LONG_GRASS;
+
     gFieldEffectArguments[0] = objEvent->currentCoords.x;
     gFieldEffectArguments[1] = objEvent->currentCoords.y;
     gFieldEffectArguments[2] = objEvent->previousElevation;
@@ -9363,7 +9389,7 @@ void GroundEffect_StepOnLongGrass(struct ObjectEvent *objEvent, struct Sprite *s
     gFieldEffectArguments[5] = objEvent->mapGroup;
     gFieldEffectArguments[6] = (u8)gSaveBlock1Ptr->location.mapNum << 8 | (u8)gSaveBlock1Ptr->location.mapGroup;
     gFieldEffectArguments[7] = 0;
-    FieldEffectStart(FLDEFF_LONG_GRASS);
+    FieldEffectStart(longGrassFieldEffectId);
 }
 
 void GroundEffect_WaterReflection(struct ObjectEvent *objEvent, struct Sprite *sprite)
@@ -9528,13 +9554,17 @@ void GroundEffect_SandHeap(struct ObjectEvent *objEvent, struct Sprite *sprite)
 
 void GroundEffect_JumpOnTallGrass(struct ObjectEvent *objEvent, struct Sprite *sprite)
 {
+    u8 jumpTallGrassFieldEffectId = FLDEFF_JUMP_TALL_GRASS;
     u8 spriteId;
+
+    if (MetatileBehavior_IsAltTallGrass(objEvent->currentMetatileBehavior))
+        jumpTallGrassFieldEffectId = FLDEFF_ALT_JUMP_TALL_GRASS;
 
     gFieldEffectArguments[0] = objEvent->currentCoords.x;
     gFieldEffectArguments[1] = objEvent->currentCoords.y;
     gFieldEffectArguments[2] = objEvent->previousElevation;
     gFieldEffectArguments[3] = 2;
-    FieldEffectStart(FLDEFF_JUMP_TALL_GRASS);
+    FieldEffectStart(jumpTallGrassFieldEffectId);
 
     spriteId = FindTallGrassFieldEffectSpriteId(
         objEvent->localId,
@@ -9549,11 +9579,16 @@ void GroundEffect_JumpOnTallGrass(struct ObjectEvent *objEvent, struct Sprite *s
 
 void GroundEffect_JumpOnLongGrass(struct ObjectEvent *objEvent, struct Sprite *sprite)
 {
+    u8 jumpLongGrassFieldEffectId = FLDEFF_JUMP_LONG_GRASS;
+
+    if (MetatileBehavior_IsAltLongGrass(objEvent->currentMetatileBehavior))
+        jumpLongGrassFieldEffectId = FLDEFF_ALT_JUMP_LONG_GRASS;
+
     gFieldEffectArguments[0] = objEvent->currentCoords.x;
     gFieldEffectArguments[1] = objEvent->currentCoords.y;
     gFieldEffectArguments[2] = objEvent->previousElevation;
     gFieldEffectArguments[3] = 2;
-    FieldEffectStart(FLDEFF_JUMP_LONG_GRASS);
+    FieldEffectStart(jumpLongGrassFieldEffectId);
 }
 
 void GroundEffect_JumpOnShallowWater(struct ObjectEvent *objEvent, struct Sprite *sprite)
