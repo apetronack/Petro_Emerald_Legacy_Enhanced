@@ -13,8 +13,7 @@ script JohtoSanctuary_Entrance_StantlerAppearance_SouthernTrigger {
     addobject(LOCALID_STANTLER)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_up * 6,
-                        face_left,
-                        walk_slow_left
+                        face_left
                     )
                 )
     // Stantler is now right in front of trainer
@@ -34,7 +33,6 @@ script JohtoSanctuary_Entrance_StantlerAppearance_SouthernTrigger {
     // Done with cry, now needs to leave. Reverse the previous movement
     applymovement(LOCALID_STANTLER, moves(
                         face_right,
-                        walk_slow_right,
                         face_down,
                         walk_slow_down * 6,
                         set_invisible
@@ -82,8 +80,7 @@ script JohtoSanctuary_Entrance_StantlerAppearance_NorthernTrigger {
     addobject(LOCALID_STANTLER)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_up * 7,
-                        face_left,
-                        walk_slow_left
+                        face_left
                     )
                 )
     // Stantler is now right in front of trainer
@@ -103,7 +100,6 @@ script JohtoSanctuary_Entrance_StantlerAppearance_NorthernTrigger {
     // Done with cry, now needs to leave. Reverse the previous movement
     applymovement(LOCALID_STANTLER, moves(
                         face_right,
-                        walk_slow_right,
                         face_down,
                         walk_slow_down * 7,
                         set_invisible

@@ -1,5 +1,3 @@
-const LOCALID_STANTLER = 1
-
 mapscripts JohtoSanctuary_StantlerClearing_MapScripts {}
 
 script JohtoSanctuary_StantlerClearing_EventScript_StantlerEncounter {
@@ -8,17 +6,8 @@ script JohtoSanctuary_StantlerClearing_EventScript_StantlerEncounter {
         release
         end
     }
-    applymovement(LOCALID_STANTLER, moves(
-        faceplayer
-        )
-    )
-    waitmovement(0)
     msgbox(JohtoSanctuary_StantlerClearing_ShinyStantler_Text_ShinyGlint)
     closemessage()
-    applymovement(LOCALID_STANTLER, moves(
-        faceplayer
-        )
-    )
     waitmovement(0)
     playmoncry(SPECIES_STANTLER, CRY_MODE_ENCOUNTER)
     delay(40)

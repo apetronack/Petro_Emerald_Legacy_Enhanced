@@ -11,11 +11,11 @@ mapscripts JohtoArboretum_MapScripts {
 script JohtoArboretum_StantlerAppearance_UpperTrigger {
     lockall
     addobject(LOCALID_STANTLER)
-    // Stantler: left 2 to x=22, down 2 to y=9, left 3 stops at (19,9), adjacent to player at (18,9)
+    // Stantler: left 2 to x=22, down 2 to y=9, left 2 stops at (20,9), adjacent to player at (18,9)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_left * 2,
                         walk_slow_down * 2,
-                        walk_slow_left * 3
+                        walk_slow_left * 2
                     )
                 )
     waitmovement(0)
@@ -33,7 +33,7 @@ script JohtoArboretum_StantlerAppearance_UpperTrigger {
     // Stantler retraces its path and disappears
     applymovement(LOCALID_STANTLER, moves(
                         face_right,
-                        walk_slow_right * 3,
+                        walk_slow_right * 2,
                         walk_slow_up * 2,
                         walk_slow_right * 2,
                         set_invisible
@@ -77,11 +77,11 @@ script JohtoArboretum_StantlerAppearance_UpperTrigger {
 script JohtoArboretum_StantlerAppearance_UpperMidTrigger {
     lockall
     addobject(LOCALID_STANTLER)
-    // Stantler: left 2 to x=22, down 3 to y=10, left 3 stops at (19,10), adjacent to player at (18,10)
+    // Stantler: left 2 to x=22, down 3 to y=10, left 2 stops at (20,10), adjacent to player at (18,10)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_left * 2,
                         walk_slow_down * 3,
-                        walk_slow_left * 3
+                        walk_slow_left * 2
                     )
                 )
     waitmovement(0)
@@ -98,7 +98,7 @@ script JohtoArboretum_StantlerAppearance_UpperMidTrigger {
     waitmovement(0)
     applymovement(LOCALID_STANTLER, moves(
                         face_right,
-                        walk_slow_right * 3,
+                        walk_slow_right * 2,
                         walk_slow_up * 3,
                         walk_slow_right * 2,
                         set_invisible
@@ -142,11 +142,11 @@ script JohtoArboretum_StantlerAppearance_UpperMidTrigger {
 script JohtoArboretum_StantlerAppearance_LowerMidTrigger {
     lockall
     addobject(LOCALID_STANTLER)
-    // Stantler: left 2 to x=22, down 4 to y=11, left 3 stops at (19,11), adjacent to player at (18,11)
+    // Stantler: left 2 to x=22, down 4 to y=11, left 2 stops at (20,11), adjacent to player at (18,11)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_left * 2,
                         walk_slow_down * 4,
-                        walk_slow_left * 3
+                        walk_slow_left * 2
                     )
                 )
     waitmovement(0)
@@ -163,7 +163,7 @@ script JohtoArboretum_StantlerAppearance_LowerMidTrigger {
     waitmovement(0)
     applymovement(LOCALID_STANTLER, moves(
                         face_right,
-                        walk_slow_right * 3,
+                        walk_slow_right * 2,
                         walk_slow_up * 4,
                         walk_slow_right * 2,
                         set_invisible
@@ -206,11 +206,11 @@ script JohtoArboretum_StantlerAppearance_LowerMidTrigger {
 
 script JohtoArboretum_StantlerAppearance_LowerTrigger {
     lockall
-    showobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
-    // Stantler: left 2 to x=22, down 4 to y=11, left 4 to (18,11), face down, directly above player at (18,12)
+    addobject(LOCALID_STANTLER)
+    // Stantler: left 2 to x=22, down 3 to y=10, left 4 to (18,10), face down, one tile above player at (18,12)
     applymovement(LOCALID_STANTLER, moves(
                         walk_slow_left * 2,
-                        walk_slow_down * 4,
+                        walk_slow_down * 3,
                         walk_slow_left * 4,
                         face_down
                     )
@@ -236,7 +236,7 @@ script JohtoArboretum_StantlerAppearance_LowerTrigger {
     applymovement(LOCALID_STANTLER, moves(
                         face_right,
                         walk_slow_right * 4,
-                        walk_slow_up * 4,
+                        walk_slow_up * 3,
                         walk_slow_right * 2,
                         set_invisible
                     )
