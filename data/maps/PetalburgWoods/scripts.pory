@@ -146,18 +146,25 @@ PetalburgWoods_EventScript_RemoveDevonResearcher::
 	end
 
 PetalburgWoods_Movement_NormanApproachPlayer:
+	delay_8
+	face_right
+	delay_8
 	walk_right
 	step_end
 
 PetalburgWoods_Movement_PlayerMakesRoomForNorman:
 	face_right
+	delay_4
 	walk_right
+	delay_4
 	face_left
 	step_end
 
 PetalburgWoods_Movement_NormanExit:
 	walk_right
+	delay_4
 	face_down
+	delay_4
 	walk_down
 	step_end
 
