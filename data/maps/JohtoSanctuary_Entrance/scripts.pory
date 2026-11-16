@@ -1,5 +1,5 @@
-const LOCALID_STANTLER = 5
-const LOCALID_NORMAN = 6
+const LOCALID_STANTLER = 4
+const LOCALID_NORMAN = 5
 
 mapscripts JohtoSanctuary_Entrance_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
