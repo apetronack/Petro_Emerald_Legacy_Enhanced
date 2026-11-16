@@ -93,7 +93,8 @@
     "Underwater_Route129",
     "Underwater_Route105",
     "Underwater_Route125",
-    "DewfordBeach_Indoor3"
+    "DewfordBeach_Indoor3",
+    "JohtoSanctuary_Entrance"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -438,7 +439,13 @@
     "DewfordBeach",
     "DewfordBeach_Indoor1",
     "DewfordBeach_Indoor2",
-    "DewfordBeachBorder"
+    "DewfordBeachBorder",
+    "JohtoArboretum",
+    "JohtoSanctuaryRangerStation",
+    "JohtoSanctuary_RangerStation_Building1",
+    "JohtoSanctuary_RangerStation_Building2",
+    "JohtoSanctuary_RangerStation_Building3",
+    "JohtoSanctuary_StantlerClearing"
   ],
   "gMapGroup_IndoorDynamic": [
     "SecretBase_RedCave1",

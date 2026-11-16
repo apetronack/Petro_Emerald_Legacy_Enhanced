@@ -693,3 +693,23 @@ DewfordBeach_EventScript_ItemXAttack::
 DewfordBeach_EventScript_ItemBigPearl::
 	finditem ITEM_BIG_PEARL
 	end
+
+JohtoSanctuaryEntrance_EventScript_ItemFullHeal::
+	finditem ITEM_FULL_HEAL
+	end
+
+JohtoSanctuaryRangerStation_EventScript_ItemUltraBall::
+	finditem ITEM_ULTRA_BALL
+	end
+
+JohtoSanctuaryRangerStation_EventScript_ItemFullHeal::
+	finditem ITEM_FULL_HEAL
+	end
+
+JohtoArboretum_EventScript_Item_Item_HealPowder::
+	finditem ITEM_HEAL_POWDER
+	end
+
+JohtoArboretum_EventScript_Item_Item_SilverPowder::
+	finditem ITEM_SILVER_POWDER
+	end

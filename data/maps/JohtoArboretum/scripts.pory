@@ -1,0 +1,359 @@
+const LOCALID_NORMAN = 6
+const LOCALID_STANTLER = 7
+
+mapscripts JohtoArboretum_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        hideobjectat(LOCALID_NORMAN, MAP_JOHTO_ARBORETUM)
+        hideobjectat(LOCALID_STANTLER, MAP_JOHTO_ARBORETUM)
+    }
+}
+
+script JohtoArboretum_StantlerAppearance_UpperTrigger {
+    lockall
+    addobject(LOCALID_STANTLER)
+    // Stantler: left 2 to x=22, down 2 to y=9, left 2 stops at (20,9), adjacent to player at (18,9)
+    applymovement(LOCALID_STANTLER, moves(
+                        walk_slow_left * 2,
+                        delay_4,
+                        walk_slow_down * 2,
+                        delay_4,
+                        walk_slow_left * 2
+                    )
+                )
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_STANTLER, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playmoncry(SPECIES_STANTLER, CRY_MODE_NORMAL)
+    waitmoncry()
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    // Stantler retraces its path and disappears
+    applymovement(LOCALID_STANTLER, moves(
+                        face_right,
+                        delay_4,
+                        walk_slow_right * 2,
+                        delay_4,
+                        walk_slow_up * 2,
+                        delay_4,
+                        walk_slow_right * 2,
+                        set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_STANTLER)
+
+    // Norman walks down from (17,3) to (17,9) to meet the player
+    addobject(LOCALID_NORMAN)
+    applymovement(LOCALID_NORMAN, moves(
+                        walk_fast_down * 6,
+                        delay_4,
+                        face_right
+                    )
+                )
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                    face_left
+                    )
+                )
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_NORMAN, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_NORMAN, Common_Movement_Delay48)
+    waitmovement(0)
+    msgbox(JohtoArboretum_Text_NormanArboretum, MSGBOX_DEFAULT)
+    closemessage()
+    applymovement(LOCALID_NORMAN, moves(
+                    face_up,
+                    delay_4,
+                    walk_fast_up * 6,
+                    set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_NORMAN)
+    setvar(VAR_NORMAN_QUEST_STATE, 3)
+    releaseall()
+}
+
+script JohtoArboretum_StantlerAppearance_UpperMidTrigger {
+    lockall
+    addobject(LOCALID_STANTLER)
+    // Stantler: left 2 to x=22, down 3 to y=10, left 2 stops at (20,10), adjacent to player at (18,10)
+    applymovement(LOCALID_STANTLER, moves(
+                        walk_slow_left * 2,
+                        delay_4,
+                        walk_slow_down * 3,
+                        delay_4,
+                        walk_slow_left * 2
+                    )
+                )
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_STANTLER, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playmoncry(SPECIES_STANTLER, CRY_MODE_NORMAL)
+    waitmoncry()
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, moves(
+                        face_right,
+                        delay_4,
+                        walk_slow_right * 2,
+                        delay_4,
+                        walk_slow_up * 3,
+                        delay_4,
+                        walk_slow_right * 2,
+                        set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_STANTLER)
+
+    // Norman walks down from (17,3) to (17,10)
+    addobject(LOCALID_NORMAN)
+    applymovement(LOCALID_NORMAN, moves(
+                        walk_fast_down * 7,
+                        delay_4,
+                        face_right
+                    )
+                )
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                    face_left
+                    )
+                )
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_NORMAN, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_NORMAN, Common_Movement_Delay48)
+    waitmovement(0)
+    msgbox(JohtoArboretum_Text_NormanArboretum, MSGBOX_DEFAULT)
+    closemessage()
+    applymovement(LOCALID_NORMAN, moves(
+                    face_up,
+                    delay_4,
+                    walk_fast_up * 7,
+                    set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_NORMAN)
+    setvar(VAR_NORMAN_QUEST_STATE, 3)
+    releaseall()
+}
+
+script JohtoArboretum_StantlerAppearance_LowerMidTrigger {
+    lockall
+    addobject(LOCALID_STANTLER)
+    // Stantler: left 2 to x=22, down 4 to y=11, left 2 stops at (20,11), adjacent to player at (18,11)
+    applymovement(LOCALID_STANTLER, moves(
+                        walk_slow_left * 2,
+                        delay_4,
+                        walk_slow_down * 4,
+                        delay_4,
+                        walk_slow_left * 2
+                    )
+                )
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_STANTLER, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playmoncry(SPECIES_STANTLER, CRY_MODE_NORMAL)
+    waitmoncry()
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, moves(
+                        face_right,
+                        delay_4,
+                        walk_slow_right * 2,
+                        delay_4,
+                        walk_slow_up * 4,
+                        delay_4,
+                        walk_slow_right * 2,
+                        set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_STANTLER)
+
+    // Norman walks down from (17,3) to (17,11)
+    addobject(LOCALID_NORMAN)
+    applymovement(LOCALID_NORMAN, moves(
+                        walk_fast_down * 8,
+                        delay_4,
+                        face_right
+                    )
+                )
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                    face_left
+                    )
+                )
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_NORMAN, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_NORMAN, Common_Movement_Delay48)
+    waitmovement(0)
+    msgbox(JohtoArboretum_Text_NormanArboretum, MSGBOX_DEFAULT)
+    closemessage()
+    applymovement(LOCALID_NORMAN, moves(
+                    face_up,
+                    delay_4,
+                    walk_fast_up * 8,
+                    set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_NORMAN)
+    setvar(VAR_NORMAN_QUEST_STATE, 3)
+    releaseall()
+}
+
+script JohtoArboretum_StantlerAppearance_LowerTrigger {
+    lockall
+    addobject(LOCALID_STANTLER)
+    // Stantler: left 2 to x=22, down 3 to y=10, left 4 to (18,10), face down, one tile above player at (18,12)
+    applymovement(LOCALID_STANTLER, moves(
+                        walk_slow_left * 2,
+                        delay_4,
+                        walk_slow_down * 3,
+                        delay_4,
+                        walk_slow_left * 4,
+                        delay_4,
+                        face_down
+                    )
+                )
+    waitmovement(0)
+    // Player looks up to face Stantler standing above them
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                    face_up
+                    )
+                )
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_STANTLER, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playmoncry(SPECIES_STANTLER, CRY_MODE_NORMAL)
+    waitmoncry()
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, moves(
+                        face_right,
+                        delay_4,
+                        walk_slow_right * 4,
+                        delay_4,
+                        walk_slow_up * 3,
+                        delay_4,
+                        walk_slow_right * 2,
+                        set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_STANTLER)
+
+    // Norman walks down from (17,3) to (17,12)
+    addobject(LOCALID_NORMAN)
+    applymovement(LOCALID_NORMAN, moves(
+                        walk_fast_down * 9,
+                        delay_4,
+                        face_right
+                    )
+                )
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                    face_left
+                    )
+                )
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_NORMAN, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_NORMAN, Common_Movement_Delay48)
+    waitmovement(0)
+    msgbox(JohtoArboretum_Text_NormanArboretum, MSGBOX_DEFAULT)
+    closemessage()
+    applymovement(LOCALID_NORMAN, moves(
+                    face_up,
+                    delay_4,
+                    walk_fast_up * 9,
+                    set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_NORMAN)
+    setvar(VAR_NORMAN_QUEST_STATE, 3)
+    releaseall()
+}
+
+script JohtoArboretum_EventScript_Ranger1 {
+    trainerbattle_double(TRAINER_RANGER_NORMAN_QUEST_4, JohtoArboretum_Text_Ranger1Intro, JohtoArboretum_Text_Ranger1Defeat, JohtoArboretum_Text_NotEnoughMons)
+    msgbox(JohtoArboretum_Text_Ranger1PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+script JohtoArboretum_EventScript_Ranger2 {
+    trainerbattle_single(TRAINER_RANGER_NORMAN_QUEST_5, JohtoArboretum_Text_Ranger2Intro, JohtoArboretum_Text_Ranger2Defeat)
+    msgbox(JohtoArboretum_Text_Ranger2PostBattle, MSGBOX_AUTOCLOSE)
+    end
+}
+
+text JohtoArboretum_Text_Ranger1Intro {
+    format("Hey! Who goes there?")
+}
+
+text JohtoArboretum_Text_Ranger1Defeat {
+    format("Curses!")
+}
+
+text JohtoArboretum_Text_NotEnoughMons {
+    format("Oh, you don't have enough POKéMON to battle.")
+}
+
+text JohtoArboretum_Text_Ranger1PostBattle {
+    format("These spooky woods make me a little jumpy.")
+}
+
+text JohtoArboretum_Text_Ranger2Intro {
+    format("Watch your step!")
+}
+
+text JohtoArboretum_Text_Ranger2Defeat {
+    format("I'm off balance!")
+}
+
+text JohtoArboretum_Text_Ranger2PostBattle {
+    format("Maybe YOU should be a SANCTUARY RANGER.")
+}
+
+text JohtoArboretum_Text_NormanArboretum {
+    format("{PLAYER}! Was that the same STANTLER?\N"
+           "...\N"
+           "...\N"
+           "...\N"
+           "It seems like this POKéMON has taken a liking to you. "
+           "I've never seen anything like it.\N"
+           "Perhaps it senses that you mean it no harm.\N"
+           "I'm impressed, {PLAYER}! You really have been coming into your own as a POKéMON TRAINER.\N"
+           "It seems like that STANTLER wants you to follow it. I wonder what it has in mind?"
+           )
+}

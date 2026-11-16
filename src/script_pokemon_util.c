@@ -204,6 +204,20 @@ void CreateShinyPikachuEnemy(void)
     SetMonMoveSlot(&gEnemyParty[0], MOVE_FLY, 3);
 }
 
+void CreateShinyStantlerEnemy(void)
+{
+    u8 abilityNum = 0; // ABILITY_INTIMIDATE (slot 0)
+
+    ZeroEnemyPartyMons();
+    FlagSet(FLAG_SHINY_CREATION);
+    CreateMonWithNature(&gEnemyParty[0], SPECIES_STANTLER, 36, MAX_PER_STAT_IVS, NATURE_ADAMANT);
+    SetMonData(&gEnemyParty[0], MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_HYPNOSIS, 0);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_SECRET_POWER, 1);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_BITE, 2);
+    SetMonMoveSlot(&gEnemyParty[0], MOVE_EARTHQUAKE, 3);
+}
+
 // Gift Relicanth for completing the Roxanne quest.
 // Above-average IVs (25 each), random nature, holds Hard Stone, default moves.
 // gSpecialVar_Result: MON_GIVEN_TO_PARTY=0, MON_GIVEN_TO_PC=1, MON_CANT_GIVE=2

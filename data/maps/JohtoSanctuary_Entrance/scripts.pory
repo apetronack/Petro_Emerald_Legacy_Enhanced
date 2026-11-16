@@ -1,0 +1,178 @@
+const LOCALID_STANTLER = 4
+const LOCALID_NORMAN = 5
+
+mapscripts JohtoSanctuary_Entrance_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        hideobjectat(LOCALID_NORMAN, MAP_JOHTO_SANCTUARY_ENTRANCE)
+        hideobjectat(LOCALID_STANTLER, MAP_JOHTO_SANCTUARY_ENTRANCE)
+    }
+}
+
+script JohtoSanctuary_Entrance_StantlerAppearance_SouthernTrigger {
+    lockall
+    addobject(LOCALID_STANTLER)
+    applymovement(LOCALID_STANTLER, moves(
+                        walk_slow_up * 6,
+                        delay_4,
+                        face_left
+                    )
+                )
+    // Stantler is now right in front of trainer
+    // Have Stantler slowly acknowledge trainer with exclamation mark, cry
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playse(SE_PIN)
+	applymovement(LOCALID_STANTLER, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+	waitmovement(0)
+    playmoncry(SPECIES_STANTLER, CRY_MODE_NORMAL)
+    waitmoncry()
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+	waitmovement(0)
+    // Done with cry, now needs to leave. Reverse the previous movement
+    applymovement(LOCALID_STANTLER, moves(
+                        face_right,
+                        delay_4,
+                        face_down,
+                        walk_slow_down * 6,
+                        set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_STANTLER)
+    
+    // Now Stantler is gone, have Norman come in
+    addobject(LOCALID_NORMAN)
+    applymovement(LOCALID_NORMAN, moves(
+                        walk_fast_right * 8,
+                        delay_4,
+                    )
+                )
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                    face_left
+                    )
+                )
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_NORMAN, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_NORMAN, Common_Movement_Delay48)
+    waitmovement(0)
+    // Norman and player are now facing each other
+    msgbox(JohtoSanctuary_Text_NormanEntrance, MSGBOX_DEFAULT)
+    closemessage()
+    // Norman finished talking, have him leave
+    applymovement(LOCALID_NORMAN, moves(
+                    face_left,
+                    delay_4,
+                    walk_fast_left * 8,
+                    set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_NORMAN)
+    // Update var to indicate first stantler encounter is complete, prevent retrigger later
+    setvar(VAR_NORMAN_QUEST_STATE, 2)
+    releaseall()
+}
+
+script JohtoSanctuary_Entrance_StantlerAppearance_NorthernTrigger {
+    lockall
+    addobject(LOCALID_STANTLER)
+    applymovement(LOCALID_STANTLER, moves(
+                        walk_slow_up * 7,
+                        delay_4,
+                        face_left
+                    )
+                )
+    // Stantler is now right in front of trainer
+    // Have Stantler slowly acknowledge trainer with exclamation mark, cry
+    waitmovement(0)
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+    waitmovement(0)
+    playse(SE_PIN)
+	applymovement(LOCALID_STANTLER, Common_Movement_ExclamationMark)
+	waitmovement(0)
+	applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+	waitmovement(0)
+    playmoncry(SPECIES_STANTLER, CRY_MODE_NORMAL)
+    waitmoncry()
+    applymovement(LOCALID_STANTLER, Common_Movement_Delay48)
+	waitmovement(0)
+    // Done with cry, now needs to leave. Reverse the previous movement
+    applymovement(LOCALID_STANTLER, moves(
+                        face_right,
+                        delay_4,
+                        face_down,
+                        walk_slow_down * 7,
+                        set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_STANTLER)
+    
+    // Now Stantler is gone, have Norman come in
+    addobject(LOCALID_NORMAN)
+    applymovement(LOCALID_NORMAN, moves(
+                        walk_fast_right * 4,
+                        walk_fast_up,
+                        walk_fast_right * 4,
+                        delay_4
+
+                    )
+                )
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, moves(
+                    face_left
+                    )
+                )
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(LOCALID_NORMAN, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(LOCALID_NORMAN, Common_Movement_Delay48)
+    waitmovement(0)
+    // Norman and player are now facing each other
+    msgbox(JohtoSanctuary_Text_NormanEntrance, MSGBOX_DEFAULT)
+    closemessage()
+    // Norman finished talking, have him leave
+    applymovement(LOCALID_NORMAN, moves(
+                    face_left,
+                    delay_4,
+                    walk_fast_left * 4,
+                    walk_fast_down,
+                    walk_fast_left * 4,
+                    set_invisible
+                    )
+                )
+    waitmovement(0)
+    removeobject(LOCALID_NORMAN)
+    // Update var to indicate first stantler encounter is complete, prevent retrigger later
+    setvar(VAR_NORMAN_QUEST_STATE, 2)
+    releaseall()
+}
+
+script JohtoSanctuary_Entrance_Sign {
+    msgbox(JohtoSanctuary_Text_SignSanctuaryEntrance, MSGBOX_SIGN)
+    end
+}
+
+text JohtoSanctuary_Text_SignSanctuaryEntrance {
+    format("Welcome to the Johto Sanctuary Nature Preserve!")
+}
+
+text JohtoSanctuary_Text_NormanEntrance {
+    // Norman exclaims surprise that the player managed to get so close
+    // to such an elusive Pokemon, then reflects on Stantler's decline.
+    format("{PLAYER}! Was that a STANTLER?\N"
+           "...\N"
+           "...\N"
+           "...\N"
+           "STANTLER are magnificent POKEMON.\N"
+           "Poachers hunted them nearly to extinction for their antlers.\N"
+           "To protect the few that remain, we must learn to live in balance with the natural world.\N"
+           "And this one seemed to take a liking to you... Incredible!")
+}

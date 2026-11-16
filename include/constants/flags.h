@@ -114,10 +114,10 @@
 #define FLAG_MET_TEAM_AQUA_HARBOR                           0x61
 #define FLAG_TV_EXPLAINED                                   0x62
 #define FLAG_MAUVILLE_GYM_BARRIERS_STATE                    0x63
-#define FLAG_UNUSED_0x064                                   0x64
-#define FLAG_UNUSED_0x065                                   0x65
-#define FLAG_UNUSED_0x066                                   0x66
-#define FLAG_UNUSED_0x067                                   0x67
+#define FLAG_GIVEN_NORMAN_AIPOM_EGG                         0x64 // Norman quest: Aipom egg given (after 1st rematch)
+#define FLAG_GIVEN_NORMAN_SNUBBULL_EGG                      0x65 // Norman quest: Snubbull egg given (after 2nd rematch)
+#define FLAG_GIVEN_NORMAN_GIRAFARIG_EGG                     0x66 // Norman quest: Girafarig egg given (after 3rd rematch)
+#define FLAG_GIVEN_NORMAN_MILTANK_EGG                       0x67 // Norman quest: Miltank egg given (after 4th rematch)
 
 #define FLAG_MAUVILLE_NPC_TRADE_COMPLETED                   0x68
 
@@ -793,8 +793,8 @@
 #define FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY                           0x2EF
 #define FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE                       0x2F0
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN              0x2F1
-#define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1          0x2F2
-#define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2          0x2F3
+#define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH            0x2F2
+#define FLAG_UNUSED_0x2F3                                           0x2F3 // Previously was FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA          0x2F4
 #define FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_BEDROOM_MOM               0x2F5
 #define FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_MOM                0x2F6
@@ -864,7 +864,7 @@
 #define FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE         0x336
 #define FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA                          0x337
 #define FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD                          0x338
-#define FLAG_UNUSED_0x339                                           0x339 // Unused Flag
+#define FLAG_NORMAN_QUEST_STARTED                                   0x339 // Flag tracking initiation of Norman quest
 #define FLAG_HIDE_SOOTOPOLIS_CITY_ARCHIE                            0x33A
 #define FLAG_HIDE_SOOTOPOLIS_CITY_MAXIE                             0x33B
 #define FLAG_HIDE_SEAFLOOR_CAVERN_ROOM_9_ARCHIE                     0x33C
@@ -906,7 +906,7 @@
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_1           0x360
 #define FLAG_HIDE_BATTLE_TOWER_MULTI_BATTLE_PARTNER_ALT_2           0x361
 #define FLAG_HIDE_PETALBURG_GYM_WALLY                               0x362
-#define FLAG_UNUSED_0x363                                          0x363 // Unused Flag
+#define FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_2_COMPLETED   0x363 // Flag for completion of the second NPC trade at Johto Sanctuary Ranger Station for Chinchou
 #define FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN                           0x364
 #define FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY          0x365
 #define FLAG_HIDE_LANETTES_HOUSE_LANETTE                            0x366
@@ -1168,8 +1168,8 @@
 #define FLAG_ITEM_NEW_MAUVILLE_PARALYZE_HEAL                        0x463
 #define FLAG_ITEM_AQUA_HIDEOUT_B1F_MASTER_BALL                      0x464
 #define FLAG_RIVAL_TRADE_3_COMPLETED                                0x465 // Was previously FLAG_ITEM_OLD_MAGMA_HIDEOUT_B1F_MASTER_BALL flag, reused for 3rd Starter Trade in National Dex Mode
-#define FLAG_UNUSED_0x466                                           0x466 // Unused Flag
-#define FLAG_UNUSED_0x467                                           0x467 // Unused Flag
+#define FLAG_JOHTO_SANCTUARY_CUT_TREE_1                             0x466 // Tracks cut state of first tree in Johto Sanctuary
+#define FLAG_JOHTO_SANCTUARY_CUT_TREE_2                             0x467 // Tracks cut state of second tree in Johto Sanctuary
 #define FLAG_ITEM_ROUTE_108_BLUE_SHARD                              0x468
 #define FLAG_ITEM_MT_PYRE_2F_ULTRA_BALL                             0x469
 #define FLAG_ITEM_MT_PYRE_4F_SEA_INCENSE                            0x46A
@@ -1302,12 +1302,12 @@
 #define FLAG_DEWFORD_BEACH_NPC_TRADE_COMPLETED                      0x4E7 // Flag for Dewford Beach NPC trade completed
 // Wattson Quest Flags
 #define FLAG_NEW_MAUVILLE_PIKACHU_GIVEN                             0x4E8 // Flag for giving Pikachu in New Mauville
-#define FLAG_UNUSED_0x4E9                                           0x4E9 // Unused Flag
-#define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
-#define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
-#define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
-#define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
-#define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
+#define FLAG_JOHTO_SANCTUARY_ITEM_REVIVAL_HERB                      0x4E9 // Hidden Revival Herb item in Johto Sanctuary Entrance
+#define FLAG_ITEM_JOHTO_SANCTUARY_FULL_HEAL                         0x4EA // Full Heal item in Johto Sanctuary Entrance
+#define FLAG_HIDDEN_ITEM_JOHTOSANCTUARY_RANGERSTATION_SITRUS        0x4EB // Hidden Sitrus Berry item in Johto Sanctuary Ranger Station
+#define FLAG_ITEM_JOHTO_SANCTUARY_RANGERSTATION_FULL_HEAL           0x4EC // Full Heal item in Johto Sanctuary Ranger Station
+#define FLAG_ITEM_JOHTO_SANCTUARY_RANGERSTATION_ULTRA_BALL          0x4ED // Ultra Ball item in Johto Sanctuary Ranger Station
+#define FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_1_COMPLETED   0x4EE // Flag for Johto Sanctuary Ranger Station NPC trade 1 completed (Bellossom)
 
 #define FLAG_REMATCH_METEOR_FALLS_STEVEN                            0x4EF // Flag to allow Steven Meteor Cave Rematch
 #define FLAG_DEFEATED_RUSTBORO_GYM                                  0x4F0
@@ -1500,14 +1500,14 @@
 
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 
-#define FLAG_UNUSED_0x8E5                           (SYSTEM_FLAGS + 0x85) // Unused Flag
-#define FLAG_UNUSED_0x8E6                           (SYSTEM_FLAGS + 0x86) // Unused Flag
-#define FLAG_UNUSED_0x8E7                           (SYSTEM_FLAGS + 0x87) // Unused Flag
-#define FLAG_UNUSED_0x8E8                           (SYSTEM_FLAGS + 0x88) // Unused Flag
-#define FLAG_UNUSED_0x8E9                           (SYSTEM_FLAGS + 0x89) // Unused Flag
-#define FLAG_UNUSED_0x8EA                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
-#define FLAG_UNUSED_0x8EB                           (SYSTEM_FLAGS + 0x8B) // Unused Flag
-#define FLAG_UNUSED_0x8EC                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
+#define FLAG_HIDDEN_ITEM_SITRUS_BERRY_JOHTO_ARBORETUM                  (SYSTEM_FLAGS + 0x85) // Unused Flag
+#define FLAG_HIDDEN_ITEM_LUM_BERRY_JOHTO_ARBORETUM                           (SYSTEM_FLAGS + 0x86) // Unused Flag
+#define FLAG_ROCK_SMASH_JOHTO_ARBORETUM_1                           (SYSTEM_FLAGS + 0x87) // Unused Flag
+#define FLAG_ROCK_SMASH_JOHTO_ARBORETUM_2                           (SYSTEM_FLAGS + 0x88) // Unused Flag
+#define FLAG_ROCK_SMASH_JOHTO_ARBORETUM_3                           (SYSTEM_FLAGS + 0x89) // Unused Flag
+#define FLAG_ITEM_JOHTO_ARBORETUM_HEAL_POWDER                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
+#define FLAG_ITEM_JOHTO_ARBORETUM_SILVER_POWDER                           (SYSTEM_FLAGS + 0x8B) // Unused Flag
+#define FLAG_JOHTO_ARBORETUM_STANTLER_GIVEN                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
 #define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
 #define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
 #define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag

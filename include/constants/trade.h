@@ -25,6 +25,8 @@
 #define INGAME_TRADE_SNORUNT 17
 #define INGAME_TRADE_LOUDRED 18
 #define INGAME_TRADE_PHANPY 55
+#define INGAME_TRADE_GLOOM 56
+#define INGAME_TRADE_CHINCHOU 57
 
 // National Dex Mode Starter Trades
 #define INGAME_TRADE_TORCHIC_MAY_BULBASAUR 19       // Trade 1 - Bulbasaur  - May

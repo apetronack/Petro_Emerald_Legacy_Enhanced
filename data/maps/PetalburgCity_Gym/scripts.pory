@@ -452,6 +452,9 @@ PetalburgCity_Gym_EventScript_NormanBattle::
 	delay 30
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
 	closemessage
+	setvar VAR_NORMAN_QUEST_STATE, 0
+	setflag FLAG_HIDE_PETALBURG_GYM_NORMAN
+	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
 	setflag FLAG_HIDE_LAVARIDGE_POKEMON_CENTER_BRENDAN
 	setflag FLAG_HIDE_LAVARIDGE_POKEMON_CENTER_MAY
 	delay 40
@@ -1387,7 +1390,16 @@ PetalburgCity_Gym_Text_DadHappyAndSad:
 	.string "DAD: As the GYM LEADER, I can't\n"
 	.string "express how upset I am…\p"
 	.string "But as a father, it makes me both\n"
-	.string "happy and a little sad. It's odd…$"
+	.string "happy and a little sad. It's odd…\p"
+	.string "Standing here, having lost to you…\n"
+	.string "It's made me think.\p"
+	.string "I've poured everything into this GYM.\n"
+	.string "But somewhere along the way, I let\l"
+	.string "what matters most slip away.\p"
+	.string "I'm heading home for a while.\n"
+	.string "Come find me there when you can.\p"
+	.string "There's something I've been wanting\n"
+	.string "to share with you.$"
 
 PetalburgCity_Gym_Text_PleaseComeWithMe:
 	.string "Ah, there you are, {PLAYER}{KUN}!\p"

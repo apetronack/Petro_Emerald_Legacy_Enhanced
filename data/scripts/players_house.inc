@@ -64,8 +64,7 @@ PlayersHouse_2F_EventScript_WallClock::
 	delay 30
 	setvar VAR_LITTLEROOT_INTRO_STATE, 6
 	setflag FLAG_SET_WALL_CLOCK
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, PlayersHouse_2F_EventScript_MomComesUpstairsMale
 	call_if_eq VAR_RESULT, FEMALE, PlayersHouse_2F_EventScript_MomComesUpstairsFemale
@@ -702,3 +701,286 @@ PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale:
 EventScript_RunningShoesManual::
 	msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
 	end
+
+@ Norman Quest Additions
+
+PlayersHouse_1F_EventScript_Dad::
+	lock
+	faceplayer
+	goto_if_eq VAR_NORMAN_QUEST_STATE, 5, PlayersHouse_1F_EventScript_DadPostQuestIdle
+	goto_if_eq VAR_NORMAN_QUEST_STATE, 4, PlayersHouse_1F_EventScript_DadQuestConclusion
+	goto PlayersHouse_1F_EventScript_DadIntroduceQuest
+	end
+
+@ Norman introduces the Johto Sanctuary and departs
+PlayersHouse_1F_EventScript_DadIntroduceQuest::
+	msgbox PlayersHouse_1F_Text_DadIntroduceQuest, MSGBOX_DEFAULT
+	closemessage
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, PlayersHouse_1F_EventScript_DadExitQuestMale
+	call_if_eq VAR_RESULT, FEMALE, PlayersHouse_1F_EventScript_DadExitQuestFemale
+	removeobject LOCALID_DAD
+	playse SE_EXIT
+	setflag FLAG_NORMAN_QUEST_STARTED
+	setvar VAR_NORMAN_QUEST_STATE, 0
+	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadExitQuestMale::
+	call_if_eq VAR_FACING, DIR_NORTH, PlayersHouse_1F_EventScript_PlayerStepRightForDadExit
+	applymovement LOCALID_DAD, PlayersHouse_1F_Movement_DadExitQuestMale
+	waitmovement 0
+	return
+
+PlayersHouse_1F_EventScript_DadExitQuestFemale::
+	call_if_eq VAR_FACING, DIR_NORTH, PlayersHouse_1F_EventScript_PlayerStepLeftForDadExit
+	applymovement LOCALID_DAD, PlayersHouse_1F_Movement_DadExitQuestFemale
+	waitmovement 0
+	return
+
+PlayersHouse_1F_EventScript_PlayerStepRightForDadExit::
+	applymovement OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerStepRightForDadExit
+	waitmovement 0
+	return
+
+PlayersHouse_1F_EventScript_PlayerStepLeftForDadExit::
+	applymovement OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerStepLeftForDadExit
+	waitmovement 0
+	return
+
+@ Norman returned; first interaction concludes the quest
+PlayersHouse_1F_EventScript_DadQuestConclusion::
+	msgbox PlayersHouse_1F_Text_DadQuestConclusion, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_NORMAN_QUEST_STATE, 5
+	release
+	end
+
+@ Repeated idle dialogue after quest is complete; also distributes rematch egg rewards
+PlayersHouse_1F_EventScript_DadPostQuestIdle::
+	@ Girafarig egg: given after 1st rematch (TRAINER_NORMAN_2)
+	goto_if_set FLAG_GIVEN_NORMAN_GIRAFARIG_EGG, PlayersHouse_1F_EventScript_DadCheckAipomEgg
+	setvar 0x8005, TRAINER_NORMAN_2
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveGirafarigEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ Girafarig egg given, but not yet the Aipom egg
+PlayersHouse_1F_EventScript_DadCheckAipomEgg::
+	@ Aipom egg: given after 2nd rematch (TRAINER_NORMAN_3)
+	goto_if_set FLAG_GIVEN_NORMAN_AIPOM_EGG, PlayersHouse_1F_EventScript_DadCheckSnubbullEgg
+	setvar 0x8005, TRAINER_NORMAN_3
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveAipomEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ Aipom egg given, but not yet the Snubbull egg
+PlayersHouse_1F_EventScript_DadCheckSnubbullEgg::
+	@ Snubbull egg: given after 3rd rematch (TRAINER_NORMAN_4)
+	goto_if_set FLAG_GIVEN_NORMAN_SNUBBULL_EGG, PlayersHouse_1F_EventScript_DadCheckMiltankEgg
+	setvar 0x8005, TRAINER_NORMAN_4
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveSnubbullEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ Snubbull egg given, but not yet the Miltank egg
+PlayersHouse_1F_EventScript_DadCheckMiltankEgg::
+	@ Miltank egg: given after 4th rematch (TRAINER_NORMAN_5)
+	goto_if_set FLAG_GIVEN_NORMAN_MILTANK_EGG, PlayersHouse_1F_EventScript_DadIdleDialogue
+	setvar 0x8005, TRAINER_NORMAN_5
+	special HasRematchBeenFought
+	goto_if_eq VAR_RESULT, TRUE, PlayersHouse_1F_EventScript_DadGiveMiltankEgg
+	goto PlayersHouse_1F_EventScript_DadIdleDialogue
+@ All rematch eggs have been given or next rematch has not yet been fought
+@ This is the default idle dialogue for Dad after the quest is complete
+PlayersHouse_1F_EventScript_DadIdleDialogue::
+	msgbox PlayersHouse_1F_Text_DadPostQuestIdle, MSGBOX_DEFAULT
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveAipomEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveAipomEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_AIPOM
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_AIPOM_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveSnubbullEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveSnubbullEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_SNUBBULL
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_SNUBBULL_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveGirafarigEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveGirafarigEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_GIRAFARIG
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_GIRAFARIG_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadGiveMiltankEgg::
+	msgbox PlayersHouse_1F_Text_DadGiveMiltankEgg, MSGBOX_DEFAULT
+	getpartysize
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PlayersHouse_1F_EventScript_DadEggPartyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_MILTANK
+	msgbox PlayersHouse_1F_Text_DadGaveEggSuccess, MSGBOX_DEFAULT
+	closemessage
+	setflag FLAG_GIVEN_NORMAN_MILTANK_EGG
+	release
+	end
+
+PlayersHouse_1F_EventScript_DadEggPartyFull::
+	msgbox PlayersHouse_1F_Text_DadEggPartyFull, MSGBOX_DEFAULT
+	closemessage
+	release
+	end
+
+@ Called from both house OnTransition scripts whenever FLAG_DEFEATED_PETALBURG_GYM is set.
+@ Uses goto so that HideDad/ShowDad's return propagates back to the original caller.
+PlayersHouse_1F_EventScript_ManageNormanVisibility::
+	@ SS Ticket event pending: defer entirely, let that event manage Dad's NPC
+	goto_if_eq VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_ManageNormanVisibilityEnd
+	@ Quest not yet initiated: Norman is home awaiting player (covers both pre-intro and
+	@ post-SS-Ticket cases where the player never triggered the house intro)
+	goto_if_unset FLAG_NORMAN_QUEST_STARTED, PlayersHouse_1F_EventScript_ShowDad
+	@ State 4: Stantler encounter resolved, Norman has returned home
+	goto_if_eq VAR_NORMAN_QUEST_STATE, 4, PlayersHouse_1F_EventScript_ShowDad
+	@ State 5+: quest complete; hide only during active rematch window
+	goto_if_ge VAR_NORMAN_QUEST_STATE, 5, PlayersHouse_1F_EventScript_CheckRematchHide
+	@ Remaining: states 0-3 with FLAG_NORMAN_QUEST_STARTED set (Norman at woods or sanctuary)
+	goto PlayersHouse_1F_EventScript_HideDad
+
+PlayersHouse_1F_EventScript_CheckRematchHide::
+	goto_if_set FLAG_REMATCH_READY_NORMAN, PlayersHouse_1F_EventScript_HideDad
+PlayersHouse_1F_EventScript_ManageNormanVisibilityEnd::
+	return
+
+PlayersHouse_1F_EventScript_HideDad::
+	setflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	return
+
+PlayersHouse_1F_EventScript_ShowDad::
+	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
+	return
+
+PlayersHouse_1F_Movement_DadExitQuestMale:
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	face_down
+	delay_8
+	step_end
+
+PlayersHouse_1F_Movement_DadExitQuestFemale:
+	walk_down
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	face_down
+	delay_8
+	step_end
+
+PlayersHouse_1F_Movement_PlayerStepRightForDadExit:
+	walk_right
+	face_left
+	step_end
+
+PlayersHouse_1F_Movement_PlayerStepLeftForDadExit:
+	walk_left
+	face_right
+	step_end
+
+PlayersHouse_1F_Text_DadIntroduceQuest:
+	.string "DAD: {PLAYER}! I'm glad you came.\p"
+	.string "I've been thinking a lot about\n"
+	.string "our old home in JOHTO lately…\p"
+	.string "The forests, the places we called\n"
+	.string "home before all this.\p"
+	.string "Meet me in PETALBURG WOODS when\n"
+	.string "you're ready, {PLAYER}.\p"
+	.string "I want to show you something.$"
+
+PlayersHouse_1F_Text_DadQuestConclusion:
+	.string "DAD: {PLAYER}…\p"
+	.string "Watching you out there today…\p"
+	.string "You have a true bond with\l"
+	.string "POKéMON.\p"
+	.string "You understand them, and they\n"
+	.string "feel a connection with you.\p"
+	.string "I'm proud of you, {PLAYER}.\n"
+	.string "Not just as a TRAINER.$"
+
+PlayersHouse_1F_Text_DadPostQuestIdle:
+	.string "DAD: It's good to be home.\p"
+	.string "Your mother and I have been\n"
+	.string "catching up on so much.\p"
+	.string "I'd almost forgotten how much I\n"
+	.string "missed this.$"
+
+PlayersHouse_1F_Text_DadGiveAipomEgg:
+	.string "DAD: {PLAYER}, I've been meaning\n"
+	.string "to give you something.\p"
+	.string "Back in JOHTO, AIPOM used to swing\n"
+	.string "through the trees.\p"
+	.string "They are mischevious, but quite\n"
+	.string "lovable. Here's an AIPOM EGG.\p"
+	.string "Take it. It deserves a good\n"
+	.string "TRAINER.$"
+
+PlayersHouse_1F_Text_DadGiveSnubbullEgg:
+	.string "DAD: You keep getting stronger,\n"
+	.string "{PLAYER}!\p"
+	.string "A SNUBBULL used to follow me\n"
+	.string "home in JOHTO sometimes…\p"
+	.string "It was feisty, but loyal.\n"
+	.string "I think you'll get along.$"
+
+PlayersHouse_1F_Text_DadGiveGirafarigEgg:
+	.string "DAD: Every time we battle, I see\n"
+	.string "how well you embody balance.\p"
+	.string "GIRAFARIG are balanced too.\p"
+	.string "Here is a GIRAFARIG EGG. I know\n"
+	.string "you will treat it with love.$"
+
+PlayersHouse_1F_Text_DadGaveEggSuccess:
+	.string "DAD: Take good care of it.$"
+
+PlayersHouse_1F_Text_DadEggPartyFull:
+	.string "DAD: Looks like your party is\n"
+	.string "already full.\p"
+	.string "Come back when you have room.\n"
+	.string "I'll keep it safe.$"
+
+PlayersHouse_1F_Text_DadGiveMiltankEgg:
+	.string "DAD: You've come such a long way\n"
+	.string "since this all started.\p"
+	.string "MILTANK are strong and dependable.\n"
+	.string "They were everywhere in JOHTO.\p"
+	.string "This is a final gift from your old\n"
+	.string "dad. Take good care of it.$"

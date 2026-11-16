@@ -1,0 +1,170 @@
+const LOCALID_TRADEMON = 4
+
+mapscripts JohtoSanctuary_RangerStation_Building1_MapScripts {
+    MAP_SCRIPT_ON_RESUME: JohtoSanctuary_RangerStation_Building1_OnResume
+}
+
+script JohtoSanctuary_RangerStation_Building1_OnResume {
+    if (!flag(FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_1_COMPLETED)) {
+        call(JohtoSanctuary_RangerStation_Building1_EventScript_SetUpGloom)
+        return()
+    }
+    // If the trade has been completed, set up Beautifly instead
+    call(JohtoSanctuary_RangerStation_Building1_EventScript_SetUpBeautifly)
+    return()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_SetUpGloom {
+    setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_MON_BASE+SPECIES_GLOOM)
+    return()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_SetUpBeautifly {
+    setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_MON_BASE+SPECIES_BEAUTIFLY)
+    return()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_Camper {
+    msgbox(JohtoSanctuaryRangerStationBuilding1_Text_Camper, MSGBOX_NPC)
+    end()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_Hiker {
+    msgbox(JohtoSanctuaryRangerStationBuilding1_Text_Hiker, MSGBOX_NPC)
+    end()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_OldWoman {
+    lock()
+    faceplayer()
+    // Check if trade has been completed yet
+    if (!flag(FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_1_COMPLETED)) {
+        // Trade has not been completed yet, so proceed with trade
+        setvar(VAR_0x8008, INGAME_TRADE_GLOOM)
+        copyvar(VAR_0x8004, VAR_0x8008)
+        specialvar(VAR_RESULT, GetInGameTradeSpeciesInfo)
+        copyvar(VAR_0x8009, VAR_RESULT)
+        msgbox(JohtoSanctuaryRangerStationBuilding1_Text_YouWillTradeWontYou, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == NO) {
+            goto(JohtoSanctuary_RangerStation_Building1_EventScript_DeclineTrade)
+        }
+        // Chose to trade
+        special(ChoosePartyMon)
+        waitstate()
+        copyvar(VAR_0x800A, VAR_0x8004)
+        if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+            goto(JohtoSanctuary_RangerStation_Building1_EventScript_DeclineTrade)
+        }
+        copyvar(VAR_0x8005, VAR_0x800A)
+        specialvar(VAR_RESULT, GetTradeSpecies)
+        copyvar(VAR_0x800B, VAR_RESULT)
+        if (var(VAR_RESULT) != VAR_0x8009) {
+            goto(JohtoSanctuary_RangerStation_Building1_EventScript_NotRequestedMon)
+        }
+        // Trade is valid, proceed with trade
+        copyvar(VAR_0x8004, VAR_0x8008)
+        copyvar(VAR_0x8005, VAR_0x800A)
+        special(CreateInGameTradePokemon)
+        fadescreen(FADE_TO_BLACK)
+        removeobject(LOCALID_TRADEMON)
+        fadescreen(FADE_FROM_BLACK)
+        special(DoInGameTradeScene)
+        waitstate()
+        lock()
+        faceplayer()
+        bufferspeciesname(STR_VAR_1, VAR_0x8009)
+        msgbox(JohtoSanctuaryRangerStationBuilding1_Text_MonYouTakeCare, MSGBOX_DEFAULT)
+        closemessage()
+        fadescreen(FADE_TO_BLACK)
+        call(JohtoSanctuary_RangerStation_Building1_EventScript_SetUpBeautifly)
+        addobject(LOCALID_TRADEMON)
+        fadescreen(FADE_FROM_BLACK)
+        setflag(FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_1_COMPLETED)
+        release()
+        end()
+    }
+    // Trade has already been completed, so just show the post-trade message
+    msgbox(JohtoSanctuaryRangerStationBuilding1_Text_PostTradeText, MSGBOX_DEFAULT)
+    release()
+    end()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_DeclineTrade {
+    msgbox(JohtoSanctuaryRangerStationBuilding1_Text_YouWontTradeMe, MSGBOX_DEFAULT)
+    release()
+    end()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_NotRequestedMon {
+    bufferspeciesname(STR_VAR_1, VAR_0x8009)
+    msgbox(JohtoSanctuaryRangerStationBuilding1_Text_ThisIsntAMon, MSGBOX_DEFAULT)
+    release()
+    end()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_Mon {
+    if (!flag(FLAG_JOHTO_SANCTUARY_RANGER_STATION_NPC_TRADE_1_COMPLETED)) {
+        call(JohtoSanctuary_RangerStation_Building1_EventScript_Gloom)
+    } else {
+        call(JohtoSanctuary_RangerStation_Building1_EventScript_Beautifly)
+    }
+    end()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_Gloom {
+    lock()
+    faceplayer()
+    waitse()
+    playmoncry(SPECIES_GLOOM, CRY_MODE_NORMAL)
+    msgbox(JohtoSanctuaryRangerStationBuilding1_Text_Gloom, MSGBOX_DEFAULT)
+    waitmoncry()
+    release()
+    end()
+}
+
+script JohtoSanctuary_RangerStation_Building1_EventScript_Beautifly {
+    lock()
+    faceplayer()
+    waitse()
+    playmoncry(SPECIES_BEAUTIFLY, CRY_MODE_NORMAL)
+    msgbox(JohtoSanctuaryRangerStationBuilding1_Text_Beautifly, MSGBOX_DEFAULT)
+    waitmoncry()
+    release()
+    end()
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_Camper {
+    format("There used to be a lot more JOHTO POKéMON around these parts, but after Rustboro and Petalburg started growing, we started seeing fewer of them around.")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_Hiker {
+    format("Working for the JOHTO SANCTUARY is the greatest! I get to hike through the wilderness all day and see amazing POKEMON in their natural habitat.")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_YouWillTradeWontYou {
+    format("Welcome, trainer. I'm looking for a BUG TYPE POKéMON. Fancy a trade? My {STR_VAR_2}, for a {STR_VAR_1}?")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_ThisIsntAMon {
+    format("I'm sorry, but that's not a {STR_VAR_1}. I'm looking for a {STR_VAR_1}.")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_YouWontTradeMe {
+    format("Oh, I see. Maybe another time then.")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_MonYouTakeCare {
+    format("Thank you for taking care of my {STR_VAR_2}. I hope it brings you joy.")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_PostTradeText {
+    format("BEAUTIFLY is just the POKéMON I was looking for! Thank you for trading with me.")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_Gloom {
+    format("GLOOM: PHOOYEOOMM!")
+}
+
+text JohtoSanctuaryRangerStationBuilding1_Text_Beautifly {
+    format("BEAUTIFLY: KRILILIL!")
+}

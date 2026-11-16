@@ -27,6 +27,7 @@ u8 FindTallGrassFieldEffectSpriteId(u8 localId, u8 mapNum, u8 mapGroup, s16 x, s
 void UpdateRayquazaSpotlightEffect(struct Sprite *);
 void UpdateShadowFieldEffect(struct Sprite *);
 void UpdateTallGrassFieldEffect(struct Sprite *);
+void UpdateAltTallGrassFieldEffect(struct Sprite *);
 void WaitFieldEffectSpriteAnim(struct Sprite *);
 void UpdateAshFieldEffect(struct Sprite *);
 void UpdateSurfBlobFieldEffect(struct Sprite *);
@@ -34,6 +35,7 @@ void UpdateJumpImpactEffect(struct Sprite *);
 void UpdateFootprintsTireTracksFieldEffect(struct Sprite *);
 void UpdateSplashFieldEffect(struct Sprite *);
 void UpdateLongGrassFieldEffect(struct Sprite *);
+void UpdateAltLongGrassFieldEffect(struct Sprite *);
 void UpdateSandPileFieldEffect(struct Sprite *);
 void UpdateDisguiseFieldEffect(struct Sprite *);
 void UpdateShortGrassFieldEffect(struct Sprite *);

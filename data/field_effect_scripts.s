@@ -75,6 +75,10 @@ gFieldEffectScriptPointers::
 	.4byte gFieldEffectScript_TracksSlither             @ FLDEFF_TRACKS_SLITHER
 	.4byte gFieldEffectScript_TracksBug                 @ FLDEFF_TRACKS_BUG
 	.4byte gFieldEffectScript_TracksSpot                @ FLDEFF_TRACKS_SPOT
+	.4byte gFieldEffectScript_AltTallGrass              @ FLDEFF_ALT_TALL_GRASS
+	.4byte gFieldEffectScript_AltJumpTallGrass          @ FLDEFF_ALT_JUMP_TALL_GRASS
+	.4byte gFieldEffectScript_AltLongGrass              @ FLDEFF_ALT_LONG_GRASS
+	.4byte gFieldEffectScript_AltJumpLongGrass          @ FLDEFF_ALT_JUMP_LONG_GRASS
 
 gFieldEffectScript_ExclamationMarkIcon1::
 	field_eff_callnative FldEff_ExclamationMarkIcon
@@ -357,4 +361,20 @@ gFieldEffectScript_DestroyDeoxysRock::
 
 gFieldEffectScript_MoveDeoxysRock::
 	field_eff_callnative FldEff_MoveDeoxysRock
+	field_eff_end
+
+gFieldEffectScript_AltTallGrass::
+	field_eff_loadfadedpal_callnative gSpritePalette_AltGrassFieldEffect, FldEff_AltTallGrass
+	field_eff_end
+
+gFieldEffectScript_AltJumpTallGrass::
+	field_eff_loadfadedpal_callnative gSpritePalette_AltGrassFieldEffect, FldEff_AltJumpTallGrass
+	field_eff_end
+
+gFieldEffectScript_AltLongGrass::
+	field_eff_loadfadedpal_callnative gSpritePalette_AltGrassFieldEffect, FldEff_AltLongGrass
+	field_eff_end
+
+gFieldEffectScript_AltJumpLongGrass::
+	field_eff_loadfadedpal_callnative gSpritePalette_AltGrassFieldEffect, FldEff_AltJumpLongGrass
 	field_eff_end

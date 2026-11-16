@@ -310,6 +310,19 @@ graphics/pokenav/region_map/map.8bpp: %.8bpp: %.png
 $(MISCGFXDIR)/japanese_hof.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 29 -Wnum_tiles
 
+# Alt grass field effects need 2x2 metatile packing (except jump_tall which is 2x1)
+graphics/field_effects/pics/alt_tall_grass.4bpp: graphics/field_effects/pics/alt_tall_grass.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+graphics/field_effects/pics/alt_long_grass.4bpp: graphics/field_effects/pics/alt_long_grass.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+graphics/field_effects/pics/alt_jump_long_grass.4bpp: graphics/field_effects/pics/alt_jump_long_grass.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+graphics/field_effects/pics/alt_jump_tall_grass.4bpp: graphics/field_effects/pics/alt_jump_tall_grass.png
+	$(GFX) $< $@ -mwidth 2 -mheight 1
+
 $(BATINTGFXDIR)/textbox.gbapal: $(BATINTGFXDIR)/textbox_0.gbapal \
                                 $(BATINTGFXDIR)/textbox_1.gbapal
 	@cat $^ >$@

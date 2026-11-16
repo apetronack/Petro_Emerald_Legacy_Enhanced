@@ -1,0 +1,11 @@
+mapscripts JohtoSanctuary_RangerStation_Building2_MapScripts {}
+
+script JohtoSanctuary_RangerStation_Building2_EventScript_Ranger {
+    msgbox(JohtoSanctuaryRangerStationBuilding2_Text_Ranger, MSGBOX_NPC)
+    end()
+}
+
+text JohtoSanctuaryRangerStationBuilding2_Text_Ranger {
+    format("Maybe one day, JOHTO POKéMON will inhabit the HOENN region again. Until that day comes to pass, they will always have a home in the JOHTO SANCTUARY.") 
+}
+
